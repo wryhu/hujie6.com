@@ -1,0 +1,55 @@
+div.jumbotron {
+    margin-bottom:0;
+
+}
+.well {
+    margin:0;
+}
+div#container {
+    min-width: 15em;
+    max-width: 50em;
+    height: 25em;
+}
+h1.same {
+    text-align: center;
+    margin: 20px 110px 60px;
+    padding: 40px;
+    border-bottom: 1px solid #ccc;
+}
+#bg1 {
+    background: url(/static/image/fushishan.jpg) no-repeat center center fixed;
+    display: table;
+    height: 50em;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    margin-top:40px;
+}
+.landing-text {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+.landing-text h1 {
+    font-size: 500%;
+    font-weight: 700;
+}
+.s1 {color:teal;}
+.s2 {color:blue;}
+.s3 {color:fuchsia;}
+.s4 {color:#FFA07A;}
+.s6 {color:green;}
+.s7 {color:lime;}
+.s8 {color:orange;}
+.s9 {color:yellow;}
+.s10 {color:purple;}
+.s11 {color:silver,;}
+.s12 {color:red;}
+div.tab-content {
+    text-align:center;
+}
+div.tab-content li{
+    list-style-type:none;
+    font-size:18px;
+    padding: 2%;
+}

@@ -1,0 +1,52 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+html body {
+    margin: 0;
+    padding: 0;
+}
+#navbar-base {
+    margin: 0px;
+    border: 0;
+    background-color: rgba(255, 255, 255, 0);
+}
+#totop {
+    width: 200px;
+    height: 200px;
+    background: url(/static/image/jet.png) no-repeat center center;
+    position: fixed;
+    right: -50px;
+    bottom: 20px;
+    display:none;
+    outline:none;
+}
+
+#pad {
+    padding: 20px;
+    font-size: 15px;
+}
+a.navbar-brand {
+    padding:11px 30px;
+}
+.caret {
+    padding-bottom:9px;
+}
+footer {
+    width: 100%;
+    height: 100%;
+    background: #B0E0E6;
+    margin-top:40px;
+    padding: 4%;
+    color: #5E4485;
+}
+.col-sm-4 .fa {
+
+    padding: 20px;
+    font-size: 30px;
+    color: #5E4485;
+    text-decoration: none;
+}
+.col-sm-4 .fa:hover{
+    color:blue;
+}

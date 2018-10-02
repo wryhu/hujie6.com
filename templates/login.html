@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    HJ网站|登录
+{% endblock %}
+{% block header_extends %}
+<style type="text/css">
+    .pull-left ul {
+        padding:0;
+    }
+</style>
+{% endblock %}
+{% block nav_login_active %}active{% endblock %}
+
+{% block content %}
+    <div class="containter" >
+        <div class="row" style="margin:10em 5em 15em">
+            <div class="col-sm-6 col-xs-0"></div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:rgba(245, 245, 245, 0);">
+                        <h3 class="panel-title">登录</h3>
+                    </div>
+                    <div class="panel-body" >
+                        <form action="" method="POST" >
+                            {% csrf_token %}
+                            {% for field in login_form %}
+                                <label>{{ field.label }}</label>
+                                {{ field }}
+                                <p class="text-danger">{{ field.errors.as_text }}</p>
+                            {% endfor %}
+                            <span style="list-style-type:none;" class="pull-left text-danger">{{ login_form.non_field_errors }}</span>
+                            <input type="submit" value="登录" class="btn btn-default pull-right">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+        body {
+            background: url(/static/image/login.jpg) no-repeat center center fixed;
+            background-size: cover;
+        }
+        li {list-style-type:none;}
+    </style>
+{% endblock %}

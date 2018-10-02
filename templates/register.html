@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    HJ网站|注册
+{% endblock %}
+
+{% block content %}
+    <div class="containter-fluid">
+        <div class="row" style="margin:5em 5em 15em">
+            <div class="col-sm-1 col-xs-0"></div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:rgba(245, 245, 245, 0);">
+                        <h3 class="panel-title">注册</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {% for field in reg_form %}
+                                <label >{{ field.label }}</label>
+                                {{ field }}
+                                <p class="text-danger">{{ field.errors.as_text }}</p>
+                            {% endfor %}
+                            <span class="pull-left text-danger">{{ reg_form.non_field_errors }}</span>
+                            <input type="submit" value="注册" class="btn btn-default pull-right">
+                        </form>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <style type="text/css">
+    body {
+        background: url(/static/image/register.jpg) no-repeat center center fixed;
+        background-size: cover;
+    }
+    </style>
+{% endblock %}

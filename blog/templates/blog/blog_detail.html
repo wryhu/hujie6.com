@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ blog.title }}
+{% endblock %}
+
+{% load staticfiles %}
+{% load comment_tags %}
+
+{% block header_extends %}
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="jumbotron" style="margin-top:20px;">
+                    <h2 class="blog_title">{{ blog.title }}</h2>
+                    <div class="blog-info-desc">
+                        <a href="#">
+                            <button type="button" class="btn btn-default btn-xs">
+                                <span class="glyphicon glyphicon-grain"></span> 作者: {{ blog.author }}
+                            </button>
+                        </a>
+                        <a href="{% url 'blogs_by_type' blog.blog_type.pk %}">
+                            <button type="button" class="btn btn-default btn-xs">
+                                <span class="glyphicon glyphicon-star-empty"></span> {{ blog.blog_type }}
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-default btn-xs" title="make more time">
+                            <span class="glyphicon glyphicon-time"></span> 发布时间: {{ blog.created_time|date:"Y-m-d H:i:s" }}
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-eye-open"></span> 阅读: {{ blog.get_read_num }}
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-comment"></span> 评论: {% comments_count blog %}
+                        </button>
+                    </div>
+                </div>
+                <div class="blog-content">{{ blog.content|safe }}</div>
+                <div class="blog-more">
+                    <p>
+                        上一篇:
+                        {% if previous_blog %}
+                        <a href="{% url 'blog_detail' previous_blog.pk %}">{{ previous_blog.title }}</a>
+                        {% else %}
+                            木有了
+                        {% endif %}
+                    </p>
+                    <p id="logout">
+                        下一篇:
+                        {% if next_blog %}
+                            <a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a>
+                        {% else %}
+                            木有了
+                        {% endif %}
+                    </p>
+                </div>
+                <input id="object_id" type="hidden" name="object_id" value="{{ blog.pk }}">
+                <hr>
+                <div id="comment_sub" class="comment-area">
+                    <h3 class="comment-area-title">提交评论</h3>
+                    {% if user.is_authenticated %}
+                        <form id="comment-form" >
+                            {% csrf_token %}
+                            <label>{{ user.username }}，欢迎评论~</label>
+                            <div id="comment_form">{{ comment_form }}</div>
+                            <span id="comment_error" class="text-danger pull-left"></span>
+                            <input type="submit" value="评论" class="btn btn-primary pull-right">
+                        </form>
+                    {% else %}
+                        您尚未登录，登录之后方可评论和回复~
+                        <a class="btn btn-primary" href="{% url 'login' %}?form={{ request.get_full_path }}">登录</a>
+                        <span>or</span>
+                        <a class="btn btn-danger" href="{% url 'register' %}?form={{ request.get_full_path }}">注册</a>
+                    {% endif %}
+                </div>
+                <br><br>
+                <div class="comment-area">
+                    <h3 class="comment-area-title">评论列表</h3>
+                    <div id="comment-list">
+                        {% for comment in comments %}
+                            <input type="hidden" name="root_comment_id" value="{{ comment.pk }}">
+                            <div class="jumbotron">
+
+                                <div class="comment-root">
+                                    {% if comment.user.pk == 1 %}
+                                        <!--我的评论与众不同-->
+                                        <img src="/static/image/user1.jpeg" class="my_avatar">
+                                        <div>
+                                            <div class="me">{{ comment.user.username }} 站长</div>
+                                            <div style="color:#00AAAA;">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                            <div id="comment-text" class="my_comment">{{ comment.text|safe }}</div>
+                                    {% else %}
+                                        <img src="/static/image/user{{ comment.user.pk }}.jpeg" class="avatar">
+                                        <div>
+                                            <div class="other">{{ comment.user.username }}</div>
+                                            <div style="color:#00AAAA;">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                            <div id="comment-text">{{ comment.text|safe }}</div>
+                                    {% endif %}
+                                            <div><a class="reply_btn" href="javascript:;">我也说一句</a></div>
+                                        </div>
+                                        <input type="hidden" name="parent_reply_id" value="{{ comment.pk }}">
+                                </div>
+
+
+
+                                <div class="comment-root" style="margin-left:6em;">
+
+                                    {% for reply in comment.child_replies_for_root.all %}
+                                        <br><br>
+                                        {% if reply.user.pk == 1 %}
+                                            <!--我的评论与众不同-->
+                                            <img src="/static/image/user1.jpeg" class="my_avatar">
+                                            <div>
+                                                <div class="me">{{ reply.user.username }} 站长</div>
+                                                <div style="color:#00AAAA;">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                                <div id="comment-text" class="my_comment"><p>@{{ reply.reply_to_user.username }}:&ensp;{{ reply.text|safe }}</p></div>
+                                        {% else %}
+                                            <img src="/static/image/user{{ reply.user.pk }}.jpeg" class="avatar">
+                                            <div>
+                                                <div class="other">{{ reply.user.username }}</div>
+                                                <div style="color:#00AAAA;">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                                <div id="comment-text"><p>@{{ reply.reply_to_user.username }}:&ensp;{{ reply.text|safe }}</p></div>
+                                        {% endif %}
+                                                <div><a class="reply_btn" href="javascript:;">回复</a></div>
+                                            </div>
+                                            <input type="hidden" name="parent_reply_id" value="{{ reply.pk }}">
+                                    {% endfor %}
+                                </div>
+
+
+                            </div>
+                        {% empty %}
+                            <div style="font-size:20px;margin:20px;" id="no-comment">暂无评论</div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        $(function(){
+            $("#comment-form").submit(function(){
+                // 判断是否为空
+                $("#comment_error").text('');
+                if(CKEDITOR.instances["id_text"].document.getBody().getText().trim()==''){
+                    $("#comment_error").text('评论内容不能为空');
+                    return false;
+                }
+                // 更新数据到textarea
+                CKEDITOR.instances['id_text'].updateElement();
+                // 异步提交
+                $.ajax({
+                    url: "{% url 'submit_comment' %}",
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    dataType: 'text',
+                    cache: false,
+                    success: function(data){
+                            var data = JSON.parse(data);  // 在1.4中,JSON就会生成一个JavaScript对象,需解析成json格式
+                        if(data['status']=="SUCCESS"){
+                            // 插入数据
+                            $("#no-comment").remove()  // 可能存在暂无评论,添加新评论时先删除
+                            if(data['username']=="jet"){
+                                var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">jet 站长</div><div style="color:#00AAAA;">'
+                                + data['comment_time']+'</div><div id="comment-text" class="my_comment">'+data['text']+'</div></div></div></div>';
+                            }else{
+                                var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user'+data['user_pk']+'.jpeg" class="avatar"><div> <div class="other">'
+                                +data['username']+'</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text">'+data['text']+'</div></div></div></div>'
+                            }
+                            $("#comment-list").prepend(comment_html);
+                            // 清空编辑框的内容
+                            CKEDITOR.instances['id_text'].setData('');
+                            CKEDITOR.instances['id_text'].updateElement();
+                            $("#comment_error").text('评论成功!');
+                        }else{
+                            // 显示错误信息
+                            $("#comment_error").text(data['message']);
+                        }
+                    },
+                    error: function(xhr){
+                        console.log(xhr);
+                    }
+                });
+                return false;
+            });
+            // 监视浏览器全局,因为若是ajax呈现的数据,普通的.click()方法无法触发
+            $(document).on('click', ".reply_btn", function(){
+                if($("#comment_sub").find('span').text()=='or'){
+                    alert('您尚未登录,请登陆后再回复')
+                    $('html, body').animate({scrollTop: $('#logout').offset().top}, 1000)
+                    return false
+                };
+                $(".reply_form").remove()
+                var reply_html = '<div class="reply_form"><textarea name="" class="reply-text"></textarea>'
+                                 +'<span id="reply_error" name="reply-error" class="text-danger pull-left"></span>'
+                                 +'<button class="reply_button btn btn-xs btn-default">回复</button>'
+                $(this).parent().parent().after(reply_html);
+            });
+            // 全局监视回复按钮触发
+            $(document).on('click', ".reply_button", function(){
+                // 判断是否为空
+                $("#reply_error").text('');
+                if($(this).prev().prev().val().trim()==''){
+                    $(this).prev().text('回复内容不能为空');
+                    return false;
+                };
+                var mythis = $(this);
+                var parent_reply_id = $(this).parent().next().val();
+                var root_comment_id = $(this).parents('.jumbotron').prev().val();
+                var content_type = "blog"
+                var object_id = $('#object_id').val();
+                var reply_text = $(this).prev().prev().val();
+                $.ajaxSetup({
+                    data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                });
+
+                // 异步传输数据，由于我自己的评论和回复比较炫酷，所以还得分两种情况
+                $.ajax({
+                    url: "{% url 'submit_reply' %}",
+                    type: 'POST',
+                    data: {"parent_reply_id":parent_reply_id, "root_comment_id":root_comment_id, "content_type":content_type, "object_id":object_id, "reply_text":reply_text},
+                    dataType: 'text',
+                    cache: false,
+                    success: function(data){
+                            var data = JSON.parse(data);  // 在1.4中,JSON就会生成一个JavaScript对象,需解析成json格式
+                        if(data['status']=="SUCCESS"){
+                            // 插入数据
+                            if(data['username']=="jet"){
+                                reply_html = '<br><br><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">'
+                                            +data['username']+' 站长</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text" class="my_comment"><p>@'
+                                            +data['reply_to_user']+':&ensp;'
+                                            +data['text']+'</p></div><div style="text-align:right;"><a class="reply_btn" href="javascript:;">回复</a></div></div>'
+                                            +'<input type="hidden" name="parent_reply_id" value="'+data['reply_pk']+'">'
+                            }else{
+                                reply_html = '<br><br><img src="/static/image/user'+data['user_pk']+'.jpeg" class="avatar"><div><div class="other">'
+                                            +data['username']+'</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text"><p>@'
+                                            +data['reply_to_user']+':&ensp;'
+                                            +data['text']+'</p></div><div style="text-align:right;"><a class="reply_btn" href="javascript:;">回复</a></div></div><input type="hidden" name="parent_reply_id" value="'
+                                            +data['reply_pk']+'">'
+                            }
+                            if(parent_reply_id==root_comment_id){
+                                mythis.parent().parent().next().append(reply_html);
+                            }else{
+                                mythis.parent().parent().append(reply_html);
+                            }
+                            mythis.prev().prev().val("");
+                            $(".reply_form").remove();
+                        }else{
+                            // 显示错误信息
+                            $("#reply_error").text(data['message']);
+                        }
+                    },
+                    error: function(xhr){
+                        console.log(xhr);
+                    }
+                });
+                return false;
+            });
+            // 使用zoom.js插件，使得文章内图片按比例缩小
+            $(".blog-content img").removeAttr("style");
+            $(".blog-content img").attr("data-action", "zoom");
+            $(".comment-area img").attr("data-action", "zoom");
+
+        });
+    </script>
+    <link href="/static/css/zoom.css" rel="stylesheet">
+    <script src="/static/js/zoom.js"></script>
+{% endblock %}
