@@ -2,11 +2,26 @@
 {% load staticfiles %}
 
 {% block title %}
-    我的网站|错误
+    喵？
 {% endblock %}
 
-{% block nav_home_active %}active{% endblock %}
-
 {% block content %}
-    您好,{{ user_name }},出现此页面说明您访问了一个不存在的页面,请确认后再试一下吧,O(∩_∩)O
+    <div class="bg">
+        <div>您好, {{ user_name }}, 出现此页面说明您访问了一个不存在的页面, 请确认后再试一下吧, O(∩_∩)O</div>
+    </div>
+    <style type="text/css">
+        .bg {
+            background: url(/static/image/error.webp) no-repeat center center;
+            display: table;
+            height: 55em;
+            width: 100%;
+            position: relative;
+            background-size: cover;
+        }
+        .bg div {
+            text-align: center;
+            margin: 60px;
+            font-size: 150%;
+        }
+    </style>
 {% endblock %}

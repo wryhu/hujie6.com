@@ -109,10 +109,10 @@
 
 
 
-                                <div class="comment-root" style="margin-left:6em;">
+                                <div class="comment-root" style="margin-left:3em;">
 
                                     {% for reply in comment.child_replies_for_root.all %}
-                                        <br><br>
+                                        <br><br><br>
                                         {% if reply.user.pk == 1 %}
                                             <!--我的评论与众不同-->
                                             <img src="/static/image/user1.jpeg" class="my_avatar">
@@ -203,7 +203,7 @@
                 $(".reply_form").remove()
                 var reply_html = '<div class="reply_form"><textarea name="" class="reply-text"></textarea>'
                                  +'<span id="reply_error" name="reply-error" class="text-danger pull-left"></span>'
-                                 +'<button class="reply_button btn btn-xs btn-default">回复</button>'
+                                 +'<button class="reply_button btn btn-sm btn-default">咻咻</button>'
                 $(this).parent().parent().after(reply_html);
             });
             // 全局监视回复按钮触发
@@ -249,9 +249,9 @@
                                             +data['reply_pk']+'">'
                             }
                             if(parent_reply_id==root_comment_id){
-                                mythis.parent().parent().next().append(reply_html);
+                                mythis.parent().parent().next().prepend(reply_html);
                             }else{
-                                mythis.parent().parent().append(reply_html);
+                                mythis.parent().parent().prepend(reply_html);
                             }
                             mythis.prev().prev().val("");
                             $(".reply_form").remove();
