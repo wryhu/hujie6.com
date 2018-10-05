@@ -30,14 +30,14 @@ class RegForm(forms.Form):
     username = forms.CharField(label='用户名',
                                max_length=20,
                                min_length=3,
-                               widget=forms.TextInput(attrs={'class':'form-control', 'placeholder': u'请输入3-20位字符'}))
+                               widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': u'请输入3-20位字符'}))
     email = forms.CharField(label='邮箱',
-                            widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder': u'请输入邮箱,假的也行'}))
+                            widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': u'请输入邮箱'}))
     password = forms.CharField(label='密码',
                                min_length=6,
-                               widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': u'请输入密码'}))
-    password_again = forms.CharField(label='再输入一次密码',
-                                     widget=forms.PasswordInput(attrs={'class':'form-control', 'placeholder': u'再输入一次密码'}))
+                               widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': u'请输入密码'}))
+    password_again = forms.CharField(label='确认密码',
+                                     widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': u'再次输入密码'}))
 
     def clean_username(self):
         username = self.cleaned_data['username']

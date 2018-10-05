@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="skPlayer"></div>
+</body>
+<script src="/static/skPlayer/dist/skPlayer.min.js"></script>
+<script src="/static/jquery-1.12.4.min.js"></script>
+    <script>
+        var player = new skPlayer({
+            autoplay: false,
+            //可选项,自动播放,默认为false,true/false
+            listshow: false,
+            //可选项,列表显示,默认为true,true/false
+            mode: 'listloop',
+            //可选项,循环模式,默认为'listloop'
+            //'listloop',列表循环
+            //'singleloop',单曲循环
+            music: {
+            //必需项,音乐配置
+                type: 'file',
+                //必需项,自配置文件方式指定填'file'
+                source: [
+                //必需项,音乐文件数组
+                    {
+                        name: '桜色舞うころ',
+                        //必需项,歌名
+                        author: '德永英明',
+                        //必需项,歌手
+                        src: '/static/music/德永英明-桜色舞うころ.mp3',
+                        //必需项,音乐文件
+                        cover: '/static/music/德永英明-桜色舞うころ.jpg'
+                        //必需项,封面图片
+                    },
+                    {
+                        name: '僕が死のうと思ったのは',
+                        //必需项,歌名
+                        author: '中島美嘉',
+                        //必需项,歌手
+                        src: '/static/music/中島美嘉-僕が死のうと思ったのは.mp3',
+                        //必需项,音乐文件
+                        cover: '/static/music/中島美嘉-僕が死のうと思ったのは.jpg'
+                        //必需项,封面图片
+                    },
+
+                ]
+            }
+        });
+    </script>
+</html>

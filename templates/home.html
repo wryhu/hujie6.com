@@ -3,7 +3,7 @@
 {% load staticfiles %}
 
 {% block title %}
-    HJ个人网站|首页
+    首页
 {% endblock %}
 
 {% block header_extends %}
@@ -118,21 +118,21 @@
                   </ul>
                   <!-- Tab panes -->
                   <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane" id="home">
+                    <div role="tabpanel" class="tab-pane fade" id="home">
                         {% for hot_data in get_today_hot_data %}
                             <li><a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a> ({{ hot_data.read_num }})</li>
                         {% empty %}
                             <li>今日暂时没有热门博客</li>
                         {% endfor %}
                     </div>
-                    <div role="tabpanel" class="tab-pane" id="profile">
+                    <div role="tabpanel" class="tab-pane fade" id="profile">
                         {% for hot_data in get_yesterday_hot_data %}
                             <li><a href="{% url 'blog_detail' hot_data.content_object.pk %}">{{ hot_data.content_object.title }}</a> ({{ hot_data.read_num }})</li>
                         {% empty %}
                             <li>昨日暂时没有热门博客</li>
                         {% endfor %}
                         </div>
-                    <div role="tabpanel" class="tab-pane active" id="messages">
+                    <div role="tabpanel" class="tab-pane fade active" id="messages">
                         {% for hot_data in get_7_days_hot_blog %}
                             <li><a href="{% url 'blog_detail' hot_data.id %}">{{ hot_data.title }}</a> ({{ hot_data.read_num_sum }})</li>
                         {% empty %}

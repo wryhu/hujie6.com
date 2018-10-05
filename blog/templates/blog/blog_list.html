@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}HJ网站|博客{% endblock %}
+{% block title %}博客{% endblock %}
 {% block nav_blog_active %}active{% endblock %}
 
 {% load staticfiles %}
@@ -110,7 +110,7 @@
                   </p>
                 </div>
             </div>
-            <div class="col-sm-4 col-md-3">
+            <div id="music-parent" class="col-sm-4 col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">博客分类</div>
                     <div class="panel-body">
@@ -127,23 +127,22 @@
                         </ul>
                     </div>
                 </div>
-                <div>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">日期归档</div>
-                        <div class="panel-body">
-                            <ul class="blog-dates">
-                                {% for blog_date, blog_count in blog_dates.items %}
-                                    <li>
-                                        <a href="{% url 'blogs_by_date' blog_date.year blog_date.month %}">
-                                            {{ blog_date|date:"Y年m月" }} ({{ blog_count }})
-                                        </a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">日期归档</div>
+                    <div class="panel-body">
+                        <ul class="blog-dates">
+                            {% for blog_date, blog_count in blog_dates.items %}
+                                <li>
+                                    <a href="{% url 'blogs_by_date' blog_date.year blog_date.month %}">
+                                        {{ blog_date|date:"Y年m月" }} ({{ blog_count }})
+                                    </a>
+                                </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
+

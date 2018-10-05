@@ -23,7 +23,9 @@ from django.conf import settings
 
 urlpatterns = [
     # 网站主页
-    url(r'^$', views.home, name='home'),
+    url(r'^music$', views.music, name='music'),
+    url(r'^$', views.frame, name='frame'),
+    url(r'^index$', views.home, name='home'),
     # 管理员页
     url(r'^admin/', admin.site.urls),
     # 转入博客主体相关

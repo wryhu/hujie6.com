@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}{% endblock %}</title>
+    <title>胡捷个人网站|{% block title %}{% endblock %}</title>
     <link rel = "Shortcut Icon" href=/static/image/H.ico>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap3/css/font-awesome.min.css' %}">
@@ -20,7 +20,7 @@
     <!--导航条-->
     <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/image/geass.jpg" style="width:80px;height:38px;"></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/image/geass.png" style="width:80px;height:38px;"></a>
             <div class="navbar-header">
                 <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="icon-bar"></span>
@@ -84,9 +84,22 @@
         </div>
     </footer>
     <a href="javascript:;"><img id="totop" src="/static/image/jet.png" alt=""></a>
+    <div id="music">
+        <div id="skPlayer" class="skPlayer1"></div>
+        <div id="skPlayer" class="skPlayer2"></div>
+        <div style="position:relative;z-index:20;top:-65px;margin-left:130px;font-size:20px;">好音乐听我的</div>
+    </div>
+    <a id="music-bar" href="javascript:;" class="fa fa-music"></a>
+    <style type="text/css">
+        body {
+            font-family: poppin,Tahoma,"Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+        }
+    </style>
     {% block script_extends %}{% endblock %}
+    <script src="/static/skPlayer/dist/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            // 小火箭
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
                 if(nowTop>500){
@@ -105,6 +118,64 @@
                     });
                 });
             });
+            // 小播放器
+            var i=0;
+            $("#music-bar").click(function(){
+                if(i%2==0){
+                    $('#music').stop().animate({marginLeft:"410px"},800);
+                    i++;
+                }else{
+                    $('#music').stop().animate({marginLeft:"0px"},800);
+                    i++;
+                }
+
+            });
+
+
+
+        $(function(){
+            // 选中播放器框架
+            var frame = $(parent.frames["hidden-player"].document)
+            // 从框架提取播放器html到网站页面，并加入定时器
+            function real_time_music1(){
+                var music_html = frame.find("#skPlayer").html();
+                $(".skPlayer1").html(music_html);
+                $(".skPlayer1 .skPlayer-play-btn").remove();
+                $(".skPlayer-list-switch").remove();
+                $(".skPlayer-cover").attr("class","skPlayer-cover");
+            }
+            real_time_music1();
+            // 二次提取设置透明合并到上面（其中播放按钮不透明，上层播放按钮直接删除）
+            function real_time_music2(){
+                var music_html = frame.find("#skPlayer").html();
+                $(".skPlayer2").html(music_html);
+            }
+            real_time_music2();
+            $(".skPlayer2 .skPlayer-control").css({top:"-100px","z-index":5,opacity:0});
+            $(".skPlayer2 .skPlayer-cover").remove();
+            $(".skPlayer-play-btn").css({outline:"none"});
+            //样式设置完成启动定时器
+            setInterval(real_time_music1,400);
+
+            // 接下来设置每个按钮的传递
+            $('.skPlayer-play-btn').click(function(){
+                if($(this).attr("class")=="skPlayer-play-btn"){
+                    frame.find(".skPlayer-left").trigger('click');
+                    $(this).attr("class","skPlayer-play-btn skPlayer-pause");
+                }else{
+                    frame.find(".skPlayer-right").trigger('click');
+                    $(this).attr("class","skPlayer-play-btn");
+                }
+            });
+            $('.skPlayer-icon').click(function(){
+                frame.find(".skPlayer-icon").trigger('click');
+            });
+            $('.skPlayer-mode').click(function(){
+                frame.find(".skPlayer-mode").trigger('click');
+            });
+        });
+
+            // 小彩蛋
             console.log('恭喜你发现新大陆!我叫胡捷,这是我的个人网站,用python+django+bootstrap搭建,正在不断完善优化中,敬请期待!');
         });
     </script>

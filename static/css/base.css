@@ -12,7 +12,7 @@ html body {
     background-color: rgba(255, 255, 255, 0);
 }
 #totop {
-    width: 6em;
+    width: 7em;
     height: auto;
     position: fixed;
     right: -3px;
@@ -40,8 +40,7 @@ footer {
     color: #5E4485;
 }
 .col-sm-4 .fa {
-
-    padding: 20px;
+    padding: 13px;
     font-size: 30px;
     color: #5E4485;
     text-decoration: none;
@@ -49,3 +48,26 @@ footer {
 .col-sm-4 .fa:hover{
     color:blue;
 }
+#music {
+    left: -380px;
+    bottom: 80px;
+    position: fixed;
+    display:block;
+    color: #f009;
+    text-decoration: none;
+}
+#music-bar {
+    left: 25px;
+    bottom: 30px;
+    position: fixed;
+    display:block;
+    outline:none;
+    font-size: 40px;
+    text-decoration: none;
+    color:#f009;
+    disabled: true;
+}
+
+
+
+

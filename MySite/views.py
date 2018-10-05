@@ -137,3 +137,11 @@ def page_not_found(request):
     else:
         context['user_name'] = request.user.username
     return render(request, 'error.html', context)
+
+
+def frame(request):
+    return render(request, 'frame.html')
+
+
+def music(request):
+    return render(request, 'music.html')
