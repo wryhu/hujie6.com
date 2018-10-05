@@ -16,7 +16,7 @@ html body {
     height: auto;
     position: fixed;
     right: -3px;
-    bottom: 20px;
+    bottom: 35px;
     display:none;
     outline:none;
 }
@@ -50,7 +50,7 @@ footer {
 }
 #music {
     left: -380px;
-    bottom: 80px;
+    bottom: 100px;
     position: fixed;
     display:block;
     color: #f009;
@@ -58,7 +58,7 @@ footer {
 }
 #music-bar {
     left: 25px;
-    bottom: 30px;
+    bottom: 66px;
     position: fixed;
     display:block;
     outline:none;
