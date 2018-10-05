@@ -83,11 +83,13 @@
             </div>
         </div>
     </footer>
+    <!--jet-->
     <a href="javascript:;"><img id="totop" src="/static/image/jet.png" alt=""></a>
+    <!--音乐播放器-->
     <div id="music">
         <div id="skPlayer" class="skPlayer1"></div>
         <div id="skPlayer" class="skPlayer2"></div>
-        <div style="position:relative;z-index:20;top:-65px;margin-left:130px;font-size:20px;">好音乐听我的</div>
+        <div style="position:relative;z-index:20;top:-65px;margin-left:130px;font-size:20px;">一首好听的日语歌送给你</div>
     </div>
     <a id="music-bar" href="javascript:;" class="fa fa-music"></a>
     <style type="text/css">
@@ -131,9 +133,6 @@
 
             });
 
-
-
-        $(function(){
             // 选中播放器框架
             var frame = $(parent.frames["hidden-player"].document)
             // 从框架提取播放器html到网站页面，并加入定时器
@@ -173,8 +172,6 @@
             $('.skPlayer-mode').click(function(){
                 frame.find(".skPlayer-mode").trigger('click');
             });
-        });
-
             // 小彩蛋
             console.log('恭喜你发现新大陆!我叫胡捷,这是我的个人网站,用python+django+bootstrap搭建,正在不断完善优化中,敬请期待!');
         });
