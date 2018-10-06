@@ -284,7 +284,6 @@
         };
         // 图表初始化函数
         var chart = Highcharts.chart('container', options);
-
         $(function(){
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
@@ -298,6 +297,8 @@
                     $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
                 }
             });
+            // 小彩蛋
+            console.log('恭喜你发现新大陆!我叫胡捷,这是我的个人网站,用python+django+bootstrap搭建,正在不断完善优化中,敬请期待!');
         });
     </script>
 {% endblock %}

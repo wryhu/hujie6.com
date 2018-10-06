@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>第二个frame，隐藏在下面的真正的音乐播放器</title>
 </head>
 <body>
     <div id="skPlayer"></div>
+    <button class="prev_music" onclick="player.prev()"></button>
+    <button class="next_music" onclick="player.next()"></button>
 </body>
 <script src="/static/skPlayer/dist/skPlayer.min.js"></script>
 <script src="/static/jquery-1.12.4.min.js"></script>
     <script>
         var player = new skPlayer({
-            autoplay: false,
+            autoplay: true,
             //可选项,自动播放,默认为false,true/false
             listshow: false,
             //可选项,列表显示,默认为true,true/false

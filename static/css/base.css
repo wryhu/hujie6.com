@@ -64,8 +64,16 @@ footer {
     outline:none;
     font-size: 40px;
     text-decoration: none;
-    color:#f009;
-    disabled: true;
+    color:rgba(255, 0, 0, 0.48);
+    cursor:pointer;
+}
+#musictext {
+    position:relative;
+    z-index:20;
+    top:-65px;
+    margin-left:130px;
+    font-size:20px;
+    color:rgba(255, 0, 0, 0.77);
 }
 
 

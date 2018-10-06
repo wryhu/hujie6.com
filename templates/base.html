@@ -16,7 +16,7 @@
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
     {% block header_extends %}{% endblock %}
 </head>
-<body>
+<body oncontextmenu="return true" ondragstart="return false">
     <!--导航条-->
     <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container-fluid">
@@ -89,14 +89,15 @@
     <div id="music">
         <div id="skPlayer" class="skPlayer1"></div>
         <div id="skPlayer" class="skPlayer2"></div>
-        <div style="position:relative;z-index:20;top:-65px;margin-left:130px;font-size:20px;">一首好听的日语歌送给你</div>
+
+        <div id="musictext">
+            <a class="fa fa-backward"></a>
+            <a class="fa fa-forward"></a>
+            好听的日语歌送给你
+        </div>
+
     </div>
-    <a id="music-bar" href="javascript:;" class="fa fa-music"></a>
-    <style type="text/css">
-        body {
-            font-family: poppin,Tahoma,"Arial","Microsoft YaHei","黑体","宋体",sans-serif;
-        }
-    </style>
+    <a id="music-bar" class="fa fa-music"></a>
     {% block script_extends %}{% endblock %}
     <script src="/static/skPlayer/dist/skPlayer.min.js"></script>
     <script type="text/javascript">
@@ -147,35 +148,45 @@
                     }
                     real_time_music2();
 
-                    //样式设置完成启动定时器，此时播放器部分加载完成
-                    var time1=setInterval(real_time_music1,400);
+                    //样式设置完成启动全局定时器，此时播放器部分加载完成
+                    window.time1=setInterval(real_time_music1,1000);
                     // 进行滑出动画
                     $('#music').stop().animate({marginLeft:"410px"},800);
                     i++;
                 }else{
-                    $('#music').stop().animate({marginLeft:"0px"},800,);
+                    // 收回播放器就停止定时器来停止加载播放器页面
+                    $('#music').stop().animate({marginLeft:"0px"},800);
                     clearInterval(time1);
                     i++;
                 }
             });
             // 接下来设置每个按钮的传递
+            // 播放暂停
             $(document).on('click', ".skPlayer-play-btn", function(){
                 if($(this).attr("class")=="skPlayer-play-btn"){
-                    frame.find(".skPlayer-left").trigger('click');
+                    frame.find(".skPlayer-left").click();
                     $(this).attr("class","skPlayer-play-btn skPlayer-pause");
                 }else{
-                    frame.find(".skPlayer-right").trigger('click');
+                    frame.find(".skPlayer-right").click();
                     $(this).attr("class","skPlayer-play-btn");
                 }
             });
+            // 音量开关
             $(document).on('click', ".skPlayer-icon", function(){
                 frame.find(".skPlayer-icon").trigger('click');
             });
+            // 切换单曲循环
             $(document).on('click', ".skPlayer-mode", function(){
                 frame.find(".skPlayer-mode").trigger('click');
             });
-            // 小彩蛋
-            console.log('恭喜你发现新大陆!我叫胡捷,这是我的个人网站,用python+django+bootstrap搭建,正在不断完善优化中,敬请期待!');
+            // 上一首
+            $(document).on('click', ".fa-backward", function(){
+                frame.find(".prev_music").click();
+            });
+            // 下一首
+            $(document).on('click', ".fa-forward", function(){
+                frame.find(".next_music").click();
+            });
         });
     </script>
 </body>
