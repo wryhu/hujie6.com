@@ -1,6 +1,12 @@
 div.jumbotron {
     margin-bottom:0;
-
+}
+.jumbotron h1 {
+    text-shadow:1px 1px 1px;
+    opacity:0.8;
+}
+.jumbotron span {
+    text-shadow:1px 1px 20px;
 }
 .well {
     margin:0;
@@ -15,9 +21,20 @@ h1.same {
     margin: 20px 110px 60px;
     padding: 40px;
     border-bottom: 1px solid #ccc;
+    color: #fff;
+    text-shadow:2px 2px 33px blue;
 }
 #bg1 {
     background: url(/static/image/fushishan.jpg) no-repeat center center fixed;
+    display: table;
+    height: 50em;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+    margin-top:40px;
+}
+#bg2 {
+    background: url(/static/image/sora.jpg) no-repeat center center fixed;
     display: table;
     height: 50em;
     width: 100%;
@@ -53,3 +70,31 @@ div.tab-content li{
     font-size:18px;
     padding: 2%;
 }
+.aitem {
+    width: 376px;
+    padding:0;
+    margin-left:3%;
+    margin-bottom:3%;
+}
+.aitem img {
+    border-top-left-radius: 44px;
+    border-top-right-radius: 44px;
+    display: block;
+    width: 100%;
+}
+.bordered {
+    padding: 20px;
+    background: #F5F7FA;
+    border-bottom-left-radius: 44px;
+    border-bottom-right-radius: 44px;
+}
+.bordered .info h4 {
+    font-size: 20px;
+    font-weight:600;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.bordered a {
+    text-decoration:none;
+}
+

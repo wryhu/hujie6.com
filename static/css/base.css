@@ -20,10 +20,12 @@ html body {
     display:none;
     outline:none;
 }
-
 #pad {
     padding: 20px;
     font-size: 15px;
+}
+.fa span {
+     font-family:Helvetica,Arial,sans-serif;
 }
 a.navbar-brand {
     padding:11px 30px;
@@ -67,15 +69,20 @@ footer {
     color:rgba(255, 0, 0, 0.48);
     cursor:pointer;
 }
-#musictext {
+#music-ctrl {
     position:relative;
-    z-index:20;
     top:-65px;
-    margin-left:130px;
+    margin-left:90px;
     font-size:20px;
     color:rgba(255, 0, 0, 0.77);
+    cursor:pointer;
 }
-
-
+#music-text {
+    position:relative;
+    top:-65px;
+    margin-left:144px;
+    font-size:13px;
+    color:#57B5C5;
+}
 
 

@@ -31,21 +31,21 @@
             <div id="navbar-collapse" class="collapse navbar-collapse">
 
                 <ul class="nav navbar-nav">
-                    <li><a id="pad" class="fa fa-home" href="{% url 'home' %}"> 首页</a></li>
-                    <li><a id="pad" class="fa fa-pencil" href="{% url 'blog_list' %}"> 博客</a></li>
+                    <li><a id="pad" class="fa fa-home" href="{% url 'home' %}"> <span>首页</span></a></li>
+                    <li><a id="pad" class="fa fa-pencil" href="{% url 'blog_list' %}"> <span>博客</span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
 
                     {% if not user.is_authenticated %}
                         <li>
-                            <a id="pad" class="fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> 登录</a>
+                            <a id="pad" class="fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> <span>登陆</span></a>
                         </li>
                         <li>
-                            <a id="pad" class="fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> 注册</a>
+                            <a id="pad" class="fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> <span>注册</span></a>
                         </li>
                     {% else %}
                         <li class="dropdown">
-                            <a id="pad" href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{ user.username }}<span class="caret"></span></a>
+                            <a id="pad" href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>{{ user.username }}</span><span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" >个人资料</a></li>
                                 <li><a href="#">邮箱</a></li>
@@ -89,13 +89,12 @@
     <div id="music">
         <div id="skPlayer" class="skPlayer1"></div>
         <div id="skPlayer" class="skPlayer2"></div>
-
-        <div id="musictext">
-            <a class="fa fa-backward"></a>
-            <a class="fa fa-forward"></a>
-            好听的日语歌送给你
+        <div id="music-ctrl">
+            <div class="fa fa-backward"></div>
+                <span>好听的日语歌推荐给你</span>
+            <div class="fa fa-forward"></div>
         </div>
-
+        <div id="music-text">暂不支持快进和音量调节</div>
     </div>
     <a id="music-bar" class="fa fa-music"></a>
     {% block script_extends %}{% endblock %}
@@ -149,9 +148,9 @@
                     real_time_music2();
 
                     //样式设置完成启动全局定时器，此时播放器部分加载完成
-                    window.time1=setInterval(real_time_music1,1000);
+                    window.time1=setInterval(real_time_music1,500);
                     // 进行滑出动画
-                    $('#music').stop().animate({marginLeft:"410px"},800);
+                    $('#music').stop().animate({marginLeft:"388px"},800);
                     i++;
                 }else{
                     // 收回播放器就停止定时器来停止加载播放器页面
@@ -161,32 +160,47 @@
                 }
             });
             // 接下来设置每个按钮的传递
-            // 播放暂停
+            // 播放暂停，并使主页上的播放按钮显示正确状态
             $(document).on('click', ".skPlayer-play-btn", function(){
                 if($(this).attr("class")=="skPlayer-play-btn"){
                     frame.find(".skPlayer-left").click();
                     $(this).attr("class","skPlayer-play-btn skPlayer-pause");
+                    $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
                 }else{
                     frame.find(".skPlayer-right").click();
                     $(this).attr("class","skPlayer-play-btn");
+                    $(".fa-chrome").attr("class","fa fa-chrome");
                 }
             });
             // 音量开关
             $(document).on('click', ".skPlayer-icon", function(){
-                frame.find(".skPlayer-icon").trigger('click');
+                frame.find(".skPlayer-icon").click();
             });
             // 切换单曲循环
             $(document).on('click', ".skPlayer-mode", function(){
-                frame.find(".skPlayer-mode").trigger('click');
+                frame.find(".skPlayer-mode").click();
             });
-            // 上一首
+            // 上一首,并且为播放状态
             $(document).on('click', ".fa-backward", function(){
                 frame.find(".prev_music").click();
+                $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
+                $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
             });
-            // 下一首
+            // 下一首,并且为播放状态
             $(document).on('click', ".fa-forward", function(){
                 frame.find(".next_music").click();
+                $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
+                $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
             });
+            var frame_play_btn = frame.find(".skPlayer-play-btn")
+            function chrome_spin(){
+                if(frame_play_btn.attr("class")=="skPlayer-play-btn skPlayer-pause"){
+                    $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
+                }else{
+                    $(".fa-chrome").attr("class","fa fa-chrome");
+                }
+            }
+            chrome_spin();
         });
     </script>
 </body>
