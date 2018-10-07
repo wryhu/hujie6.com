@@ -146,10 +146,12 @@
                 if(i%2==0){
                     // 进行滑出动画
                     $('#music').stop().animate({marginLeft:"388px"},800);
+                    window.time1 = setInterval(real_time_music1,1000);
                     i++;
                 }else{
                     // 收回播放器就停止定时器来停止加载播放器页面
                     $('#music').stop().animate({marginLeft:"0px"},800);
+                    clearInterval(time1);
                     i++;
                 }
             });
