@@ -14,6 +14,7 @@
     <meta name="keywords" content="个人博客，胡捷，个人网站">
     <script src="{% static 'jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
+    <script src="/static/skPlayer/skPlayer.min.js"></script>
     {% block header_extends %}{% endblock %}
 </head>
 <body oncontextmenu="return true" ondragstart="return false">
@@ -98,7 +99,6 @@
     </div>
     <a id="music-bar" class="fa fa-music"></a>
     {% block script_extends %}{% endblock %}
-    <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
             // 小火箭

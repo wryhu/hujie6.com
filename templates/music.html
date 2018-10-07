@@ -2,28 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>第二个frame，隐藏在下面的真正的音乐播放器</title>
     <script src="/static/jquery-1.12.4.min.js"></script>
     <script src="/static/skPlayer/skPlayer.min.js"></script>
 </head>
 <body>
     <div id="skPlayer"></div>
-    <div class="prev_music" onclick="player.prev()"></div>
-    <div class="next_music" onclick="player.next()"></div>
+    <div class="prev_music" onclick="player.prev()">asdf</div>
+    <div class="next_music" onclick="player.next()">asdf</div>
 </body>
     <script>
-        $(function(){
-            var player = new skPlayer({
-                autoplay: true,
-                //可选项,自动播放,默认为false,true/false
-                listshow: false,
-                //可选项,列表显示,默认为true,true/false
-                music: {
+        var player = new skPlayer({
+            autoplay: false,
+            //可选项,自动播放,默认为false,true/false
+            listshow: false,
+            //可选项,列表显示,默认为true,true/false
+            music: {
                 //必需项,音乐配置
                 type: 'file',
                 //必需项,自配置文件方式指定填'file'
                 source: [
-                //必需项,音乐文件数组
+                    //必需项,音乐文件数组
                     {
                         name: '僕らの手には何もないけど',
                         //必需项,歌名
@@ -78,12 +76,11 @@
                 ]
             }
         });
-        <!--var frame = $(parent.frames["main"].document)-->
-        <!--function play(){-->
-            <!--frame.find(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");-->
-            <!--player.play();-->
-        <!--}-->
-        <!--var t=setTimeout(play,5000);-->
-        });
+        function play(){
+            var frame = $(parent.frames["main"].document)
+            player.play();
+            frame.find(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
+        }
+        setTimeout(play,4000);
     </script>
 </html>
