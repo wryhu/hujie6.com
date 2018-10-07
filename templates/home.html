@@ -95,9 +95,9 @@
         </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="container">
         <div class="row welcome text-centet">
-            <div class="col-12  ">
+            <div class="col-12">
                 <h1 class="same">网站相关数据统计</h1>
             </div>
         </div>
@@ -155,7 +155,7 @@
     </div>
     <div class="container">
         <div class="row welcome text-centet">
-            <div class="col-12">
+            <div class="col-md-12 col-xs-12">
                 <h1 class="same">We are the same</h1>
             </div>
         </div>
@@ -232,12 +232,12 @@
 <div class="container-fluid">
         <div class="row welcome text-centet">
             <div class="col-12">
-                <h1 class="same">Learning</h1>
+                <h1 id="learn" class="same">Learning</h1>
             </div>
         </div>
 
         <div class="row">
-          <div class="aitem col-md-4">
+          <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
               <div class="icon-overlay icn-link">
@@ -255,7 +255,7 @@
             </figure>
           </div>
 
-          <div class="aitem col-md-4">
+          <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
               <div class="icon-overlay icn-link">
@@ -273,7 +273,7 @@
             </figure>
           </div>
 
-          <div class="aitem col-md-4">
+          <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
               <div class="icon-overlay icn-link">
@@ -291,7 +291,7 @@
             </figure>
           </div>
 
-          <div class="aitem col-md-4">
+          <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
               <div class="icon-overlay icn-link">
@@ -309,7 +309,7 @@
             </figure>
           </div>
 
-          <div class="aitem col-md-4">
+          <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
               <div class="icon-overlay icn-link">
@@ -327,7 +327,7 @@
             </figure>
           </div>
 
-          <div class="aitem col-md-4">
+          <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
               <div class="icon-overlay icn-link">
@@ -423,6 +423,12 @@
             });
             // 小彩蛋
             console.log('恭喜你发现新大陆!我叫胡捷,这是我的个人网站,用python+django+bootstrap搭建,正在不断完善优化中,敬请期待!');
+        });
+        $("#learn").mouseover(function(){
+            $(this).addClass("learn");
+        });
+        $("#learn").mouseout(function(){
+            $(this).removeClass("learn");
         });
     </script>
 {% endblock %}

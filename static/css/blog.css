@@ -86,10 +86,11 @@ div.panel {
 }
 .me {
     padding-bottom:10px;
-    animation:change 10s linear 0s infinite;font-size:20px;font-weight:bold;
+    animation:change 10s linear 0s infinite;
+    font-size:20px;font-weight:bold;
 }
 @keyframes change {
-    0%   {color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}
+    0%{color:#333;}25%{color:#ff0;}50%{color:#f60;}75%{color:#cf0;}100% {color:#f00;}
 }
 .my_comment {
     background-image:

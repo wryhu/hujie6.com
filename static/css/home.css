@@ -18,8 +18,8 @@ div#container {
 }
 h1.same {
     text-align: center;
-    margin: 20px 110px 60px;
-    padding: 40px;
+    margin: 20px 0px 60px;
+    padding: 40px 0px;
     border-bottom: 1px solid #ccc;
     color: #fff;
     text-shadow:2px 2px 33px blue;
@@ -71,10 +71,10 @@ div.tab-content li{
     padding: 2%;
 }
 .aitem {
-    width: 376px;
+    width: 310px;
     padding:0;
-    margin-left:3%;
-    margin-bottom:3%;
+    margin-left:7%;
+    margin-bottom:4%;
 }
 .aitem img {
     border-top-left-radius: 44px;
@@ -97,4 +97,17 @@ div.tab-content li{
 .bordered a {
     text-decoration:none;
 }
+#learn {
+    border-bottom: 20px solid #dae3f0;
 
+}
+.learn {
+    animation:change 10s linear 0s infinite;
+}
+@keyframes change {
+    0%{border-bottom: 20px solid #dae3f0;}
+    25%{border-bottom: 20px solid #ff0;}
+    50%{border-bottom: 20px solid #f60;}
+    75%{border-bottom: 20px solid #cf0;}
+    100%{border-bottom: 20px solid #f00;}
+}
