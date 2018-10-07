@@ -123,37 +123,33 @@
             // 小播放器
             var i=0;
             var frame = $(parent.frames["hidden-player"].document)
+            // 从框架提取播放器html到网站页面，并加入定时器
+            function real_time_music1(){
+                var music_html = frame.find("#skPlayer").html();
+                $(".skPlayer1").html(music_html);
+                $(".skPlayer1 .skPlayer-play-btn").remove();
+            }
+            real_time_music1();
+            // 二次提取设置透明合并到上面（其中播放按钮不透明，上层播放按钮直接删除）
+            function real_time_music2(){
+                var music_html = frame.find("#skPlayer").html();
+                $(".skPlayer2").html(music_html);
+                $(".skPlayer2 .skPlayer-control").css({top:"-100px","z-index":5,opacity:0});
+                $(".skPlayer2 .skPlayer-cover").remove();
+                $(".skPlayer-play-btn").css({outline:"none"});
+                $(".skPlayer-picture").css({"z-index":0});
+            }
+            real_time_music2();
+            //样式设置完成启动全局定时器，此时播放器部分加载完成
+            setInterval(real_time_music1,1000);
             $("#music-bar").click(function(){
                 if(i%2==0){
-                    // 点了就先加载好再滑出
-                    // 选中播放器框架
-
-                    // 从框架提取播放器html到网站页面，并加入定时器
-                    function real_time_music1(){
-                        var music_html = frame.find("#skPlayer").html();
-                        $(".skPlayer1").html(music_html);
-                        $(".skPlayer1 .skPlayer-play-btn").remove();
-                    }
-                    real_time_music1();
-                    // 二次提取设置透明合并到上面（其中播放按钮不透明，上层播放按钮直接删除）
-                    function real_time_music2(){
-                        var music_html = frame.find("#skPlayer").html();
-                        $(".skPlayer2").html(music_html);
-                        $(".skPlayer2 .skPlayer-control").css({top:"-100px","z-index":5,opacity:0});
-                        $(".skPlayer2 .skPlayer-cover").remove();
-                        $(".skPlayer-play-btn").css({outline:"none"});
-                        $(".skPlayer-picture").css({"z-index":0});
-                    }
-                    real_time_music2();
-                    //样式设置完成启动全局定时器，此时播放器部分加载完成
-                    window.time1=setInterval(real_time_music1,1000);
                     // 进行滑出动画
                     $('#music').stop().animate({marginLeft:"388px"},800);
                     i++;
                 }else{
                     // 收回播放器就停止定时器来停止加载播放器页面
                     $('#music').stop().animate({marginLeft:"0px"},800);
-                    clearInterval(time1);
                     i++;
                 }
             });
