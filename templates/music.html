@@ -13,9 +13,9 @@
 <script src="/static/jquery-1.12.4.min.js"></script>
     <script>
         var player = new skPlayer({
-            autoplay: true,
+            autoplay: false,
             //可选项,自动播放,默认为false,true/false
-            listshow: true,
+            listshow: false,
             //可选项,列表显示,默认为true,true/false
             music: {
             //必需项,音乐配置
@@ -24,16 +24,6 @@
                 source: [
                 //必需项,音乐文件数组
                     {
-                        name: '僕が死のうと思ったのは',
-                        //必需项,歌名
-                        author: '中島美嘉',
-                        //必需项,歌手
-                        src: '/static/music/中島美嘉-僕が死のうと思ったのは.mp3',
-                        //必需项,音乐文件
-                        cover: '/static/music/中島美嘉-僕が死のうと思ったのは.jpg'
-                        //必需项,封面图片
-                    },
-                    {
                         name: '僕らの手には何もないけど',
                         //必需项,歌名
                         author: 'RAM WIRE',
@@ -41,6 +31,16 @@
                         src: '/static/music/RAM WIRE-僕らの手には何もないけど.mp3',
                         //必需项,音乐文件
                         cover: '/static/music/RAM WIRE-僕らの手には何もないけど.jpg'
+                        //必需项,封面图片
+                    },
+                    {
+                        name: '僕が死のうと思ったのは',
+                        //必需项,歌名
+                        author: '中島美嘉',
+                        //必需项,歌手
+                        src: '/static/music/中島美嘉-僕が死のうと思ったのは.mp3',
+                        //必需项,音乐文件
+                        cover: '/static/music/中島美嘉-僕が死のうと思ったのは.jpg'
                         //必需项,封面图片
                     },
                     {
