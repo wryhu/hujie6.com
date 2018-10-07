@@ -132,7 +132,7 @@
                             <li>昨日暂时没有热门博客</li>
                         {% endfor %}
                         </div>
-                    <div role="tabpanel" class="tab-pane fade active" id="messages">
+                    <div role="tabpanel" class="tab-pane fade active in" id="messages">
                         {% for hot_data in get_7_days_hot_blog %}
                             <li><a href="{% url 'blog_detail' hot_data.id %}">{{ hot_data.title }}</a> ({{ hot_data.read_num_sum }})</li>
                         {% empty %}
