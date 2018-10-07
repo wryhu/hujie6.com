@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>第二个frame，隐藏在下面的真正的音乐播放器</title>
+    <script src="/static/jquery-1.12.4.min.js"></script>
+    <script src="/static/skPlayer/skPlayer.min.js"></script>
 </head>
 <body>
     <div id="skPlayer"></div>
     <div class="prev_music" onclick="player.prev()"></div>
     <div class="next_music" onclick="player.next()"></div>
 </body>
-<script src="/static/skPlayer/skPlayer.min.js"></script>
-<script src="/static/jquery-1.12.4.min.js"></script>
     <script>
         $(function(){
             var player = new skPlayer({
