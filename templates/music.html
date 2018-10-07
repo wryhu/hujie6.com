@@ -12,13 +12,14 @@
 <script src="/static/skPlayer/skPlayer.min.js"></script>
 <script src="/static/jquery-1.12.4.min.js"></script>
     <script>
-        var player = new skPlayer({
-            autoplay: false,
-            //可选项,自动播放,默认为false,true/false
-            listshow: false,
-            //可选项,列表显示,默认为true,true/false
-            music: {
-            //必需项,音乐配置
+        $(function(){
+            var player = new skPlayer({
+                autoplay: false,
+                //可选项,自动播放,默认为false,true/false
+                listshow: false,
+                //可选项,列表显示,默认为true,true/false
+                music: {
+                //必需项,音乐配置
                 type: 'file',
                 //必需项,自配置文件方式指定填'file'
                 source: [
@@ -83,5 +84,6 @@
             <!--player.play();-->
         <!--}-->
         <!--var t=setTimeout(play,5000);-->
+        });
     </script>
 </html>
