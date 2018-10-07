@@ -76,9 +76,8 @@
                 ]
             }
         });
-        function time(){
-            window.parent.frames["main"].location.reload();
-        }
-        setTimeout(time,0);
+        $(window).load(function(){
+            window.parent.document.getElementById("boss").src = "/index";
+        });
     </script>
 </html>
