@@ -98,7 +98,7 @@
     </div>
     <a id="music-bar" class="fa fa-music"></a>
     {% block script_extends %}{% endblock %}
-    <script src="/static/skPlayer/dist/skPlayer.min.js"></script>
+    <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
             // 小火箭
@@ -133,8 +133,6 @@
                         var music_html = frame.find("#skPlayer").html();
                         $(".skPlayer1").html(music_html);
                         $(".skPlayer1 .skPlayer-play-btn").remove();
-                        $(".skPlayer-list-switch").remove();
-                        $(".skPlayer-cover").attr("class","skPlayer-cover");
                     }
                     real_time_music1();
                     // 二次提取设置透明合并到上面（其中播放按钮不透明，上层播放按钮直接删除）
@@ -144,11 +142,11 @@
                         $(".skPlayer2 .skPlayer-control").css({top:"-100px","z-index":5,opacity:0});
                         $(".skPlayer2 .skPlayer-cover").remove();
                         $(".skPlayer-play-btn").css({outline:"none"});
+                        $(".skPlayer-picture").css({"z-index":0});
                     }
                     real_time_music2();
-
                     //样式设置完成启动全局定时器，此时播放器部分加载完成
-                    window.time1=setInterval(real_time_music1,500);
+                    window.time1=setInterval(real_time_music1,1000);
                     // 进行滑出动画
                     $('#music').stop().animate({marginLeft:"388px"},800);
                     i++;
@@ -162,14 +160,14 @@
             // 接下来设置每个按钮的传递
             // 播放暂停，并使主页上的播放按钮显示正确状态
             $(document).on('click', ".skPlayer-play-btn", function(){
-                if($(this).attr("class")=="skPlayer-play-btn"){
-                    frame.find(".skPlayer-left").click();
-                    $(this).attr("class","skPlayer-play-btn skPlayer-pause");
-                    $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                }else{
+                if($(this).attr("class")=="skPlayer-play-btn skPlayer-pause"){
                     frame.find(".skPlayer-right").click();
                     $(this).attr("class","skPlayer-play-btn");
                     $(".fa-chrome").attr("class","fa fa-chrome");
+                }else{
+                    frame.find(".skPlayer-left").click();
+                    $(this).attr("class","skPlayer-play-btn skPlayer-pause");
+                    $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
                 }
             });
             // 音量开关
@@ -180,16 +178,43 @@
             $(document).on('click', ".skPlayer-mode", function(){
                 frame.find(".skPlayer-mode").click();
             });
+            // 列表显示与否
+            var x = 0
+            $(document).on('click', ".skPlayer-list-switch", function(){
+                if(x%2==0){
+                    $(".skPlayer2").attr("class","skPlayer2 skPlayer-list-on");
+                    x++;
+                }else{
+                    $(".skPlayer2").attr("class","skPlayer2");
+                    x++;
+                }
+            });
+            // 点击列表內歌曲播放
+            $(document).on('click', ".skPlayer-list li", function(){
+                var num1 = $(this).attr("data-index");
+                var text = ".skPlayer-list li[data-index="+num1+"]";
+                frame.find(text).click();
+                $(".skPlayer-list li").removeAttr("class");
+                $(this).attr("class","skPlayer-curMusic");
+            });
             // 上一首,并且为播放状态
             $(document).on('click', ".fa-backward", function(){
                 frame.find(".prev_music").click();
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
+                var num2 = frame.find(".skPlayer-curMusic").attr("data-index");
+                var text2 = ".skPlayer-list li[data-index="+num2+"]";
+                $(".skPlayer-list li").removeAttr("class");
+                $(text2).attr("class","skPlayer-curMusic");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
             });
             // 下一首,并且为播放状态
             $(document).on('click', ".fa-forward", function(){
                 frame.find(".next_music").click();
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
+                var num2 = frame.find(".skPlayer-curMusic").attr("data-index");
+                var text2 = ".skPlayer-list li[data-index="+num2+"]";
+                $(".skPlayer-list li").removeAttr("class");
+                $(text2).attr("class","skPlayer-curMusic");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
             });
             var frame_play_btn = frame.find(".skPlayer-play-btn")

@@ -9,18 +9,14 @@
     <div class="prev_music" onclick="player.prev()"></div>
     <div class="next_music" onclick="player.next()"></div>
 </body>
-<script src="/static/skPlayer/dist/skPlayer.min.js"></script>
+<script src="/static/skPlayer/skPlayer.min.js"></script>
 <script src="/static/jquery-1.12.4.min.js"></script>
     <script>
         var player = new skPlayer({
             autoplay: true,
             //可选项,自动播放,默认为false,true/false
-            listshow: false,
+            listshow: true,
             //可选项,列表显示,默认为true,true/false
-            mode: 'listloop',
-            //可选项,循环模式,默认为'listloop'
-            //'listloop',列表循环
-            //'singleloop',单曲循环
             music: {
             //必需项,音乐配置
                 type: 'file',
@@ -67,45 +63,20 @@
                         cover: '/static/music/米津玄師&daoko-打上花火.jpg'
                         //必需项,封面图片
                     },
-                    {
-                        name: "It's The Right Time",
-                        //必需项,歌名
-                        author: '三浦大知',
-                        //必需项,歌手
-                        src: "/static/music/It's The Right Time - 三浦大知.mp3",
-                        //必需项,音乐文件
-                        cover: "/static/music/It's The Right Time - 三浦大知.jpg"
-                        //必需项,封面图片
-                    },
-                    {
-                        name: 'あなたにおくるアイの歌',
-                        //必需项,歌名
-                        author: 'EGOIST',
-                        //必需项,歌手
-                        src: '/static/music/Departures~あなたにおくるアイの歌-EGOIST.mp3',
-                        //必需项,音乐文件
-                        cover: '/static/music/Departures~あなたにおくるアイの歌-EGOIST.jpg'
-                        //必需项,封面图片
-                    },
                     {name: 'My Friend',author: 'SPYAIR',src: '/static/music/My Friend – SPYAIR.mp3',cover: '/static/music/My Friend – SPYAIR.jpg'},
                     {name: 'あなただけ見つめてる',author: '大黒摩季',src: '/static/music/あなただけ見つめてる – 大黒摩季.mp3',cover: '/static/music/あなただけ見つめてる – 大黒摩季.jpg'},
                     {name: '心做し',author: '花たん',src: '/static/music/心做し – 花たん.mp3',cover: '/static/music/心做し – 花たん.jpg'},
-                    {name: '一番の宝物 (Original Version)',author: 'karuta',src: '/static/music/一番の宝物 (Original Version) – karuta.mp3',cover: '/static/music/一番の宝物 (Original Version) – karuta.jpg'},
                     {name: 'Lemon-《非自然死亡》主题曲',author: '米津玄師',src: '/static/music/Lemon- 日剧《非自然死亡》主题曲– 米津玄師.mp3',cover: '/static/music/Lemon- 日剧《非自然死亡》主题曲– 米津玄師.jpg'},
-                    {name: 'サムライハート',author: 'SPYAIR',src: '/static/music/サムライハート – SPYAIR.mp3',cover: '/static/music/サムライハート – SPYAIR.jpg'},
-                    {name: 'ブルーバード',author: 'いきものがかり',src: '/static/music/ブルーバード – いきものがかり.mp3',cover: '/static/music/ブルーバード – いきものがかり.jpg'},
                     {name: '回レ! 雪月花',author: '原田ひとみ',src: '/static/music/回レ! 雪月花 – 原田ひとみ.mp3',cover: '/static/music/回レ! 雪月花 – 原田ひとみ.jpg'},
-                    {name: '雪の華',author: '中島美嘉',src: '/static/music/雪の華 – 中島美嘉.mp3',cover: '/static/music/雪の華 – 中島美嘉.jpg'},
                     {name: 'いけないボーダーライン',author: 'ワルキューレ',src: '/static/music/いけないボーダーライン – ワルキューレ.mp3',cover: '/static/music/いけないボーダーライン – ワルキューレ.jpg'},
                     {name: '恋-(逃避虽可耻但有用)主题曲',author: '星野源',src: '/static/music/恋-日剧《逃避虽可耻但有用》主题曲 – 星野源.mp3',cover: '/static/music/恋-日剧《逃避虽可耻但有用》主题曲 – 星野源.jpg'},
-                    {name: 'My Soul，Your Beats！',author: 'Lia',src: '/static/music/My Soul，Your Beats！ – Lia.mp3',cover: '/static/music/My Soul，Your Beats！ – Lia.jpg'},
                     {name: 'Aliez',author: 'Mizuki',src: '/static/music/Aliez- Mizuki.mp3',cover: '/static/music/Aliez- Mizuki.jpg'},
                     {name: 'Brand New World',author: '海贼王',src: '/static/music/Brand New World – 海贼王.mp3',cover: '/static/music/Brand New World – 海贼王.jpg'},
-                    {name: 'Sakura',author: 'いきものがかり',src: '/static/music/Sakura – いきものがかり.mp3',cover: '/static/music/Sakura – いきものがかり.jpg'},
                     {name: '自傷無色',author: '花たん',src: '/static/music/自傷無色 – 花たん.mp3',cover: '/static/music/自傷無色 – 花たん.jpg'},
                     {name: '世界が終るまでは…',author: 'WANDS',src: '/static/music/世界が終るまでは… – WANDS.mp3',cover: '/static/music/世界が終るまでは… – WANDS.jpg'},
                 ]
             }
         });
+
     </script>
 </html>

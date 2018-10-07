@@ -52,7 +52,7 @@ footer {
 }
 #music {
     left: -380px;
-    bottom: 100px;
+    bottom: 250px;
     position: fixed;
     display:block;
     color: #f009;
@@ -84,5 +84,7 @@ footer {
     font-size:13px;
     color:#57B5C5;
 }
+
+
 
 

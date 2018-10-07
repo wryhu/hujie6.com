@@ -4,7 +4,6 @@ ul.blog-types, .blog-dates {
 div.paginator {
     text-align: center;
 }
-
 div.blog-content {
     line-height:180%;
     font-size: 17px;
@@ -19,17 +18,14 @@ div.blog-content img {
 div.blog-more {
     margin-top: 1em;
 }
-
 div.django-ckeditor-widget {
     width: 100%;
 }
-
 div.comment {
     border-bottom: 1px dashed #ccc;
     margin-bottom: 0.5em;
     padding-bottom: 0.5em;
 }
-
 .media {
     padding:13px;
     border: 1px solid #ccc;
