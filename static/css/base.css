@@ -52,9 +52,10 @@ footer {
 }
 #music {
     left: -380px;
-    bottom: 250px;
+    bottom: 300px;
     position: fixed;
     display:block;
+    z-index:1000;
     color: #f009;
     text-decoration: none;
 }
@@ -69,19 +70,20 @@ footer {
     color:rgba(255, 0, 0, 0.48);
     cursor:pointer;
 }
+#music-foot {
+    position:fixed;
+    bottom:318px;
+    margin-left:104px;
+    text-align:center;
+}
 #music-ctrl {
-    position:relative;
-    top:-65px;
-    margin-left:90px;
     font-size:20px;
     color:rgba(255, 0, 0, 0.77);
     cursor:pointer;
 }
 #music-text {
-    position:relative;
-    top:-65px;
-    margin-left:144px;
     font-size:13px;
+
     color:#57B5C5;
 }
 
