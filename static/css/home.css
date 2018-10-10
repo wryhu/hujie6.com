@@ -68,7 +68,7 @@ div.tab-content {
 div.tab-content li{
     list-style-type:none;
     font-size:18px;
-    padding: 2%;
+    padding: 5% 0px 0px;
 }
 .aitem {
     width: 310px;

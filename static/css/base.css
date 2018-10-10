@@ -36,10 +36,10 @@ a.navbar-brand {
 footer {
     width: 100%;
     height: 100%;
-    background: #B0E0E6;
+    background: linear-gradient(to bottom, #ECE6DF 0%, rgba(255, 251, 233, 0.03) 50%, #ECE6DF 100%);
     margin-top:40px;
     padding: 4%;
-    color: #5E4485;
+    color:#5E4485;
 }
 .col-sm-4 .fa {
     padding: 13px;
@@ -48,7 +48,7 @@ footer {
     text-decoration: none;
 }
 .col-sm-4 .fa:hover{
-    color:blue;
+    color:rgba(110, 90, 171, 0.75);
 }
 #music {
     left: -380px;

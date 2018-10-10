@@ -1,3 +1,10 @@
+body {
+    background: url(/static/image/body.png) repeat center top;
+}
+.panel {
+    border-radius: 0px;
+    box-shadow: 6px 6px 6px #888888;
+}
 ul.blog-types, .blog-dates {
     list-style-type: none;
 }
@@ -74,7 +81,14 @@ div.panel {
 .blog-info-desc a {
     text-decoration:none;
 }
-#comment-list .jumbotron {
+.blog-info-desc .btn-default {
+    background-color: rgba(141, 143, 160, 0);
+}
+.jumbotron {
+    background-color: rgba(141, 143, 160, 0.19);
+}
+
+#comment-list .jumbotron {background-color: rgba(141, 143, 160, 0.19);
     padding: 25px 25px 80px 25px;
     margin:30px 0px;
 }
