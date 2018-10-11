@@ -136,7 +136,7 @@ def page_not_found(request):
         context['user_name'] = '亲爱的游客'
     else:
         context['user_name'] = request.user.username
-    return render(request, 'error.html', context)
+    return render(request, '404.html', context)
 
 
 def frame(request):

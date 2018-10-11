@@ -13,17 +13,49 @@
     <div class="next_music" onclick="player.next()"></div>
 </body>
     <script>
-        <!--音乐播放器两种方式：网易云在线，本地服务器。两套方案都准备好以防万一。-->
-        <!--网易云-->
         var player = new skPlayer({
             autoplay: true,
             listshow: false,
-            mode: 'listloop',
             music: {
-                type: 'cloud',
-                source: 147843200
+                type: 'file',
+                source: [
+                    //必需项,音乐文件数组
+                    {name: "We Can't Stop",author: 'Boyce Avenue&Bea Miller',src: "/static/music/We Can't Stop – Boyce Avenue&Bea Miller.mp3",cover: "/static/music/We Can't Stop – Boyce Avenue&Bea Miller.jpg"},
+                    {name: '僕らの手には何もないけど',author: 'RAM WIRE',src: '/static/music/RAM WIRE-僕らの手には何もないけど.mp3',cover: '/static/music/RAM WIRE-僕らの手には何もないけど.jpg'},
+                    {name: 'See You Again',author: 'Wiz Khalifa&Charlie Puth',src: '/static/music/See You Again – Wiz Khalifa&Charlie Puth.mp3',cover: '/static/music/See You Again – Wiz Khalifa&Charlie Puth.jpg'},
+                    {name: '僕が死のうと思ったのは',author: '中島美嘉',src: '/static/music/中島美嘉-僕が死のうと思ったのは.mp3',cover: '/static/music/中島美嘉-僕が死のうと思ったのは.jpg'},
+                    {name: '桜色舞うころ',author: '德永英明',src: '/static/music/德永英明-桜色舞うころ.mp3',cover: '/static/music/德永英明-桜色舞うころ.jpg'},
+                    {name: '打上花火',author: '米津玄師&daoko',src: '/static/music/米津玄師&daoko-打上花火.mp3',cover: '/static/music/米津玄師&daoko-打上花火.jpg'},
+                    {name: 'Lemon-《非自然死亡》主题曲',author: '米津玄師',src: '/static/music/Lemon- 日剧《非自然死亡》主题曲– 米津玄師.mp3',cover: '/static/music/Lemon- 日剧《非自然死亡》主题曲– 米津玄師.jpg'},
+                    {name: '回レ! 雪月花',author: '原田ひとみ',src: '/static/music/回レ! 雪月花 – 原田ひとみ.mp3',cover: '/static/music/回レ! 雪月花 – 原田ひとみ.jpg'},
+                    {name: 'いけないボーダーライン',author: 'ワルキューレ',src: '/static/music/いけないボーダーライン – ワルキューレ.mp3',cover: '/static/music/いけないボーダーライン – ワルキューレ.jpg'},
+                    {name: '恋-(逃避虽可耻但有用)主题曲',author: '星野源',src: '/static/music/恋-日剧《逃避虽可耻但有用》主题曲 – 星野源.mp3',cover: '/static/music/恋-日剧《逃避虽可耻但有用》主题曲 – 星野源.jpg'},
+                    {name: 'Aliez',author: 'Mizuki',src: '/static/music/Aliez- Mizuki.mp3',cover: '/static/music/Aliez- Mizuki.jpg'},
+                    {name: 'Brand New World',author: '海贼王',src: '/static/music/Brand New World – 海贼王.mp3',cover: '/static/music/Brand New World – 海贼王.jpg'},
+                    {name: '自傷無色',author: '花たん',src: '/static/music/自傷無色 – 花たん.mp3',cover: '/static/music/自傷無色 – 花たん.jpg'},
+                    {name: 'Something Just Like This',author: 'Alex Goot&Madilyn Bailey',src: '/static/music/Something Just Like This – Alex Goot&Madilyn Bailey.mp3',cover: '/static/music/Something Just Like This – Alex Goot&Madilyn Bailey.jpg'},
+                    {name: 'Dream It Possible',author: 'Delacey',src: '/static/music/Dream It Possible – Delacey.mp3',cover: '/static/music/Dream It Possible – Delacey.jpg'},
+                    {name: 'Wave',author: '96猫',src: '/static/music/Wave – 96猫.mp3',cover: '/static/music/Wave – 96猫.jpg'},
+                    {name: 'Counting Stars',author: 'OneRepublic',src: '/static/music/Counting Stars – OneRepublic.mp3',cover: '/static/music/Counting Stars – OneRepublic.jpg'},
+                    {name: 'Immortals',author: 'Fall Out Boy',src: '/static/music/Immortals – Fall Out Boy.mp3',cover: '/static/music/Fall Out Boy.jpg'},
+                    {name: 'The Phoenix',author: 'Fall Out Boy',src: '/static/music/The Phoenix – Fall Out Boy.mp3',cover: '/static/music/Fall Out Boy.jpg'},
+                    {name: 'Radioactive',author: 'Imagine Dragons',src: '/static/music/Radioactive – Imagine Dragons.mp3',cover: '/static/music/Radioactive – Imagine Dragons.jpg'},
+                    {name: '心做し',author: '花たん',src: '/static/music/心做し – 花たん.mp3',cover: '/static/music/心做し – 花たん.jpg'},
+                    {name: 'Blank Space',author: 'Taylor Swift',src: '/static/music/Blank Space – Taylor Swift.mp3',cover: '/static/music/Taylor Swift.jpg'},
+                    {name: 'Give Me Everything',author: 'Pitbull',src: '/static/music/Give Me Everything – Pitbull.mp3',cover: '/static/music/Give Me Everything – Pitbull.jpg'},
+                    {name: 'Some Nights',author: 'Fun.',src: '/static/music/Some Nights – Fun..mp3',cover: '/static/music/Some Nights – Fun..jpg'},
+                    {name: 'Party Rock Anthem',author: 'LMFAO&Lauren Bennett&Goonrock',src: '/static/music/Party Rock Anthem – LMFAO&Lauren Bennett&Goonrock.mp3',cover: '/static/music/Party Rock Anthem – LMFAO&Lauren Bennett&Goonrock.jpg'},
+                    {name: 'Uptown Funk',author: 'Mark Ronson&Bruno Mars',src: '/static/music/Uptown Funk – Mark Ronson&Bruno Mars.mp3',cover: '/static/music/Uptown Funk – Mark Ronson&Bruno Mars.jpg'},
+                    {name: 'Call Me Maybe',author: 'Carly Rae Jepsen',src: '/static/music/Call Me Maybe – Carly Rae Jepsen.mp3',cover: '/static/music/Call Me Maybe – Carly Rae Jepsen.jpg'},
+                    {name: 'Dark Horse',author: 'Katy Perry',src: '/static/music/Dark Horse – Katy Perry.mp3',cover: '/static/music/Dark Horse – Katy Perry.jpg'},
+                    {name: 'Happy',author: 'Pharrell Williams',src: '/static/music/Happy – Pharrell Williams.mp3',cover: '/static/music/Happy – Pharrell Williams.jpg'},
+                    {name: 'We Found Love',author: 'Rihanna&Calvin Harris',src: '/static/music/We Found Love – Rihanna&Calvin Harris.mp3',cover: '/static/music/We Found Love – Rihanna&Calvin Harris.jpg'},
+                    {name: 'Roar',author: 'Katy Perry',src: '/static/music/Roar – Katy Perry.mp3',cover: '/static/music/Roar – Katy Perry.jpg'},
+                    {name: 'Take Me To Church',author: 'Hozier',src: '/static/music/Take Me To Church – Hozier.mp3',cover: '/static/music/Take Me To Church – Hozier.jpg'},
+                    {name: 'Centuries',author: 'Fall Out Boy',src: '/static/music/Centuries – Fall Out Boy.mp3',cover: '/static/music/Fall Out Boy.jpg'},
+                    {name: 'Demons',author: 'Imagine Dragons',src: '/static/music/Demons – Imagine Dragons.mp3',cover: '/static/music/Demons – Imagine Dragons.jpg'},
+                ]
             }
         });
-
     </script>
 </html>
