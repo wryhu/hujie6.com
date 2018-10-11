@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    喵？
+{% endblock %}
+
+{% block content %}
+    <div class="bg">
+        <div class="back"><a href="/">返回首页</a> </div>
+    </div>
+    <img class="error_404" src="/static/image/404.png">
+    <style type="text/css">
+        .bg {
+            background: url(/static/image/jojo.jpg) no-repeat center center;
+            display: table;
+            height: 50em;
+            width: 100%;
+            position: relative;
+            background-size: cover;
+        }
+        .back {
+            text-align:right;
+            margin: 50px 80px;
+            font-size: 250%;
+            font-weight:900;
+        }
+        .back a {
+            color: #394265;
+            text-decoration:none;
+        }
+        .back a:hover {
+            color: #A68039;
+        }
+        .error_404{
+            width: 20%;
+            position: absolute;
+            bottom: 184px;
+            right: 48px;
+        }
+
+        footer {
+            margin-top: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block script_extends %}
+    <script type="text/javascript">
+        $(function(){
+            $("#navbar-base").remove();
+        });
+    </script>
+{% endblock %}
