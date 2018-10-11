@@ -34,6 +34,7 @@ urlpatterns = [
     url(r'^login/', views.login, name='login'),
     url(r'^register/', views.register, name='register'),
     url(r'^logout/', views.logout, name='logout'),
+    url(r'^jojo/', views.jojo, name='jojo'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

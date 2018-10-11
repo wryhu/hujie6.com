@@ -2,14 +2,13 @@
 {% load staticfiles %}
 
 {% block title %}
-    喵？
+    喵？服务器忙
 {% endblock %}
 
 {% block content %}
     <div class="bg">
-        <div class="back"><a href="/">返回首页</a> </div>
+        <div class="back"><a href="/">500错误</a> </div>
     </div>
-    <img class="error_404" src="/static/image/404.png">
     <style type="text/css">
         .bg {
             background: url(/static/image/jojo.jpg) no-repeat center center;
@@ -32,13 +31,6 @@
         .back a:hover {
             color: #A68039;
         }
-        .error_404{
-            width: 20%;
-            position: absolute;
-            bottom: 184px;
-            right: 48px;
-        }
-
         footer {
             margin-top: 0;
         }

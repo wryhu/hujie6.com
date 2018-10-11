@@ -145,3 +145,7 @@ def frame(request):
 
 def music(request):
     return render(request, 'music.html')
+
+
+def jojo(request):
+    return render(request, 'jojo.html')

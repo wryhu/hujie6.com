@@ -1,7 +1,8 @@
 body {
-    background: url(/static/image/body.png) repeat center top;
+    background: url(/static/image/map.png) repeat center top;
 }
 .panel {
+    margin:10px;
     border-radius: 0px;
     box-shadow: 6px 6px 6px #888888;
 }
@@ -53,9 +54,6 @@ div.comment {
 }
 .img-rounded {
     margin: 18px 0px 0px 10px;
-}
-div.panel {
-    margin-top:0px;
 }
 .blog-types, .blog-dates {
     font-size:18px;
@@ -153,4 +151,15 @@ a.reply_btn {
     margin:20px;
     text-decoration:none;
     float:right;
+}
+#music-parent {
+    margin-left: 40px;
+}
+#music-parent .panel {
+    margin-bottom:30px;
+}
+marquee img {
+    width:80px;
+    height:60px;
+    padding:5px 10px 0 0;
 }

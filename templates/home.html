@@ -408,6 +408,7 @@
         };
         // 图表初始化函数
         var chart = Highcharts.chart('container', options);
+        $("rect").attr("fill","rgba(255, 255, 255, 0)");
         $(function(){
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
