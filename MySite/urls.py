@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^register/', views.register, name='register'),
     url(r'^logout/', views.logout, name='logout'),
     url(r'^jojo/', views.jojo, name='jojo'),
+    url(r'^search/', include('blog.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

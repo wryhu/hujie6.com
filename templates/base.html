@@ -56,6 +56,12 @@
                         </li>
                     {% endif %}
                 </ul>
+                <form id="navbar-form" action="{% url 'search'%}" class="navbar-form navbar-right">
+                    <div class="form-group">
+                      <input name="wd" type="text" class="form-control" placeholder="请输入关键字">
+                    </div>
+                    <button type="submit" class="btn btn-default"><span>搜索</span></button>
+                </form>
             </div>
         </div>
     </div>
@@ -73,7 +79,7 @@
                 <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo"></a>
                 <a href="https://github.com/wryhu" target=_blank class="fa fa-github"></a>
                 <div class="fa fa-chrome"></div>
-                <a href="/jojo" class="fa fa-google"></a>
+                <a href="/jojo" class="fa fa-instagram"></a>
                 <a href="/jojo" class="fa fa-twitter"></a>
             </div>
             <div class="col-sm-4">

@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^type_(\d+)/', views.blogs_by_type, name='blogs_by_type'),
     # 每月博客,机制同全部博客,所以模板方面继承即可
     url(r'^date_(\d+)_(\d+)/', views.blogs_by_date, name='blogs_by_date'),
+    url(r'^search$', views.search, name='search'),
 ]

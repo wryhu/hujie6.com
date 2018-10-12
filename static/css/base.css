@@ -26,6 +26,22 @@ html body {
     padding: 20px;
     font-size: 15px;
 }
+#navbar-form {
+    margin-top: 14px;
+}
+#navbar-form .form-control {
+    background-color: #fff0;
+    border-color: #ccc9;
+    border-radius:0;
+}
+#navbar-form button {
+    background-color: #fff0;
+    border-color: #ccc9;
+    border-radius:0;
+}
+#navbar-form span {
+    color:#787878;
+}
 .fa span {
      font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
 }
@@ -41,14 +57,40 @@ footer {
     background: linear-gradient(to bottom, #ECE6DF 0%, rgba(255, 251, 233, 0.03) 50%, #ECE6DF 100%);
     margin-top:40px;
     padding: 4%;
-    color:#5E4485;
+    color:#394265;
 }
 .col-sm-4 .fa {
     padding: 13px;
     font-size: 30px;
-    color: #5E4485;
     text-decoration: none;
 }
+.col-sm-4 .fa-weibo {
+    color: #E6162D;#24292E
+}
+.col-sm-4 .fa-github {
+    color: #24292E;
+}
+.col-sm-4 .fa-chrome {
+    color: #19A15F;
+}
+.col-sm-4 .fa-instagram {
+    font-weight:600;
+    background-image:
+        -webkit-gradient( linear, right top, left bottom, color-stop(0, #7443CA),
+        color-stop(0.25, #C73B94),
+
+        color-stop(0.5, #FF7844),
+
+        color-stop(0.75, #FFCC52),
+
+        color-stop(1, #FFCC52) );
+    color: transparent;
+    -webkit-background-clip: text;
+}
+.col-sm-4 .fa-twitter {
+    color: rgba(110, 90, 171, 0.75);
+}
+
 .col-sm-4 .fa:hover{
     color:rgba(110, 90, 171, 0.75);
 }

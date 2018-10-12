@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import Blog, BlogType
@@ -13,7 +14,7 @@ numbers_of_onepage = 4
 
 
 # 这是博客列表页,分类页,日期归档页的代码重用部分
-def blog_common_date(request, blogs):
+def blog_common_data(request, blogs):
     # 建立分页器对象
     paginator = Paginator(blogs, numbers_of_onepage)
     # 获取GET请求参数
@@ -58,7 +59,7 @@ def blog_common_date(request, blogs):
 def blog_list(request):
     # 获取博客集合
     blogs = Blog.objects.all()
-    context = blog_common_date(request, blogs)
+    context = blog_common_data(request, blogs)
 
     return render(request, 'blog/blog_list.html', context)
 
@@ -67,7 +68,7 @@ def blog_list(request):
 def blogs_by_type(request, blogs_by_type):
     blog_type = get_object_or_404(BlogType, pk=blogs_by_type)
     blogs = Blog.objects.filter(blog_type=blog_type)
-    context = blog_common_date(request, blogs)
+    context = blog_common_data(request, blogs)
     context['blog_type'] = blog_type
     return render(request, 'blog/blogs_by_type.html', context)
 
@@ -75,7 +76,7 @@ def blogs_by_type(request, blogs_by_type):
 # 每年每月的博客
 def blogs_by_date(request, year, month):
     blogs = Blog.objects.filter(created_time__year=year, created_time__month=month)
-    context = blog_common_date(request, blogs)
+    context = blog_common_data(request, blogs)
     context['date_of_blogs'] = "%s年%s月" % (year, month)
     return render(request, 'blog/blogs_by_date.html', context)
 
@@ -99,5 +100,14 @@ def blog_detail(request, blog_pk):
     return response
 
 
-
-
+def search(request):
+    try:
+        wd = request.GET['wd']
+        if not wd:
+            return render(request, 'jojo.html')
+        blogs = Blog.objects.filter(title__contains=wd)
+        context = blog_common_data(request, blogs)
+        context['wd'] = wd
+    except Exception:
+        return render(request, 'jojo.html')
+    return render(request, 'blog/blogs_search.html', context)
