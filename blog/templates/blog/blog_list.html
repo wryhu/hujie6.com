@@ -112,7 +112,7 @@
             </div>
             <div id="music-parent" class="col-sm-4 col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">博客分类</div>
+                    <div class="panel-heading"><span class="fa fa-object-ungroup"></span> &nbsp;博客分类</div>
                     <div class="panel-body">
                         <ul class="blog-types">
                             {% for blog_type in blog_types %}
@@ -128,7 +128,7 @@
                     </div>
                 </div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">日期归档</div>
+                    <div class="panel-heading"><span class="fa fa-calendar"></span> &nbsp;日期归档</div>
                     <div class="panel-body">
                         <ul class="blog-dates">
                             {% for blog_date, blog_count in blog_dates.items %}
@@ -137,6 +137,24 @@
                                         {{ blog_date|date:"Y年m月" }} ({{ blog_count }})
                                     </a>
                                 </li>
+                            {% empty %}
+                                <li>暂无此分类</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><span class="fa fa-random"></span> &nbsp;随机推荐</div>
+                    <div class="panel-body">
+                        <ul class="blog-random">
+                            {% for blog in blogs_random %}
+                                <li>
+                                    <a href="{% url 'blog_detail' blog.pk %}">
+                                        {{ blog.title }}
+                                    </a>
+                                </li>
+                            {% empty %}
+                                <li>暂无此分类</li>
                             {% endfor %}
                         </ul>
                     </div>

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} - 胡捷个人网站</title>
-    <link rel = "Shortcut Icon" href=/static/image/H.ico>
+    <link rel="Shortcut Icon" href="/static/image/H.ico">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap3/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap3/css/bootstrap.min.css' %}">
@@ -38,14 +38,17 @@
 
                     {% if not user.is_authenticated %}
                         <li>
-                            <a id="pad" class="fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> <span>登陆</span></a>
+                            <a id="pad" class="fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> <span>登录</span></a>
                         </li>
                         <li>
                             <a id="pad" class="fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> <span>注册</span></a>
                         </li>
                     {% else %}
                         <li class="dropdown">
-                            <a id="pad" href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span>{{ user.username }}</span><span class="caret"></span></a>
+                            <a id="pad" href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                <span>{{ user.username }}</span>
+                                <span class="caret"></span>
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" >个人资料</a></li>
                                 <li><a href="#">邮箱</a></li>

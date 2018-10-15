@@ -30,13 +30,13 @@ html body {
     margin-top: 14px;
 }
 #navbar-form .form-control {
-    background-color: #fff0;
-    border-color: #ccc9;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgba(204, 204, 204, 0.68);
     border-radius:0;
 }
 #navbar-form button {
-    background-color: #fff0;
-    border-color: #ccc9;
+    background-color: rgba(255, 255, 255, 0);
+    border-color: rgba(204, 204, 204, 0.68);
     border-radius:0;
 }
 #navbar-form span {

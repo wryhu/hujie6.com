@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>你好，欢迎光临胡捷的个人网站</title>
+    <link rel="Shortcut Icon" href="/static/image/H.ico">
+    <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.min.css">
+    <meta name="keywords" content="胡捷，个人博客，个人网站">
+    <meta name="description" content="一个编程菜鸟的个人博客网站，主要用来分享互联网资讯、教程、学习笔记、感悟以及记录博主的一些生活琐事等。">
+    <script src="/static/jquery-1.12.4.min.js"></script>
+    <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
+<body>
+    <div id="bg1" style="color:#FFFFFF">
+        <div class="info">
+            <h1>Welcome to my website! - JET</h1>
+            <h2>僕のウェブサイトへようこそ!</h2>
+            <h2>欢迎来玩，随便逛逛吧</h2>
+        </div>
+        <a href="/index"><button class="foo box" style="color:rgb(38, 206, 190);">进入首页</button></a>
+    </div>
+</body>
+    <style type="text/css">
+        body {
+            margin:0;
+            padding:0;
+        }
+        #bg1::before {
+            content: "";
+            left: 0px;
+            top: 0px;
+            bottom: 0px;
+            right: 0px;
+            position: absolute;
+            background: rgba(0, 0, 0, 0.15) none repeat 0% 0%;
+        }
+        #bg1 {
+            background: url(/static/image/homescreen.jpeg) no-repeat center center fixed;
+            display: table;
+            width: 100%;
+            background-size: cover;
+            text-align: center;
+        }
+        button {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            margin-top: -30px;
+            margin-left: -84px;
+            height: 60px;
+            font-size: 30px;
+            line-height: 2;
+            letter-spacing: 5px;
+            border: 1px solid rgb(215, 197, 164);
+            background-color: rgba(89, 55, 55, 0.64);
+            border-radius: 0;
+            box-shadow: none;
+            padding: 0 14px;
+            z-index:3;
+        }
+        .foo::after {
+            border-top: 1px solid #FFF;
+            border-right: 1px solid #FFF;
+            -webkit-transform-origin: 100% 0%;
+        }
+        .box::before, .box::after {
+            width: 100%;
+            height: 100%;
+            z-index: 4;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            -webkit-transform: scale(0);
+            transition: 1s;
+            box-shadow: none;
+        }
+        .foo::before {
+            border-bottom: 1px solid #FFF;
+            border-left: 1px solid #FFF;
+            -webkit-transform-origin: 0 100%;
+        }
+        .box:hover {
+            border: 1px solid rgba(0, 160, 80, 0);
+            color: #FFF;
+            text-decoration: none;
+        }
+        .box:hover::after, .box:hover::before {
+            -webkit-transform: scale(2);
+        }
+        .info {
+            margin-top:150px;
+            color:rgba(0, 0, 0, 0.7);
+        }
+    </style>
+    <script>
+        $(function(){
+            var win_h = $(window).height();
+            $("#bg1").css("height",win_h);
+        });
+    </script>
+</html>

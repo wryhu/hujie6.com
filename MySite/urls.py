@@ -23,6 +23,7 @@ from django.conf import settings
 
 urlpatterns = [
     # 网站主页
+    url(r'^main$', views.main, name='main'),
     url(r'^music$', views.music, name='music'),
     url(r'^$', views.frame, name='frame'),
     url(r'^index$', views.home, name='home'),
@@ -35,7 +36,7 @@ urlpatterns = [
     url(r'^register/', views.register, name='register'),
     url(r'^logout/', views.logout, name='logout'),
     url(r'^jojo/', views.jojo, name='jojo'),
-    url(r'^search/', include('blog.urls')),
+    url(r'^oauth/', include('oauth.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

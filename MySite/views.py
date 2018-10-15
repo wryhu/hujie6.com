@@ -149,3 +149,7 @@ def music(request):
 
 def jojo(request):
     return render(request, 'jojo.html')
+
+
+def main(request):
+    return render(request, 'main.html')

@@ -196,7 +196,7 @@
             // 监视浏览器全局,因为若是ajax呈现的数据,普通的.click()方法无法触发
             $(document).on('click', ".reply_btn", function(){
                 if($("#comment_sub").find('span').text()=='or'){
-                    alert('您尚未登录,请登陆后再回复')
+                    alert('您尚未登录,请登录后再回复')
                     $('html, body').animate({scrollTop: $('#logout').offset().top}, 1000)
                     return false
                 };

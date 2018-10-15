@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    绑定帐号
+{% endblock %}
+
+{% block content %}
+    <div class="center_box">
+        <div><h1>绑定用户</h1></div>
+        <div class="info">你好，{{ nickname }}，您已成功登录，绑定用户后即可完成登录。仅需绑定一次，以后用QQ就可以直接登录了哦。</div>
+        <form class="form-inline" method="post">
+          {% csrf_token %}
+          <div class="form-group">
+            <label>邮箱</label>
+            <input type="email" class="form-control" name="email" placeholder="请输入您的注册邮箱" value="{{ email }}">
+          </div>
+          <div class="form-group">
+            <label>密码</label>
+            <input type="password" class="form-control" name="password" placeholder="若未注册过本站，则作为登录密码使用">
+          </div>
+          <button type="submit" class="btn btn-default">提交</button>
+          <p class="text-danger">{{ warning }}</p>
+        </form>
+    </div>
+    <style type="text/css">
+        body {
+            background: url(/static/image/map.png) repeat center top;
+        }
+        .center_box {
+            text-align: center;
+            margin: 160px 0;
+        }
+        .info {
+            font-size:15px;
+            margin:10px 0;
+        }
+        .text-danger {
+            text-align: left;
+            margin:2px 285px 0px;
+        }
+    </style>
+{% endblock %}

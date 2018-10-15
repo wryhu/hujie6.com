@@ -60,7 +60,8 @@ def blog_list(request):
     # 获取博客集合
     blogs = Blog.objects.all()
     context = blog_common_data(request, blogs)
-
+    blogs_random = Blog.objects.exclude(id=0).order_by('?')[:10]
+    context['blogs_random'] = blogs_random
     return render(request, 'blog/blog_list.html', context)
 
 
@@ -100,12 +101,14 @@ def blog_detail(request, blog_pk):
     return response
 
 
+# 搜索框，文章标题
 def search(request):
     try:
         wd = request.GET['wd']
         if not wd:
             return render(request, 'jojo.html')
-        blogs = Blog.objects.filter(title__contains=wd)
+        # icontains不区分大小写包含
+        blogs = Blog.objects.filter(title__icontains=wd)
         context = blog_common_data(request, blogs)
         context['wd'] = wd
     except Exception:

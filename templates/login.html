@@ -20,7 +20,12 @@
             <div class="col-sm-4 col-xs-12">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background-color:rgba(245, 245, 245, 0);">
-                        <h3 class="panel-title">登录</h3>
+                        <h3 class="panel-title">
+                            登录
+                            <a href="{% url 'qq_login' %}" style="margin-left:175px" title="QQlogin">
+                                使用QQ登录 <img src="/static/image/qq.png">
+                            </a>
+                        </h3>
                     </div>
                     <div class="panel-body" >
                         <form action="" method="POST" >
@@ -48,9 +53,17 @@
         }
         .panel {
             border-radius: 0px;
-            box-shadow: 6px 6px 6px #888888;
+            box-shadow: 5px 5px 5px #888888;
         }
-        li {list-style-type:none;}
+        .panel a {
+            text-decoration:none;
+        }
+        .panel a:hover {
+            color:green;
+        }
+        li {
+            list-style-type:none;
+        }
     </style>
 
 {% endblock %}

@@ -4,10 +4,11 @@ body {
 .panel {
     margin:10px;
     border-radius: 0px;
-    box-shadow: 6px 6px 6px #888888;
+    box-shadow: 5px 5px 5px #888888;
 }
-ul.blog-types, .blog-dates {
+ul {
     list-style-type: none;
+    font-size:18px;
 }
 div.paginator {
     text-align: center;
@@ -55,13 +56,20 @@ div.comment {
 .img-rounded {
     margin: 18px 0px 0px 10px;
 }
-.blog-types, .blog-dates {
-    font-size:18px;
-}
 .blog-types a{
     text-decoration:none;
 }
 .blog-dates a{
+    text-decoration:none;
+}
+.blog-random {
+    text-align:center;
+    margin:0;
+    padding:0;
+}
+.blog-random a{
+
+    font-size:15px;
     text-decoration:none;
 }
 #tagset {
@@ -153,13 +161,24 @@ a.reply_btn {
     float:right;
 }
 #music-parent {
-    margin-left: 40px;
+    margin-left: 56px;
+    padding:0px;
 }
 #music-parent .panel {
     margin-bottom:30px;
+    padding:0px;
+}
+#music-parent .fa {
+    padding: 0px;
+    font-size: 15px;
+    text-decoration: none;
 }
 marquee img {
     width:80px;
     height:60px;
     padding:5px 10px 0 0;
+}
+.fa-object-ungroup {
+    font-size: 20px;
+    text-decoration: none;
 }
