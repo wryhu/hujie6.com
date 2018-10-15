@@ -78,11 +78,8 @@ footer {
     background-image:
         -webkit-gradient( linear, right top, left bottom, color-stop(0, #7443CA),
         color-stop(0.25, #C73B94),
-
         color-stop(0.5, #FF7844),
-
         color-stop(0.75, #FFCC52),
-
         color-stop(1, #FFCC52) );
     color: transparent;
     -webkit-background-clip: text;

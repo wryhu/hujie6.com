@@ -58,10 +58,11 @@
             box-shadow: none;
             padding: 0 14px;
             z-index:3;
+            animation:change 10s linear 0s infinite;
         }
         .foo::after {
-            border-top: 1px solid #FFF;
-            border-right: 1px solid #FFF;
+            border-top: 1px solid blue;
+            border-right: 1px solid yellow;
             -webkit-transform-origin: 100% 0%;
         }
         .box::before, .box::after {
@@ -78,8 +79,8 @@
             box-shadow: none;
         }
         .foo::before {
-            border-bottom: 1px solid #FFF;
-            border-left: 1px solid #FFF;
+            border-bottom: 1px solid red;
+            border-left: 1px solid rgb(30, 171, 218);
             -webkit-transform-origin: 0 100%;
         }
         .box:hover {
@@ -91,8 +92,13 @@
             -webkit-transform: scale(2);
         }
         .info {
-            margin-top:150px;
-            color:rgba(0, 0, 0, 0.7);
+            margin-top:120px;
+            color: rgba(0, 0, 0, 0.7);
+            text-shadow: 2px 2px 1px #FFF;
+        }
+        @keyframes change {
+            0%{color:blue;}13%{color:yellow;}31%{color:red;}50%{color:white;}
+            68%{color:gold;}87%{color:black;}100% {color:blue;}
         }
     </style>
     <script>
