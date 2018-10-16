@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class OAuthEx(models.Model):
     user = models.ForeignKey(User)
-    qq_openid = models.CharField(max_length=64)  # QQ的关联OpenID
+    open_id = models.CharField(max_length=64)  # 关联OpenID
 
     def __unicode__(self):
         return u'<%s>' % self.user

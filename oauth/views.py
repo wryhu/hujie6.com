@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.conf import settings
 
-from oauth_client import OAuth_QQ
+from oauth_client import OAuth_QQ, OAuth_GITHUB
 from oauth.models import OAuthEx
 
 import time
@@ -38,7 +38,7 @@ def qq_check(request):
     open_id = oauth_qq.get_open_id()
 
     # 检查open_id是否存在
-    qqs = OAuthEx.objects.filter(qq_openid=open_id)
+    qqs = OAuthEx.objects.filter(open_id=open_id)
     if qqs:
         # 存在则获取对应的用户，并登录
         user = qqs[0].user
@@ -53,6 +53,45 @@ def qq_check(request):
         # 不存在，则跳转到绑定邮箱页面
         info = oauth_qq.get_qq_info()  # 通过openid获取用户信息
         url = '%s?open_id=%s&nickname=%s' % (reverse('bind_email'), open_id, info['nickname'])
+        return HttpResponseRedirect(url)
+
+
+# http://hujie6.com/oauth/github_login
+def github_login(request):
+    oauth_github = OAuth_GITHUB(settings.GITHUB_APP_ID, settings.GITHUB_KEY, settings.GITHUB_RECALL_URL)
+
+    # 获取 得到Authorization Code的地址
+    url = oauth_github.get_auth_url()
+    # 重定向到授权页面
+    return HttpResponseRedirect(url)
+
+
+# http://hujie6.com/oauth/github_check
+def github_check(request):
+    """登录之后，会跳转到这里。需要判断code和state"""
+    request_code = request.GET.get('code')
+    oauth_github = OAuth_GITHUB(settings.GITHUB_APP_ID, settings.GITHUB_KEY, settings.GITHUB_RECALL_URL)
+
+    # 获取access_token
+    access_token = oauth_github.get_access_token(request_code)
+    time.sleep(0.05)  # 稍微休息一下，避免发送urlopen的10060错误
+    # 通过access_token获取openid
+    result, open_id = oauth_github.get_github_info()
+
+    # 检查open_id是否存在
+    gits = OAuthEx.objects.filter(open_id=open_id)
+    if gits:
+        # 存在则获取对应的用户，并登录
+        user = gits[0].user
+
+        setattr(user, 'backend', 'django.contrib.auth.backends.ModelBackend')
+
+        login(request, user)
+        return HttpResponseRedirect('/index')
+    else:
+        # 不存在，则跳转到绑定邮箱页面
+        info = result
+        url = '%s?open_id=%s&nickname=%s' % (reverse('bind_email'), open_id, info['login'])
         return HttpResponseRedirect(url)
 
 
@@ -84,7 +123,7 @@ def bind_email(request):
             user.save()
 
         # 绑定用户并
-        oauth_ex = OAuthEx(user=user, qq_openid=open_id)
+        oauth_ex = OAuthEx(user=user, open_id=open_id)
         oauth_ex.save()
 
         # 登录用户
@@ -94,7 +133,7 @@ def bind_email(request):
 
         # 页面提示
         context['email'] = email
-        context['goto_url'] = '/'
+        context['goto_url'] = '/index'
         context['goto_page'] = True
 
         return render(request, 'message.html', context)

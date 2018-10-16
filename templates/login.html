@@ -15,16 +15,13 @@
 
 {% block content %}
     <div class="containter" >
-        <div class="row" style="margin:10em 5em 15em">
+        <div class="row">
             <div class="col-sm-6 col-xs-0"></div>
             <div class="col-sm-4 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading" style="background-color:rgba(245, 245, 245, 0);">
+                    <div class="panel-heading">
                         <h3 class="panel-title">
                             登录
-                            <a href="{% url 'qq_login' %}" style="margin-left:130px" title="QQlogin">
-                                使用QQ登录 <img src="/static/image/qq.png">
-                            </a>
                         </h3>
                     </div>
                     <div class="panel-body" >
@@ -40,6 +37,20 @@
                         </form>
                     </div>
                 </div>
+                <!--第三方-->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">合作帐号登录</h3>
+                  </div>
+                  <div id="oauth_login" class="panel-body">
+                      <a href="{% url 'qq_login' %}" title="QQ登录"><img src="/static/image/qq.jpg"></a>
+                      <a href="" title="微信登录" class="fa fa-weixin"></a>
+                      <a href="" title="微博登录" class="fa fa-weibo"></a>
+                      <a href="" title="QQlogin" class="fa fa-twitter"></a>
+                      <a href="{% url 'github_login' %}" title="github登录" class="fa fa-github"></a>
+                      <a href="" title="QQlogin" class="fa fa-google-plus"></a>
+                  </div>
+                </div>
             </div>
         </div>
     </div>
@@ -51,15 +62,26 @@
             height:auto;
             z-index:1;
         }
+        .row {
+            margin:4em 5em 15em;
+        }
         .panel {
             border-radius: 0px;
             box-shadow: 5px 5px 5px #888888;
         }
-        .panel a {
-            text-decoration:none;
+        .panel .panel-heading {
+            background-color:#FFF;
         }
-        .panel a:hover {
-            color:green;
+        #oauth_login {
+            padding:0 0 0 10px;
+        }
+        #oauth_login a {
+            font-size:20px;
+            outline:none;
+        }
+        #oauth_login a img{
+            width:40px;
+            padding-bottom: 3px;
         }
         li {
             list-style-type:none;

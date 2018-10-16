@@ -93,7 +93,7 @@
         </div>
     </footer>
     <!--jet-->
-    <a href="javascript:;"><img id="totop" src="/static/image/jet.png" alt=""></a>
+    <a href="javascript:;" title="准备发射"><img id="totop" src="/static/image/jet.png" alt=""></a>
     <!--音乐播放器-->
     <div id="music">
         <div id="skPlayer" class="skPlayer1"></div>
@@ -140,6 +140,17 @@
                 else{
                     $('#totop').fadeOut();
                 }
+            });
+
+            function rock1(){
+                $('#totop').stop().animate({marginBottom:"0px"},300,rock2);
+            }
+            function rock2(){
+                $('#totop').stop().animate({marginBottom:"30px"},300,rock1);
+            }
+            $('#totop').mouseenter(rock2);
+            $('#totop').mouseleave(function(){
+                $(this).stop().animate({marginBottom:"0px"},200);
             });
             $('#totop').click(function(){
                 var html_height = $(window).height()
