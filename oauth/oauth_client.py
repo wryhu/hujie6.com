@@ -75,6 +75,7 @@ class OAuth_GITHUB:
         return url
 
     def get_access_token(self, code):
+        print(111111111111111111111111111111111)
         """根据code获取access_token"""
         params = {'grant_type': 'authorization_code',
                   'client_id': self.client_id,
@@ -87,7 +88,6 @@ class OAuth_GITHUB:
         response = urllib2.urlopen(url).read()
         # 响应数据转化成字典类型后提取
         result = urlparse.parse_qs(response, True)
-        print(resutl)
         self.access_token = result['access_token'][0]
         return self.access_token
 
@@ -162,6 +162,7 @@ class OAuth_BAIDU:
         return url
 
     def get_access_token(self, code):
+        print(222222222222222222222222)
         """根据code获取access_token"""
         params = {'grant_type': 'authorization_code',
                   'client_id': self.client_id,

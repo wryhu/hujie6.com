@@ -21,9 +21,9 @@ def oauth_login(request):
     global oauth_obj
     if oauth_type == 'QQ':
         oauth_obj = OAuth_QQ(settings.QQ_APP_ID, settings.QQ_KEY, settings.QQ_RECALL_URL)
-    if oauth_type == 'sina':
+    if oauth_type == '新浪微博':
         oauth_obj = OAuth_SINA(settings.SINA_APP_ID, settings.SINA_KEY, settings.SINA_RECALL_URL)
-    if oauth_type == 'baidu':
+    if oauth_type == '百度':
         oauth_obj = OAuth_BAIDU(settings.BAIDU_APP_ID, settings.BAIDU_KEY, settings.BAIDU_RECALL_URL)
     if oauth_type == 'github':
         oauth_obj = OAuth_GITHUB(settings.GITHUB_APP_ID, settings.GITHUB_KEY, settings.GITHUB_RECALL_URL)
