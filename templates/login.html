@@ -43,11 +43,10 @@
                     <h3 class="panel-title">合作帐号登录</h3>
                   </div>
                   <div id="oauth_login" class="panel-body">
-                      <a href="{% url 'qq_login' %}" title="QQ登录"><img src="/static/image/qq.jpg"></a>
-                      <a href="" title="微信登录" class="fa fa-weixin"></a>
-                      <a href="" title="微博登录" class="fa fa-weibo"></a>
-                      <a href="" title="QQlogin" class="fa fa-twitter"></a>
-                      <a href="{% url 'github_login' %}" title="github登录" class="fa fa-github"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=QQ" title="QQ登录"><img class="qq_img" src="/static/image/qq.jpg"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=sina" title="微博登录" class="fa fa-weibo"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=baidu" title="百度登录"><img class="baidu_img" src="/static/image/baidu.png"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=github" title="github登录" class="fa fa-github"></a>
                       <a href="" title="QQlogin" class="fa fa-google-plus"></a>
                   </div>
                 </div>
@@ -79,9 +78,12 @@
             font-size:20px;
             outline:none;
         }
-        #oauth_login a img{
+        .qq_img {
             width:40px;
             padding-bottom: 3px;
+        }
+        .baidu_img {
+            margin:0 15px 3px;
         }
         li {
             list-style-type:none;

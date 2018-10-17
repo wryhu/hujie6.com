@@ -87,10 +87,6 @@ footer {
 .col-sm-4 .fa-twitter {
     color: rgba(110, 90, 171, 0.75);
 }
-
-.col-sm-4 .fa:hover{
-    color:rgba(110, 90, 171, 0.75);
-}
 #music {
     left: -380px;
     bottom: 300px;

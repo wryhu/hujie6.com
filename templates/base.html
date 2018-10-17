@@ -93,7 +93,7 @@
         </div>
     </footer>
     <!--jet-->
-    <a href="javascript:;" title="准备发射"><img id="totop" src="/static/image/jet.png" alt=""></a>
+    <a href="javascript:;" title="准备发射"><img id="totop" class="totop" src="/static/image/jet.png" alt=""></a>
     <!--音乐播放器-->
     <div id="music">
         <div id="skPlayer" class="skPlayer1"></div>
@@ -141,7 +141,7 @@
                     $('#totop').fadeOut();
                 }
             });
-
+            // 鼠标绑定移入事件：循环上下
             function rock1(){
                 $('#totop').stop().animate({marginBottom:"0px"},300,rock2);
             }
@@ -149,15 +149,21 @@
                 $('#totop').stop().animate({marginBottom:"30px"},300,rock1);
             }
             $('#totop').mouseenter(rock2);
+            // 鼠标绑定移出事件：停止并回到原位
             $('#totop').mouseleave(function(){
                 $(this).stop().animate({marginBottom:"0px"},200);
             });
+            // 点击火箭就跟着滚动条一起上升，然后取消绑定的鼠标移出事件，不然上升时又回到原位了，然后火箭隐藏，火箭复位，火箭再次绑定鼠标移出事件。
             $('#totop').click(function(){
                 var html_height = $(window).height()
                 $('html,body').animate({'scrollTop':0},800);
+                $(this).stop().unbind('mouseleave');
                 $(this).animate({marginBottom:html_height},800,function(){
                     $(this).fadeOut(function(){
                         $(this).css("marginBottom",0);
+                        $(this).bind('mouseleave', function(){
+                            $(this).stop().animate({marginBottom:"0px"},200);
+                        });
                     });
                 });
             });
