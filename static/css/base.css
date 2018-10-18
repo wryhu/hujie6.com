@@ -107,6 +107,9 @@ footer {
     color:rgba(255, 0, 0, 0.48);
     cursor:pointer;
 }
+#music-bar:hover {
+    color: rgba(0, 84, 255, 0.5);
+}
 #music-foot {
     position:fixed;
     bottom:318px;

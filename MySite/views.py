@@ -148,8 +148,12 @@ def music(request):
 
 
 def jojo(request):
-    return render(request, 'jojo.html')
+    return render(request, 'message.html')
 
 
 def main(request):
     return render(request, 'main.html')
+
+
+def privacy_policy(request):
+    return render(request, 'privacy_policy.html')

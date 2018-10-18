@@ -6,23 +6,26 @@
 {% endblock %}
 
 {% block content %}
-    <center><h2>你好，{{ nickname }}，您的QQ已成功绑定到{{ email }}，三秒后离开此页面。</h2></center>
+    <center><h2>你好，{{ nickname }}，您的帐号已成功绑定到{{ email }}，三秒后离开此页面。</h2></center>
     <style type="text/css">
         body {
             background: url(/static/image/map.png) repeat center top;
+        }
+        h2 {
+            margin:158px 0;
         }
     </style>
 {% endblock %}
 
 {% block script_extends %}
     <script type="text/javascript">
-        {#页面调整控制#}
-        {% if goto_page %}
-            $(function(){
-                window.setTimeout(function(){
-                    window.location = '{{goto_url}}';
-                },3000);
-            });
-        {% endif %}
+        <!--{#页面调整控制#}-->
+        <!--{% if goto_page %}-->
+            <!--$(function(){-->
+                <!--window.setTimeout(function(){-->
+                    <!--window.location = '{{goto_url}}';-->
+                <!--},3000);-->
+            <!--});-->
+        <!--{% endif %}-->
     </script>
 {% endblock %}

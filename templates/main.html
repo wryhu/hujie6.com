@@ -18,7 +18,7 @@
             <h2>僕のウェブサイトへようこそ!</h2>
             <h2>欢迎来玩，随便逛逛吧</h2>
         </div>
-        <a href="/index"><button class="foo box" style="color:rgb(38, 206, 190);">进入首页</button></a>
+        <a href="/index"><button class="foo box" style="color:rgb(38, 206, 190);"><div style="padding-left:6px;">进入首页</div></button></a>
     </div>
 </body>
     <style type="text/css">
@@ -52,7 +52,6 @@
             font-size: 30px;
             line-height: 2;
             letter-spacing: 5px;
-            border: 1px solid rgb(215, 197, 164);
             background-color: rgba(89, 55, 55, 0.64);
             border-radius: 0;
             box-shadow: none;
@@ -61,7 +60,7 @@
             animation:change 10s linear 0s infinite;
         }
         .foo::after {
-            border-top: 1px solid blue;
+            border-top: 1px solid #71d775;
             border-right: 1px solid yellow;
             -webkit-transform-origin: 100% 0%;
         }
@@ -75,16 +74,16 @@
             left: 0;
             box-sizing: border-box;
             -webkit-transform: scale(0);
-            transition: 1s;
+            transition: 0.5s;
             box-shadow: none;
         }
         .foo::before {
-            border-bottom: 1px solid red;
+            border-bottom: 1px solid white;
             border-left: 1px solid rgb(30, 171, 218);
             -webkit-transform-origin: 0 100%;
         }
         .box:hover {
-            border: 1px solid rgba(0, 160, 80, 0);
+            border: 0px;
             color: #FFF;
             text-decoration: none;
         }
@@ -97,8 +96,13 @@
             text-shadow: 2px 2px 1px #FFF;
         }
         @keyframes change {
-            0%{color:blue;}13%{color:yellow;}31%{color:red;}50%{color:white;}
-            68%{color:gold;}87%{color:black;}100% {color:blue;}
+            0%{color:rgb(30, 171, 218); border: 1px solid rgb(30, 171, 218)}
+            13%{color:yellow; border: 1px solid black;}
+            31%{color:red; border: 1px solid gold;}
+            50%{color:white; border: 1px solid white;}
+            68%{color:gold; border: 1px solid red;}
+            87%{color:black; border: 1px solid yellow;}
+            100% {color:rgb(30, 171, 218); border: 1px solid rgb(30, 171, 218);}
         }
     </style>
     <script>

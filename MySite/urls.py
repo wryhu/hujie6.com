@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^logout/', views.logout, name='logout'),
     url(r'^jojo/', views.jojo, name='jojo'),
     url(r'^oauth/', include('oauth.urls')),
+    url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

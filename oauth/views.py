@@ -9,16 +9,14 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.conf import settings
 
-from oauth_client import OAuth_QQ, OAuth_GITHUB, OAuth_SINA, OAuth_BAIDU
+from oauth_client import OAuth_QQ, OAuth_GITHUB, OAuth_SINA, OAuth_BAIDU, OAuth_GOOGLE
 from oauth.models import OAuthEx
 
 import time
 
 
 def oauth_login(request):
-    global oauth_type
     oauth_type = request.GET.get('oauth_type')
-    global oauth_obj
     if oauth_type == 'QQ':
         oauth_obj = OAuth_QQ(settings.QQ_APP_ID, settings.QQ_KEY, settings.QQ_RECALL_URL)
     if oauth_type == '新浪微博':
@@ -27,8 +25,11 @@ def oauth_login(request):
         oauth_obj = OAuth_BAIDU(settings.BAIDU_APP_ID, settings.BAIDU_KEY, settings.BAIDU_RECALL_URL)
     if oauth_type == 'github':
         oauth_obj = OAuth_GITHUB(settings.GITHUB_APP_ID, settings.GITHUB_KEY, settings.GITHUB_RECALL_URL)
+    if oauth_type == 'google':
+        oauth_obj = OAuth_GOOGLE(settings.GOOGLE_APP_ID, settings.GOOGLE_KEY, settings.GOOGLE_RECALL_URL)
     # 获取 得到Authorization Code的地址
     url = oauth_obj.get_auth_url()
+    global oauth_type, oauth_obj
     # 重定向到授权页面
     return HttpResponseRedirect(url)
 
@@ -51,6 +52,8 @@ def check(request):
         # authenticate方法得到的user对象和普通的user对象多了一个backend参数。手动设置一下这个参数，则可以顺利使用login方法登录该用户。
         setattr(user, 'backend', 'django.contrib.auth.backends.ModelBackend')
         login(request, user)
+        if oauth_type == 'github':
+            return HttpResponseRedirect('/')
         return HttpResponseRedirect('/index')
     else:
         # 不存在，则跳转到绑定邮箱页面
@@ -95,7 +98,10 @@ def bind_email(request):
             login(request, user)
         # 页面提示
         context['email'] = email
-        context['goto_url'] = '/index'
+        if oauth_type == 'github':
+            context['goto_url'] = '/'
+        else:
+            context['goto_url'] = '/index'
         context['goto_page'] = True
         return render(request, 'message.html', context)
     return render(request, 'bind_email.html', context)
