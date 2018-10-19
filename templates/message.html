@@ -19,13 +19,13 @@
 
 {% block script_extends %}
     <script type="text/javascript">
-        <!--{#页面调整控制#}-->
-        <!--{% if goto_page %}-->
-            <!--$(function(){-->
-                <!--window.setTimeout(function(){-->
-                    <!--window.location = '{{goto_url}}';-->
-                <!--},3000);-->
-            <!--});-->
-        <!--{% endif %}-->
+        {#页面调整控制#}
+        {% if goto_page %}
+            $(function(){
+                window.setTimeout(function(){
+                    window.location = '{{ goto_url }}';
+                },4000);
+            });
+        {% endif %}
     </script>
 {% endblock %}

@@ -198,13 +198,12 @@ class OAuth_GOOGLE:
         """获取授权页面的网址"""
         params = {'client_id': self.client_id,
                   'redirect_uri': self.redirect_uri,
-                  'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
+                  'scope': 'https://www.googleapis.com/auth/admin.directory.customer.readonly',
                   'access_type': 'offline',
                   'include_granted_scopes': 'true',
                   'state': 'state_parameter_passthrough_value',
                   'response_type': 'code'}
         url = 'https://accounts.google.com/o/oauth2/v2/auth?%s' % urllib.urlencode(params)
-        print(url)
         return url
 
     def get_access_token(self, code):
@@ -214,13 +213,14 @@ class OAuth_GOOGLE:
                   'client_secret': self.client_key,
                   'code': code,
                   'redirect_uri': self.redirect_uri}
-        url = 'https://github.com/login/oauth/access_token?%s' % urllib.urlencode(params)
-
-        # 访问该网址，获取access_token
-        response = urllib2.urlopen(url).read()
-        # 响应数据转化成字典类型后提取
-        result = urlparse.parse_qs(response, True)
-        self.access_token = result['access_token'][0]
+        url = 'https://www.googleapis.com/oauth2/v4/token'
+        data = urllib.urlencode(params)
+        # line要求POST获取access_token
+        request = urllib2.Request(url=url, data=data)
+        response = urllib2.urlopen(request).read()
+        # 响应数据转化成python类型
+        result = json.loads(response)
+        self.access_token = result['access_token']
         return self.access_token
 
     def get_open_id(self):
@@ -228,9 +228,60 @@ class OAuth_GOOGLE:
         return self.open_id
 
     def get_nickname(self):
-        params = {'access_token': self.access_token}
-        url = 'https://api.github.com/user?%s' % urllib.urlencode(params)
-        response = urllib2.urlopen(url).read()
+        auth = "Bearer " + self.access_token
+        headers = {"Authorization": auth}
+        url = 'https://www.googleapis.com/oauth2/v2/userinfo'
+        request = urllib2.Request(url=url, headers=headers)
+        response = urllib2.urlopen(request).read()
         result = json.loads(response)
         self.open_id = result.get('id', '')
-        return result['login']
+        return result['name']
+
+
+class OAuth_LINE:
+    def __init__(self, client_id, client_key, redirect_uri):
+        self.client_id = client_id
+        self.client_key = client_key
+        self.redirect_uri = redirect_uri
+
+    def get_auth_url(self):
+        """获取授权页面的网址"""
+        params = {'client_id': self.client_id,
+                  'redirect_uri': self.redirect_uri,
+                  'state': '1',
+                  'response_type': 'code'}
+        url1 = 'https://access.line.me/oauth2/v2.1/authorize?%s' % urllib.urlencode(params)
+        url2 = '&scope=openid%20profile'
+        url = url1 + url2
+        return url
+
+    def get_access_token(self, code):
+        """根据code获取access_token"""
+        params = {'grant_type': 'authorization_code',
+                  'client_id': self.client_id,
+                  'client_secret': self.client_key,
+                  'code': code,
+                  'redirect_uri': self.redirect_uri}
+        url = 'https://api.line.me/oauth2/v2.1/token'
+        data = urllib.urlencode(params)
+        # line要求POST获取access_token
+        request = urllib2.Request(url=url, data=data)
+        response = urllib2.urlopen(request).read()
+        # 响应数据转化成python类型
+        result = json.loads(response)
+        self.access_token = result['access_token']
+        return self.access_token
+
+    def get_open_id(self):
+        self.get_nickname()
+        return self.open_id
+
+    def get_nickname(self):
+        auth = "Bearer " + self.access_token
+        headers = {"Authorization": auth}
+        url = 'https://api.line.me/v2/profile'
+        request = urllib2.Request(url=url, headers=headers)
+        response = urllib2.urlopen(request).read()
+        result = json.loads(response)
+        self.open_id = result.get('userId', '')
+        return result['displayName']

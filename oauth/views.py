@@ -9,37 +9,44 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.conf import settings
 
-from oauth_client import OAuth_QQ, OAuth_GITHUB, OAuth_SINA, OAuth_BAIDU, OAuth_GOOGLE
+from oauth_client import OAuth_QQ, OAuth_GITHUB, OAuth_SINA, OAuth_BAIDU, OAuth_GOOGLE, OAuth_LINE
 from oauth.models import OAuthEx
 
 import time
 
 
-def oauth_login(request):
-    oauth_type = request.GET.get('oauth_type')
-    if oauth_type == 'QQ':
+def identify_type(oauth_type):
+    if oauth_type == 'qq':
         oauth_obj = OAuth_QQ(settings.QQ_APP_ID, settings.QQ_KEY, settings.QQ_RECALL_URL)
-    if oauth_type == '新浪微博':
+    if oauth_type == 'sina':
         oauth_obj = OAuth_SINA(settings.SINA_APP_ID, settings.SINA_KEY, settings.SINA_RECALL_URL)
-    if oauth_type == '百度':
+    if oauth_type == 'baidu':
         oauth_obj = OAuth_BAIDU(settings.BAIDU_APP_ID, settings.BAIDU_KEY, settings.BAIDU_RECALL_URL)
     if oauth_type == 'github':
         oauth_obj = OAuth_GITHUB(settings.GITHUB_APP_ID, settings.GITHUB_KEY, settings.GITHUB_RECALL_URL)
     if oauth_type == 'google':
         oauth_obj = OAuth_GOOGLE(settings.GOOGLE_APP_ID, settings.GOOGLE_KEY, settings.GOOGLE_RECALL_URL)
+    if oauth_type == 'line':
+        oauth_obj = OAuth_LINE(settings.LINE_APP_ID, settings.LINE_KEY, settings.LINE_RECALL_URL)
+    return oauth_obj
+
+
+def oauth_login(request):
+    oauth_type = request.GET.get('oauth_type')
+    oauth_obj = identify_type(oauth_type)
     # 获取 得到Authorization Code的地址
     url = oauth_obj.get_auth_url()
-    global oauth_type, oauth_obj
     # 重定向到授权页面
     return HttpResponseRedirect(url)
 
 
 # http://hujie6.com/oauth/qq_check
-def check(request):
+def check(request, oauth_type):
     """登录之后，会跳转到这里。需要判断code和state"""
     request_code = request.GET.get('code')
+    oauth_obj = identify_type(oauth_type)
     # 获取access_token
-    access_token = oauth_obj.get_access_token(request_code)  # OAuth_QQ类内部会在这一步添加access_token属性值
+    oauth_obj.get_access_token(request_code)  # OAuth类内部会在这一步添加access_token属性值
     time.sleep(0.05)  # 稍微休息一下，避免发送urlopen的10060错误
     # 通过access_token获取openid
     open_id = oauth_obj.get_open_id()
@@ -54,7 +61,7 @@ def check(request):
         login(request, user)
         if oauth_type == 'github':
             return HttpResponseRedirect('/')
-        return HttpResponseRedirect('/index')
+        return HttpResponseRedirect('/baidu')
     else:
         # 不存在，则跳转到绑定邮箱页面
         nickname = oauth_obj.get_nickname()  # 通过openid获取用户信息
@@ -101,7 +108,7 @@ def bind_email(request):
         if oauth_type == 'github':
             context['goto_url'] = '/'
         else:
-            context['goto_url'] = '/index'
+            context['goto_url'] = '/baidu'
         context['goto_page'] = True
         return render(request, 'message.html', context)
     return render(request, 'bind_email.html', context)
