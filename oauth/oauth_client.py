@@ -285,3 +285,45 @@ class OAuth_LINE:
         result = json.loads(response)
         self.open_id = result.get('userId', '')
         return result['displayName']
+
+
+class OAuth_FACEBOOK:
+    def __init__(self, client_id, client_key, redirect_uri):
+        self.client_id = client_id
+        self.client_key = client_key
+        self.redirect_uri = redirect_uri
+
+    def get_auth_url(self):
+        """获取授权页面的网址"""
+        params = {'client_id': self.client_id,
+                  'redirect_uri': self.redirect_uri,
+                  'state': '1'}
+        url1 = 'https://www.facebook.com/v3.1/dialog/oauth?%s' % urllib.urlencode(params)
+        url2 = '&scope=openid%20profile'
+        url = url1 + url2
+        return url
+
+    def get_access_token(self, code):
+        """根据code获取access_token"""
+        params = {'client_id': self.client_id,
+                  'client_secret': self.client_key,
+                  'code': code,
+                  'redirect_uri': self.redirect_uri}
+        url = 'https://graph.facebook.com/v3.1/oauth/access_token?%s' % urllib.urlencode(params)
+        response = urllib2.urlopen(url).read()
+        # 响应数据转化成python类型
+        result = json.loads(response)
+        self.access_token = result['access_token']
+        return self.access_token
+
+    def get_open_id(self):
+        self.get_nickname()
+        return self.open_id
+
+    def get_nickname(self):
+        params = {'access_token': self.access_token}
+        url = 'https://graph.facebook.com/me?%s' % urllib.urlencode(params)
+        response = urllib2.urlopen(url).read()
+        result = json.loads(response)
+        self.open_id = result.get('id', '')
+        return result['name']

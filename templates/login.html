@@ -15,7 +15,7 @@
 
 {% block content %}
     <div class="containter" >
-        <div class="row">
+        <div id="row" class="row">
             <div class="col-sm-6 col-xs-0"></div>
             <div class="col-sm-4 col-xs-12">
                 <div class="panel panel-default">
@@ -43,14 +43,14 @@
                     <h3 class="panel-title">合作帐号登录<span style="font-size:10px">&ensp;(暂不支持微信登录，敬请谅解)</span></h3>
                   </div>
                   <div id="oauth_login" class="panel-body">
-                      <a href="{% url 'oauth_login' %}?oauth_type=qq" title="QQ登录"><img class="qq_img" src="/static/image/qq.jpg"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=qq" title="QQ登录" id="qq"><img class="qq_img" src="/static/image/qq.jpg"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=sina" title="微博登录" class="fa fa-weibo"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=baidu" title="百度登录"><img class="baidu_img" src="/static/image/baidu"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=github" target="_parent" title="github登录" class="fa fa-github"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=line" title="line登录"><img class="line_img" src="/static/image/line.png"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=google" title="谷歌登录" class="fa fa-google-plus"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=google" title="facebook登录" class="fa fa-facebook-official"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=twitter" title="twitter登录" class="fa fa-twitter"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=line" target="_parent" title="line登录"><img class="line_img" src="/static/image/line.png"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=google" title="谷歌登录" class="fa fa-google"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=facebook" title="facebook登录" class="fa fa-facebook-official"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=google" title="twitter登录" class="fa fa-twitter"></a>
                   </div>
                 </div>
             </div>
@@ -58,10 +58,10 @@
     </div>
     <style type="text/css">
         body {
-            background: url(/static/image/login.jpg) no-repeat  scroll;
+            background: url(/static/image/login.jpg) no-repeat left center fixed;
         }
-        .row {
-            margin:4em 5em 15em;
+        #row {
+            margin:50px 0 110px;
         }
         .panel {
             border-radius: 0px;
@@ -76,20 +76,24 @@
         #oauth_login a {
             font-size:35px;
             outline:none;
+            margin-left:20px;
         }
         .fa-facebook-official {
             color:#3B5998;
         }
-        .fa-google-plus {
+        .fa-google {
             color: #a2ba61;
             text-shadow:1px 1px 1px #888888;
+        }
+        #qq {
+            margin-left:18px!important;
         }
         .qq_img {
             width:65px;
             padding-bottom: 3px;
         }
         .baidu_img {
-            margin:0 15px 3px;
+            margin:0 13px 3px 7px;
         }
         .line_img {
             margin:0 15px 3px;
