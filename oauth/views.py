@@ -87,8 +87,9 @@ def bind_email(request):
             # 用户存在,进一步判断
             user = users[0]
             user_auth = authenticate(username=user.username, password=pwd)
+            user_name = user.username
             if user_auth is not None:
-                user.username = nickname  # 更新昵称
+                user.first_name = nickname  # 更新昵称
                 user.save()
             else:
                 context['warning'] = '密码错误'
@@ -96,13 +97,15 @@ def bind_email(request):
                 return render(request, 'bind_email.html', context)
         else:
             # 用户不存在，则注册
-            user = User.objects.create_user(username=nickname, email=email, password=pwd)
+            user = User.objects.create_user(username=email, email=email, password=pwd)
+            user.first_name = nickname
             user.save()
+            user_name = email
         # 绑定用户并
         oauth_ex = OAuthEx(user=user, open_id=open_id)
         oauth_ex.save()
         # 登录用户
-        user = authenticate(username=nickname, password=pwd)
+        user = authenticate(username=user_name, password=pwd)
         if user is not None:
             login(request, user)
         # 页面提示

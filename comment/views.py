@@ -25,8 +25,11 @@ def submit_comment(request):
 
         # 返回给ajax数据
         data['status'] = 'SUCCESS'
-        data['username'] = comment.user.username
         data['user_pk'] = comment.user.pk
+        if str(comment.user.pk) == "1":
+            data['username'] = 'jet'
+        else:
+            data['username'] = comment.user.first_name
         data['comment_time'] = (comment.comment_time + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
         data['text'] = comment.text
     else:
@@ -55,7 +58,10 @@ def submit_reply(request):
 
         # 返回给ajax数据
         data['status'] = 'SUCCESS'
-        data['username'] = comment.user.username
+        if str(comment.user.pk) == "1":
+            data['username'] = 'jet'
+        else:
+            data['username'] = comment.user.first_name
 
         data['comment_time'] = (comment.comment_time + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
         data['reply_to_user'] = comment.reply_to_user.username

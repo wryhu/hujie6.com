@@ -109,6 +109,7 @@ def register(request):
             email = reg_form.cleaned_data['email']
             password = reg_form.cleaned_data['password']
             user = User.objects.create_user(username, email, password)
+            user.first_name = username
             user.save()
             # 用户登录并跳转回注册前页面
             user = auth.authenticate(username=username, password=password)
