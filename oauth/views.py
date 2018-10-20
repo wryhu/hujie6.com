@@ -63,7 +63,7 @@ def check(request, oauth_type):
         login(request, user)
         if oauth_type == 'github' or oauth_type == 'line':
             return HttpResponseRedirect('/')
-        return HttpResponseRedirect('/baidu')
+        return HttpResponseRedirect('/home')
     else:
         # 不存在，则跳转到绑定邮箱页面
         nickname = oauth_obj.get_nickname()  # 通过openid获取用户信息

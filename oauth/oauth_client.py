@@ -298,9 +298,7 @@ class OAuth_FACEBOOK:
         params = {'client_id': self.client_id,
                   'redirect_uri': self.redirect_uri,
                   'state': '1'}
-        url1 = 'https://www.facebook.com/v3.1/dialog/oauth?%s' % urllib.urlencode(params)
-        url2 = '&scope=openid%20profile'
-        url = url1 + url2
+        url = 'https://www.facebook.com/v3.1/dialog/oauth?%s' % urllib.urlencode(params)
         return url
 
     def get_access_token(self, code):
