@@ -40,7 +40,7 @@
                 <!--第三方-->
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">合作帐号登录<span style="font-size:10px">&ensp;(暂不支持微信登录，境外网站登录需要翻墙，敬请谅解)</span></h3>
+                    <h3 class="panel-title">合作帐号登录<span style="font-size:10px">&ensp;(暂不支持微信登录，境外帐号登录需翻墙，敬请谅解)</span></h3>
                   </div>
                   <div id="oauth_login" class="panel-body">
                       <a href="{% url 'oauth_login' %}?oauth_type=qq" title="QQ登录" id="qq"><img class="qq_img" src="/static/image/qq.jpg"></a>
@@ -50,7 +50,7 @@
                       <a href="{% url 'oauth_login' %}?oauth_type=line" target="_parent" title="line登录"><img class="line_img" src="/static/image/line.png"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=google" title="谷歌登录" class="fa fa-google"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=facebook" title="facebook登录" class="fa fa-facebook-official"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=google" title="twitter登录" class="fa fa-twitter"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=twitter" title="twitter登录" class="fa fa-twitter"></a>
                   </div>
                 </div>
             </div>
