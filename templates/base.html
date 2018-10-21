@@ -93,7 +93,7 @@
         </div>
     </footer>
     <!--jet-->
-    <a href="javascript:;" title="准备发射"><img id="totop" class="totop" src="/static/image/jet.png" alt=""></a>
+    <img id="totop" class="totop" src="/static/image/jet.png" data-toggle="tooltip" data-placement="bottom">
     <!--音乐播放器-->
     <div id="music">
         <div id="skPlayer" class="skPlayer1"></div>
@@ -108,7 +108,8 @@
             <div id="music-text">暂不支持快进和音量调节</div>
         </div>
     </div>
-    <a id="music-bar" class="fa fa-music"></a>
+    <!--<a id="music-bar" class="fa fa-music"></a>-->
+    <img id="music-bar" data-toggle="tooltip" data-placement="top" data-original-title="点我打开音乐播放器" src="/static/image/lovelive.png">
     {% block script_extends %}{% endblock %}
     <style type="text/css">
         #skPlayer {
@@ -132,10 +133,11 @@
     <script type="text/javascript">
         $(function(){
             // 小火箭
+            $('#totop').tooltip();
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
                 if(nowTop>500){
-                    $('#totop').fadeIn();
+                    $('#totop').fadeIn().tooltip();
                 }
                 else{
                     $('#totop').fadeOut();
@@ -148,7 +150,38 @@
             function rock2(){
                 $('#totop').stop().animate({marginBottom:"30px"},300,rock1);
             }
-            $('#totop').mouseenter(rock2);
+            var m = 0;
+            $('#totop').mouseenter(function(){
+                rock2();
+                if(m==-1){
+                    $(this).attr('data-original-title','准备再次发射');
+                    m+=1
+                }else if(m==0){
+                    $(this).attr('data-original-title','准备发射');
+                }else if(m==1){
+                    $(this).attr('data-original-title','倒数三个数');
+                }else if(m==2){
+                    $(this).attr('data-original-title','3');
+                }else if(m==3){
+                    $(this).attr('data-original-title','2');
+                }else if(m==4){
+                    $(this).attr('data-original-title','1');
+                }else if(m==10){
+                    $(this).attr('data-original-title','你倒是发啊');
+                }else if(m==11){
+                    $(this).attr('data-original-title','点我啊');
+                }else if(m==12){
+                    $(this).attr('data-original-title','服了');
+                }else if(m==13){
+                    $(this).attr('data-original-title','呵呵');
+                }else if(m>=30){
+                    $(this).attr('data-original-title','恭喜你喜提彩蛋!注册登录后联系站长获取神秘大礼包一份');
+                }else{
+                    $(this).attr('data-original-title','发射!');
+                }
+                $(this).tooltip('show');
+                m++
+            });
             // 鼠标绑定移出事件：停止并回到原位
             $('#totop').mouseleave(function(){
                 $(this).stop().animate({marginBottom:"0px"},200);
@@ -158,7 +191,7 @@
                 var html_height = $(window).height()
                 $('html,body').animate({'scrollTop':0},800);
                 $(this).stop().unbind('mouseleave');
-                $(this).animate({marginBottom:html_height},800,function(){
+                $(this).stop().animate({marginBottom:html_height},800,function(){
                     $(this).fadeOut(function(){
                         $(this).css("marginBottom",0);
                         $(this).bind('mouseleave', function(){
@@ -166,6 +199,7 @@
                         });
                     });
                 });
+                m = -1
             });
             // 小播放器
             var i=0;
@@ -186,7 +220,34 @@
                 $(".skPlayer-play-btn").css({outline:"none"});
             }
             real_time_music2();
+            $("#music-bar").mouseover(function(){
+                $(this).stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+                // 第一次打开时的提示
+                if(frame.find('.prev_music').attr('title')=='1'){
+                    $(this).attr('data-original-title','主人制作的全站音乐播放器，点下我就可以打开，快来体验一下吧！');
+                    $(this).tooltip('show');
+                    return false;
+                }
+                // 第二次到第n次打开时的提示
+                if($("#music").css("margin-left")=="0px"){
+                    if($(".fa-chrome").attr("class")=="fa fa-chrome fa-spin"){
+                        $(this).attr('data-original-title','正在播放中，如果你也有好听的歌可以联系主人QQ推荐添加哦。点我打开音乐播放器');
+                    }else{
+                        $(this).attr('data-original-title','里面都是主人精心挑选的歌哦，曲库每月都会更新一次，点我打开多听几首吧');
+                    }
+                }else{
+                    if($(".fa-chrome").attr("class")=="fa fa-chrome fa-spin"){
+                        $(this).attr('data-original-title','是不是很好听呢，不愧是主人的品味！下拉列表还有很多哦。点我收起音乐播放器');
+                    }else{
+                        $(this).attr('data-original-title','看见了吗？就在我头上方，那个红色的播放键，点开就能播放了哦。点我收起音乐播放器');
+                    }
+                }
+                $(this).tooltip('show');
+            });
+            $("#music-bar").mouseout(function(){
+                $(this).stop().animate({marginLeft:"0px",marginBottom:"0px"},300);
 
+            });
             $("#music-bar").click(function(){
                 if(i%2==0){
                     // 进行滑出动画
@@ -199,6 +260,7 @@
                     clearInterval(time1);
                     i++;
                 }
+                frame.find('.prev_music').attr('title','2');
             });
             // 接下来设置每个按钮的传递
             // 播放暂停，并使主页上的播放按钮显示正确状态

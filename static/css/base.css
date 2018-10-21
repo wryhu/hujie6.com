@@ -18,9 +18,10 @@ html body {
     height: auto;
     position: fixed;
     right: -3px;
-    bottom: 35px;
-    display:none;
+    bottom: 66px;
     outline:none;
+    display:none;
+    cursor:pointer;
 }
 #pad {
     padding: 20px;
@@ -97,14 +98,12 @@ footer {
     text-decoration: none;
 }
 #music-bar {
-    left: 25px;
-    bottom: 66px;
+    left: -14px;
+    bottom: -14px;
     position: fixed;
     display:block;
     outline:none;
-    font-size: 40px;
-    text-decoration: none;
-    color:rgba(255, 0, 0, 0.48);
+    width:100px;
     cursor:pointer;
 }
 #music-bar:hover {

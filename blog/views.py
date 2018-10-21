@@ -52,6 +52,8 @@ def blog_common_data(request, blogs):
     context['blog_types'] = BlogType.objects.annotate(blog_count=Count('blog'))
     context['page_range'] = page_range
     context['blog_dates'] = blog_dates_dict
+    blogs_random = Blog.objects.exclude(id=0).order_by('?')[:10]
+    context['blogs_random'] = blogs_random
     return context
 
 
@@ -60,8 +62,7 @@ def blog_list(request):
     # 获取博客集合
     blogs = Blog.objects.all()
     context = blog_common_data(request, blogs)
-    blogs_random = Blog.objects.exclude(id=0).order_by('?')[:10]
-    context['blogs_random'] = blogs_random
+
     return render(request, 'blog/blog_list.html', context)
 
 

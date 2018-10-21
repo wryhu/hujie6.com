@@ -28,7 +28,7 @@ def identify_type(oauth_type):
         oauth_obj = OAuth_GOOGLE(settings.GOOGLE_APP_ID, settings.GOOGLE_KEY, settings.GOOGLE_RECALL_URL)
     if oauth_type == 'line':
         oauth_obj = OAuth_LINE(settings.LINE_APP_ID, settings.LINE_KEY, settings.LINE_RECALL_URL)
-    if oauth_type == 'facebook':
+    if oauth_type == 'facebook' or oauth_type == 'twitter':
         oauth_obj = OAuth_FACEBOOK(settings.FB_APP_ID, settings.FB_KEY, settings.FB_RECALL_URL)
     return oauth_obj
 
