@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <script src="/static/jquery-1.12.4.min.js"></script>
     <script src="/static/skPlayer/skPlayer.min.js"></script>
+    <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
     <meta name="keywords" content="胡捷，个人博客，个人网站">
     <meta name="description" content="一个编程菜鸟的个人博客网站，主要用来分享互联网资讯、教程、学习笔记、感悟以及记录博主的一些生活琐事等。">
 </head>
@@ -57,5 +58,18 @@
                 ]
             }
         });
+        // 设置定时器不停的探头，点击bot就停止探头
+        function l1(){
+            $(parent.frames["main"].document).find('#music-bar').animate({marginLeft:"0px",marginBottom:"0px"},300);
+        }
+        function ll(){
+            if($('.prev_music').attr('title')=='2'){
+                clearInterval(time5);
+                return false;
+            }
+            $(parent.frames["main"].document).find('#music-bar').stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+            setTimeout(l1,1000);
+        }
+        window.time5 = setInterval(ll,6000);
     </script>
 </html>
