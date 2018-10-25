@@ -270,7 +270,12 @@
             $(".blog-content img").removeAttr("style");
             $(".blog-content img").attr("data-action", "zoom");
             $(".comment-area img").attr("data-action", "zoom");
-
+            function ll2 (){
+                $("#music-bar").attr('data-original-title','喵帕斯~如果觉得主人文章写得不错的话，可以在文章底部评论一下哦~');
+                $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+                $("#music-bar").tooltip('show');
+            }
+            setTimeout(ll2,10000);
         });
     </script>
     <link href="/static/css/zoom.css" rel="stylesheet">

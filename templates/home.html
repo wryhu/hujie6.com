@@ -418,6 +418,10 @@
         var chart = Highcharts.chart('container', options);
         $("rect").attr("fill","rgba(255, 255, 255, 0)");
         $(function(){
+            function ll(){
+                $("#music-bar").mouseover();
+            }
+            setTimeout(ll,10000);
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
                 if(nowTop<=600){
@@ -432,12 +436,6 @@
             });
             // 小彩蛋
             console.log('你好，我叫胡捷,这是我的个人网站,用django+bootstrap搭建,正在不断完善优化中,敬请期待!');
-        });
-        $("#learn").mouseover(function(){
-            $(this).addClass("learn");
-        });
-        $("#learn").mouseout(function(){
-            $(this).removeClass("learn");
         });
     </script>
 {% endblock %}

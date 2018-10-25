@@ -40,17 +40,17 @@
                 <!--第三方-->
                 <div class="panel panel-default">
                   <div class="panel-heading">
-                    <h3 class="panel-title">合作帐号登录<span style="font-size:10px">&ensp;(暂不支持微信登录，境外帐号登录需翻墙，敬请谅解)</span></h3>
+                    <h3 class="panel-title">合作帐号登录</h3>
                   </div>
                   <div id="oauth_login" class="panel-body">
-                      <a href="{% url 'oauth_login' %}?oauth_type=qq" title="QQ登录" id="qq"><img class="qq_img" src="/static/image/qq.jpg"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=sina" title="微博登录" class="fa fa-weibo"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=baidu" title="百度登录"><img class="baidu_img" src="/static/image/baidu"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=github" target="_parent" title="github登录" class="fa fa-github"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=line" target="_parent" title="line登录"><img class="line_img" src="/static/image/line.png"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=google" target="_parent" title="谷歌登录" class="fa fa-google"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=facebook" target="_parent" title="facebook登录" class="fa fa-facebook-official"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=twitter" target="_parent" title="twitter登录" class="fa fa-twitter"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=qq" data-toggle="tooltip" data-placement="left" data-original-title="QQ登录" id="qq"><img class="qq_img" src="/static/image/qq.jpg"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=sina" data-toggle="tooltip" data-placement="top" data-original-title="微博登录" class="fa fa-weibo"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=baidu" data-toggle="tooltip" data-placement="top" data-original-title="百度登录"><img class="baidu_img" src="/static/image/baidu"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=github" target="_parent" data-toggle="tooltip" data-placement="right" data-original-title="github登录" class="fa fa-github"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=line" target="_parent" data-toggle="tooltip" data-placement="left" data-original-title="line登录"><img class="line_img" src="/static/image/line.png"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=google" target="_parent" data-toggle="tooltip" data-placement="bottom" data-original-title="谷歌登录" class="fa fa-google"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=facebook" target="_parent" data-toggle="tooltip" data-placement="bottom" data-original-title="facebook登录" class="fa fa-facebook-official"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=twitter" target="_parent" data-toggle="tooltip" data-placement="right" data-original-title="twitter登录" class="fa fa-twitter"></a>
                   </div>
                 </div>
             </div>
@@ -103,5 +103,14 @@
             list-style-type:none;
         }
     </style>
-
+{% endblock %}
+{% block script_extends %}
+    <script type="text/javascript">
+        function ll6 (){
+            $("#music-bar").attr('data-original-title','嘟嘟噜~欢迎来到登录页，支持多种方式登录哦，暂不支持微信登录，后四个为境外帐号登录，需翻墙，要注意哦');
+            $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+            $("#music-bar").tooltip('show');
+        }
+        setTimeout(ll6,5000);
+    </script>
 {% endblock %}

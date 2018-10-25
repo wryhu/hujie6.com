@@ -79,11 +79,11 @@
             </div>
             <div class="col-sm-4">
                 <h3>Contects</h3>
-                <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo"></a>
-                <a href="https://github.com/wryhu" target=_blank class="fa fa-github"></a>
+                <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo" data-toggle="tooltip" data-placement="top" data-original-title="我的微博"></a>
+                <a href="https://github.com/wryhu" target=_blank class="fa fa-github" data-toggle="tooltip" data-placement="bottom" data-original-title="我的github"></a>
                 <div class="fa fa-chrome"></div>
-                <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram"></a>
-                <a href="https://twitter.com/jet42331460" class="fa fa-twitter"></a>
+                <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram" data-toggle="tooltip" data-placement="bottom" data-original-title="我的ins"></a>
+                <a href="https://twitter.com/jet42331460" class="fa fa-twitter" data-toggle="tooltip" data-placement="top" data-original-title="我的twitter"></a>
             </div>
             <div class="col-sm-4">
                 <h3 style="margin-bottom:0;">友情链接</h3>
@@ -109,7 +109,10 @@
         </div>
     </div>
     <!--<a id="music-bar" class="fa fa-music"></a>-->
-    <img id="music-bar" data-toggle="tooltip" data-placement="top" data-original-title="主人制作的全站音乐播放器，点我就可以打开，快来体验一下吧！" src="/static/image/lovelive.png">
+    <div id="music-bar-tip">
+        <img id="music-bar" data-toggle="tooltip" data-placement="top" src="/static/image/lovelive.png">
+    </div>
+    <div id="fuck"></div>
     {% block script_extends %}{% endblock %}
     <style type="text/css">
         #skPlayer {
@@ -132,6 +135,7 @@
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            $('[data-toggle="tooltip"]').tooltip();
             // 小火箭
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
@@ -171,7 +175,6 @@
                 });
             });
             // 小播放器
-
             var frame = $(parent.frames["hidden-player"].document)
             // 从框架提取播放器html到网站页面，并加入定时器
             function real_time_music1(){
@@ -193,7 +196,7 @@
             $('.skPlayer-list').mouseover(function(){
                 $(this).css('overscroll-behavior','contain');
             });
-            //
+            // 第二种方法
             function scrollFunc(e){
                 var X = $('#music-bar').position().top;
                 var mX = e.clientX
@@ -210,29 +213,28 @@
                 $(this).stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
                 // 第一次打开时的提示
                 if(frame.find('.prev_music').attr('title')=='1'){
-                    $(this).attr('data-original-title','主人制作的全站音乐播放器，点我就可以打开，快来体验一下吧！');
+                    $(this).attr('data-original-title','主人制作的音乐播放器，点我可以打开，(っ ^₃^ )っ♫快来体验一下吧！');
                     $(this).tooltip('show');
                     return false;
                 }
                 // 第二次到第n次打开时的提示
                 if($("#music").css("margin-left")=="0px"){
                     if($(".fa-chrome").attr("class")=="fa fa-chrome fa-spin"){
-                        $(this).attr('data-original-title','正在播放中，如果你也有好听的歌可以联系主人QQ推荐添加哦。点我打开音乐播放器');
+                        $(this).attr('data-original-title','正在播放，如果你也有好听的歌可以联系主人推荐添加哦，联系方式在页面最下方（点我打开）');
                     }else{
-                        $(this).attr('data-original-title','都是主人精心挑选的歌哦，站内网页跳转也不会中断播放，点我打开多听几首吧');
+                        $(this).attr('data-original-title','都是主人精心挑选的歌曲，跳转网页也不会中断播放哦（点我打开）');
                     }
                 }else{
                     if($(".fa-chrome").attr("class")=="fa fa-chrome fa-spin"){
-                        $(this).attr('data-original-title','是不是很好听呢，不愧是主人的品味！下拉列表还有很多哦。点我收起音乐播放器');
+                        $(this).attr('data-original-title','好听吧，不愧是主人的品味！下拉列表还有很多哦（点我收起）');
                     }else{
-                        $(this).attr('data-original-title','歌曲尚未播放，主人每月会更新一次曲库，敬请期待哦。点我收起音乐播放器');
+                        $(this).attr('data-original-title','歌曲尚未播放，主人每月会更新一次曲库，敬请期待哦（点我收起）');
                     }
                 }
                 $(this).tooltip('show');
             });
             $("#music-bar").mouseout(function(){
                 $(this).stop().animate({marginLeft:"0px",marginBottom:"0px"},300);
-
             });
             var i=0;
             $("#music-bar").click(function(){

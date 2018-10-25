@@ -49,6 +49,12 @@
     <script type="text/javascript">
         $(function(){
             $("#navbar-base").remove();
+            function ll8 (){
+                $("#music-bar").attr('data-original-title','残念，你访问了一个不存在的页面，快点返回首页，不然主人知道了又该骂我啦！');
+                $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+                $("#music-bar").tooltip('show');
+            }
+            setTimeout(ll8,5000);
         });
     </script>
 {% endblock %}

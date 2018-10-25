@@ -7,3 +7,15 @@
 {% block blog_list_title %}
     关键字: {{ wd }}
 {% endblock %}
+{% block script_extends %}
+    <script type="text/javascript">
+        var type_type = $(".breadcrumb .active").text()
+        function ll5 (){
+            var type_type_info = "这里是"+type_type+"的全部文章"
+            $("#music-bar").attr('data-original-title',type_type_info);
+            $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+            $("#music-bar").tooltip('show');
+        }
+        setTimeout(ll5,5000);
+    </script>
+{% endblock %}

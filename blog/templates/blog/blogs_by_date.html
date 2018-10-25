@@ -7,3 +7,15 @@
 {% block blog_list_title %}
     日期归档: {{ date_of_blogs }}
 {% endblock %}
+{% block script_extends %}
+    <script type="text/javascript">
+        var date_date = $(".breadcrumb .active").text()
+        function ll4 (){
+            var date_date_info = "这里是"+date_date+"的全部文章"
+            $("#music-bar").attr('data-original-title',date_date_info);
+            $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+            $("#music-bar").tooltip('show');
+        }
+        setTimeout(ll4,5000);
+    </script>
+{% endblock %}

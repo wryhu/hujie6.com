@@ -105,7 +105,6 @@ footer {
     outline:none;
     width:100px;
     cursor:pointer;
-    overscroll-behavior:contain;
 }
 #music-bar:hover {
     color: rgba(0, 84, 255, 0.5);
@@ -125,16 +124,16 @@ footer {
     font-size:13px;
     color:#57B5C5;
 }
-.tooltip {
+#music-bar-tip .tooltip {
     margin-top:-15px!important;
     position:fixed!important;
 }
-.tooltip-inner {
+#music-bar-tip .tooltip-inner {
     max-width: 157px!important;
     color: #e7f4f6!important;
-    padding:8px 5px!important;
+    padding:5px 5px!important;
     background-color: rgba(0, 0, 0, 0.7)!important;
 }
-.tooltip.top .tooltip-arrow{
+#music-bar-tip .tooltip.top .tooltip-arrow{
     border-top-color:rgba(0, 0, 0, 0.7)!important;
 }

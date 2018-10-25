@@ -11,7 +11,7 @@
 <body>
     <div id="skPlayer"></div>
     <div class="prev_music" onclick="player.prev()" title="1"></div>
-    <div class="next_music" onclick="player.next()"></div>
+    <div class="next_music" onclick="player.next()" title="1"></div>
 </body>
     <script>
         var player = new skPlayer({
@@ -58,18 +58,5 @@
                 ]
             }
         });
-        // 设置定时器不停的探头，点击bot就停止探头
-        function l1(){
-            $(parent.frames["main"].document).find('#music-bar').animate({marginLeft:"0px",marginBottom:"0px"},300);
-        }
-        function ll(){
-            if($('.prev_music').attr('title')=='2'){
-                clearInterval(time5);
-                return false;
-            }
-            $(parent.frames["main"].document).find('#music-bar').stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
-            setTimeout(l1,1000);
-        }
-        window.time5 = setInterval(ll,6000);
     </script>
 </html>

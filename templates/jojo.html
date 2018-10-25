@@ -2,14 +2,13 @@
 {% load staticfiles %}
 
 {% block title %}
-    喵？页面不存在
+    jojo
 {% endblock %}
 
 {% block content %}
     <div class="bg">
         <div class="back"><a href="/home">返回首页</a> </div>
     </div>
-    <img class="error_404" src="/static/image/404.png">
     <style type="text/css">
         .bg {
             background: url(/static/image/jojo.jpg) no-repeat center center;
@@ -32,23 +31,22 @@
         .back a:hover {
             color: #A68039;
         }
-        .error_404{
-            width: 20%;
-            position: absolute;
-            bottom: 184px;
-            right: 48px;
-        }
-
         footer {
             margin-top: 0;
         }
     </style>
 {% endblock %}
-
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
             $("#navbar-base").remove();
+            $("#navbar-base").remove();
+            function ll9 (){
+                $("#music-bar").attr('data-original-title','人类的赞歌，最高にhighってやつだ，wryyyyyyy！！！意大利牛郎团走起');
+                $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+                $("#music-bar").tooltip('show');
+            }
+            setTimeout(ll9,5000);
         });
     </script>
 {% endblock %}

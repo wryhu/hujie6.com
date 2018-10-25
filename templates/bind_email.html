@@ -41,3 +41,13 @@
         }
     </style>
 {% endblock %}
+{% block script_extends %}
+    <script type="text/javascript">
+        function ll11 (){
+            $("#music-bar").attr('data-original-title','欢迎来到绑定邮箱页。有点耐心，坚持住，别放弃，你一定可以绑定成功的');
+            $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
+            $("#music-bar").tooltip('show');
+        }
+        setTimeout(ll11,5000);
+    </script>
+{% endblock %}
