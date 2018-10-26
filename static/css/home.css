@@ -28,7 +28,6 @@ h1.same {
     text-shadow:2px 2px 33px blue;
 }
 #bg1 {
-    background: url(/static/image/fushishan.jpg) no-repeat center center fixed;
     display: table;
     height: 50em;
     width: 100%;

@@ -1,5 +1,8 @@
 # coding=utf-8
 import datetime
+import random
+import re
+import requests
 from django.shortcuts import render, redirect
 from django.core.cache import cache
 from django.contrib.contenttypes.models import ContentType
@@ -11,6 +14,15 @@ from django.urls import reverse
 from read_count.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
 from blog.models import Blog
 from .forms import LoginForm, RegForm
+
+
+# 随机爬取一个百度风景图片链接
+def img_crwaler():
+    url = "https://image.baidu.com/search/index?tn=baiduimage&word=风景&width=1920&height=1080"
+    res = requests.get(url)
+    html = res.text
+    q = r'"objURL":"([^"]+)"'
+    return re.findall(q, html)[random.randint(0, 29)]
 
 
 def get_7_days_hot_blog():
@@ -75,6 +87,7 @@ def home(request):
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
     context['get_yesterday_hot_data'] = get_yesterday_hot_data(blog_content_type)
     context['get_7_days_hot_blog'] = sevendays_cache
+    context['img_url'] = img_crwaler()
     return render(request, 'home.html', context)
 
 
