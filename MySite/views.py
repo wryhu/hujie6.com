@@ -11,18 +11,29 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models import Sum
 from django.urls import reverse
+from django.http import JsonResponse
 from read_count.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
 from blog.models import Blog
 from .forms import LoginForm, RegForm
 
 
-# 随机爬取一个百度风景图片链接
 def img_crwaler():
-    url = "https://image.baidu.com/search/index?tn=baiduimage&word=风景&width=1920&height=1080"
+    url = "https://image.baidu.com/search/flip?tn=baiduimage&word=%E9%A3%8E%E6%99%AF&pn=" + str(random.randint(0, 1780))\
+          + "&width=1920&height=1080"
+    print(url)
     res = requests.get(url)
     html = res.text
     q = r'"objURL":"([^"]+)"'
-    return re.findall(q, html)[random.randint(0, 29)]
+    url_list = re.findall(q, html)
+    return url_list
+
+
+# 随机爬取一个百度风景图片链接
+def ajax_img_crwaler(request):
+    img_url = img_crwaler()[random.randint(0, 19)]
+    data = {}
+    data['img_url'] = img_url
+    return JsonResponse(data)
 
 
 def get_7_days_hot_blog():
@@ -87,7 +98,6 @@ def home(request):
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
     context['get_yesterday_hot_data'] = get_yesterday_hot_data(blog_content_type)
     context['get_7_days_hot_blog'] = sevendays_cache
-    context['img_url'] = img_crwaler()
     return render(request, 'home.html', context)
 
 
@@ -158,7 +168,9 @@ def frame(request):
 
 
 def music(request):
-    return render(request, 'music.html')
+    context = {}
+    context['img_url'] = img_crwaler()[random.randint(0, 19)]
+    return render(request, 'music.html', context)
 
 
 def jojo(request):

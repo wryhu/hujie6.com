@@ -146,11 +146,10 @@
         </div>
     </div>
     <!--固定背景图和上面的文本-->
-    <div id="bg1" style="background: url({{ img_url }}) no-repeat center center fixed;">
+    <div id="bg1"">
         <div class="landing-text">
-            <h1>富士山下</h1>
-            <h5>奇迹はあなたのそばにある</h5>
-            <a href="https://baike.baidu.com/item/%E5%AF%8C%E5%A3%AB%E5%B1%B1/744?fr=aladdin" >了解一下</a>
+            <h2 style="text-shadow:1px 1px 1px #fff">随机抓取网络图片</h2>
+            <div id="change_img" class="box foo"><div>抓取</div></div>
         </div>
     </div>
     <div class="container">
@@ -349,12 +348,6 @@
 {% endblock %}
 {% block script_extends %}
     <script type="text/javascript">
-        // 轮播图间隔时间
-        $('.carousel').carousel({
-            pause:null,
-            interval:4000
-        })
-
         // 图表配置
         var options = {
             chart: { type: 'line' },
@@ -414,10 +407,45 @@
             },
             credits: { enabled: false },
         };
-        // 图表初始化函数
-        var chart = Highcharts.chart('container', options);
-        $("rect").attr("fill","rgba(255, 255, 255, 0)");
         $(function(){
+            var img_url = $(parent.frames["hidden-player"].document).find(".next_music").text()
+
+            if(img_url==""){
+                var img_url = "/static/image/fushishan.jpg"
+            }
+            var img_url_css = "url("+img_url+") no-repeat center center fixed"
+            $('#bg1').css("background",img_url_css);
+
+            $("#change_img").click(function(){
+                $.ajax({
+                    url: "{% url 'ajax_img_crwaler' %}",
+                    type: 'GET',
+                    dataType: 'text',
+                    cache: false,
+                    success: function(data){
+                        window.img_data = JSON.parse(data)['img_url'];  // 在1.4中,JSON就会生成一个JavaScript对象,需解析成json格式
+                        var ajax_img_url_css = "url("+img_data+") no-repeat center center fixed"
+                        $('#bg1').css("background",ajax_img_url_css);
+                    },
+                    error: function(xhr){
+                        console.log(xhr);
+                    }
+                });
+            });
+            <!--window.onbeforeunload = function(){-->
+                <!--$(parent.frames["hidden-player"].document).find(".next_music").text(img_data)-->
+
+            <!--}-->
+            // 轮播图间隔时间
+            $('.carousel').carousel({
+                pause:null,
+                interval:4000
+            })
+
+            // 图表初始化函数
+            var chart = Highcharts.chart('container', options);
+            $("rect").attr("fill","rgba(255, 255, 255, 0)");
+
             function ll(){
                 $("#music-bar").mouseover();
             }

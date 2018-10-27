@@ -14,9 +14,9 @@ html body {
     background-color: rgba(255, 255, 255, 0);
 }
 #totop {
+    position: fixed;
     width: 7em;
     height: auto;
-    position: fixed;
     right: -3px;
     bottom: 66px;
     outline:none;
@@ -89,18 +89,18 @@ footer {
     color: rgba(110, 90, 171, 0.75);
 }
 #music {
+    position: fixed;
     left: -380px;
     bottom: 300px;
-    position: fixed;
     display:block;
     z-index:1000;
     color: #f009;
     text-decoration: none;
 }
 #music-bar {
+    position: fixed;
     left: -14px;
     bottom: -14px;
-    position: fixed;
     display:block;
     outline:none;
     width:100px;
@@ -125,8 +125,8 @@ footer {
     color:#57B5C5;
 }
 #music-bar-tip .tooltip {
-    margin-top:-15px!important;
     position:fixed!important;
+    margin-top:-15px!important;
 }
 #music-bar-tip .tooltip-inner {
     max-width: 157px!important;

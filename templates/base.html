@@ -211,7 +211,7 @@
             $("#music-bar").mouseover(function(){
                 $(this).stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
                 // 第一次打开时的提示
-                if(frame.find('.prev_music').attr('title')=='1'){
+                if(frame.find('.prev_music').text()=='1'){
                     $(this).attr('data-original-title','主人制作的音乐播放器，点我可以打开，(っ ^₃^ )っ♫快来体验一下吧！');
                     $(this).tooltip('show');
                     return false;
@@ -248,7 +248,7 @@
                     clearInterval(time1);
                     i++;
                 }
-                frame.find('.prev_music').attr('title','2');
+                frame.find('.prev_music').text("2");
             });
             // 接下来设置每个按钮的传递
             // 播放暂停，并使主页上的播放按钮显示正确状态
