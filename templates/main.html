@@ -26,9 +26,8 @@
             </template>
         </div>
     </div>
-    <div class="enter">
-        <div id="home_text" >欢迎光临</div>
-    </div>
+    <div id="home_text">欢迎光临</div>
+    <div class="enter"></div>
     <div class="box2"></div>
     <div id="play">按空格开始</div>
 </body>
@@ -37,47 +36,57 @@
         margin:0;
         padding:0;
         font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
-        display: table;
-        width: 100%;
-        background-size: cover;
+        background: no-repeat center left fixed;
     }
+
     .runner-container {
         top: 441px!important;
         left: 476px;
     }
     .enter {
         position: absolute;
-        top: 254px;
-        left: 201px;
-        height: 75px;
-        width: 145px;
-        font-size: 14px;
-        text-align: center;
-        background-color: rgba(89, 55, 55, 0);
-        border-radius: 0;
+        top: 182px;
+        left: 297px;
+        height: 85px;
+        width: 212px;
         transform: skew(17deg) rotate(378deg);
-        animation: change 10s linear 0s infinite;
+        animation: change1 10s linear 0s infinite;
         cursor:pointer;
     }
     #home_text {
-        margin-left: 4px;
-        letter-spacing: 4px;
+        position: absolute;
+        top:170px;
+        left: 350px;
+        font-size: 20px;
+        letter-spacing: 13px;
+        transform: skew(27deg) rotate(28deg);
+        animation: change2 10s linear 0s infinite;
+        cursor:pointer;
     }
     #play {
-        position: fixed;
+        position: absolute;
         top: 627px;
         left: 518px;
         letter-spacing: 113px;
         color: #BDBCC9;
     }
-    @keyframes change {
-        0%{color:rgb(30, 171, 218); box-shadow: 0 16px 14px rgb(30, 171, 218);}
-        13%{color:yellow; box-shadow: 0 16px 14px rgb(30, 171, 218, 0);}
-        31%{color:red; box-shadow: 0 16px 14px  gold;}
-        50%{color:white; box-shadow: 0 16px 14px  white;}
-        68%{color:gold; box-shadow: 0 16px 14px red;}
-        87%{color:black; box-shadow: 0 16px 14px   yellow;}
-        100% {color:rgb(30, 171, 218); box-shadow: 0 16px 14px rgb(30, 171, 218);}
+    @keyframes change1 {
+        0%{box-shadow: 0 16px 14px rgb(30, 171, 218);}
+        13%{box-shadow: 0 16px 14px rgb(30, 171, 218, 0);}
+        31%{box-shadow: 0 16px 14px  gold;}
+        50%{box-shadow: 0 16px 14px  white;}
+        68%{box-shadow: 0 16px 14px red;}
+        87%{box-shadow: 0 16px 14px   yellow;}
+        100% {box-shadow: 0 16px 14px rgb(30, 171, 218);}
+    }
+    @keyframes change2 {
+        0%{color:rgb(30, 171, 218);}
+        13%{color:yellow;}
+        31%{color:red; }
+        50%{color:white; }
+        68%{color:gold; }
+        87%{color:black;}
+        100% {color:rgb(30, 171, 218);}
     }
 </style>
 <script>
