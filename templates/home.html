@@ -148,14 +148,14 @@
     <!--固定背景图和上面的文本-->
     <div id="bg1"">
         <div class="landing-text">
-            <h2 style="text-shadow:1px 1px 1px #fff">随机抓取网络图片</h2>
+            <h2 style="text-shadow:1px 1px 1px #fff">随机抓取百度图片</h2>
             <div id="change_img" class="box foo"><div>抓取</div></div>
         </div>
     </div>
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
-                <h1 class="same">We are the same</h1>
+                <h1 class="same">profile</h1>
             </div>
         </div>
         <div class="row">
@@ -164,10 +164,10 @@
                   <img src="static/image/coding.jpg">
                   <div class="caption">
                     <h3>热爱编程</h3>
-                    <p>&emsp;&emsp;网络上的一些言语比较激进的网友们被称之为键盘侠，我觉得爱好编程的人也可以称为"键盘侠"。
-                        手指在键盘上不停的敲击，得到屏幕上的一串串代码，通过计算机竟能转化成意想不到的结果，
-                        仿佛魔术一般。从沙子到cpu，从计算机到互联网，还有无数的语言，都是人类智慧的结晶，
-                        谁不想探寻其中的奥秘呢,如果你感兴趣的话现在就开始吧。</p>
+                    <p>&emsp;&emsp;好奇心的驱使下开始学习编程，才发现了它的意义。虽然刚接触编程不久，
+                        但发现自己对其是如此狂热，几乎所有的业余时间也都被用来钻研技术，来提高自己的编程能力。
+                        通过编程进行着自我表达与创作，这种感受带给了我极大的自由度，而我也从中感受到了前所未有的喜悦与乐趣。
+                        如果你也对编程感兴趣的话现在就马上行动吧。</p>
                     <p><a href="https://baike.baidu.com/item/%E7%BC%96%E7%A8%8B/139828" class="btn btn-info">了解</a>
                         <a href="http://www.runoob.com/" class="btn btn-warning">推荐</a></p>
                   </div>
@@ -179,9 +179,9 @@
                   <div class="caption">
                     <h3>Enioy music</h3>
                     <p>&emsp;&emsp;从小就喜欢听歌，周杰伦，林俊杰，王力宏，真的人才辈出。
-                        现在中文歌听的少了，原因你懂得。所以转战国外，欧美的像我霉，山东天后，
-                        水果姐，Sia，火星哥，抗韩英雄马老五，共和，梦龙，黄老板太多了
-                        。日语动漫歌听得多一点，另外中岛美嘉，德永英明等老牌歌手比较合
+                        现在中文歌听的少了。所以转战国外，欧美的歌手像我霉，山东天后，
+                        水果姐，Sia，火星哥，抗韩英雄马老五，共和，梦龙，黄老板等都是人尽皆知的吧
+                        。日语歌听得不多，像中岛美嘉，德永英明等老牌歌手比较合
                         我胃口。对了，有兴趣的可以搜一下中岛美雪，她的歌你肯定听过。</p>
                     <p><a href="https://www.bilibili.com/video/av2855285" class="btn btn-info">了解</a>
                         <a href="https://www.bilibili.com/video/av16816912" class="btn btn-warning">推荐</a></p>
@@ -220,15 +220,8 @@
             </div>
         </div>
     </div>
-    <!--再来个背景图玩玩-->
-    <div id="bg2">
-        <div class="landing-text">
-            <h1>平凡的路</h1>
-            <h5>不要错过沿途的风景</h5>
-        </div>
-    </div>
 
-<div class="container-fluid">
+    <div class="container-fluid">
         <div class="row welcome text-centet">
             <div class="col-12">
                 <h1 id="learn" class="same">Learning</h1>
@@ -408,34 +401,24 @@
             credits: { enabled: false },
         };
         $(function(){
-            var img_url = $(parent.frames["hidden-player"].document).find(".next_music").text()
-
-            if(img_url==""){
-                var img_url = "/static/image/fushishan.jpg"
+            // 第一次打开抓取一次，点击抓取按钮按顺序往下抓
+            function img_fun(img_num){
+                var img_div = "#img_urls div:eq(" + img_num + ")"
+                var img_data = frame2.find(img_div).text();
+                var img_url_css = "url(" + img_data + ")"
+                $('#bg1').css("background-image",img_url_css);
             }
-            var img_url_css = "url("+img_url+") no-repeat center center fixed"
-            $('#bg1').css("background",img_url_css);
-
+            var frame2 = $(parent.frames["hidden-player"].document)
+            var img_str = frame2.find("#img_urls").attr("title")
+            var img_num = parseInt(img_str)
+            img_fun(img_num);
             $("#change_img").click(function(){
-                $.ajax({
-                    url: "{% url 'ajax_img_crwaler' %}",
-                    type: 'GET',
-                    dataType: 'text',
-                    cache: false,
-                    success: function(data){
-                        window.img_data = JSON.parse(data)['img_url'];  // 在1.4中,JSON就会生成一个JavaScript对象,需解析成json格式
-                        var ajax_img_url_css = "url("+img_data+") no-repeat center center fixed"
-                        $('#bg1').css("background",ajax_img_url_css);
-                    },
-                    error: function(xhr){
-                        console.log(xhr);
-                    }
-                });
+                img_num++;
+                img_fun(img_num);
             });
-            <!--window.onbeforeunload = function(){-->
-                <!--$(parent.frames["hidden-player"].document).find(".next_music").text(img_data)-->
-
-            <!--}-->
+            window.onbeforeunload = function(){
+                frame2.find("#img_urls").attr("title",img_num)
+            }
             // 轮播图间隔时间
             $('.carousel').carousel({
                 pause:null,

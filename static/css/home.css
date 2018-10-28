@@ -1,5 +1,5 @@
 body {
-    background: url(/static/image/map.png) repeat center top;
+    background: url(/static/image/map.png) repeat left top;
 }
 div.jumbotron {
     margin-bottom:0;
@@ -34,15 +34,7 @@ h1.same {
     width: 100%;
     background-size: cover;
     margin-top:40px;
-}
-#bg2 {
-    position: relative;
-    background: url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1540589575459&di=c5d610a3f751d90600cd5a093e29c74a&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2017-11-11%2F5a06b297467a6.jpg) no-repeat center center fixed;
-    display: table;
-    height: 50em;
-    width: 100%;
-    background-size: cover;
-    margin-top:40px;
+    background: no-repeat center center fixed;
 }
 .landing-text {
     display: table-cell;
@@ -128,7 +120,7 @@ div.tab-content li{
     left: 0;
     box-sizing: border-box;
     -webkit-transform: scale(0);
-    transition: 0.5s;
+    transition: 1s;
     box-shadow: none;
 }
 .box:hover {

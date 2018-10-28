@@ -20,10 +20,9 @@ from .forms import LoginForm, RegForm
 def img_crwaler():
     url = "https://image.baidu.com/search/flip?tn=baiduimage&word=%E9%A3%8E%E6%99%AF&pn=" + str(random.randint(0, 1780))\
           + "&width=1920&height=1080"
-    print(url)
     res = requests.get(url)
     html = res.text
-    q = r'"objURL":"([^"]+)"'
+    q = r'http://[^"]+pg'
     url_list = re.findall(q, html)
     return url_list
 
@@ -169,7 +168,7 @@ def frame(request):
 
 def music(request):
     context = {}
-    context['img_url'] = img_crwaler()[random.randint(0, 19)]
+    context['img_urls'] = img_crwaler()
     return render(request, 'music.html', context)
 
 

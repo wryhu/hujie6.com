@@ -26,11 +26,9 @@
             </template>
         </div>
     </div>
-    <a href="{% url 'home' %}">
-        <div class="foo box" style="color:rgb(38, 206, 190);">
-            <div id="home_text" >欢迎光临</div>
-        </div>
-    </a>
+    <div class="enter">
+        <div id="home_text" >欢迎光临</div>
+    </div>
     <div class="box2"></div>
     <div id="play">按空格开始</div>
 </body>
@@ -47,7 +45,7 @@
         top: 441px!important;
         left: 476px;
     }
-    .box {
+    .enter {
         position: absolute;
         top: 254px;
         left: 201px;
@@ -59,8 +57,8 @@
         border-radius: 0;
         transform: skew(17deg) rotate(378deg);
         animation: change 10s linear 0s infinite;
+        cursor:pointer;
     }
-
     #home_text {
         margin-left: 4px;
         letter-spacing: 4px;
@@ -72,7 +70,6 @@
         letter-spacing: 113px;
         color: #BDBCC9;
     }
-
     @keyframes change {
         0%{color:rgb(30, 171, 218); box-shadow: 0 16px 14px rgb(30, 171, 218);}
         13%{color:yellow; box-shadow: 0 16px 14px rgb(30, 171, 218, 0);}
@@ -102,6 +99,9 @@
         }
         // 焦点在此框架上才能空格触发开始
         window.focus();
+        $(".enter").click(function(){
+            window.location = "/home"
+        });
     });
 </script>
 </html>

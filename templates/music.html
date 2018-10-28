@@ -11,7 +11,12 @@
 <body>
     <div id="skPlayer"></div>
     <div class="prev_music" onclick="player.prev()">1</div>
-    <div class="next_music" onclick="player.next()">{{ img_url }}</div>
+    <div class="next_music" onclick="player.next()"></div>
+    <div id="img_urls" title="0">
+        {% for img_url in img_urls %}
+            <div>{{ img_url }}</div>
+        {% endfor %}
+    </div>
 </body>
     <script>
         var player = new skPlayer({
@@ -58,6 +63,5 @@
                 ]
             }
         });
-
     </script>
 </html>
