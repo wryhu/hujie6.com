@@ -140,7 +140,7 @@
         $(document).keydown(function(e){
             var e = e || window.event;
             if(e.keyCode==32&&blank_num == 0){
-                $(".runner-container").animate({marginLeft:"294px",marginTop:"236px",},600);
+                $(".runner-container").animate({marginLeft:"294px",marginTop:"236px",},600,'linear');
                 blank_num = 1;
             }
             $("#play").tooltip('destroy');
