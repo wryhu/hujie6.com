@@ -101,8 +101,7 @@
                 <h1 class="same">网站相关数据统计</h1>
             </div>
         </div>
-        <div id="chart_set">
-        <div class="row" >
+        <div id="chart_set" class="row">
             <div class="col-md-5 col-md-offset-1">
                 <!-- 图表容器 DOM -->
                 <div id="container"></div>
@@ -143,15 +142,24 @@
                 </div>
             </div>
         </div>
+    </div>
+
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <!--固定背景图和上面的文本-->
+                <div id="bg1"">
+                    <div class="landing-text">
+                        <h2 style="text-shadow:1px 1px 1px #fff">aaa</h2>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <!--固定背景图和上面的文本-->
-    <div id="bg1"">
-        <div class="landing-text">
-            <h2 style="text-shadow:1px 1px 1px #fff">随机抓取百度图片</h2>
-            <div id="change_img" class="box foo"><div>抓取</div></div>
-        </div>
-    </div>
+
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
@@ -220,15 +228,44 @@
             </div>
         </div>
     </div>
+    <!--展示一下爬虫-->
 
-    <div class="container-fluid">
+    <div id="img_crwal" class="container">
         <div class="row welcome text-centet">
-            <div class="col-12">
-                <h1 id="learn" class="same">Learning</h1>
+            <div class="col-md-12 col-xs-12">
+                <h1 class="same">随机抓取百度图片</h1>
+            </div>
+        </div>
+        <div class="row welcome text-centet">
+            <div class="col-md-8 col-xs-12">
+
+                    <img id="bg2" src="/static/image/fushishan.jpg" style="width:100%">
+
+
+            </div>
+            <div class="col-md-4 col-xs-12">
+
+
+                    <div style="height:300px">
+
+                            <div id="change_img" class="box foo"><div>抓取</div></div>
+
+                    </div>
+
             </div>
         </div>
 
-        <div class="row">
+
+
+    </div>
+    <div class="container">
+        <div class="row welcome text-centet">
+            <div class="col-12">
+                <h1 class="same">Learning</h1>
+            </div>
+        </div>
+
+        <div class="row" style="margin-bottom:25px;">
           <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
@@ -282,7 +319,9 @@
 
             </figure>
           </div>
+        </div>
 
+        <div class="row">
           <div class="aitem col-md-4 clo-xs-12">
             <figure>
 
@@ -405,13 +444,19 @@
             function img_fun(img_num){
                 var img_div = "#img_urls div:eq(" + img_num + ")"
                 var img_data = frame2.find(img_div).text();
-                var img_url_css = "url(" + img_data + ")"
-                $('#bg1').css("background-image",img_url_css);
+                if(img_data==""){
+                    var img_data = "/static/image/jojo.jpg"
+                }
+                $('#bg2').attr("src",img_data);
             }
             var frame2 = $(parent.frames["hidden-player"].document)
             var img_str = frame2.find("#img_urls").attr("title")
-            var img_num = parseInt(img_str)
-            img_fun(img_num);
+            if(img_str=="error"){
+                $("#img_crwal").remove();
+            }else{
+                var img_num = parseInt(img_str)
+                img_fun(img_num);
+            }
             $("#change_img").click(function(){
                 img_num++;
                 img_fun(img_num);

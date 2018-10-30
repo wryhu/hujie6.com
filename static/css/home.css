@@ -21,7 +21,7 @@ div#container {
 }
 h1.same {
     text-align: center;
-    margin: 20px 0px 60px;
+    margin: 0px 0px 60px;
     padding: 40px 0px;
     border-bottom: 1px solid #ccc;
     color: #fff;
@@ -34,7 +34,7 @@ h1.same {
     width: 100%;
     background-size: cover;
     margin-top:40px;
-    background: no-repeat center center fixed;
+    background: url(/static/image/jojo.jpg) no-repeat center center fixed;
 }
 .landing-text {
     display: table-cell;
@@ -63,11 +63,8 @@ div.tab-content li{
     font-size:18px;
     padding: 5% 0px 0px;
 }
-.aitem {
-    width: 310px;
-    padding:0;
-    margin-left:7%;
-    margin-bottom:4%;
+.thumbnail {
+   margin:0;
 }
 .aitem img {
     border-top-left-radius: 44px;
@@ -90,16 +87,13 @@ div.tab-content li{
 .bordered a {
     text-decoration:none;
 }
-#learn {
-    border-bottom: 0px;
-}
 #change_img {
     position: absolute;
-    left:595px;
-    top:331px;
+    left:40%;
+    top:50%;
     font-size:24px;
     letter-spacing: 5px;
-    border:1px solid #FFF;
+    border:1px solid black;
     background-color: rgba(89, 55, 55, 0.64);
     cursor: pointer;
 }
@@ -107,8 +101,8 @@ div.tab-content li{
     margin:10px 20px 10px 25px;
 }
 .foo::after {
-    border-top: 1px solid #71d775;
-    border-right: 1px solid yellow;
+    border-top: 1px solid rgb(107, 152, 101);;
+    border-right: 1px solid rgb(75, 224, 87);;
     -webkit-transform-origin: 100% 0%;
 }
 .box::before, .box::after {
@@ -120,7 +114,7 @@ div.tab-content li{
     left: 0;
     box-sizing: border-box;
     -webkit-transform: scale(0);
-    transition: 1s;
+    transition: 0.5s;
     box-shadow: none;
 }
 .box:hover {
@@ -128,8 +122,8 @@ div.tab-content li{
     color:#FFF;
 }
 .foo::before {
-    border-bottom: 1px solid white;
-    border-left: 1px solid rgb(30, 171, 218);
+    border-bottom: 1px solid red;
+    border-left: 1px solid blue;
     -webkit-transform-origin: 0 100%;
 }
 .box:hover::after, .box:hover::before {

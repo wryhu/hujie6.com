@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <script src="/static/jquery-1.12.4.min.js"></script>
     <script src="/static/skPlayer/skPlayer.min.js"></script>
-    <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
+
     <meta name="keywords" content="胡捷，个人博客，个人网站">
     <meta name="description" content="一个编程菜鸟的个人博客网站，主要用来分享互联网资讯、教程、学习笔记、感悟以及记录博主的一些生活琐事等。">
 </head>
@@ -12,11 +12,7 @@
     <div id="skPlayer"></div>
     <div class="prev_music" onclick="player.prev()">1</div>
     <div class="next_music" onclick="player.next()"></div>
-    <div id="img_urls" title="0">
-        {% for img_url in img_urls %}
-            <div>{{ img_url }}</div>
-        {% endfor %}
-    </div>
+    <div id="img_urls" title="0"></div>
 </body>
     <script>
         var player = new skPlayer({
@@ -62,6 +58,26 @@
                     {name: 'Demons',author: 'Imagine Dragons',src: '/static/music/Demons – Imagine Dragons.mp3',cover: '/static/music/Demons – Imagine Dragons.jpg'},
                 ]
             }
+        });
+        $(function(){
+            $.ajax({
+                    url: "{% url 'ajax_img_crwaler' %}",
+                    type: 'GET',
+                    data:{},
+                    dataType: 'text',
+                    cache: false,
+                    success: function(data){
+                        var raw_data = JSON.parse(data);
+                        var urls_data = raw_data['img_urls']
+                        for(img_url in urls_data){
+                            $("#img_urls").append("<div>"+urls_data[img_url]+"</div>");
+                        }
+                    },
+                    error: function(){
+                        $("#img_urls").attr("title","error");
+                        alert(1)
+                    }
+            });
         });
     </script>
 </html>

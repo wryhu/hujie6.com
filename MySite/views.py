@@ -17,6 +17,7 @@ from blog.models import Blog
 from .forms import LoginForm, RegForm
 
 
+# 百度图片爬虫
 def img_crwaler():
     url = "https://image.baidu.com/search/flip?tn=baiduimage&word=%E9%A3%8E%E6%99%AF&pn=" + str(random.randint(0, 1780))\
           + "&width=1920&height=1080"
@@ -27,11 +28,10 @@ def img_crwaler():
     return url_list
 
 
-# 随机爬取一个百度风景图片链接
+# ajax方式提取数据，不影响音乐播放器的正常加载
 def ajax_img_crwaler(request):
-    img_url = img_crwaler()[random.randint(0, 19)]
     data = {}
-    data['img_url'] = img_url
+    data['img_urls'] = img_crwaler()
     return JsonResponse(data)
 
 
@@ -167,9 +167,7 @@ def frame(request):
 
 
 def music(request):
-    context = {}
-    context['img_urls'] = img_crwaler()
-    return render(request, 'music.html', context)
+    return render(request, 'music.html')
 
 
 def jojo(request):
