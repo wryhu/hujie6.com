@@ -148,7 +148,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 col-xs-12">
+            <div id="bkg" class="col-md-12 col-xs-12">
                 <!--固定背景图和上面的文本-->
                 <div id="bg1"">
                     <div class="landing-text">
@@ -440,36 +440,34 @@
             credits: { enabled: false },
         };
         $(function(){
-            // 第一次打开抓取一次，点击抓取按钮按顺序往下抓
+            // 第一次打开抓取一次图片
             function img_fun(img_num){
                 var img_div = "#img_urls div:eq(" + img_num + ")"
                 var img_data = frame2.find(img_div).text();
                 if(img_data==""){
-                    var img_data = "/static/image/jojo.jpg"
+                    var img_data = "/static/image/fushishan.jpg"
                 }
                 $('#bg2').attr("src",img_data);
             }
             var frame2 = $(parent.frames["hidden-player"].document)
             var img_str = frame2.find("#img_urls").attr("title")
-            if(img_str=="error"){
-                $("#img_crwal").remove();
-            }else{
-                var img_num = parseInt(img_str)
-                img_fun(img_num);
-            }
+            var img_num = parseInt(img_str)
+            img_fun(img_num);
+            // 点击抓取按钮按顺序往下抓。
             $("#change_img").click(function(){
                 img_num++;
                 img_fun(img_num);
             });
+            // 离开此页记录当前图片状态，再次访问此页显示这张图片。
             window.onbeforeunload = function(){
                 frame2.find("#img_urls").attr("title",img_num)
+                frame2.find(".next_music").text(switch_num);
             }
             // 轮播图间隔时间
             $('.carousel').carousel({
                 pause:null,
                 interval:4000
             })
-
             // 图表初始化函数
             var chart = Highcharts.chart('container', options);
             $("rect").attr("fill","rgba(255, 255, 255, 0)");
@@ -489,6 +487,23 @@
                 if(nowTop>1050){
                     $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
                 }
+            });
+            // 开关灯
+            function switch_func(switch_num){
+                // 关
+                if(switch_num%2==0){
+                    $("body").css("background-image","url(/static/image/map_night.jpg)");
+                // 开
+                }else{
+                    $("body").css("background-image","url(/static/image/map.png)");
+                }
+            }
+            var switch_str  = frame2.find(".next_music").text();
+            var switch_num = parseInt(switch_str)
+            switch_func(switch_num);
+            $("#switchs").click(function(){
+                switch_num++;
+                switch_func(switch_num);
             });
             // 小彩蛋
             console.log('你好，我叫胡捷,这是我的个人网站,用django+bootstrap搭建,正在不断完善优化中,敬请期待!');

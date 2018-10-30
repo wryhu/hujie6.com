@@ -11,7 +11,7 @@
 <body>
     <div id="skPlayer"></div>
     <div class="prev_music" onclick="player.prev()">1</div>
-    <div class="next_music" onclick="player.next()"></div>
+    <div class="next_music" onclick="player.next()">1</div>
     <div id="img_urls" title="0"></div>
 </body>
     <script>
@@ -73,10 +73,6 @@
                             $("#img_urls").append("<div>"+urls_data[img_url]+"</div>");
                         }
                     },
-                    error: function(){
-                        $("#img_urls").attr("title","error");
-                        alert(1)
-                    }
             });
         });
     </script>

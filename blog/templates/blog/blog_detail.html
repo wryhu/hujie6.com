@@ -149,6 +149,28 @@
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
+            // 开关灯
+            function switch_func(switch_num){
+                // 关
+                if(switch_num%2==0){
+                    $("body").css("background-image","url(/static/image/map_night.jpg)");
+                // 开
+                }else{
+                    $("body").css("background-image","url(/static/image/map.png)");
+                }
+            }
+            var frame2 = $(parent.frames["hidden-player"].document)
+            var switch_str  = frame2.find(".next_music").text();
+            var switch_num = parseInt(switch_str)
+            switch_func(switch_num);
+            $("#switchs").click(function(){
+                switch_num++;
+                switch_func(switch_num);
+            });
+            window.onbeforeunload = function(){
+                frame2.find(".next_music").text(switch_num);
+            }
+            // 提交评论
             $("#comment-form").submit(function(){
                 // 判断是否为空
                 $("#comment_error").text('');

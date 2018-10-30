@@ -1,5 +1,5 @@
 body {
-    background: url(/static/image/map.png) repeat left top;
+    background: repeat left top;
 }
 div.jumbotron {
     margin-bottom:0;
@@ -26,6 +26,9 @@ h1.same {
     border-bottom: 1px solid #ccc;
     color: #fff;
     text-shadow:2px 2px 33px blue;
+}
+#bkg {
+    padding:0;
 }
 #bg1 {
     position: relative;

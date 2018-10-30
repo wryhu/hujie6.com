@@ -1,6 +1,6 @@
 {% load staticfiles %}
 <!DOCTYPE html>
-<html lang="zh_CN">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,7 +16,7 @@
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
     {% block header_extends %}{% endblock %}
 </head>
-<body>
+<body >
     <!--导航条-->
     <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
         <div class="container-fluid">
@@ -31,21 +31,23 @@
             <div id="navbar-collapse" class="collapse navbar-collapse">
 
                 <ul class="nav navbar-nav">
-                    <li><a id="pad" class="fa fa-home" href="{% url 'home' %}"> <span>首页</span></a></li>
-                    <li><a id="pad" class="fa fa-pencil" href="{% url 'blog_list' %}"> <span>博客</span></a></li>
+                    <li><a class="pad fa fa-home" href="{% url 'home' %}"> <span>首页</span></a></li>
+                    <li><a class="pad fa fa-pencil" href="{% url 'blog_list' %}"> <span>博客</span></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-
+                    <li>
+                        <a id="switchs" class="pad fa fa-lightbulb-o" style="cursor:pointer"> <span>关灯</span></a>
+                    </li>
                     {% if not user.is_authenticated %}
                         <li>
-                            <a id="pad" class="fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> <span>登录</span></a>
+                            <a class="pad fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> <span>登录</span></a>
                         </li>
                         <li>
-                            <a id="pad" class="fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> <span>注册</span></a>
+                            <a class="pad fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> <span>注册</span></a>
                         </li>
                     {% else %}
                         <li class="dropdown">
-                            <a id="pad" href="#" class="fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="pad fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span>{{ user.first_name }}</span>
                                 <span class="caret"></span>
                             </a>
@@ -159,16 +161,20 @@
             $('#totop').mouseleave(function(){
                 $(this).stop().animate({marginBottom:"0px"},200);
             });
-            // 点击火箭就跟着滚动条一起上升，然后取消绑定的鼠标移出事件，不然上升时又回到原位了，然后火箭隐藏，火箭复位，火箭再次绑定鼠标移出事件。
+            // 点击火箭就跟着滚动条一起上升，然后取消绑定的鼠标移出和移入事件，不然上升时又回到原位了，然后火箭隐藏，火箭复位，火箭再次绑定鼠标移出事件。
             $('#totop').click(function(){
                 var html_height = $(window).height()
                 $('html,body').animate({'scrollTop':0},800);
                 $(this).stop().unbind('mouseleave');
+                $(this).unbind('mouseenter');
                 $(this).stop().animate({marginBottom:html_height},800,function(){
                     $(this).fadeOut(function(){
                         $(this).css("marginBottom",0);
                         $(this).bind('mouseleave', function(){
                             $(this).stop().animate({marginBottom:"0px"},200);
+                        });
+                        $(this).bind('mouseenter', function(){
+                            rock2();
                         });
                     });
                 });
