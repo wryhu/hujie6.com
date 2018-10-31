@@ -167,27 +167,6 @@
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
-            // 开关灯
-            function switch_func(switch_num){
-                // 关
-                if(switch_num%2==0){
-                    $("body").css("background-image","url(/static/image/map_night.jpg)");
-                // 开
-                }else{
-                    $("body").css("background-image","url(/static/image/map.png)");
-                }
-            }
-            var frame2 = $(parent.frames["hidden-player"].document)
-            var switch_str  = frame2.find(".next_music").text();
-            var switch_num = parseInt(switch_str)
-            switch_func(switch_num);
-            $("#switchs").click(function(){
-                switch_num++;
-                switch_func(switch_num);
-            });
-            window.onbeforeunload = function(){
-                frame2.find(".next_music").text(switch_num);
-            }
             // 机器人提示
             function ll3 (){
                 $("#music-bar").attr('data-original-title','站长留言：你好，这里是全部文章的显示列表，文章数量不多，还请见谅唔姆~');

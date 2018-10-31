@@ -150,10 +150,9 @@
         <div class="row">
             <div id="bkg" class="col-md-12 col-xs-12">
                 <!--固定背景图和上面的文本-->
-                <div id="bg1"">
+                <div id="bg1">
                     <div class="landing-text">
-                        <h2 style="text-shadow:1px 1px 1px #fff">aaa</h2>
-
+                        <div>每日一图</div>
                     </div>
                 </div>
             </div>
@@ -229,7 +228,6 @@
         </div>
     </div>
     <!--展示一下爬虫-->
-
     <div id="img_crwal" class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
@@ -238,25 +236,14 @@
         </div>
         <div class="row welcome text-centet">
             <div class="col-md-8 col-xs-12">
-
-                    <img id="bg2" src="/static/image/fushishan.jpg" style="width:100%">
-
-
+                <img id="bg2" src="/static/image/fushishan.jpg" style="width:100%">
             </div>
             <div class="col-md-4 col-xs-12">
-
-
-                    <div style="height:300px">
-
-                            <div id="change_img" class="box foo"><div>抓取</div></div>
-
-                    </div>
-
+                <div style="height:300px">
+                        <div id="change_img" class="box foo"><div>抓取</div></div>
+                </div>
             </div>
         </div>
-
-
-
     </div>
     <div class="container">
         <div class="row welcome text-centet">
@@ -270,7 +257,7 @@
             <figure>
 
               <div class="icon-overlay icn-link">
-                <a href="https://dormousehole.readthedocs.io/en/latest/"><img src="https://pyup.io/static//images/packages/flask.png"
+                <a href="https://dormousehole.readthedocs.io/en/latest/"><img src="/static/image/flask.png"
                                                        alt="flask logo"></a>
               </div><!-- /.icon-overlay -->
 
@@ -288,7 +275,7 @@
             <figure>
 
               <div class="icon-overlay icn-link">
-                <a href="https://pillow.readthedocs.io/en/latest/"><img src="https://pyup.io/static//images/packages/pillow.png"
+                <a href="https://pillow.readthedocs.io/en/latest/"><img src="/static/image/pillow.png"
                                                        alt="pillow logo"></a>
               </div><!-- /.icon-overlay -->
 
@@ -306,7 +293,7 @@
             <figure>
 
               <div class="icon-overlay icn-link">
-                <a href="https://yiyibooks.cn/xx/Django_1.11.6/index.html"><img src="https://pyup.io/static//images/packages/django.png"
+                <a href="https://yiyibooks.cn/xx/Django_1.11.6/index.html"><img src="/static/image/django.png"
                                                        alt="django logo"></a>
               </div><!-- /.icon-overlay -->
 
@@ -326,7 +313,7 @@
             <figure>
 
               <div class="icon-overlay icn-link">
-                <a href="http://www.python-requests.org/en/master/"><img src="https://pyup.io/static//images/packages/requests.png"
+                <a href="http://www.python-requests.org/en/master/"><img src="/static/image/requests.png"
                                                        alt="requests logo"></a>
               </div><!-- /.icon-overlay -->
 
@@ -344,7 +331,7 @@
             <figure>
 
               <div class="icon-overlay icn-link">
-                <a href="http://www.celeryproject.org/"><img src="https://pyup.io/static//images/packages/celery.png"
+                <a href="http://www.celeryproject.org/"><img src="/static/image/celery.png"
                                                        alt="celery logo"></a>
               </div><!-- /.icon-overlay -->
 
@@ -362,7 +349,7 @@
             <figure>
 
               <div class="icon-overlay icn-link">
-                <a href="https://www.django-rest-framework.org/"><img src="https://pyup.io/static//images/packages/djangorestframework.png"
+                <a href="https://www.django-rest-framework.org/"><img src="/static/image/djangorestframework.png"
                                                        alt="djangorestframework logo"></a>
               </div><!-- /.icon-overlay -->
 
@@ -488,23 +475,7 @@
                     $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
                 }
             });
-            // 开关灯
-            function switch_func(switch_num){
-                // 关
-                if(switch_num%2==0){
-                    $("body").css("background-image","url(/static/image/map_night.jpg)");
-                // 开
-                }else{
-                    $("body").css("background-image","url(/static/image/map.png)");
-                }
-            }
-            var switch_str  = frame2.find(".next_music").text();
-            var switch_num = parseInt(switch_str)
-            switch_func(switch_num);
-            $("#switchs").click(function(){
-                switch_num++;
-                switch_func(switch_num);
-            });
+
             // 小彩蛋
             console.log('你好，我叫胡捷,这是我的个人网站,用django+bootstrap搭建,正在不断完善优化中,敬请期待!');
         });

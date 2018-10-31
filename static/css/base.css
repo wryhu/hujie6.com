@@ -3,15 +3,27 @@ html body {
     padding: 0;
     font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
 }
-.body_bg {
-    position:fixed;
-    top:0;
-    left:0;
-    background-color:black;
-    width:100%;
-    height:100%;
-    z-index:1500;
-    opacity:0.8;
+.body_night2 {
+    background-color:rgba(0, 0, 0, 0.24);
+}
+.body_light2 {
+    background-color:rgba(0, 0, 0, 0);
+}
+.body_night {
+    background-color:rgba(0, 0, 0, 0.24);
+    animation: change3 1s linear 0s 1;
+}
+.body_light {
+    background-color:rgba(0, 0, 0, 0);
+    animation: change4 1s linear 0s 1;
+}
+@keyframes change3 {
+    0%{background-color:rgba(0, 0, 0, 0);}
+    100% {background-color:rgba(0, 0, 0, 0.24);}
+}
+@keyframes change4 {
+    0%{background-color:rgba(0, 0, 0, 0.24);}
+    100% {background-color:rgba(0, 0, 0, 0);}
 }
 #navbar-base {
     margin: 0px;

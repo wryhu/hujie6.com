@@ -17,102 +17,104 @@
     {% block header_extends %}{% endblock %}
 </head>
 <body >
-    <!--导航条-->
-    <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/image/geass.png" style="width:80px;height:38px;"></a>
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-            </div>
-            <div id="navbar-collapse" class="collapse navbar-collapse">
+    <div id="body_switch">
+        <!--导航条-->
+        <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/image/geass.png" style="width:80px;height:38px;"></a>
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar-collapse" class="collapse navbar-collapse">
 
-                <ul class="nav navbar-nav">
-                    <li><a class="pad fa fa-home" href="{% url 'home' %}"> <span>首页</span></a></li>
-                    <li><a class="pad fa fa-pencil" href="{% url 'blog_list' %}"> <span>博客</span></a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a id="switchs" class="pad fa fa-lightbulb-o" style="cursor:pointer"> <span>关灯</span></a>
-                    </li>
-                    {% if not user.is_authenticated %}
+                    <ul class="nav navbar-nav">
+                        <li><a class="pad fa fa-home" href="{% url 'home' %}"> 首页</a></li>
+                        <li><a class="pad fa fa-pencil" href="{% url 'blog_list' %}"> 博客</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a class="pad fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> <span>登录</span></a>
+                            <a id="switchs" class="pad fa fa-lightbulb-o" style="cursor:pointer"> <span></span></a>
                         </li>
-                        <li>
-                            <a class="pad fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> <span>注册</span></a>
-                        </li>
-                    {% else %}
-                        <li class="dropdown">
-                            <a href="#" class="pad fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                <span>{{ user.first_name }}</span>
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" >个人资料</a></li>
-                                <li><a href="#">邮箱</a></li>
-                                <li><a href="#">此板块尚未开发</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="{% url 'logout' %}?form={{ request.get_full_path }}">退出</a></li>
-                            </ul>
-                        </li>
-                    {% endif %}
-                </ul>
-                <form id="navbar-form" action="{% url 'search'%}" class="navbar-form navbar-right">
-                    <div class="form-group">
-                      <input name="wd" type="text" class="form-control" placeholder="请输入关键字">
-                    </div>
-                    <button type="submit" class="btn btn-default"><span>搜索</span></button>
-                </form>
+                        {% if not user.is_authenticated %}
+                            <li>
+                                <a class="pad fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> 登录</a>
+                            </li>
+                            <li>
+                                <a class="pad fa fa-id-card" href="{% url 'register' %}?form={{ request.get_full_path }}"> 注册</a>
+                            </li>
+                        {% else %}
+                            <li class="dropdown">
+                                <a href="#" class="pad fa fa-user-circle dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <span>{{ user.first_name }}</span>
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" >个人资料</a></li>
+                                    <li><a href="#">邮箱</a></li>
+                                    <li><a href="#">此板块尚未开发</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{% url 'logout' %}?form={{ request.get_full_path }}">退出</a></li>
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>
+                    <form id="navbar-form" action="{% url 'search'%}" class="navbar-form navbar-right">
+                        <div class="form-group">
+                          <input name="wd" type="text" class="form-control" placeholder="请输入关键字">
+                        </div>
+                        <button type="submit" class="btn btn-default"><span>搜索</span></button>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    {% block content %}{% endblock %}
-    <footer class="container-fluid text-center">
-        <div class="row">
-            <div class="col-sm-4">
-                <h3>相关信息</h3>
-                <h5>QQ：736209298</h5>
-                <h5>个人博客网站，分享生活点滴</h5>
-                <h5>于2018年9月开始建站，源码已推送至github</h5>
+        {% block content %}{% endblock %}
+        <footer class="container-fluid text-center">
+            <div class="row">
+                <div class="col-sm-4">
+                    <h3>相关信息</h3>
+                    <h5>QQ：736209298</h5>
+                    <h5>个人博客网站，分享生活点滴</h5>
+                    <h5>于2018年9月开始建站，源码已推送至github</h5>
+                </div>
+                <div class="col-sm-4">
+                    <h3>Contects</h3>
+                    <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo" data-toggle="tooltip" data-placement="top" data-original-title="我的微博"></a>
+                    <a href="https://github.com/wryhu" target=_blank class="fa fa-github" data-toggle="tooltip" data-placement="bottom" data-original-title="我的github"></a>
+                    <div class="fa fa-chrome"></div>
+                    <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram" data-toggle="tooltip" data-placement="bottom" data-original-title="我的ins"></a>
+                    <a href="https://twitter.com/jet42331460" class="fa fa-twitter" data-toggle="tooltip" data-placement="top" data-original-title="我的twitter"></a>
+                </div>
+                <div class="col-sm-4">
+                    <h3 style="margin-bottom:0;">友情链接</h3>
+                    <br>
+                    <a href="/jojo"><img src="/static/image/tobecontinued.png" style="width:200px; height:44px;" title="人类赞歌"></a>
+                </div>
             </div>
-            <div class="col-sm-4">
-                <h3>Contects</h3>
-                <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo" data-toggle="tooltip" data-placement="top" data-original-title="我的微博"></a>
-                <a href="https://github.com/wryhu" target=_blank class="fa fa-github" data-toggle="tooltip" data-placement="bottom" data-original-title="我的github"></a>
-                <div class="fa fa-chrome"></div>
-                <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram" data-toggle="tooltip" data-placement="bottom" data-original-title="我的ins"></a>
-                <a href="https://twitter.com/jet42331460" class="fa fa-twitter" data-toggle="tooltip" data-placement="top" data-original-title="我的twitter"></a>
-            </div>
-            <div class="col-sm-4">
-                <h3 style="margin-bottom:0;">友情链接</h3>
-                <br>
-                <a href="/jojo"><img src="/static/image/tobecontinued.png" style="width:200px; height:44px;" title="人类赞歌"></a>
+        </footer>
+        <!--jet-->
+        <img id="totop" class="totop" src="/static/image/jet.png" title="发射!">
+        <!--音乐播放器-->
+        <div id="music">
+            <div id="skPlayer" class="skPlayer1"></div>
+            <div id="skPlayer" class="skPlayer2"></div>
+            <div id="music-foot">
+                <div id="music-text">支持全站不间断播放</div>
+                <div id="music-ctrl">
+                    <div class="fa fa-backward"></div>
+                        <span>好听的歌儿推荐给你</span>
+                    <div class="fa fa-forward"></div>
+                </div>
+                <div id="music-text">暂不支持快进和音量调节</div>
             </div>
         </div>
-    </footer>
-    <!--jet-->
-    <img id="totop" class="totop" src="/static/image/jet.png" title="发射!">
-    <!--音乐播放器-->
-    <div id="music">
-        <div id="skPlayer" class="skPlayer1"></div>
-        <div id="skPlayer" class="skPlayer2"></div>
-        <div id="music-foot">
-            <div id="music-text">支持全站不间断播放</div>
-            <div id="music-ctrl">
-                <div class="fa fa-backward"></div>
-                    <span>好听的歌儿推荐给你</span>
-                <div class="fa fa-forward"></div>
-            </div>
-            <div id="music-text">暂不支持快进和音量调节</div>
+        <!--<a id="music-bar" class="fa fa-music"></a>-->
+        <div id="music-bar-tip">
+            <img id="music-bar" data-toggle="tooltip" data-placement="top" src="/static/image/lovelive.png">
         </div>
-    </div>
-    <!--<a id="music-bar" class="fa fa-music"></a>-->
-    <div id="music-bar-tip">
-        <img id="music-bar" data-toggle="tooltip" data-placement="top" src="/static/image/lovelive.png">
     </div>
     {% block script_extends %}{% endblock %}
     <style type="text/css">
@@ -136,6 +138,34 @@
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            var frame = $(parent.frames["hidden-player"].document)
+            // 开关灯
+            var switch_str = frame.find(".next_music").text();
+            // 关
+            if(switch_str=="0"){
+                $("#body_switch").attr("class","body_night2");
+                $("#switchs").text(" 开灯");
+            // 开
+            }else{
+                $("#body_switch").attr("class","body_light2");
+                $("#switchs").text(" 关灯");
+            }
+            $("#switchs").click(function(){
+                var switch_str = frame.find(".next_music").text();
+                // 关
+                if(switch_str=="1"){
+                    $("#body_switch").attr("class","body_night");
+                    frame.find(".next_music").text('0');
+                    $("#switchs").text(" 开灯");
+                // 开
+                }else{
+                    $("#body_switch").attr("class","body_light");
+                    frame.find(".next_music").text('1');
+                    $("#switchs").text(" 关灯");
+                }
+            });
+
+            // 初始化tip
             $('[data-toggle="tooltip"]').tooltip();
             // 小火箭
             $(window).scroll(function(){
@@ -179,9 +209,7 @@
                     });
                 });
             });
-            // 小播放器
-            var frame = $(parent.frames["hidden-player"].document)
-            // 从框架提取播放器html到网站页面，并加入定时器
+            // 播放器：从框架提取播放器html到网站页面，并加入定时器
             function real_time_music1(){
                 var music_html = frame.find("#skPlayer").html();
                 $(".skPlayer1").html(music_html);
