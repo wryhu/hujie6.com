@@ -116,16 +116,16 @@
         var h=today.getHours()
         if(h>6&&h<10){
             // 早上
-            $("body").css("background-image","url(/static/image/morning.jpeg)");
+            $("body").css("background-image","url(/static/image/morning.jpg)");
         }else if(h>=10&&h<15){
             // 中午
             $("body").css("background-image","url(/static/image/noon.jpeg)");
         }else if(h>=15&&h<18){
             // 黄昏
-            $("body").css("background-image","url(/static/image/morning.jpeg)");
+            $("body").css("background-image","url(/static/image/morning.jpg)");
         }else{
             // 晚上
-            $("body").css("background-image","url(/static/image/night.jpeg)");
+            $("body").css("background-image","url(/static/image/night.jpg)");
         }
         // 恐龙提示
         $("#play").tooltip();

@@ -17,13 +17,13 @@ from blog.models import Blog
 from .forms import LoginForm, RegForm
 
 
-# 百度图片爬虫
+# 图片爬虫
 def img_crwaler():
-    url = "https://image.baidu.com/search/flip?tn=baiduimage&word=%E9%A3%8E%E6%99%AF&pn=" + str(random.randint(0, 1780))\
-          + "&width=1920&height=1080"
+    url = "https://pic.sogou.com/pics/channel/getAllRecomPicByTag.jsp?category=壁纸&tag=全部&start="\
+          + str(random.randint(0, 1000)) + "&len=100&width=1920&height=1080"
     res = requests.get(url)
     html = res.text
-    q = r'http://[^"]+pg'
+    q = r'"thumbUrl":"([^"]+)'
     url_list = re.findall(q, html)
     return url_list
 

@@ -231,14 +231,14 @@
     <div id="img_crwal" class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
-                <h1 class="same">随机抓取百度图片</h1>
+                <h1 class="same">随机抓取网络壁纸</h1>
             </div>
         </div>
         <div class="row welcome text-centet">
-            <div class="col-md-8 col-xs-12">
-                <img id="bg2" src="/static/image/fushishan.jpg" style="width:100%">
+            <div class="col-md-7 col-xs-12">
+                <img id="bg2">
             </div>
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-5 col-xs-12">
                 <div style="height:300px">
                         <div id="change_img" class="box foo"><div>抓取</div></div>
                 </div>
@@ -432,7 +432,7 @@
                 var img_div = "#img_urls div:eq(" + img_num + ")"
                 var img_data = frame2.find(img_div).text();
                 if(img_data==""){
-                    var img_data = "/static/image/fushishan.jpg"
+                    var img_data = "https://img02.sogoucdn.com/app/a/100520020/8c5e52c5ec2629d3223fa5e4403feb87"
                 }
                 $('#bg2').attr("src",img_data);
             }
@@ -448,7 +448,6 @@
             // 离开此页记录当前图片状态，再次访问此页显示这张图片。
             window.onbeforeunload = function(){
                 frame2.find("#img_urls").attr("title",img_num)
-                frame2.find(".next_music").text(switch_num);
             }
             // 轮播图间隔时间
             $('.carousel').carousel({
