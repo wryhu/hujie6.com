@@ -36,7 +36,7 @@ h1.same {
     height: 50em;
     width: 100%;
     margin-top:40px;
-    background: url(https://img04.sogoucdn.com/app/a/100520024/fba14a27686662f3748e051ba333e8f9) no-repeat fixed;
+    background: url(http://photocdn.tv.sohu.com/img/20161230/vrs_bg_hor_1483080030614_1008593.jpg) no-repeat fixed;
     background-size: 100% auto;
 }
 .landing-text {
@@ -91,10 +91,19 @@ div.tab-content li{
 .bordered a {
     text-decoration:none;
 }
+#bgz-1{
+    position: absolute;
+    z-index:1
+}
+#bgz-2{
+    position: absolute;
+    display: none;
+    z-index:2
+}
 #change_img {
     position: absolute;
     left:40%;
-    top:50%;
+    top:136px;
     font-size:24px;
     letter-spacing: 5px;
     border:1px solid black;
@@ -132,4 +141,34 @@ div.tab-content li{
 }
 .box:hover::after, .box:hover::before {
     -webkit-transform: scale(2);
+}
+#about_me {
+    width: 200px;
+    height: 80px;
+    text-align: center;
+    line-height: 80px;
+    letter-spacing: 0.2em;
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+    color: rgb(143, 141, 141);
+}
+#about_me div {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.342);
+    position: absolute;
+    animation: bian 0.5s linear both 1;
+}
+@keyframes bian {
+    0% {
+        opacity: 1;
+        transform: scale(1)
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(8)
+    }
 }

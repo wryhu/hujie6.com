@@ -66,13 +66,11 @@
     <!--巨幕-->
     <div class="jumbotron">
         <div class="container">
-          <h1>Hello, world!</h1>
-          <p>欢迎访问我的网站</p>
-            <button class="btn btn-info" data-toggle="collapse"data-target="#collapseExample">
+            <h1>Hello, world!</h1>
+            <p>欢迎访问我的网站</p>
+            <div id="about_me" data-toggle="collapse" data-target="#collapseExample">
               about me
-            </button>
-            <br>
-            <br>
+            </div>
             <div class="collapse" id="collapseExample">
               <div class="well">
                 <h3 class="fire">
@@ -91,7 +89,6 @@
                 </h3>
               </div>
             </div>
-
         </div>
     </div>
 
@@ -143,8 +140,6 @@
             </div>
         </div>
     </div>
-
-
 
     <div class="container-fluid">
         <div class="row">
@@ -234,14 +229,13 @@
                 <h1 class="same">随机抓取网络壁纸</h1>
             </div>
         </div>
-        <div class="row welcome text-centet">
+        <div class="row welcome text-centet" style="height:360px">
             <div class="col-md-7 col-xs-12">
-                <img id="bg2">
+                <img id="bgz-1">
+                <img id="bgz-2">
             </div>
             <div class="col-md-5 col-xs-12">
-                <div style="height:300px">
-                        <div id="change_img" class="box foo"><div>抓取</div></div>
-                </div>
+                <div id="change_img" class="box foo"><div>抓取</div></div>
             </div>
         </div>
     </div>
@@ -427,28 +421,68 @@
             credits: { enabled: false },
         };
         $(function(){
+            // 按钮特效
+            var main = document.querySelector('#about_me');
+            main.onmousemove = function (e) {
+                var x = e.pageX - main.offsetLeft;
+                var y = e.pageY - main.offsetTop;
+                main.onclick = function () {
+                    var div = document.createElement('div');
+                    div.style.left = x + 'px';
+                    div.style.top = y + 'px';
+                    var r = Math.floor(Math.random() * 256)
+                    var g = Math.floor(Math.random() * 256)
+                    var b = Math.floor(Math.random() * 256)
+                    div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";
+                    main.appendChild(div);
+                    setTimeout(function () {
+                        main.removeChild(div);
+                    }, 600)
+                }
+            }
             // 第一次打开抓取一次图片
             function img_fun(img_num){
                 var img_div = "#img_urls div:eq(" + img_num + ")"
                 var img_data = frame2.find(img_div).text();
-                if(img_data==""){
-                    var img_data = "https://img02.sogoucdn.com/app/a/100520020/8c5e52c5ec2629d3223fa5e4403feb87"
+                if(img_num%2==0 ){
+                    $('#bgz-1').fadeOut(1000,function(){
+                        $('#bgz-2').fadeIn(1000,function(){
+                            $("#change_img").one("click",function(){
+                                img_num++;
+                                img_fun(img_num);
+                            });
+                            frame2.find("#img_urls").attr("title",img_num);
+                        });
+                        $('#bgz-1').attr("src",img_data);
+                    });
+                }else{
+                    $('#bgz-2').fadeOut(1000,function(){
+                        $('#bgz-1').fadeIn(1000,function(){
+                            $("#change_img").one("click",function(){
+                                img_num++;
+                                img_fun(img_num);
+                            });
+                            frame2.find("#img_urls").attr("title",img_num);
+                        });
+                        $('#bgz-2').attr("src",img_data);
+                    });
                 }
-                $('#bg2').attr("src",img_data);
             }
-            var frame2 = $(parent.frames["hidden-player"].document)
-            var img_str = frame2.find("#img_urls").attr("title")
-            var img_num = parseInt(img_str)
-            img_fun(img_num);
+            var frame2 = $(parent.frames["hidden-player"].document);
+            var img_num = frame2.find("#img_urls").attr("title") - 1
+            var img_div1 = "#img_urls div:eq(" + img_num + ")";
+            var img_div2= "#img_urls div:eq(" + img_num + 1 + ")";
+            var img_data1 = frame2.find(img_div1).text();
+            var img_data2 = frame2.find(img_div2).text();
+            $('#bgz-1').attr("src",img_data1);
+            $('#bgz-2').attr("src",img_data2);
+            img_num ++;
             // 点击抓取按钮按顺序往下抓。
-            $("#change_img").click(function(){
+            $("#change_img").one("click",function(){
                 img_num++;
                 img_fun(img_num);
+                frame2.find("#img_urls").attr("title",img_num);
             });
-            // 离开此页记录当前图片状态，再次访问此页显示这张图片。
-            window.onbeforeunload = function(){
-                frame2.find("#img_urls").attr("title",img_num)
-            }
             // 轮播图间隔时间
             $('.carousel').carousel({
                 pause:null,
@@ -474,7 +508,6 @@
                     $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
                 }
             });
-
             // 小彩蛋
             console.log('你好，我叫胡捷,这是我的个人网站,用django+bootstrap搭建,正在不断完善优化中,敬请期待!');
         });
