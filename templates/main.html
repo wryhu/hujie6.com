@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no">
-    <title >chrome easter egg: t-rex runner</title>
+    <title >欢迎访问我的网站！</title>
     <link rel="Shortcut Icon" href="/static/image/H.ico">
     <link rel="stylesheet" href="/static/dinosaur/index.css">
     <link rel="stylesheet" href="/static/bootstrap3/css/bootstrap.min.css">
@@ -13,6 +13,12 @@
     <script src="/static/jquery-1.12.4.min.js"></script>
     <script src="/static/bootstrap3/js/bootstrap.min.js"></script>
     <script src="/static/dinosaur/index.js"></script>
+    <script type="text/javascript">
+        //手机访问跳过封面
+        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+            window.location.href = "/move";
+        }
+    </script>
 </head>
 <body id="t" class="offline">
     <div id="entry">

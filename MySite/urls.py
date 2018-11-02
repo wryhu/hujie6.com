@@ -38,7 +38,8 @@ urlpatterns = [
     url(r'^jojo/', views.jojo, name='jojo'),
     url(r'^oauth/', include('oauth.urls')),
     url(r'^ajax_img_crwaler$', views.ajax_img_crwaler, name='ajax_img_crwaler'),
-    url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy')
+    url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy'),
+    url(r'^move$', views.move, name='move'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

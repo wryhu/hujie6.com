@@ -111,14 +111,16 @@ div.tab-content li{
 .bordered a {
     text-decoration:none;
 }
+.change_image{
+    max-width:100%;
+    height:360px;
+}
 #bgz-1{
-    position: absolute;
-    z-index:1
+    max-width:100%;
 }
 #bgz-2{
-    position: absolute;
     display: none;
-    z-index:2
+    max-width:100%;
 }
 #change_img {
     position: absolute;
@@ -134,8 +136,8 @@ div.tab-content li{
     margin:10px 20px 10px 25px;
 }
 .foo::after {
-    border-top: 1px solid rgb(107, 152, 101);
-    border-right: 1px solid rgb(75, 224, 87);
+    border-top: 1px solid #50d101;
+    border-right: 1px solid yellow;
     -webkit-transform-origin: 100% 0%;
 }
 .box::before, .box::after {

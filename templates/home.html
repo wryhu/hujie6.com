@@ -229,13 +229,15 @@
                 <h1 class="same">随机抓取网络壁纸</h1>
             </div>
         </div>
-        <div class="row welcome text-centet" style="height:360px">
+        <div class="row welcome text-centet">
             <div class="col-md-7 col-xs-12">
                 <img id="bgz-1">
                 <img id="bgz-2">
             </div>
             <div class="col-md-5 col-xs-12">
-                <div id="change_img" class="box foo"><div>抓取</div></div>
+                <div class="change_image">
+                    <div id="change_img" class="box foo"><div>抓取</div></div>
+                </div>
             </div>
         </div>
     </div>
@@ -475,15 +477,17 @@
                     $('#bgz-2').attr("src",img_data);
                 });
             }
+            // 访问此页就抓取前两张图片，显示第一张隐藏第二张
             var frame2 = $(parent.frames["hidden-player"].document);
-            var img_num = frame2.find("#img_urls").attr("title") - 1
-            var img_div1 = "#img_urls div:eq(" + img_num + ")";
-            var img_div2= "#img_urls div:eq(" + img_num + 1 + ")";
+            var img_num = frame2.find("#img_urls").attr("title")
+            var img_num2 = img_num - 1
+            var img_div1 = "#img_urls div:eq(" + img_num2 + ")";
+            var img_div2 = "#img_urls div:eq(" + img_num + ")";
             var img_data1 = frame2.find(img_div1).text();
             var img_data2 = frame2.find(img_div2).text();
             $('#bgz-1').attr("src",img_data1);
             $('#bgz-2').attr("src",img_data2);
-            img_num ++;
+            // 点击抓取隐藏第一张显示第二张并加载第三张，此后点击循环此动作
             $("#change_img").one("click",function(){
                 img_num++;
                 img_fun1(img_num);

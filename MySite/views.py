@@ -180,3 +180,7 @@ def main(request):
 
 def privacy_policy(request):
     return render(request, 'privacy_policy.html')
+
+
+def move(request):
+    return render(request, 'move.html')
