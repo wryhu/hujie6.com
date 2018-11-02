@@ -68,7 +68,27 @@ div.tab-content li{
     padding: 5% 0px 0px;
 }
 .thumbnail {
-   margin:0;
+    padding:0;
+    overflow:hidden;
+}
+.thumbnail img {
+    display:block;
+    position:relative;
+    -webkit-transition:all .4s linear;
+    transition:all .4s linear;
+}
+.thumbnail_over {
+    box-shadow: 0 5px 12px rgba(0,0,0,0.5);
+    transition: all 1s ease 0s;
+}
+.thumbnail_out {
+   box-shadow: 0;
+   transition: all 1s ease 0s;
+}
+.thumbnail:hover img {
+    -ms-transform:scale(1.1);
+    -webkit-transform:scale(1.1);
+    transform:scale(1.1);
 }
 .aitem img {
     border-top-left-radius: 44px;
@@ -171,4 +191,12 @@ div.tab-content li{
         opacity: 0;
         transform: scale(8)
     }
+}
+.learn_hover img{
+    -webkit-transition: 1s ease;
+    -moz-transition: 1s ease;
+}
+.learn_hover:hover img {
+    -webkit-transform: rotatey(360deg);
+    -moz-transform: rotatey(360deg);
 }

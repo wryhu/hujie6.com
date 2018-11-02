@@ -176,7 +176,7 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
-                <div class="thumbnail">
+                <div class="thumbnail" style="margin-top:50px">
                   <img src="static/image/sing.jpg">
                   <div class="caption">
                     <h3>Enioy music</h3>
@@ -205,7 +205,7 @@
                 </div>
             </div>
             <div class="col-sm-12 col-md-3">
-                <div class="thumbnail">
+                <div class="thumbnail" style="margin-top:50px">
                   <img src="static/image/movie.jpeg">
                   <div class="caption">
                     <h3>电影人生</h3>
@@ -248,7 +248,7 @@
 
         <div class="row" style="margin-bottom:25px;">
           <div class="aitem col-md-4 clo-xs-12">
-            <figure>
+            <figure class="learn_hover">
 
               <div class="icon-overlay icn-link">
                 <a href="https://dormousehole.readthedocs.io/en/latest/"><img src="/static/image/flask.png"
@@ -266,7 +266,7 @@
           </div>
 
           <div class="aitem col-md-4 clo-xs-12">
-            <figure>
+            <figure class="learn_hover">
 
               <div class="icon-overlay icn-link">
                 <a href="https://pillow.readthedocs.io/en/latest/"><img src="/static/image/pillow.png"
@@ -284,7 +284,7 @@
           </div>
 
           <div class="aitem col-md-4 clo-xs-12">
-            <figure>
+            <figure class="learn_hover">
 
               <div class="icon-overlay icn-link">
                 <a href="https://yiyibooks.cn/xx/Django_1.11.6/index.html"><img src="/static/image/django.png"
@@ -304,7 +304,7 @@
 
         <div class="row">
           <div class="aitem col-md-4 clo-xs-12">
-            <figure>
+            <figure class="learn_hover">
 
               <div class="icon-overlay icn-link">
                 <a href="http://www.python-requests.org/en/master/"><img src="/static/image/requests.png"
@@ -322,7 +322,7 @@
           </div>
 
           <div class="aitem col-md-4 clo-xs-12">
-            <figure>
+            <figure class="learn_hover">
 
               <div class="icon-overlay icn-link">
                 <a href="http://www.celeryproject.org/"><img src="/static/image/celery.png"
@@ -340,7 +340,7 @@
           </div>
 
           <div class="aitem col-md-4 clo-xs-12">
-            <figure>
+            <figure class="learn_hover">
 
               <div class="icon-overlay icn-link">
                 <a href="https://www.django-rest-framework.org/"><img src="/static/image/djangorestframework.png"
@@ -423,50 +423,57 @@
         $(function(){
             // 按钮特效
             var main = document.querySelector('#about_me');
-            main.onmousemove = function (e) {
+            main.onclick = function (e) {
                 var x = e.pageX - main.offsetLeft;
                 var y = e.pageY - main.offsetTop;
-                main.onclick = function () {
-                    var div = document.createElement('div');
-                    div.style.left = x + 'px';
-                    div.style.top = y + 'px';
-                    var r = Math.floor(Math.random() * 256)
-                    var g = Math.floor(Math.random() * 256)
-                    var b = Math.floor(Math.random() * 256)
-                    div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";
-                    main.appendChild(div);
-                    setTimeout(function () {
-                        main.removeChild(div);
-                    }, 600)
-                }
+                var div = document.createElement('div');
+                div.style.left = x + 'px';
+                div.style.top = y + 'px';
+                var r = Math.floor(Math.random() * 256)
+                var g = Math.floor(Math.random() * 256)
+                var b = Math.floor(Math.random() * 256)
+                div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";
+                main.appendChild(div);
+                setTimeout(function () {
+                    main.removeChild(div);
+                }, 600)
             }
-            // 第一次打开抓取一次图片
-            function img_fun(img_num){
+            // thumbnail鼠标进入特效
+            $(".thumbnail").mouseover(function(){
+                $(this).addClass("thumbnail_over");
+            });
+            $(".thumbnail").mouseout(function(){
+                $(this).removeClass("thumbnail_over");
+                $(this).addClass("thumbnail_out");
+            });
+            // 抓取图片
+            function img_fun1(img_num){
                 var img_div = "#img_urls div:eq(" + img_num + ")"
                 var img_data = frame2.find(img_div).text();
-                if(img_num%2==0 ){
-                    $('#bgz-1').fadeOut(1000,function(){
-                        $('#bgz-2').fadeIn(1000,function(){
-                            $("#change_img").one("click",function(){
-                                img_num++;
-                                img_fun(img_num);
-                            });
+                $('#bgz-1').fadeOut(1000,function(){
+                    $('#bgz-2').fadeIn(1000,function(){
+                        $("#change_img").one("click",function(){
+                            img_num++;
+                            img_fun2(img_num);
                             frame2.find("#img_urls").attr("title",img_num);
                         });
-                        $('#bgz-1').attr("src",img_data);
                     });
-                }else{
-                    $('#bgz-2').fadeOut(1000,function(){
-                        $('#bgz-1').fadeIn(1000,function(){
-                            $("#change_img").one("click",function(){
-                                img_num++;
-                                img_fun(img_num);
-                            });
+                    $('#bgz-1').attr("src",img_data);
+                });
+            }
+            function img_fun2(img_num){
+                var img_div = "#img_urls div:eq(" + img_num + ")"
+                var img_data = frame2.find(img_div).text();
+                $('#bgz-2').fadeOut(1000,function(){
+                    $('#bgz-1').fadeIn(1000,function(){
+                        $("#change_img").one("click",function(){
+                            img_num++;
+                            img_fun1(img_num);
                             frame2.find("#img_urls").attr("title",img_num);
                         });
-                        $('#bgz-2').attr("src",img_data);
                     });
-                }
+                    $('#bgz-2').attr("src",img_data);
+                });
             }
             var frame2 = $(parent.frames["hidden-player"].document);
             var img_num = frame2.find("#img_urls").attr("title") - 1
@@ -477,10 +484,9 @@
             $('#bgz-1').attr("src",img_data1);
             $('#bgz-2').attr("src",img_data2);
             img_num ++;
-            // 点击抓取按钮按顺序往下抓。
             $("#change_img").one("click",function(){
                 img_num++;
-                img_fun(img_num);
+                img_fun1(img_num);
                 frame2.find("#img_urls").attr("title",img_num);
             });
             // 轮播图间隔时间
