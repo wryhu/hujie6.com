@@ -16,7 +16,7 @@
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
     {% block header_extends %}{% endblock %}
 </head>
-<body >
+<body>
     <div id="body_switch">
         <!--导航条-->
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
@@ -246,7 +246,7 @@
                 $(this).stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
                 // 第一次打开时的提示
                 if(frame.find('.prev_music').text()=='1'){
-                    $(this).attr('data-original-title','主人制作的音乐播放器，点我可以打开，(っ ^₃^ )っ♫快来体验一下吧！');
+                    $(this).attr('data-original-title','点我打开音乐播放器');
                     $(this).tooltip('show');
                     return false;
                 }

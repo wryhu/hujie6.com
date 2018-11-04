@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <!--第三方-->
-                <div class="panel panel-default">
+                <div class="panel panel-default" style="width:61%;">
                   <div class="panel-heading">
                     <h3 class="panel-title">合作帐号登录</h3>
                   </div>
@@ -46,11 +46,11 @@
                       <a href="{% url 'oauth_login' %}?oauth_type=qq" data-toggle="tooltip" data-placement="left" data-original-title="QQ登录" id="qq"><img class="qq_img" src="/static/image/qq.jpg"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=sina" data-toggle="tooltip" data-placement="top" data-original-title="微博登录" class="fa fa-weibo"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=baidu" data-toggle="tooltip" data-placement="top" data-original-title="百度登录"><img class="baidu_img" src="/static/image/baidu"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=google" target="_parent" style="margin-left:10px"><img id="google" src="/static/image/google_normal.png"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=github" target="_parent" data-toggle="tooltip" data-placement="right" data-original-title="github登录" class="fa fa-github"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=line" target="_parent" data-toggle="tooltip" data-placement="left" data-original-title="line登录"><img class="line_img" src="/static/image/line.png"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=google" target="_parent" data-toggle="tooltip" data-placement="bottom" data-original-title="谷歌登录" class="fa fa-google"></a>
+
                       <a href="{% url 'oauth_login' %}?oauth_type=facebook" target="_parent" data-toggle="tooltip" data-placement="bottom" data-original-title="facebook登录" class="fa fa-facebook-official"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=twitter" target="_parent" data-toggle="tooltip" data-placement="right" data-original-title="twitter登录" class="fa fa-twitter"></a>
                   </div>
                 </div>
             </div>
@@ -64,39 +64,36 @@
             margin:50px 0 110px;
         }
         .panel {
+
             border-radius: 0px;
             box-shadow: 5px 5px 5px #888888;
         }
         .panel .panel-heading {
             background-color:#FFF;
         }
-        #oauth_login {
-            padding:0 0 0 10px;
-        }
+        <!--#oauth_login {-->
+            <!--padding:0 0 0 10px;-->
+        <!--}-->
         #oauth_login a {
             font-size:35px;
             outline:none;
-            margin-left:20px;
+            margin-left:5px;
         }
         .fa-facebook-official {
             color:#3B5998;
-        }
-        .fa-google {
-            color: #a2ba61;
-            text-shadow:1px 1px 1px #888888;
-        }
-        #qq {
-            margin-left:18px!important;
         }
         .qq_img {
             width:65px;
             padding-bottom: 3px;
         }
+        #qq{
+            margin-left:0!important;
+        }
         .baidu_img {
-            margin:0 13px 3px 7px;
+            margin:0 13px 3px 16px;
         }
         .line_img {
-            margin:0 15px 3px;
+            margin:0 18px 6px;
             width: 32px;
         }
         li {
@@ -106,6 +103,18 @@
 {% endblock %}
 {% block script_extends %}
     <script type="text/javascript">
+        $("#google").mousedown(function(){
+            $(this).attr("src","/static/image/google_pressed.png");
+        });
+        $("#google").mouseover(function(){
+            $(this).attr("src","/static/image/google_focus.png");
+        });
+        $("#google").mouseout(function(){
+            $(this).attr("src","/static/image/google_normal.png");
+        });
+        $("#google").mouseup(function(){
+            $(this).attr("src","/static/image/google_normal.png");
+        });
         function ll6 (){
             $("#music-bar").attr('data-original-title','嘟嘟噜~欢迎来到登录页，支持多种方式登录哦，暂不支持微信登录，后面四个为境外帐号登录，需翻墙，要注意哦');
             $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);

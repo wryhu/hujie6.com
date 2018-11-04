@@ -1,4 +1,4 @@
-<!--首页,继承导航栏,待开发-->
+<!--首页,继承导航栏-->
 {% extends 'base.html' %}
 {% load staticfiles %}
 
@@ -195,8 +195,8 @@
                   <img src="static/image/jump.jpg">
                   <div class="caption">
                     <h3>アニメ大好き</h3>
-                    <p>&emsp;&emsp;虽说友情，努力，胜利什么的已经过时了，但火影，海贼王，死神等民工漫还不是有好多人追嘛，
-                        就连火影博人传那么烂的剧情都能看下去是吧，我就不多吐槽了。最近几年猎奇向的动漫多了不少，
+                    <p>&emsp;&emsp;有些剧情和画面是电视剧电影等无法实现的，再加上制作成本和时间等因素，动漫是很好的表现形式
+                        ，能够直观的展现作者想要表达的创意。最近几年猎奇向的动漫多了不少，
                         我也是来者不拒，不过现在日漫停滞不前大家有目共睹，主要是各种类型的动
                         漫都写的差不多了，再想创新就会更难了，期待更多的好作品出现吧。</p>
                     <p><a href="https://www.bilibili.com/video/av2724281" class="btn btn-info">了解</a>
@@ -496,7 +496,7 @@
             // 轮播图间隔时间
             $('.carousel').carousel({
                 pause:null,
-                interval:4000
+                interval:3000
             })
             // 图表初始化函数
             var chart = Highcharts.chart('container', options);

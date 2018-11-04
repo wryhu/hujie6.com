@@ -11,8 +11,10 @@ html body {
 }
 .body_night {
     animation: change3 1s linear 0s 1;
+    background-color:rgba(0, 0, 0, 0.24);
 }
 .body_light {
+    animation: change4 1s linear 0s 1;
     animation: change4 1s linear 0s 1;
 }
 @keyframes change3 {
