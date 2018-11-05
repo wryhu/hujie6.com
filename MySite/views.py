@@ -15,6 +15,21 @@ from django.http import JsonResponse
 from read_count.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
 from blog.models import Blog
 from .forms import LoginForm, RegForm
+from .youdao import Translate
+
+
+# 有道翻译
+def translate(request):
+    input_text = request.POST.get("input_text", "")
+
+    print input_text
+
+    lan1 = request.POST.get("lan1", "AUTO")
+    lan2 = request.POST.get("lan2", "AUTO")
+    t = Translate(input_text, lan1, lan2)
+    data = {}
+    data['data'] = t.youdao()
+    return JsonResponse(data)
 
 
 # 图片爬虫

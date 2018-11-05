@@ -243,6 +243,42 @@
     </div>
     <div class="container">
         <div class="row welcome text-centet">
+            <div class="col-md-12 col-xs-12">
+                <h1 class="same">翻译</h1>
+            </div>
+        </div>
+        <div class="row welcome text-centet">
+            <div class="col-md-6 col-xs-12">
+                <div class="dropdown">
+                  <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" data-lan1="AUTO" data-lan2="AUTO">
+                    自动检测语言
+                    <span class="caret"></span>
+                  </button>
+                  <button id="clear_tran" class="btn btn-primary" type="button" style="float:right">清空内容</button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li class="lan" data-lan1="zh-CHS" data-lan2="en"><a href="javascript:;">中文 >> 英语</a></li>
+                    <li class="lan" data-lan1="zh-CHS" data-lan2="ja"><a href="javascript:;">中文 >> 日语</a></li>
+                    <li class="lan" data-lan1="zh-CHS" data-lan2="ko"><a href="javascript:;">中文 >> 韩语</a></li>
+                    <li class="lan" data-lan1="zh-CHS" data-lan2="fr"><a href="javascript:;">中文 >> 俄语</a></li>
+                    <li class="lan" data-lan1="zh-CHS" data-lan2="ru"><a href="javascript:;">中文 >> 法语</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="lan" data-lan1="en" data-lan2="zh-CHS"><a href="javascript:;">英语 >> 中文</a></li>
+                    <li class="lan" data-lan1="ja" data-lan2="zh-CHS"><a href="javascript:;">日语 >> 中文</a></li>
+                    <li class="lan" data-lan1="ko" data-lan2="zh-CHS"><a href="javascript:;">韩语 >> 中文</a></li>
+                    <li class="lan" data-lan1="fr" data-lan2="zh-CHS"><a href="javascript:;">俄语 >> 中文</a></li>
+                    <li class="lan" data-lan1="ru" data-lan2="zh-CHS"><a href="javascript:;">法语 >> 中文</a></li>
+                  </ul>
+                </div>
+                <br>
+                <textarea id="tran_area" class="form-control" rows="10" placeholder="请输入需要翻译的文字内容~"></textarea>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <textarea id="show_tran" class="form-control" rows="10"  readonly="readonly"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row welcome text-centet">
             <div class="col-12">
                 <h1 class="same">Learning</h1>
             </div>
@@ -492,6 +528,39 @@
                 img_num++;
                 img_fun1(img_num);
                 frame2.find("#img_urls").attr("title",img_num);
+            });
+            //翻译
+            function ajax_tran(){
+                var input_text = $("#tran_area").val();
+                var lan1 = $("#dropdownMenu1").attr("data-lan1");
+                var lan2 = $("#dropdownMenu1").attr("data-lan2");
+                $.ajaxSetup({
+                    data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                });
+                $.ajax({
+                    url: "{% url 'translate' %}",
+                    type: 'POST',
+                    data: {"input_text":input_text, "lan1":lan1, "lan2":lan2},
+                    dataType: 'text',
+                    cache: false,
+                    success: function(data){
+                        var data = JSON.parse(data)['data']
+                        $("#show_tran").text(data);
+                    }
+                });
+            }
+            $(".lan").click(function(){
+                var lan_text = $(this).text();
+                var lan1 = $(this).attr("data-lan1");
+                var lan2= $(this).attr("data-lan2");
+                $("#dropdownMenu1").text(lan_text);
+                $("#dropdownMenu1").attr("data-lan1",lan1);
+                $("#dropdownMenu1").attr("data-lan2",lan2);
+                ajax_tran();
+            });
+            $("#tran_area").bind('input propertychange',ajax_tran);
+            $("#clear_tran").click(function(){
+                $("#tran_area").val("");
             });
             // 轮播图间隔时间
             $('.carousel').carousel({

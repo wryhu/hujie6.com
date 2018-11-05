@@ -202,3 +202,7 @@ div.tab-content li{
     -webkit-transform: rotatey(360deg);
     -moz-transform: rotatey(360deg);
 }
+.form-control {
+    background-color: rgba(238, 238, 238, 0.31)!important;
+    font-size:20px;
+}
