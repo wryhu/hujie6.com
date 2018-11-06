@@ -95,7 +95,7 @@
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-12">
-                <h1 class="same">网站相关数据统计</h1>
+                <h1 class="same" style="text-shadow:2px 2px 33px blue;">网站相关数据统计</h1>
             </div>
         </div>
         <div id="chart_set" class="row">
@@ -157,7 +157,7 @@
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
-                <h1 class="same">profile</h1>
+                <h1 class="same" style="text-shadow:2px 2px 33px red">profile</h1>
             </div>
         </div>
         <div class="row">
@@ -226,7 +226,7 @@
     <div id="img_crwal" class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
-                <h1 class="same">随机抓取网络壁纸</h1>
+                <h1 class="same" style="text-shadow:2px 2px 33px blue">随机抓取网络壁纸</h1>
             </div>
         </div>
         <div class="row welcome text-centet">
@@ -244,7 +244,7 @@
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-md-12 col-xs-12">
-                <h1 class="same">翻译</h1>
+                <h1 class="same"  style="text-shadow:2px 2px 33px green">翻译</h1>
             </div>
         </div>
         <div class="row welcome text-centet">
@@ -270,17 +270,17 @@
                   </ul>
                 </div>
                 <br>
-                <textarea id="tran_area" class="form-control" rows="10" placeholder="请输入需要翻译的文字内容~"></textarea>
+                <textarea id="tran_area" class="tran form-control" rows="10" placeholder="请输入需要翻译的文字内容~"></textarea>
             </div>
             <div class="col-md-6 col-xs-12">
-                <textarea id="show_tran" class="form-control" rows="10"  readonly="readonly"></textarea>
+                <textarea id="show_tran" class="tran form-control" rows="10" readonly="readonly"></textarea>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-12">
-                <h1 class="same">Learning</h1>
+                <h1 class="same"  style="text-shadow:2px 2px 33px blue">Learning</h1>
             </div>
         </div>
 
@@ -531,6 +531,9 @@
             });
             //翻译
             function ajax_tran(){
+                var text_num1 = $("#tran_area")[0].textLength / 35
+                var text_num2 = Math.floor(text_num1)
+                $(".tran").attr("rows",text_num2+10);
                 var input_text = $("#tran_area").val();
                 var lan1 = $("#dropdownMenu1").attr("data-lan1");
                 var lan2 = $("#dropdownMenu1").attr("data-lan2");
@@ -561,7 +564,20 @@
             $("#tran_area").bind('input propertychange',ajax_tran);
             $("#clear_tran").click(function(){
                 $("#tran_area").val("");
+                ajax_tran();
             });
+            <!--$(".form-control").height($(".form-control")[0].scrollHeight);-->
+             <!--$(".form-control").on("keyup keydown", function(){  })-->
+
+            <!--function readyNumber() {-->
+              <!--$('textarea').each(function () {-->
+                 <!--this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');-->
+              <!--}).on('input', function () {-->
+              <!--this.style.height = 'auto';-->
+              <!--this.style.height = (this.scrollHeight) + 'px';-->
+              <!--})-->
+            <!--}-->
+
             // 轮播图间隔时间
             $('.carousel').carousel({
                 pause:null,

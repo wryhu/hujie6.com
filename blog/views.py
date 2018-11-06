@@ -10,7 +10,7 @@ from django.contrib.contenttypes.models import ContentType
 from comment.models import Comment
 from comment.forms import CommentForm
 # 定义每一页显示的博客数量
-numbers_of_onepage = 4
+numbers_of_onepage = 10
 
 
 # 这是博客列表页,分类页,日期归档页的代码重用部分

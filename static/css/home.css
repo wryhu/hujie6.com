@@ -25,7 +25,6 @@ h1.same {
     padding: 40px 0px;
     border-bottom: 1px solid #ccc;
     color: #fff;
-    text-shadow:2px 2px 33px blue;
 }
 #bkg {
     padding:0;
@@ -202,7 +201,8 @@ div.tab-content li{
     -webkit-transform: rotatey(360deg);
     -moz-transform: rotatey(360deg);
 }
-.form-control {
+#tran_area,#show_tran {
     background-color: rgba(238, 238, 238, 0.31)!important;
     font-size:20px;
+    overflow:hidden;
 }

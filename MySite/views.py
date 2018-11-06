@@ -21,9 +21,6 @@ from .youdao import Translate
 # 有道翻译
 def translate(request):
     input_text = request.POST.get("input_text", "")
-
-    print input_text
-
     lan1 = request.POST.get("lan1", "AUTO")
     lan2 = request.POST.get("lan2", "AUTO")
     t = Translate(input_text, lan1, lan2)
