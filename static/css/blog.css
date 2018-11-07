@@ -3,8 +3,15 @@ body {
 }
 .panel {
     margin:10px;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 0px;
-    box-shadow: 5px 5px 5px #888888;
+    box-shadow: 6px 6px 6px rgba(63,74,105,.16);
+}
+.panel-default>.panel-heading{
+    background-color: rgba(255, 255, 255, 0);
+}
+.breadcrumb{
+    background-color: rgba(255, 255, 255, 0);
 }
 ul {
     list-style-type: none;
@@ -37,6 +44,9 @@ div.comment {
 }
 .media {
     padding:13px;
+    border: 1px solid rgba(141, 143, 160, 0);
+}
+.media:hover {
     border: 1px solid #ccc;
 }
 .media .row {
@@ -182,3 +192,7 @@ marquee img {
     font-size: 20px;
     text-decoration: none;
 }
+
+
+
+

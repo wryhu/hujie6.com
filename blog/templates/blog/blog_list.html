@@ -26,10 +26,11 @@
                         {% for blog in page_of_blogs.object_list %}
                             <div class="media">
                               <div class="row">
-                                <div class="col-md-3">
+                                <div style="overflow:hidden" class="col-md-3">
                               <div class="media-left media-middle">
                                 <a href="{% url 'blog_detail' blog.pk %}">
                                   <img class="img-rounded" src="/media/{{ blog.thumbnail }}" height="150" width="150">
+                                  <figcaption></figcaption>
                                 </a>
                               </div>
                                 </div>
@@ -165,8 +166,43 @@
 {% endblock %}
 
 {% block script_extends %}
+    <style type="text/css">
+
+        .media img {
+             opacity:.95;
+             -webkit-transition:opacity .35s,-webkit-transform .35s;
+             transition:opacity .35s,transform .35s;
+             -webkit-transform:scale3d(1.05,1.05,1);
+             transform:scale3d(1.05,1.05,1)
+        }
+        .media:hover img {
+             opacity:1;
+             -webkit-transform:scale3d(1,1,1);
+             transform:scale3d(1,1,1)
+        }
+        .media figcaption::before {
+         position:absolute;
+         top:0;
+         left:0;
+         width:100%;
+         height:100%;
+         background:rgba(255,255,255,0.7);
+         content:'';
+         -webkit-transition:-webkit-transform .6s;
+         transition:transform .6s;
+         -webkit-transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0);
+         transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0)
+        }
+
+        .media:hover figcaption::before {
+         -webkit-transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
+         transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0)
+        }
+
+    </style>
     <script type="text/javascript">
         $(function(){
+
             // 机器人提示
             function ll3 (){
                 $("#music-bar").attr('data-original-title','站长留言：你好，这里是全部文章的显示列表，文章数量不多，还请见谅');
