@@ -18,13 +18,13 @@
                     <div class="panel-heading">
                         <ol class="breadcrumb" style="margin:0;">
                           <li><a href="/">首页</a></li>
-                          <li><a href="/blog/">博客</a></li>
+                          <li><a href="/blog/ajax_blog_list">博客</a></li>
                           <li class="active">{% block blog_list_title %}全部{% endblock %}</li>
-                          <li style="float:right"><a href="/blog/ajax_blog_list">ajax模式</a></li>
+                          <li style="float:right"><a href="/blog/">传统翻页模式</a></li>
                         </ol>
                     </div>
-                    <div class="panel-body">
-                        {% for blog in page_of_blogs.object_list %}
+                    <div id="ajax_blog" class="panel-body">
+                        {% for blog in blogs %}
                             <div class="media">
                               <div class="row">
                                 <div style="overflow:hidden" class="col-md-3">
@@ -49,7 +49,7 @@
                                             <span class="glyphicon glyphicon-star-empty"></span> {{ blog.blog_type }}
                                         </button>
                                     </a>
-                                    <button type="button" class="btn btn-default btn-xs" title="make more time">
+                                    <button type="button" class="btn btn-default btn-xs">
                                         <span class="glyphicon glyphicon-time"></span> {{ blog.created_time|date:"Y-m-d H:i:s" }}
                                     </button>
                                     <button type="button" class="btn btn-default btn-xs">
@@ -69,48 +69,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="paginator">
-                  <!--分页部分-->
-                  <ul class="pagination pagination-md">
-                    <li>
-                       <!--上一页-->
-                        {% if page_of_blogs.has_previous %}
-                            <a href="?page={{ page_of_blogs.previous_page_number }}" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        {% else %}
-                            <span aria-hidden="true">&laquo;</span>
-                        {% endif %}
-                    </li>
-                    <!--页码-->
-                    {% for page_num in page_range %}
-                        {% if page_num == page_of_blogs.number %}
-                            <li class="active"><span>{{ page_num }}</span></li>
-                        {% else %}
-                            {% if page_num == '...' %}
-                                <li><span>{{ page_num }}</span></li>
-                            {% else %}
-                                <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>
-                            {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                    <li>
-                        <!--下一页-->
-                        {% if page_of_blogs.has_next %}
-                            <a href="?page={{ page_of_blogs.next_page_number }}" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        {% else %}
-                            <span aria-hidden="true">&raquo;</span>
-                        {% endif %}
-                    </li>
-                  </ul>
-                  <p style="color:#8f8f8f">
-                    共有{{ page_of_blogs.paginator.count }}篇博客,&nbsp;&nbsp;
-                    当前第{{ page_of_blogs.number }}页,&nbsp;&nbsp;
-                    共{{ page_of_blogs.paginator.num_pages }}页^_^
-                  </p>
-                </div>
+
             </div>
             <div id="music-parent" class="col-sm-4 col-md-3">
                 <div class="panel panel-default">
@@ -169,6 +128,52 @@
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
+            var current_page = 0
+            $(window).scroll(function(){
+                <!--var media_last = $("#ajax_blog").children(".media").last();-->
+                <!--var media_height = media_last.height() + 28;-->
+                <!--var media_height2 = media_last.offset().top - $(document).scrollTop();-->
+                <!--var final_height = $(window).height() - media_height - media_height2;-->
+                if(final_height>200){
+                    current_page++;
+                    $.ajaxSetup({
+                        data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                    });
+                    $.ajax({
+                        url: "{% url 'ajax_blog' %}",
+                        type: 'POST',
+                        data: {"start":current_page},
+                        dataType: 'text',
+                        cache: false,
+                        success: function(data){
+                            if(data=="{}"){
+                                var media_html = '<h3 class="media2">已加载全部文章，感谢您的支持</h2>'
+                                $("#ajax_blog").append(media_html)
+                                $(".media2").slideDown("slow");
+                            }else{
+                                var data = JSON.parse(data)
+                                var media_html = '<div class="media" style="display:none"><div class="row"><div style="overflow:hidden" class="col-md-3">\
+                                                <div class="media-left media-middle"><a href="/blog/'+data['id']+'/">\
+                                                <img class="img-rounded" src="/media/'+data['thumbnail']+'" height="150" width="150">\
+                                                <figcaption></figcaption></a></div></div><div class="col-md-9"><div class="media-body">\
+                                                <h3 class="media-heading"><a href="/blog/'+data['id']+'/">'+data['title']+'</a></h3>\
+                                                <div id="content">'+data['content']+'</div><a id="tagset" href="#">\
+                                                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-grain"></span> 作者: jet\
+                                                </button></a><a href="/blog/type_'+data['type_id']+'"><button type="button" class="btn btn-default btn-xs">\
+                                                <span class="glyphicon glyphicon-star-empty"></span> '+data['blog_type']+'</button></a>\
+                                                <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-time"></span> '+data['created_time']
+                                                +'</button><button type="button" class="btn btn-default btn-xs">\
+                                                <span class="glyphicon glyphicon-eye-open"></span> 阅读: '+data['read_num']
+                                                +'</button><button type="button" class="btn btn-default btn-xs">\
+                                                <span class="glyphicon glyphicon-comment"></span> 评论: '+data['comment_num']
+                                                +'</button></div></div></div></div>'
+                                $("#ajax_blog").append(media_html)
+                                $(".media").slideDown("slow");
+                            }
+                        }
+                    });
+                }
+            });
             // 机器人提示
             function ll3 (){
                 $("#music-bar").attr('data-original-title','站长留言：你好，这里是全部文章的显示列表，文章数量不多，还请见谅');

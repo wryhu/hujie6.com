@@ -25,7 +25,10 @@ def translate(request):
     lan2 = request.POST.get("lan2", "AUTO")
     t = Translate(input_text, lan1, lan2)
     data = {}
-    data['data'] = t.youdao()
+    try:
+        data['data'] = t.youdao()
+    except Exception:
+        data['data'] = ""
     return JsonResponse(data)
 
 

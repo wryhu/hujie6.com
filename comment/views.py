@@ -69,7 +69,6 @@ def submit_reply(request):
         data['reply_pk'] = comment.pk
         data['user_pk'] = comment.user.pk
     except Exception as e:
-        print(e)
         data['status'] = 'ERROR'
         data['message'] = '回复失败'
     return JsonResponse(data)

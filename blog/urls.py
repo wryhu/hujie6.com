@@ -6,6 +6,9 @@ from . import views
 urlpatterns = [
     # 全部博客,分页,用get请求显示每一页的全部博客,默认?page=1
     url(r'^$', views.blog_list, name='blog_list'),
+    # ajxa显示全部博客
+    url(r'^ajax_blog_list$', views.ajax_blog_list, name='ajax_blog_list'),
+    url(r'^ajax_blog$', views.ajax_blog, name='ajax_blog'),
     # 一篇博客
     url(r'^(\d+)/', views.blog_detail, name='blog_detail'),
     # 分类博客,机制同全部博客,所以模板方面继承即可

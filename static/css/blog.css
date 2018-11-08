@@ -1,5 +1,5 @@
 body {
-    background: url(/static/image/map.png) repeat center top;
+    background: url(/static/image/map.png) repeat right top;
 }
 .panel {
     margin:10px;
@@ -19,6 +19,17 @@ ul {
 }
 div.paginator {
     text-align: center;
+}
+.pagination {
+    box-shadow:0px 0px 6px 6px rgba(63,74,105,.16);
+}
+.pagination > .active > span {
+    background-color: #337ab780;
+    border-color: #ddd;
+}
+.pagination > .active > span:hover {
+    background-color: #2a567b80;
+    border-color: #ddd;
 }
 div.blog-content {
     line-height:180%;
@@ -192,7 +203,43 @@ marquee img {
     font-size: 20px;
     text-decoration: none;
 }
+.pagination > li > a:hover, .pagination > li > span:hover {
+    background-color: #e7dcd466;
+}
+.pagination > li > a, .pagination > li > span {
+    background-color: #fff0;
+}
+.media img {
+     opacity:.95;
+     -webkit-transition:opacity .35s,-webkit-transform .35s;
+     transition:opacity .35s,transform .35s;
+     -webkit-transform:scale3d(1.05,1.05,1);
+     transform:scale3d(1.05,1.05,1)
+}
+.media:hover img {
+     opacity:1;
+     -webkit-transform:scale3d(1,1,1);
+     transform:scale3d(1,1,1)
+}
+.media figcaption::before {
+ position:absolute;
+ top:0;
+ left:0;
+ width:100%;
+ height:100%;
+ background:rgba(255,255,255,0.7);
+ content:'';
+ -webkit-transition:-webkit-transform .6s;
+ transition:transform .6s;
+ -webkit-transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0);
+ transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,-100%,0)
+}
 
-
-
-
+.media:hover figcaption::before {
+ -webkit-transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
+ transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0)
+}
+.media2{
+    display:none;
+    text-align:center;
+    color:rgba(255, 0, 0, 0.5);

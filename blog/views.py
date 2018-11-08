@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.http import Http404
+from django.http import JsonResponse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render, get_object_or_404
 from .models import Blog, BlogType
@@ -9,8 +9,12 @@ from read_count.utils import read_count_func
 from django.contrib.contenttypes.models import ContentType
 from comment.models import Comment
 from comment.forms import CommentForm
+from read_count.models import ReadNum
+import re
+
 # 定义每一页显示的博客数量
-numbers_of_onepage = 10
+numbers_of_onepage = 5
+ajax_numbers_of_onepage = 2
 
 
 # 这是博客列表页,分类页,日期归档页的代码重用部分
@@ -56,6 +60,47 @@ def blog_common_data(request, blogs):
     context['blogs_random'] = blogs_random
     return context
 
+
+def ajax_blog_list(request):
+    blogs = Blog.objects.all()[:2]
+    # 建立每月的文章数的字典
+    blog_dates_dict = {}
+    blog_dates = Blog.objects.dates('created_time', 'month', order="DESC")
+    for blog_date in blog_dates:
+        blog_dates_dict[blog_date] = Blog.objects.filter(created_time__year=blog_date.year,
+                                                         created_time__month=blog_date.month).count()
+    context = {}
+    context['blog_types'] = BlogType.objects.annotate(blog_count=Count('blog'))
+    context['blog_dates'] = blog_dates_dict
+    blogs_random = Blog.objects.exclude(id=0).order_by('?')[:10]
+    context['blogs_random'] = blogs_random
+    context['blogs'] = blogs
+    return render(request, 'blog/ajax_blog.html', context)
+
+
+# ajax获取博客
+def ajax_blog(request):
+    start = int(request.POST.get("start"))
+    start2 = start + 1
+    blogs = Blog.objects.all()[start:start2]
+    data = {}
+    if blogs:
+        blog = blogs[0]
+        data['id'] = blog.pk
+        data['type_id'] = blog.blog_type.pk
+        data['title'] = blog.title
+        raw_content = blog.content[:100]
+        content = raw_content.replace("<p>", "") + "..."
+        data['content'] = content
+        data['blog_type'] = blog.blog_type.type_name
+        data['created_time'] = blog.created_time.strftime('%Y-%m-%d %H:%M:%S')
+        ct = ContentType.objects.get_for_model(blog)
+        readnum, created = ReadNum.objects.get_or_create(content_type=ct, object_id=blog.pk)
+        data['read_num'] = readnum.read_num
+        data['comment_num'] = Comment.objects.filter(content_type=ct, object_id=blog.pk).count()
+        data['thumbnail'] = str(blog.thumbnail)
+        return JsonResponse(data)
+    return JsonResponse(data)
 
 # 全部博客
 def blog_list(request):

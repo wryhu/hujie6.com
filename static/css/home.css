@@ -1,5 +1,5 @@
 body {
-    background: url(/static/image/map.png) repeat left top;
+    background: url(/static/image/map.png) repeat center top;
 }
 div.jumbotron {
     margin-bottom:0;
@@ -205,4 +205,25 @@ div.tab-content li{
     background-color: rgba(238, 238, 238, 0.31)!important;
     font-size:20px;
     overflow:hidden;
+    resize:none;
+}
+.dropdown-menu{
+    min-width:124px;
+    max-width:280px;
+    padding: 6px 0 12px;
+}
+.dropdown-menu > li {
+    float: left;
+}
+.dropdown-menu > li > a {
+    padding: 8px 18px;
+}
+#dropdownMenu1 {
+    width: 180px;
+    text-align:left;
+}
+.fa-caret-down{
+    position:absolute;
+    left:160px;
+    top:10px;
 }
