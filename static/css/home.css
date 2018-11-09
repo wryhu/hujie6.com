@@ -209,7 +209,7 @@ div.tab-content li{
 }
 .dropdown-menu{
     min-width:124px;
-    max-width:280px;
+    max-width:300px;
     padding: 6px 0 12px;
 }
 .dropdown-menu > li {

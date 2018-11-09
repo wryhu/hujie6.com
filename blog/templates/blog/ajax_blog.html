@@ -161,7 +161,7 @@
                                 return false;
                             }else{
                                 var data = JSON.parse(data)
-                                var media_html = '<div class="media" style="display:none"><div class="row"><div style="overflow:hidden" class="col-md-3">\
+                                var media_html = '<div class="media figcaption cp_'+current_page+'" style="display:none"><div class="row"><div style="overflow:hidden" class="col-md-3">\
                                                 <div class="media-left media-middle"><a href="/blog/'+data['id']+'/">\
                                                 <img class="img-rounded" src="/media/'+data['thumbnail']+'" height="150" width="150">\
                                                 <figcaption></figcaption></a></div></div><div class="col-md-9"><div class="media-body">\
@@ -177,7 +177,10 @@
                                                 <span class="glyphicon glyphicon-comment"></span> 评论: '+data['comment_num']
                                                 +'</button></div></div></div></div>'
                                 $("#ajax_blog").append(media_html)
-                                $(".media").slideDown("slow");
+                                var cp = ".cp_"+current_page;
+                                $(cp).slideDown("slow",function(){
+                                    $(cp).removeClass("figcaption");
+                                });
                             }
                         }
                     });

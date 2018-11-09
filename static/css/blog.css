@@ -209,14 +209,12 @@ marquee img {
     background-color: #fff0;
 }
 .media img {
-     opacity:.95;
      -webkit-transition:opacity .35s,-webkit-transform .35s;
      transition:opacity .35s,transform .35s;
      -webkit-transform:scale3d(1.05,1.05,1);
      transform:scale3d(1.05,1.05,1)
 }
 .media:hover img {
-     opacity:1;
      -webkit-transform:scale3d(1,1,1);
      transform:scale3d(1,1,1)
 }
@@ -238,7 +236,12 @@ marquee img {
  -webkit-transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
  transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0)
 }
+.figcaption figcaption::before {
+    -webkit-transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0);
+     transform:scale3d(1.9,1.4,1) rotate3d(0,0,1,45deg) translate3d(0,100%,0)
+}
 .media2{
     display:none;
     text-align:center;
     color:rgba(255, 0, 0, 0.5);
+}
