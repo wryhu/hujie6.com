@@ -108,7 +108,7 @@ div.comment {
 .blog-info-desc a {
     text-decoration:none;
 }
-.blog-info-desc .btn-default {
+.btn-default {
     background-color: rgba(141, 143, 160, 0);
 }
 .jumbotron {
@@ -182,7 +182,6 @@ a.reply_btn {
     float:right;
 }
 #music-parent {
-    margin-left: 56px;
     padding:0px;
 }
 #music-parent .panel {

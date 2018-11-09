@@ -71,7 +71,7 @@
                 </div>
 
             </div>
-            <div id="music-parent" class="col-sm-4 col-md-3">
+            <div id="music-parent" class="col-sm-4 col-md-3 col-md-offset-0">
                 <div class="panel panel-default">
                     <div class="panel-heading"><span class="fa fa-object-ungroup"></span> &nbsp;博客分类</div>
                     <div class="panel-body">
@@ -128,13 +128,18 @@
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
-            var current_page = 0
+            var current_page = 0;
+            var media_last = $("#ajax_blog").children(".media").last();
+            var media_height = media_last.height() + 28; //此元素高度加上padding和border
+            var media_height2 = media_last.offset().top - $(document).scrollTop();//此元素距离窗口顶部
+            var final_height = $(window).height() - media_height - media_height2;//此元素距离窗口底部
+            var media_height3 = media_height + 15; //每一次加载多出来的高度
+            var initial_height = 100;
+            var check_num = 1;
             $(window).scroll(function(){
-                <!--var media_last = $("#ajax_blog").children(".media").last();-->
-                <!--var media_height = media_last.height() + 28;-->
-                <!--var media_height2 = media_last.offset().top - $(document).scrollTop();-->
-                <!--var final_height = $(window).height() - media_height - media_height2;-->
-                if(final_height>200){
+                var media_height2 = media_last.offset().top - $(document).scrollTop();//此元素距离窗口顶部
+                var final_height = $(window).height() - media_height - media_height2;//此元素距离窗口底部
+                if(final_height>initial_height){
                     current_page++;
                     $.ajaxSetup({
                         data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
@@ -147,9 +152,13 @@
                         cache: false,
                         success: function(data){
                             if(data=="{}"){
-                                var media_html = '<h3 class="media2">已加载全部文章，感谢您的支持</h2>'
-                                $("#ajax_blog").append(media_html)
-                                $(".media2").slideDown("slow");
+                                if(check_num==1){
+                                    var media_html = '<h3 class="media2">已加载全部文章，感谢您的支持</h2>'
+                                    $("#ajax_blog").append(media_html);
+                                    $(".media2").slideDown("slow");
+                                    check_num = 2;
+                                }
+                                return false;
                             }else{
                                 var data = JSON.parse(data)
                                 var media_html = '<div class="media" style="display:none"><div class="row"><div style="overflow:hidden" class="col-md-3">\
@@ -172,6 +181,7 @@
                             }
                         }
                     });
+                    initial_height+=media_height3;
                 }
             });
             // 机器人提示
