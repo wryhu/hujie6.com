@@ -128,7 +128,7 @@
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
-            var current_page = 0;
+            var current_page = 1;
             var media_last = $("#ajax_blog").children(".media").last();
             var media_height = media_last.height() + 28; //此元素高度加上padding和border
             var media_height2 = media_last.offset().top - $(document).scrollTop();//此元素距离窗口顶部
@@ -168,12 +168,12 @@
                                                 <h3 class="media-heading"><a href="/blog/'+data['id']+'/">'+data['title']+'</a></h3>\
                                                 <div id="content">'+data['content']+'</div><a id="tagset" href="#">\
                                                 <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-grain"></span> 作者: jet\
-                                                </button></a><a href="/blog/type_'+data['type_id']+'"><button type="button" class="btn btn-default btn-xs">\
+                                                </button></a> <a href="/blog/type_'+data['type_id']+'"><button type="button" class="btn btn-default btn-xs">\
                                                 <span class="glyphicon glyphicon-star-empty"></span> '+data['blog_type']+'</button></a>\
                                                 <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-time"></span> '+data['created_time']
-                                                +'</button><button type="button" class="btn btn-default btn-xs">\
+                                                +'</button> <button type="button" class="btn btn-default btn-xs">\
                                                 <span class="glyphicon glyphicon-eye-open"></span> 阅读: '+data['read_num']
-                                                +'</button><button type="button" class="btn btn-default btn-xs">\
+                                                +'</button> <button type="button" class="btn btn-default btn-xs">\
                                                 <span class="glyphicon glyphicon-comment"></span> 评论: '+data['comment_num']
                                                 +'</button></div></div></div></div>'
                                 $("#ajax_blog").append(media_html)
