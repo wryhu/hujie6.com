@@ -65,6 +65,7 @@ html body {
 }
 a.navbar-brand {
     padding:11px 30px;
+    outline:none;
 }
 .caret {
     padding-bottom:9px;

@@ -13,7 +13,7 @@
 		<script src="http://libs.baidu.com/html5shiv/3.7/html5shiv.min.js"></script>
 	<![endif]-->
 </head>
-<body>
+<body ondragstart="return false">
 	<main>
 		<div class="-content -index">
 			<div>
@@ -34,9 +34,7 @@
 							</div>
 						</div>
 						<div id="emitter"></div>
-                        <a href="/home">
-                            <img id="logo" src="/static/image/geass.png" style="width:100px;display:none">
-                        </a>
+                        <img id="logo" src="/static/image/geass.png" style="width:100px;display:none;cursor:pointer">
 					</div>
 				</div>
 	    		</div>
@@ -45,5 +43,10 @@
 	<script src="http://www.jq22.com/jquery/2.1.1/jquery.min.js"></script>
 	<script src='http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenMax.min.js'></script>
 	<script src="/static/js/index.js"></script>
+	<script>
+		$("#logo").click(function(){
+            window.location = "/home"
+        });
+	</script>
 </body>
 </html>

@@ -20,7 +20,7 @@
         }
     </script>
 </head>
-<body id="t" class="offline">
+<body id="t" class="offline" ondragstart="return false">
     <div id="entry">
         <div id="main-frame-error" class="interstitial-wrapper">
             <div id="main-content">
@@ -136,9 +136,7 @@
         // 恐龙提示
         $("#play").tooltip();
         // 焦点在此框架上才能空格触发游戏开始
-
         window.focus();
-
         // 恐龙跳
         var blank_num = 0
         $(document).keydown(function(e){

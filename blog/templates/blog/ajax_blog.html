@@ -30,7 +30,7 @@
                                 <div style="overflow:hidden" class="col-md-3">
                               <div class="media-left media-middle">
                                 <a href="{% url 'blog_detail' blog.pk %}">
-                                  <img class="img-rounded" src="/media/{{ blog.thumbnail }}" height="150" width="150">
+                                  <img src="/media/{{ blog.thumbnail }}" height="150" width="150">
                                   <figcaption></figcaption>
                                 </a>
                               </div>
@@ -163,7 +163,7 @@
                                 var data = JSON.parse(data)
                                 var media_html = '<div class="media figcaption cp_'+current_page+'" style="display:none"><div class="row"><div style="overflow:hidden" class="col-md-3">\
                                                 <div class="media-left media-middle"><a href="/blog/'+data['id']+'/">\
-                                                <img class="img-rounded" src="/media/'+data['thumbnail']+'" height="150" width="150">\
+                                                <img src="/media/'+data['thumbnail']+'" height="150" width="150">\
                                                 <figcaption></figcaption></a></div></div><div class="col-md-9"><div class="media-body">\
                                                 <h3 class="media-heading"><a href="/blog/'+data['id']+'/">'+data['title']+'</a></h3>\
                                                 <div id="content">'+data['content']+'</div><a id="tagset" href="#">\

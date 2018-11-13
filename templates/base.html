@@ -16,12 +16,12 @@
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
     {% block header_extends %}{% endblock %}
 </head>
-<body>
+<body ondragstart="return false">
     <div id="body_switch">
         <!--导航条-->
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'home' %}"><img src="/static/image/geass.png" style="width:80px;height:38px;"></a>
+                <a class="navbar-brand" href="{% url 'move' %}"><img src="/static/image/geass.png" style="width:80px;height:38px;"></a>
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="icon-bar"></span>
@@ -308,10 +308,10 @@
             var x = 0
             $(document).on('click', ".skPlayer-list-switch", function(){
                 if(x%2==0){
-                    $(".skPlayer2").attr("class","skPlayer2 skPlayer-list-on");
+                    $(".skPlayer-list").slideDown();
                     x++;
                 }else{
-                    $(".skPlayer2").attr("class","skPlayer2");
+                    $(".skPlayer-list").slideUp();
                     x++;
                 }
             });

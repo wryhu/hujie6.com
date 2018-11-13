@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <!--第三方-->
-                <div class="panel panel-default" style="width:61%;">
+                <div class="panel panel-default" style="width:81%;">
                   <div class="panel-heading">
                     <h3 class="panel-title">合作帐号登录</h3>
                   </div>
@@ -46,7 +46,7 @@
                       <a href="{% url 'oauth_login' %}?oauth_type=qq" data-toggle="tooltip" data-placement="left" data-original-title="QQ登录" id="qq"><img class="qq_img" src="/static/image/qq.jpg"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=sina" data-toggle="tooltip" data-placement="top" data-original-title="微博登录" class="fa fa-weibo"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=baidu" data-toggle="tooltip" data-placement="right" data-original-title="百度登录"><img class="baidu_img" src="/static/image/baidu"></a>
-                      <a href="{% url 'oauth_login' %}?oauth_type=google" target="_parent" style="margin-left:10px"><img id="google" src="/static/image/google_normal.png"></a>
+                      <a href="{% url 'oauth_login' %}?oauth_type=google" target="_parent" style="margin-left:10px;display: block;"><img id="google" src="/static/image/google_normal.png"></a><Br />
                       <a href="{% url 'oauth_login' %}?oauth_type=github" target="_parent" data-toggle="tooltip" data-placement="left" data-original-title="github登录" class="fa fa-github"></a>
                       <a href="{% url 'oauth_login' %}?oauth_type=line" target="_parent" data-toggle="tooltip" data-placement="bottom" data-original-title="line登录"><img class="line_img" src="/static/image/line.png"></a>
 
@@ -70,9 +70,6 @@
         .panel .panel-heading {
             background-color:#FFF;
         }
-        <!--#oauth_login {-->
-            <!--padding:0 0 0 10px;-->
-        <!--}-->
         #oauth_login a {
             font-size:35px;
             outline:none;

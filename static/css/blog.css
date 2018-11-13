@@ -74,9 +74,6 @@ div.comment {
     padding-right: 10px;
     text-align:center;
 }
-.img-rounded {
-    margin: 18px 0px 0px 10px;
-}
 .blog-types a{
     text-decoration:none;
 }
@@ -211,12 +208,12 @@ marquee img {
 .media img {
      -webkit-transition:opacity .35s,-webkit-transform .35s;
      transition:opacity .35s,transform .35s;
-     -webkit-transform:scale3d(1.05,1.05,1);
-     transform:scale3d(1.05,1.05,1)
-}
-.media:hover img {
      -webkit-transform:scale3d(1,1,1);
      transform:scale3d(1,1,1)
+}
+.media:hover img {
+     -webkit-transform:scale3d(1.05,1.05,1);
+     transform:scale3d(1.05,1.05,1)
 }
 .media figcaption::before {
  position:absolute;

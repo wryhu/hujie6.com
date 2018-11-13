@@ -194,7 +194,6 @@
                 });
                 return false;
             });
-            // 监视浏览器全局,因为若是ajax呈现的数据,普通的.click()方法无法触发
             $(document).on('click', ".reply_btn", function(){
                 if($("#comment_sub").find('span').text()=='or'){
                     alert('您尚未登录,请登录后再回复')
@@ -204,10 +203,9 @@
                 $(".reply_form").remove()
                 var reply_html = '<div class="reply_form"><textarea name="" class="reply-text"></textarea>'
                                  +'<span id="reply_error" name="reply-error" class="text-danger pull-left"></span>'
-                                 +'<button class="reply_button btn btn-sm btn-default">咻咻</button>'
+                                 +'<button class="reply_button btn btn-sm btn-default">回复</button>'
                 $(this).parent().parent().after(reply_html);
             });
-            // 全局监视回复按钮触发
             $(document).on('click', ".reply_button", function(){
                 // 判断是否为空
                 $("#reply_error").text('');
