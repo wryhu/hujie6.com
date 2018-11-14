@@ -535,7 +535,7 @@
             var img_data2 = frame2.find(img_div2).text();
             $('#bgz-1').attr("src",img_data1);
             $('#bgz-2').attr("src",img_data2);
-            // 点击抓取隐藏第一张显示第二张并加载第三张，此后点击循环此动作
+            // 点击抓取隐藏第一张显示第二张并在显示第二张的同时在第一张的位置加载第三张，此后再点击的话就循环此动作
             $("#change_img").one("click",function(){
                 img_num++;
                 img_fun1(img_num);
@@ -609,8 +609,6 @@
                     $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
                 }
             });
-            // 小彩蛋
-            console.log('你好，我叫胡捷,这是我的个人网站,用django+bootstrap搭建,正在不断完善优化中,敬请期待!');
         });
     </script>
 {% endblock %}
