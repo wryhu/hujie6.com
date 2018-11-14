@@ -35,9 +35,13 @@
                 </template>
             </div>
         </div>
-
         <div id="home_text">欢迎光临</div>
         <div class="enter"></div>
+        <div class="btn-group btn-group-xs" role="group">
+          <button id="switch1" type="button" class="btn btn-default">早上</button>
+          <button id="switch2" type="button" class="btn btn-default">中午</button>
+          <button id="switch3" type="button" class="btn btn-default">晚上</button>
+        </div>
         <div id="play" data-toggle="tooltip" data-placement="right" data-original-title="按空格开始"></div>
     </div>
 </body>
@@ -65,7 +69,6 @@
         height: 85px;
         width: 212px;
         transform: skew(17deg) rotate(378deg);
-        animation: change1 10s linear 0s infinite;
         cursor:pointer;
     }
     #home_text {
@@ -75,8 +78,27 @@
         font-size: 20px;
         letter-spacing: 13px;
         transform: skew(27deg) rotate(28deg);
-        animation: change2 10s linear 0s infinite;
+        color:red;
         cursor:pointer;
+    }
+    .animate1{
+        animation:change1 10s linear 0s infinite;
+    }
+    .animate2{
+        animation:change2 10s linear 0s infinite;
+    }
+    .btn-group{
+        position: absolute;
+        top: 305px;
+        left: -208px;
+        transform: skew(-7deg);
+    }
+    .btn-default{
+        outline:none;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .btn-default:hover{
+        background-color: rgba(255, 255, 255, 0.5);
     }
     #play {
         position: absolute;
@@ -88,7 +110,7 @@
     }
     @keyframes change1 {
         0%{box-shadow: 0 16px 14px rgb(30, 171, 218);}
-        13%{box-shadow: 0 16px 14px rgb(30, 171, 218, 0);}
+        13%{box-shadow: 0 16px 14px blue;}
         31%{box-shadow: 0 16px 14px  gold;}
         50%{box-shadow: 0 16px 14px  white;}
         68%{box-shadow: 0 16px 14px red;}
@@ -97,11 +119,11 @@
     }
     @keyframes change2 {
         0%{color:rgb(30, 171, 218);}
-        13%{color:yellow;}
-        31%{color:red; }
+        13%{color:blue;}
+        31%{color:gold; }
         50%{color:white; }
-        68%{color:gold; }
-        87%{color:black;}
+        68%{color:red; }
+        87%{color:yellow;}
         100% {color:rgb(30, 171, 218);}
     }
 </style>
@@ -132,7 +154,24 @@
         }else{
             // 晚上
             $("body").css("background-image","url(/static/image/night.jpg)");
+            $(".enter").addClass("animate1");
+            $("#home_text").addClass("animate2");
         }
+        $("#switch1").click(function(){
+            $("body").css("background-image","url(/static/image/morning.jpg)");
+            $(".enter").removeClass("animate1");
+            $("#home_text").removeClass("animate2");
+        });
+         $("#switch2").click(function(){
+            $("body").css("background-image","url(/static/image/noon.jpeg)");
+            $(".enter").removeClass("animate1");
+            $("#home_text").removeClass("animate2");
+        });
+         $("#switch3").click(function(){
+            $("body").css("background-image","url(/static/image/night.jpg)");
+            $(".enter").addClass("animate1");
+            $("#home_text").addClass("animate2");
+        });
         // 恐龙提示
         $("#play").tooltip();
         // 焦点在此框架上才能空格触发游戏开始
