@@ -3,6 +3,9 @@ html body {
     padding: 0;
     font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
 }
+body a{
+    outline:none;
+}
 .body_night2 {
     background-color:rgba(0, 0, 0, 0.24);
 }
