@@ -68,27 +68,7 @@
         <div class="container">
             <h1>Hello, world!</h1>
             <p>欢迎访问我的网站</p>
-            <div id="about_me" data-toggle="collapse" data-target="#collapseExample">
-              about me
-            </div>
-            <div class="collapse" id="collapseExample">
-              <div class="well">
-                <h3 class="fire">
-                    <span class="s1">我</span>
-                    <span class="s2">就</span>
-                    <span class="s3">是</span>
-                    <span class="s4">我</span>
-                    <span class="s5">,</span>
-                    <span class="s6">是</span>
-                    <span class="s7">不</span>
-                    <span class="s8">一</span>
-                    <span class="s9">样</span>
-                    <span class="s10">的</span>
-                    <span class="s11">烟</span>
-                    <span class="s12">火</span>
-                </h3>
-              </div>
-            </div>
+
         </div>
     </div>
 
@@ -471,23 +451,6 @@
             credits: { enabled: false },
         };
         $(function(){
-            // 按钮特效
-            var main = document.querySelector('#about_me');
-            main.onclick = function (e) {
-                var x = e.pageX - main.offsetLeft;
-                var y = e.pageY - main.offsetTop;
-                var div = document.createElement('div');
-                div.style.left = x + 'px';
-                div.style.top = y + 'px';
-                var r = Math.floor(Math.random() * 256)
-                var g = Math.floor(Math.random() * 256)
-                var b = Math.floor(Math.random() * 256)
-                div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";
-                main.appendChild(div);
-                setTimeout(function () {
-                    main.removeChild(div);
-                }, 600)
-            }
             // thumbnail鼠标进入特效
             $(".thumbnail").mouseover(function(){
                 $(this).addClass("thumbnail_over");

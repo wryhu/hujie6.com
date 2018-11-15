@@ -26,9 +26,29 @@ html body {
     100% {background-color:rgba(0, 0, 0, 0);}
 }
 #navbar-base {
+    position: relative;
     margin: 0px;
     border: 0;
     background-color: rgba(255, 255, 255, 0);
+}
+#navbar-base .navbar-click {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.342);
+    position: absolute;
+    animation: bian 0.5s linear both 1;
+}
+@keyframes bian {
+    0% {
+        opacity: 1;
+        transform: scale(1)
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(8)
+    }
 }
 #totop {
     position: fixed;

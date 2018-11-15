@@ -137,6 +137,24 @@
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            // 导航点击特效
+            var main = document.querySelector('#navbar-base');
+            main.onclick = function (e) {
+                var x = e.pageX - main.offsetLeft;
+                var y = e.pageY - main.offsetTop;
+                var div = document.createElement('div');
+                div.className='navbar-click';
+                div.style.left = x + 'px';
+                div.style.top = y + 'px';
+                var r = Math.floor(Math.random() * 256)
+                var g = Math.floor(Math.random() * 256)
+                var b = Math.floor(Math.random() * 256)
+                div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";
+                main.appendChild(div);
+                setTimeout(function () {
+                    main.removeChild(div);
+                }, 600)
+            }
             var frame = $(parent.frames["hidden-player"].document)
             // 开关灯
             var switch_str = frame.find(".next_music").text();

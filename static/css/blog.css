@@ -111,8 +111,11 @@ div.comment {
 .jumbotron {
     background-color: rgba(141, 143, 160, 0.19);
 }
-
-#comment-list .jumbotron {background-color: rgba(141, 143, 160, 0.19);
+.jumbotron:hover {
+    background-color: rgba(141, 143, 160, 0.3);
+}
+#comment-list .jumbotron {
+    background-color: rgba(141, 143, 160, 0.19);
     padding: 25px 25px 80px 25px;
     margin:30px 0px;
 }

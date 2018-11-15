@@ -164,36 +164,6 @@ div.tab-content li{
 .box:hover::after, .box:hover::before {
     -webkit-transform: scale(2);
 }
-#about_me {
-    width: 200px;
-    height: 80px;
-    text-align: center;
-    line-height: 80px;
-    letter-spacing: 0.2em;
-    font-size: 30px;
-    cursor: pointer;
-    position: relative;
-    color: rgb(143, 141, 141);
-}
-#about_me div {
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    background: rgba(0, 0, 0, 0.342);
-    position: absolute;
-    animation: bian 0.5s linear both 1;
-}
-@keyframes bian {
-    0% {
-        opacity: 1;
-        transform: scale(1)
-    }
-
-    100% {
-        opacity: 0;
-        transform: scale(8)
-    }
-}
 .learn_hover img{
     -webkit-transition: 1s ease;
     -moz-transition: 1s ease;

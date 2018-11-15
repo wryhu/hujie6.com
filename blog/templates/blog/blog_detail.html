@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="jumbotron" style="margin-top:20px;">
-                    <h2 class="blog_title">{{ blog.title }}</h2>
+                    <a href="" style="color:black"><h2 class="blog_title">{{ blog.title }}</h2></a>
                     <div class="blog-info-desc">
                         <a href="#">
                             <button type="button" class="btn btn-default btn-xs">
@@ -73,7 +73,7 @@
                             <input type="submit" value="评论" class="btn btn-primary pull-right">
                         </form>
                     {% else %}
-                        您尚未登录，登录之后方可评论和回复~
+                        您尚未登录，登录后会显示评论框~
                         <a class="btn btn-primary" href="{% url 'login' %}?form={{ request.get_full_path }}">登录</a>
                         <span>or</span>
                         <a class="btn btn-danger" href="{% url 'register' %}?form={{ request.get_full_path }}">注册</a>
@@ -265,6 +265,7 @@
                 });
                 return false;
             });
+
             // 使用zoom.js插件，使得文章内图片按比例缩小
             $(".blog-content img").removeAttr("style");
             $(".blog-content img").attr("data-action", "zoom");
