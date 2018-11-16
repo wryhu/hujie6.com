@@ -28,7 +28,7 @@ def identify_type(oauth_type):
         oauth_obj = OAuth_GOOGLE(settings.GOOGLE_APP_ID, settings.GOOGLE_KEY, settings.GOOGLE_RECALL_URL)
     if oauth_type == 'line':
         oauth_obj = OAuth_LINE(settings.LINE_APP_ID, settings.LINE_KEY, settings.LINE_RECALL_URL)
-    if oauth_type == 'facebook' or oauth_type == 'twitter':
+    if oauth_type == 'facebook':
         oauth_obj = OAuth_FACEBOOK(settings.FB_APP_ID, settings.FB_KEY, settings.FB_RECALL_URL)
     return oauth_obj
 
@@ -61,7 +61,7 @@ def check(request, oauth_type):
         # authenticate方法得到的user对象和普通的user对象多了一个backend参数。手动设置一下这个参数，则可以顺利使用login方法登录该用户。
         setattr(user, 'backend', 'django.contrib.auth.backends.ModelBackend')
         login(request, user)
-        if oauth_type == 'github' or oauth_type == 'line':
+        if oauth_type == 'github' or oauth_type == 'line' or oauth_type == 'facebook':
             return HttpResponseRedirect('/')
         return HttpResponseRedirect('/home')
     else:
@@ -110,7 +110,7 @@ def bind_email(request):
             login(request, user)
         # 页面提示
         context['email'] = email
-        if oauth_type == 'github' or oauth_type == 'line':
+        if oauth_type == 'github' or oauth_type == 'line' or oauth_type == 'facebook':
             context['goto_url'] = '/'
         else:
             context['goto_url'] = '/home'

@@ -157,7 +157,7 @@ class OAuth_BAIDU:
         params = {'client_id': self.client_id,
                   'response_type': 'code',
                   'redirect_uri': self.redirect_uri}
-        url = 'http://openapi.baidu.com/oauth/2.0/authorize?%s' % urllib.urlencode(params)
+        url = 'https://openapi.baidu.com/oauth/2.0/authorize?%s' % urllib.urlencode(params)
         return url
 
     def get_access_token(self, code):
