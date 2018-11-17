@@ -22,7 +22,10 @@
         <!--导航条-->
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{% url 'move' %}"><img src="/static/image/geass.png" style="width:80px;height:38px;"></a>
+                <a id="site_logo_a" class="navbar-brand" href="{% url 'move' %}">
+                    <img id="site_logo1" src="/static/image/geass.png">
+                    <img id="site_logo2" src="/static/image/geass2.png">
+                </a>
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
                         <span class="icon-bar"></span>
