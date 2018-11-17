@@ -61,41 +61,6 @@ def get_7_days_hot_blog():
     return blogs[:7]
 
 
-# 提供给下方函数调用
-def reading_trend(read_nums):
-    # 前七天的阅读量变化: 人生的路总像这样曲曲折折~~~
-    num = 0
-    if [0 for i in range(7)] == read_nums:
-        print(read_nums)
-        # 前七天的阅读量变化: 一篇都没人看?这也太真实了吧!
-        num = 1
-    # 前七天的阅读量变化: 近几日上升回温,我的春天要来了吗?
-    if read_nums[4] < read_nums[5] < read_nums[6]:
-        num = 4
-    # 前七天的阅读量变化: 连续多天的上升状态,最高にhighってやつだ!
-    if read_nums[2] < read_nums[3] < read_nums[4] < read_nums[5] < read_nums[6]:
-        num = 5
-    # 前七天的阅读量变化: 近几日下降明显,好吧我已经习惯了~
-    if read_nums[4] > read_nums[5] > read_nums[6]:
-        num = 6
-    # 前七天的阅读量变化: 连续多天的下降状态,这破站吃枣药丸啊!
-    if read_nums[2] > read_nums[3] > read_nums[4] > read_nums[5] > read_nums[6]:
-        num = 7
-    n = 0
-    for i in range(6):
-        if read_nums[i] < read_nums[i + 1]:
-            n += 1
-        if read_nums[i] > read_nums[i + 1]:
-            n -= 1
-    # 前七天的阅读量变化: 一路飙升,我这是要上天啊!
-    if 6 == n:
-        num = 2
-    # 前七天的阅读量变化: 一路下降,holy shit!
-    if -6 == n:
-        num = 3
-    return num
-
-
 def home(request):
     blog_content_type = ContentType.objects.get_for_model(Blog)
     dates, read_nums = get_seven_days_read_data(blog_content_type)
@@ -104,11 +69,9 @@ def home(request):
     if sevendays_cache is None:
         sevendays_cache = get_7_days_hot_blog()
         cache.set('seven_cache', sevendays_cache, 43200)
-    num_cache = reading_trend(read_nums)
     context = {}
     context['dates'] = dates
     context['read_nums'] = read_nums
-    context['num'] = num_cache
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
     context['get_yesterday_hot_data'] = get_yesterday_hot_data(blog_content_type)
     context['get_7_days_hot_blog'] = sevendays_cache

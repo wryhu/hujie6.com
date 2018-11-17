@@ -398,30 +398,7 @@
             xAxis: {
                 categories: {{ dates|safe }},   // x 轴分类
                 tickmarkPlacement: 'on',
-                {% if num == 0 %}
-                title: { text: '前七天的阅读量变化: 人生的路总像这样曲曲折折~~~' },
-                {% endif %}
-                {% if num == 1 %}
-                title: { text: '前七天的阅读量变化: 一篇都没人看?这也太真实了吧!' },
-                {% endif %}
-                {% if num == 2 %}
-                title: { text: '前七天的阅读量变化: 一路飙升,我这是要上天啊!' },
-                {% endif %}
-                {% if num == 3 %}
-                title: { text: '前七天的阅读量变化: 一路下降,holy shit!' },
-                {% endif %}
-                {% if num == 4 %}
-                title: { text: '前七天的阅读量变化: 近几日上升回温,我的春天要来了吗?' },
-                {% endif %}
-                {% if num == 5 %}
-                title: { text: '前七天的阅读量变化: 连续多天的上升状态,最高にhighってやつだ!' },
-                {% endif %}
-                {% if num == 6 %}
-                title: { text: '前七天的阅读量变化: 近几日下降明显,好吧我已经习惯了~' },
-                {% endif %}
-                {% if num == 7 %}
-                title: { text: '前七天的阅读量变化: 连续多天的下降状态,这破站吃枣药丸啊!' },
-                {% endif %}
+                title: '',
             },
             yAxis: {
                 title: { text: null },

@@ -158,16 +158,19 @@
             $("#home_text").addClass("animate2");
         }
         $("#switch1").click(function(){
+            $(this).blur();
             $("body").css("background-image","url(/static/image/morning.jpg)");
             $(".enter").removeClass("animate1");
             $("#home_text").removeClass("animate2");
         });
          $("#switch2").click(function(){
+            $(this).blur();
             $("body").css("background-image","url(/static/image/noon.jpeg)");
             $(".enter").removeClass("animate1");
             $("#home_text").removeClass("animate2");
         });
          $("#switch3").click(function(){
+            $(this).blur();
             $("body").css("background-image","url(/static/image/night.jpg)");
             $(".enter").addClass("animate1");
             $("#home_text").addClass("animate2");
