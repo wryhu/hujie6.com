@@ -189,41 +189,23 @@ footer {
     left:0;
     width:80px;
     height:40px;
-    opacity:0;
+    display:none;
 }
 #site_logo2{
+    position:absolute;
+    top:0;
+    left:0;
     width:80px;
     height:40px;
     opacity:1;
 }
-.site_logo1{
-    animation:logo1 10s linear 0s infinite;
-}
-.site_logo2{
-    animation:logo2 10s linear 0s infinite;
-}
-#site_logo_a:hover #site_logo1{
-    opacity:1;
-}
-#site_logo_a:hover #site_logo2{
+#site_logo3{
+    width:80px;
+    height:40px;
     opacity:0;
 }
-@keyframes logo1{
-    0%{opacity:0;}
-    10%{opacity:0;}
-    30%{opacity:1;}
-    70%{opacity:1;}
-    90%{opacity:0;}
-    100% {opacity:0;}
-}
-@keyframes logo2{
-    0%{opacity:1;}
-    10%{opacity:1;}
-    30%{opacity:0;}
-    70%{opacity:0;}
-    90%{opacity:1;}
-    100% {opacity:1;}
-}
+
+
 .form-group{
     position:relative;
     top:-17px;

@@ -23,8 +23,9 @@
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
                 <a id="site_logo_a" class="navbar-brand" href="{% url 'move' %}">
-                    <img id="site_logo1" class="site_logo1" src="/static/image/geass.png">
-                    <img id="site_logo2" class="site_logo2" src="/static/image/geass2.png">
+                    <img id="site_logo1" class="site_logo1" src="/static/image/geass2.png">
+                    <img id="site_logo2" class="site_logo2" src="/static/image/geass.png">
+                    <img id="site_logo3" src="/static/image/geass.png">
                 </a>
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
@@ -141,13 +142,26 @@
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
-            $("#site_logo_a").mouseover(function(){
-                $("#site_logo1").removeClass("site_logo1");
-                $("#site_logo2").removeClass("site_logo2");
+            function logo_change(){
+                $("#site_logo1").fadeIn(2000,function(){
+                    $("#site_logo1").fadeOut(2000);
+                });
+                $("#site_logo2").fadeOut(2000,function(){
+                    $("#site_logo2").fadeIn(2000);
+                });
+            }
+            logo_change();
+            var timer = setInterval(logo_change,5000);
+            $("#site_logo_a").mouseenter(function(){
+                clearInterval(timer);
+                $("#site_logo1").stop().show().css({opacity:1});
+                $("#site_logo2").stop().show().css({opacity:0});
             });
-            $("#site_logo_a").mouseout(function(){
-                $("#site_logo1").addClass("site_logo1");
-                $("#site_logo2").addClass("site_logo2");
+            $("#site_logo_a").mouseleave(function(){
+                $("#site_logo2").css({opacity:1});
+                $("#site_logo1").css({opacity:0});
+                logo_change();
+                timer = setInterval(logo_change,5000);
             });
             $("#search_box").focus(function(){
                 $(this).stop().animate({width:"200px"},1000);
