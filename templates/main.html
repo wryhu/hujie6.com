@@ -22,9 +22,14 @@
 </head>
 <body id="t" class="offline" ondragstart="return false">
     <div id="entry">
+        <div style="display:none;">
+            <img src="/static/image/morning.jpg">
+            <img src="/static/image/noon.jpeg">
+            <img src="/static/image/night.jpg">
+        </div>
         <div id="main-frame-error" class="interstitial-wrapper">
             <div id="main-content">
-                <div class="icon icon-offline" alt=""></div>
+                <div class="icon icon-offline"></div>
             </div>
             <div id="offline-resources">
                 <img id="offline-resources-1x" src="/static/dinosaur/100-offline-sprite.png">
@@ -45,6 +50,26 @@
         <div id="play" data-toggle="tooltip" data-placement="right" data-original-title="按空格开始"></div>
     </div>
 </body>
+<script type="text/javascript">
+    // 背景图按时间变化
+    var today=new Date()
+    var h=today.getHours()
+    if(h>6&&h<10){
+        // 早上
+        $("body").css("background-image","url(/static/image/morning.jpg)");
+    }else if(h>=10&&h<15){
+        // 中午
+        $("body").css("background-image","url(/static/image/noon.jpeg)");
+    }else if(h>=15&&h<18){
+        // 黄昏
+        $("body").css("background-image","url(/static/image/morning.jpg)");
+    }else{
+        // 晚上
+        $("body").css("background-image","url(/static/image/night.jpg)");
+        $(".enter").addClass("animate1");
+        $("#home_text").addClass("animate2");
+    }
+</script>
 <style type="text/css">
     body {
         margin:0;
@@ -139,24 +164,7 @@
         $(window).resize(function() {
             resize_entry();
         });
-        // 背景图按时间变化
-        var today=new Date()
-        var h=today.getHours()
-        if(h>6&&h<10){
-            // 早上
-            $("body").css("background-image","url(/static/image/morning.jpg)");
-        }else if(h>=10&&h<15){
-            // 中午
-            $("body").css("background-image","url(/static/image/noon.jpeg)");
-        }else if(h>=15&&h<18){
-            // 黄昏
-            $("body").css("background-image","url(/static/image/morning.jpg)");
-        }else{
-            // 晚上
-            $("body").css("background-image","url(/static/image/night.jpg)");
-            $(".enter").addClass("animate1");
-            $("#home_text").addClass("animate2");
-        }
+
         $("#switch1").click(function(){
             $(this).blur();
             $("body").css("background-image","url(/static/image/morning.jpg)");

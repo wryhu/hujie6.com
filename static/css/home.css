@@ -35,7 +35,7 @@ h1.same {
     height: 50em;
     width: 100%;
     margin-top:40px;
-    background: url(https://photocdn.tv.sohu.com/img/20161230/vrs_bg_hor_1483080030614_1008593.jpg) no-repeat fixed;
+    background: url(httpsthumbnail_over://photocdn.tv.sohu.com/img/20161230/vrs_bg_hor_1483080030614_1008593.jpg) no-repeat fixed;
     background-size: 100% auto;
 }
 .landing-text {
@@ -68,6 +68,7 @@ div.tab-content li{
 }
 .thumbnail {
     padding:0;
+    background-color:rgba(255,255,255,0);
     overflow:hidden;
 }
 .thumbnail img {
@@ -77,8 +78,8 @@ div.tab-content li{
     transition:all .4s linear;
 }
 .thumbnail_over {
+    background-color:white;
     box-shadow: 0 5px 12px rgba(0,0,0,0.5);
-    background-color:rgba(255,255,255,0);
     transition: all 1s ease 0s;
 }
 .thumbnail_out {

@@ -23,8 +23,8 @@
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
                 <a id="site_logo_a" class="navbar-brand" href="{% url 'move' %}">
-                    <img id="site_logo1" src="/static/image/geass.png">
-                    <img id="site_logo2" src="/static/image/geass2.png">
+                    <img id="site_logo1" class="site_logo1" src="/static/image/geass.png">
+                    <img id="site_logo2" class="site_logo2" src="/static/image/geass2.png">
                 </a>
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
@@ -67,7 +67,7 @@
                     </ul>
                     <form id="navbar-form" action="{% url 'search'%}" class="navbar-form navbar-right">
                         <div class="form-group">
-                          <input name="wd" type="text" class="form-control" placeholder="请输入关键字">
+                          <input id="search_box" name="wd" type="text" class="form-control" placeholder="请输入关键字">
                         </div>
                         <button type="submit" class="btn btn-default"><span>搜索</span></button>
                     </form>
@@ -141,6 +141,20 @@
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            $("#site_logo_a").mouseover(function(){
+                $("#site_logo1").removeClass("site_logo1");
+                $("#site_logo2").removeClass("site_logo2");
+            });
+            $("#site_logo_a").mouseout(function(){
+                $("#site_logo1").addClass("site_logo1");
+                $("#site_logo2").addClass("site_logo2");
+            });
+            $("#search_box").focus(function(){
+                $(this).stop().animate({width:"200px"},1000);
+            });
+            $("#search_box").blur(function(){
+                $(this).stop().animate({width:"120px"},1000);
+            });
             // 导航点击特效
             var main = document.querySelector('#navbar-base');
             main.onclick = function (e) {
