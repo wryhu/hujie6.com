@@ -42,6 +42,26 @@
         </div>
         <div id="home_text">欢迎光临</div>
         <div class="enter"></div>
+        <script type="text/javascript">
+        // 背景图按时间变化
+        var today=new Date()
+        var h=today.getHours()
+        if(h>6&&h<10){
+            // 早上
+            $("body").css("background-image","url(/static/image/morning.jpg)");
+        }else if(h>=10&&h<15){
+            // 中午
+            $("body").css("background-image","url(/static/image/noon.jpeg)");
+        }else if(h>=15&&h<18){
+            // 黄昏
+            $("body").css("background-image","url(/static/image/morning.jpg)");
+        }else{
+            // 晚上
+            $("body").css("background-image","url(/static/image/night.jpg)");
+            $(".enter").addClass("animate1");
+            $("#home_text").addClass("animate2");
+        }
+        </script>
         <div class="btn-group btn-group-xs" role="group">
           <button id="switch1" type="button" class="btn btn-default">早上</button>
           <button id="switch2" type="button" class="btn btn-default">中午</button>
@@ -50,32 +70,13 @@
         <div id="play" data-toggle="tooltip" data-placement="right" data-original-title="按空格开始"></div>
     </div>
 </body>
-<script type="text/javascript">
-    // 背景图按时间变化
-    var today=new Date()
-    var h=today.getHours()
-    if(h>6&&h<10){
-        // 早上
-        $("body").css("background-image","url(/static/image/morning.jpg)");
-    }else if(h>=10&&h<15){
-        // 中午
-        $("body").css("background-image","url(/static/image/noon.jpeg)");
-    }else if(h>=15&&h<18){
-        // 黄昏
-        $("body").css("background-image","url(/static/image/morning.jpg)");
-    }else{
-        // 晚上
-        $("body").css("background-image","url(/static/image/night.jpg)");
-        $(".enter").addClass("animate1");
-        $("#home_text").addClass("animate2");
-    }
-</script>
 <style type="text/css">
     body {
         margin:0;
         padding:0;
         font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
         background: no-repeat center left fixed;
+
     }
     #entry{
         position:fixed;
