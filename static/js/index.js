@@ -74,7 +74,7 @@ function init() {
 		return min + Math.random() * (max - min);
 	}
 	$("#emitter").click(function(){
-	    $("#logo").fadeIn(1000);
+	    $("#logo").fadeIn(2000);
 	    $("body").addClass("body-change")
 		explode(emitter);
 		$(emitter).hide();

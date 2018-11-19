@@ -50,7 +50,7 @@ body {
   font-size: 1rem;
   font-family: "Open Sans", sans-serif;
   color: #fff;
-  background-color: #36373c;
+  background-color: rgb(67, 72, 86);
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
@@ -306,10 +306,42 @@ main .-content.-index > div {
           transform-origin: 50% 100%;
 }
 @keyframes b-change {
-    0%{background-color:#36373c;}
-    100% {background-color:#8e96bf;}
+    0%{background-color:rgb(67, 72, 86);}
+    100% {background-color:#28221F;}
 }
 .body-change{
-    background-color:#8e96bf;
+    background-color:#28221F;
     animation: b-change 1s linear 0s 1;
+}
+#logo{
+     position:relative;
+     top:-22px;
+     width:100px;
+     height:55px;
+     display:none;
+     cursor:pointer;
+     animation: logo-change 10s linear 0s infinite;
+}
+@keyframes logo-change {
+    0%{background-color:#FF008D;}
+    5%{background-color:#A83333;}
+    10%{background-color:#FF5400;}
+    15%{background-color:#FF7600;}
+    20%{background-color:#FF9800;}
+    25%{background-color:#FFD000;}
+    30%{background-color:#B2FF00;}
+    35%{background-color:#4DFF00;}
+    40%{background-color:#00FF72;}
+    45%{background-color:#00FFE3;}
+    50%{background-color:#009FFF;}
+    55%{background-color:#0072FF;}
+    60%{background-color:#0045FF;}
+    65%{background-color:#000DFF;}
+    70%{background-color:#2000FF;}
+    75%{background-color:#4D00FF;}
+    80%{background-color:#8500FF;}
+    85%{background-color:#DF00DF;}
+    90%{background-color:#FF00F2;}
+    95%{background-color:#FF00C5;}
+    100%{background-color:#FF008D;}
 }
