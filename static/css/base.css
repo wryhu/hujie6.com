@@ -18,7 +18,7 @@ body a{
 }
 .body_light {
     animation: change4 1s linear 0s 1;
-    animation: change4 1s linear 0s 1;
+    background-color:rgba(0, 0, 0, 0);
 }
 @keyframes change3 {
     0%{background-color:rgba(0, 0, 0, 0);}
@@ -115,7 +115,7 @@ footer {
     color: #24292E;
 }
 .col-sm-4 .fa-chrome {
-    color: #19A15F;
+    text-shadow: 0px 0px 1px #888888;
 }
 .col-sm-4 .fa-instagram {
     font-weight:600;
@@ -130,6 +130,36 @@ footer {
 }
 .col-sm-4 .fa-twitter {
     color: rgba(110, 90, 171, 0.75);
+}
+#chrome_change{
+    color: #FFF;
+    display: inline-block;
+}
+.chrome_change{
+    animation: logo-change 10s linear 0s infinite;
+}
+@keyframes logo-change {
+    0%{color:#FF008D;}
+    5%{color:#A83333;}
+    10%{color:#FF5400;}
+    15%{color:#FF7600;}
+    20%{color:#FF9800;}
+    25%{color:#FFD000;}
+    30%{color:#B2FF00;}
+    35%{color:#4DFF00;}
+    40%{color:#00FF72;}
+    45%{color:#00FFE3;}
+    50%{color:#009FFF;}
+    55%{color:#0072FF;}
+    60%{color:#0045FF;}
+    65%{color:#000DFF;}
+    70%{color:#2000FF;}
+    75%{color:#4D00FF;}
+    80%{color:#8500FF;}
+    85%{color:#DF00DF;}
+    90%{color:#FF00F2;}
+    95%{color:#FF00C5;}
+    100%{color:#FF008D;}
 }
 #music {
     position: fixed;
@@ -204,8 +234,6 @@ footer {
     height:40px;
     opacity:0;
 }
-
-
 .form-group{
     position:relative;
     top:-17px;
@@ -214,6 +242,22 @@ footer {
    position:absolute;
    right:0;
    width:120px;
+}
+#skPlayer {
+    width: 360px;
+}
+#skPlayer .skPlayer-control {
+    padding: 10px 0px 17px 10px;
+    float: left;
+}
+#skPlayer .skPlayer-control > .skPlayer-percent {
+    width: 235px;
+}
+#skPlayer .skPlayer-control .skPlayer-volume .skPlayer-percent {
+    width: 100px;
+}
+#skPlayer .skPlayer-control .skPlayer-volume {
+    margin: 2px 24px 0 0;
 }
 
 

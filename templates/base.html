@@ -19,6 +19,7 @@
 </head>
 <body ondragstart="return false">
     <div id="body_switch">
+
         <!--导航条-->
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
@@ -43,6 +44,20 @@
                         <li>
                             <a id="switchs" class="pad fa fa-lightbulb-o" style="cursor:pointer"> <span></span></a>
                         </li>
+                        <script type="text/javascript">
+                            var frame = $(parent.frames["hidden-player"].document)
+                            // 开关灯
+                            var switch_str = frame.find(".next_music").text();
+                            // 关
+                            if(switch_str=="0"){
+                                $("#body_switch").attr("class","body_night2");
+                                $("#switchs").text(" 开灯");
+                            // 开
+                            }else{
+                                $("#body_switch").attr("class","body_light2");
+                                $("#switchs").text(" 关灯");
+                            }
+                        </script>
                         {% if not user.is_authenticated %}
                             <li>
                                 <a class="pad fa fa-sign-in" href="{% url 'login' %}?form={{ request.get_full_path }}"> 登录</a>
@@ -86,11 +101,11 @@
                 </div>
                 <div class="col-sm-4">
                     <h3>Contects</h3>
-                    <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo" data-toggle="tooltip" data-placement="top" data-original-title="我的微博"></a>
-                    <a href="https://github.com/wryhu" target=_blank class="fa fa-github" data-toggle="tooltip" data-placement="bottom" data-original-title="我的github"></a>
-                    <div class="fa fa-chrome"></div>
-                    <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram" data-toggle="tooltip" data-placement="bottom" data-original-title="我的ins"></a>
-                    <a href="https://twitter.com/jet42331460" class="fa fa-twitter" data-toggle="tooltip" data-placement="top" data-original-title="我的twitter"></a>
+                    <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo" title="我的微博"></a>
+                    <a href="https://github.com/wryhu" target=_blank class="fa fa-github" title="我的github"></a>
+                    <div id="chrome_change"><div class="fa fa-chrome"></div></div>
+                    <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram" title="我的ins"></a>
+                    <a href="https://twitter.com/jet42331460" class="fa fa-twitter" title="我的twitter"></a>
                 </div>
                 <div class="col-sm-4">
                     <h3 style="margin-bottom:0;">友情链接</h3>
@@ -106,10 +121,10 @@
             <div id="skPlayer" class="skPlayer1"></div>
             <div id="skPlayer" class="skPlayer2"></div>
             <div id="music-foot">
-                <div id="music-text">支持全站不间断播放</div>
+                <div id="music-text">全站不间断播放</div>
                 <div id="music-ctrl">
                     <div class="fa fa-backward"></div>
-                        <span>好听的歌儿推荐给你</span>
+                        <span>Error:undefined¿≠NaN</span>
                     <div class="fa fa-forward"></div>
                 </div>
                 <div id="music-text">暂不支持快进和音量调节</div>
@@ -121,24 +136,6 @@
         </div>
     </div>
     {% block script_extends %}{% endblock %}
-    <style type="text/css">
-        #skPlayer {
-            width: 360px;
-        }
-        #skPlayer .skPlayer-control {
-            padding: 10px 0px 17px 10px;
-            float: left;
-        }
-        #skPlayer .skPlayer-control > .skPlayer-percent {
-            width: 235px;
-        }
-        #skPlayer .skPlayer-control .skPlayer-volume .skPlayer-percent {
-            width: 100px;
-        }
-        #skPlayer .skPlayer-control .skPlayer-volume {
-            margin: 2px 24px 0 0;
-        }
-    </style>
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
@@ -188,17 +185,6 @@
                 }, 600)
             }
             var frame = $(parent.frames["hidden-player"].document)
-            // 开关灯
-            var switch_str = frame.find(".next_music").text();
-            // 关
-            if(switch_str=="0"){
-                $("#body_switch").attr("class","body_night2");
-                $("#switchs").text(" 开灯");
-            // 开
-            }else{
-                $("#body_switch").attr("class","body_light2");
-                $("#switchs").text(" 关灯");
-            }
             $("#switchs").click(function(){
                 var switch_str = frame.find(".next_music").text();
                 // 关
@@ -213,9 +199,6 @@
                     $("#switchs").text(" 关灯");
                 }
             });
-
-            // 初始化tip
-            $('[data-toggle="tooltip"]').tooltip();
             // 小火箭
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
@@ -340,10 +323,12 @@
                     frame.find(".skPlayer-right").click();
                     $(this).attr("class","skPlayer-play-btn");
                     $(".fa-chrome").attr("class","fa fa-chrome");
+                    $("#chrome_change").removeClass("chrome_change");
                 }else{
                     frame.find(".skPlayer-left").click();
                     $(this).attr("class","skPlayer-play-btn skPlayer-pause");
                     $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
+                    $("#chrome_change").addClass("chrome_change");
                 }
             });
             // 音量开关
@@ -374,6 +359,7 @@
                 $(this).attr("class","skPlayer-curMusic");
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
+                $("#chrome_change").addClass("chrome_change");
             });
             // 上一首,并且为播放状态
             $(document).on('click', ".fa-backward", function(){
@@ -384,6 +370,7 @@
                 $(text2).attr("class","skPlayer-curMusic");
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
+                $("#chrome_change").addClass("chrome_change");
             });
             // 下一首,并且为播放状态
             $(document).on('click', ".fa-forward", function(){
@@ -394,11 +381,13 @@
                 $(".skPlayer-list li").removeAttr("class");
                 $(text2).attr("class","skPlayer-curMusic");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
+                $("#chrome_change").addClass("chrome_change");
             });
             var frame_play_btn = frame.find(".skPlayer-play-btn")
             function chrome_spin(){
                 if(frame_play_btn.attr("class")=="skPlayer-play-btn skPlayer-pause"){
                     $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
+                    $("#chrome_change").addClass("chrome_change");
                 }else{
                     $(".fa-chrome").attr("class","fa fa-chrome");
                 }
