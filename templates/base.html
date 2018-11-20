@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <title>{% block title %}{% endblock %} - 胡捷个人网站</title>
     <link rel="Shortcut Icon" href="/static/image/H.ico">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
@@ -19,14 +18,13 @@
 </head>
 <body ondragstart="return false">
     <div id="body_switch">
-
         <!--导航条-->
         <div id ="navbar-base" class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="container-fluid">
                 <a id="site_logo_a" class="navbar-brand" href="{% url 'move' %}">
-                    <img id="site_logo1" class="site_logo1" src="/static/image/geass2.png">
-                    <img id="site_logo2" class="site_logo2" src="/static/image/geass.png">
-                    <img id="site_logo3" src="/static/image/geass.png">
+                    <img id="site_logo1" class="site_logo1">
+                    <img id="site_logo2" class="site_logo2">
+                    <img id="site_logo3" src="/static/image/geass11.png">
                 </a>
                 <div class="navbar-header">
                     <button class="navbar-toggle collapsed"  data-toggle="collapse" data-target="#navbar-collapse">
@@ -37,6 +35,7 @@
                 </div>
                 <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li><a class="pad fa fa-exchange" style="cursor:pointer">&ensp;切换</a></li>
                         <li><a class="pad fa fa-home" href="{% url 'home' %}"> 首页</a></li>
                         <li><a class="pad fa fa-pencil" href="{% url 'ajax_blog_list' %}"> 博客</a></li>
                     </ul>
@@ -57,6 +56,12 @@
                                 $("#body_switch").attr("class","body_light2");
                                 $("#switchs").text(" 关灯");
                             }
+                            //logo切换
+                            var logo_num = frame.find(".logo_num").text();
+                            var logo_str1 = "/static/image/geass"+ logo_num +"1.png"
+                            var logo_str2 = "/static/image/geass"+ logo_num +"2.png"
+                            $("#site_logo1").attr("src",logo_str2);
+                            $("#site_logo2").attr("src",logo_str1);
                         </script>
                         {% if not user.is_authenticated %}
                             <li>
@@ -139,6 +144,29 @@
     <script src="/static/skPlayer/skPlayer.min.js"></script>
     <script type="text/javascript">
         $(function(){
+            var frame = $(parent.frames["hidden-player"].document)
+            //logo切换
+            var logo_num = frame.find(".logo_num").text();
+            $(".fa-exchange").click(function(){
+                if(logo_num==1){
+                    $("#site_logo1").attr("src","/static/image/geass22.png");
+                    $("#site_logo2").attr("src","/static/image/geass21.png");
+                    frame.find(".logo_num").text(2);
+                    logo_num++;
+                }else if(logo_num==2){
+                    $("#site_logo1").attr("src","/static/image/geass32.png");
+                    $("#site_logo2").attr("src","/static/image/geass31.png");
+                    frame.find(".logo_num").text(3);
+                    logo_num++;
+                }else if(logo_num==3){
+                    $("#site_logo1").attr("src","/static/image/geass12.png");
+                    $("#site_logo2").attr("src","/static/image/geass11.png");
+                    frame.find(".logo_num").text(1);
+                    logo_num=1;
+                }
+            });
+
+            //网站logo变化
             function logo_change(){
                 $("#site_logo1").fadeIn(2000,function(){
                     $("#site_logo1").fadeOut(2000);
@@ -149,14 +177,14 @@
             }
             logo_change();
             var timer = setInterval(logo_change,5000);
-            $("#site_logo_a").mouseenter(function(){
+            $("#site_logo_a").mouseover(function(){
                 clearInterval(timer);
-                $("#site_logo1").stop().show().css({opacity:1});
-                $("#site_logo2").stop().show().css({opacity:0});
+                $("#site_logo1").stop().fadeOut(0);
+                $("#site_logo2").stop().fadeIn(0);
             });
-            $("#site_logo_a").mouseleave(function(){
-                $("#site_logo2").css({opacity:1});
-                $("#site_logo1").css({opacity:0});
+            $("#site_logo_a").mouseout(function(){
+                $("#site_logo2").stop().fadeOut(0);
+                $("#site_logo1").stop().fadeIn(0);
                 logo_change();
                 timer = setInterval(logo_change,5000);
             });
@@ -167,24 +195,24 @@
                 $(this).stop().animate({width:"120px"},1000);
             });
             // 导航点击特效
-            var main = document.querySelector('#navbar-base');
-            main.onclick = function (e) {
-                var x = e.pageX - main.offsetLeft;
-                var y = e.pageY - main.offsetTop;
-                var div = document.createElement('div');
-                div.className='navbar-click';
-                div.style.left = x + 'px';
-                div.style.top = y + 'px';
-                var r = Math.floor(Math.random() * 256)
-                var g = Math.floor(Math.random() * 256)
-                var b = Math.floor(Math.random() * 256)
-                div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";
-                main.appendChild(div);
-                setTimeout(function () {
-                    main.removeChild(div);
-                }, 600)
-            }
-            var frame = $(parent.frames["hidden-player"].document)
+            <!--var main = document.querySelector('#navbar-base');-->
+            <!--main.onclick = function (e) {-->
+                <!--var x = e.pageX - main.offsetLeft;-->
+                <!--var y = e.pageY - main.offsetTop;-->
+                <!--var div = document.createElement('div');-->
+                <!--div.className='navbar-click';-->
+                <!--div.style.left = x + 'px';-->
+                <!--div.style.top = y + 'px';-->
+                <!--var r = Math.floor(Math.random() * 256)-->
+                <!--var g = Math.floor(Math.random() * 256)-->
+                <!--var b = Math.floor(Math.random() * 256)-->
+                <!--div.style.background = "rgb(" + r + ',' + g + ',' + b + ")";-->
+                <!--main.appendChild(div);-->
+                <!--setTimeout(function () {-->
+                    <!--main.removeChild(div);-->
+                <!--}, 600)-->
+            <!--}-->
+
             $("#switchs").click(function(){
                 var switch_str = frame.find(".next_music").text();
                 // 关
