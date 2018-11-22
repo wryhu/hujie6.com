@@ -1,6 +1,9 @@
 body {
     background: #F5F7FA repeat center top;
 }
+#body_bg{
+    background: url(/static/image/bgStripe.png) repeat;
+}
 div.jumbotron {
     margin-bottom:0;
     background-color:rgba(255, 255, 255, 0);
@@ -36,29 +39,105 @@ h1.same {
     height: 50em;
     width: 100%;
     margin-top:40px;
-    background: url(https://photocdn.tv.sohu.com/img/20161230/vrs_bg_hor_1483080030614_1008593.jpg) no-repeat fixed;
+    background: url(/static/image/hiuga.jpg) no-repeat center center fixed;
     background-size: 100% auto;
+    z-index:0;
 }
 .landing-text {
+    position:relative;
+    top:0;
+    left:0;
     display: table-cell;
     text-align: center;
     vertical-align:middle;
-    font-size:45px;
-    font-weight:bold;
-    color: rgba(255, 255, 255, 0.29);
-    text-shadow: 1px 1px 1px black;
 }
-.s1 {color:teal;}
-.s2 {color:blue;}
-.s3 {color:fuchsia;}
-.s4 {color:#FFA07A;}
-.s6 {color:green;}
-.s7 {color:lime;}
-.s8 {color:orange;}
-.s9 {color:yellow;}
-.s10 {color:purple;}
-.s11 {color:silver,;}
-.s12 {color:red;}
+#hyouka_text{
+    position:relative;
+    top:0;
+    left:0;
+    margin:0 auto;
+    width:300px;
+    height:240px;
+}
+.hyouka_lists{
+    position:absolute;
+    top: -200px;
+    left: -453px;
+}
+.hyouka_lists img{
+    max-width: 100px;
+}
+.hyouka_blur {
+    filter:blur(2px);
+    -webkit-filter:blur(2px);
+}
+#topCatch {
+	position: absolute;
+	top: -160px;
+    left: 320px;
+}
+.hyouka_list{
+    position:relative;
+    opacity:0;
+    -ms-transition:all 0.2s linear;
+    -webkit-transition:all 0.2s linear;
+    transition:all 0.2s linear;
+}
+.hyouka_change{
+    -ms-transform:scale(1);
+    -webkit-transform:scale(1);
+    transform:scale(1);
+}
+.hyouka_list:hover{
+    -ms-transform:scale(1.8);
+    -webkit-transform:scale(1.8);
+    transform:scale(1.8);
+}
+#hyouka_arrow{
+    position:absolute;
+    top: 156px;
+    left: 29px;
+    color:white;
+    cursor:pointer;
+    opacity:0.6;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+#hyouka_arrow:hover{
+    opacity:1;
+    text-shadow:0px 0px 20px rgb(180, 180, 253);
+}
+#topCatch p {
+    width: 0px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+#topCatch-01 { background: url(/static/image/hyoukatext.png) 0 0;}
+#topCatch-02 { background: url(/static/image/hyoukatext.png) 0 -30px; }
+#topCatch-03 { background: url(/static/image/hyoukatext.png) 0 -60px; }
+#topOnair {
+	position: absolute;
+	left: 320px;
+    top: -30px;
+}
+#topOnair p {
+    width: 0px;
+    height: 45px;
+    margin-bottom: 10px;
+}
+#topOnair-01 {
+	width: 280px;
+	background: url(/static/image/hyoukatext.png) 0 -90px;
+}
+#snow_player{
+    position:absolute;
+    top: 40px;
+    left: 210px;
+    color:white;
+    text-shadow:0px 0px 7px rgb(174, 142, 148);
+    cursor: pointer;
+}
 div.tab-content {
     text-align:center;
 }
@@ -115,7 +194,7 @@ div.tab-content li{
     text-decoration:none;
 }
 .change_image{
-    max-width:100%;
+    width:360px;
     height:360px;
 }
 #bgz-1{
@@ -125,10 +204,17 @@ div.tab-content li{
     display: none;
     max-width:100%;
 }
+.line{
+    display:table-cell;
+    vertical-align: middle;
+}
+.line_center{
+    display:table-cell;
+}
 #change_img {
     position: absolute;
-    left:40%;
-    top:136px;
+    left: 40%;
+    top: 130px;
     font-size:24px;
     letter-spacing: 5px;
     border:1px solid black;
@@ -170,10 +256,12 @@ div.tab-content li{
 .learn_hover img{
     -webkit-transition: 1s ease;
     -moz-transition: 1s ease;
+    transition: 1s ease;
 }
 .learn_hover:hover img {
     -webkit-transform: rotatey(360deg);
     -moz-transform: rotatey(360deg);
+    transform: rotatey(360deg);
 }
 #tran_area,#show_tran {
     background-color: rgba(238, 238, 238, 0.31)!important;
