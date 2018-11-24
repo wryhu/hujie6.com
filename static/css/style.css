@@ -310,7 +310,7 @@ main .-content.-index > div {
     100% {background-color:#28221F;}
 }
 .body-change{
-    background-color:#28221F;
+    background-color:#241d19;
     animation: b-change 1s linear 0s 1;
 }
 #logo{

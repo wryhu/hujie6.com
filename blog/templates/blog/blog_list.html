@@ -17,8 +17,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <ol class="breadcrumb" style="margin:0;">
-                          <li><a href="/">首页</a></li>
-                          <li><a href="/blog/">博客</a></li>
+                          <li><a href="/home">首页</a></li>
+                          <li><a href="/blog">博客</a></li>
                           <li class="active">{% block blog_list_title %}全部{% endblock %}</li>
                           <li style="float:right"><a href="/blog/ajax_blog_list">瀑布流模式</a></li>
                         </ol>
@@ -164,18 +164,4 @@
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block script_extends %}
-    <script type="text/javascript">
-        $(function(){
-            // 机器人提示
-            function ll3 (){
-                $("#music-bar").attr('data-original-title','站长留言：你好，这里是全部文章的显示列表，文章数量不多，还请见谅');
-                $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
-                $("#music-bar").tooltip('show');
-            }
-            setTimeout(ll3,5000);
-        });
-    </script>
 {% endblock %}

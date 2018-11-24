@@ -62,6 +62,8 @@
             }
         });
         $(function(){
+            $(".skPlayer-percent").attr("id","skPlayer-load");
+            $(".skPlayer-volume .skPlayer-percent").attr("id","skPlayer-voice");
             $.ajax({
                     url: "{% url 'ajax_img_crwaler' %}",
                     type: 'GET',

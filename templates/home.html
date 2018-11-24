@@ -8,7 +8,7 @@
 
 {% block header_extends %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
-    <script src="//cdn.hcharts.cn/highcharts/highcharts.js"></script>
+    <!--<script src="//cdn.hcharts.cn/highcharts/highcharts.js"></script>-->
     <script src="/static/js/snowfall.js"></script>
 {% endblock %}
 
@@ -56,7 +56,7 @@
     </div>
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span id="haha" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
       <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
@@ -138,7 +138,6 @@
                                 <img class="hyouka_list" src="/static/image/hyouka7.jpg">
                                 <img class="hyouka_list" src="/static/image/hyouka5.jpg">
                                 <img class="hyouka_list" src="/static/image/hyouka6.jpg">
-                                <div id="hyouka_arrow" class="fa fa-long-arrow-right fa-3x"></div>
                             </div>
                             <div id="topCatch">
                                 <p id="topCatch-01"></p>
@@ -148,7 +147,8 @@
                             <div id="topOnair">
                                 <p id="topOnair-01"></p>
                             </div>
-                            <div id="snow_player" class="fa fa-pause"></div>
+                            <div id="snow_player" class="fa fa-play"></div>
+                            <div id="hyouka_arrow" class="fa fa-heart"></div>
                         </div>
                     </div>
                 </div>
@@ -422,42 +422,42 @@
 {% block script_extends %}
     <script type="text/javascript">
 
-        // 图表配置
-        var options = {
-            chart: { type: 'line' },
-            title: { text: null },
-            xAxis: {
-                categories: {{ dates|safe }},   // x 轴分类
-                tickmarkPlacement: 'on',
-                title: '',
-            },
-            yAxis: {
-                title: { text: null },
-                labels:{ enabled: false },
-                gridLineDashStyle: 'Dash',
-            },
-            series: [{                              // 数据列
-                name: '阅读量',                     // 数据列名
-                data: {{ read_nums }}               // 数据
-            }],
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    }
-                }
-            },
-            legend: {
-                itemStyle: {
-                    font: '9pt Trebuchet MS, Verdana, sans-serif',
-                    color: 'black'
-                },
-                itemHoverStyle:{
-                    color: 'gray'
-                }
-            },
-            credits: { enabled: false },
-        };
+        <!--// 图表配置-->
+        <!--var options = {-->
+            <!--chart: { type: 'line' },-->
+            <!--title: { text: null },-->
+            <!--xAxis: {-->
+                <!--categories: {{ dates|safe }},   // x 轴分类-->
+                <!--tickmarkPlacement: 'on',-->
+                <!--title: '',-->
+            <!--},-->
+            <!--yAxis: {-->
+                <!--title: { text: null },-->
+                <!--labels:{ enabled: false },-->
+                <!--gridLineDashStyle: 'Dash',-->
+            <!--},-->
+            <!--series: [{                              // 数据列-->
+                <!--name: '阅读量',                     // 数据列名-->
+                <!--data: {{ read_nums }}               // 数据-->
+            <!--}],-->
+            <!--plotOptions: {-->
+                <!--line: {-->
+                    <!--dataLabels: {-->
+                        <!--enabled: true-->
+                    <!--}-->
+                <!--}-->
+            <!--},-->
+            <!--legend: {-->
+                <!--itemStyle: {-->
+                    <!--font: '9pt Trebuchet MS, Verdana, sans-serif',-->
+                    <!--color: 'black'-->
+                <!--},-->
+                <!--itemHoverStyle:{-->
+                    <!--color: 'gray'-->
+                <!--}-->
+            <!--},-->
+            <!--credits: { enabled: false },-->
+        <!--};-->
         $(function(){
             var arrow_num = 0;
             arrow_one();
@@ -489,24 +489,24 @@
                         $(this).addClass("fa-rotate-180");
                     }else{
                         arrow_num++;
-                        $(".hyouka_list:eq(6)").css({opacity:0});
+                        $(".hyouka_list:eq(0)").css({opacity:0});
                         setTimeout(function(){
-                            $(".hyouka_list:eq(5)").css({opacity:0});
+                            $(".hyouka_list:eq(1)").css({opacity:0});
                         },300);
                         setTimeout(function(){
-                            $(".hyouka_list:eq(4)").css({opacity:0});
+                            $(".hyouka_list:eq(2)").css({opacity:0});
                         },600);
                         setTimeout(function(){
                             $(".hyouka_list:eq(3)").css({opacity:0});
                         },900);
                         setTimeout(function(){
-                            $(".hyouka_list:eq(2)").css({opacity:0});
+                            $(".hyouka_list:eq(4)").css({opacity:0});
                         },1200);
                         setTimeout(function(){
-                            $(".hyouka_list:eq(1)").css({opacity:0});
+                            $(".hyouka_list:eq(5)").css({opacity:0});
                         },1500);
                         setTimeout(function(){
-                            $(".hyouka_list:eq(0)").css({opacity:0});
+                            $(".hyouka_list:eq(6)").css({opacity:0});
                             arrow_one();
                         },1800);
                         $(this).removeClass("fa-rotate-180");
@@ -514,26 +514,33 @@
                 });
             }
             // 开启下雪动画,修改作者插件功能：增加暂停与继续功能，增加多种图片下落功能。
-            $('#bg1').snowfall({
-                flakeCount: 30,
-                flakeIndex: -1,
-                maxSpeed: 6,
-                minSpeed: 2,
-                maxSize: 32,
-                minSize: 4,
-                image: '/static/image/sakura-'
-            })
+
+            $('#bg1').snowfall('stop');
             var snow_num = 0;
             //点击按钮控制动画运行，并且第一次点击显示hkouka介绍text。
             $("#snow_player").click(function(){
-                if(snow_num%2==0){
+                if(snow_num==0){
+                    $('#bg1').snowfall({
+                        flakeCount: 25,
+                        flakeIndex: -1,
+                        maxSpeed: 6,
+                        minSpeed: 2,
+                        maxSize: 32,
+                        minSize: 4,
+                        image: '/static/image/sakura-'
+                    })
+                    $(this).attr("class","fa fa-pause");
+                    snow_num++;
+                    return false;
+                }
+                if(snow_num%2==1){
                     $(this).attr("class","fa fa-play");
                     $('#bg1').snowfall('stop');
                 }else{
                     $(this).attr("class","fa fa-pause");
                     $('#bg1').snowfall('jixu');
                 }
-                if(snow_num==0){
+                if(snow_num==1){
                     $('#topCatch-01').animate({width: 370}, {duration: 2500, easing: 'linear'});
                     $('#topCatch-02').delay(3000).animate({width: 250}, {duration: 1700, easing: 'linear'});
                     $('#topCatch-03').delay(5500).animate({width: 250}, {duration: 1700, easing: 'linear'});
@@ -658,13 +665,8 @@
                 interval:3000
             })
             // 图表初始化函数
-            var chart = Highcharts.chart('container', options);
+            <!--var chart = Highcharts.chart('container', options);-->
             $("rect").attr("fill","rgba(255, 255, 255, 0)");
-
-            function ll(){
-                $("#music-bar").mouseover();
-            }
-            setTimeout(ll,10000);
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
                 if(nowTop<=600){
