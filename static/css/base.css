@@ -46,7 +46,7 @@ body a{
 }
 .navbar-scroll{
     background-color: rgba(255, 255, 255, 0.9)!important;
-    box-shadow:0 2px 10px #888888;
+    box-shadow:0 1px 6px #888888;
 }
 #totop {
     position: fixed;
@@ -65,23 +65,21 @@ body a{
 .pad {
     padding: 20px!important;
     font-size: 15px!important;
+    cursor:pointer;
 }
-#navbar-form {
-    margin-top: 14px;
-    float:right;
+#search-form{
+    position:relative;
+}
+#navbar-form{
+    position:absolute;
+    top:77px;
+    left:0;
+    display:none;
 }
 #navbar-form .form-control {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgba(255, 255, 255, 0.8);
     border-color: rgba(204, 204, 204, 0.68);
     border-radius:0;
-}
-#navbar-form button {
-    background-color: rgba(255, 255, 255, 0);
-    border-color: rgba(204, 204, 204, 0.68);
-    border-radius:0;
-}
-#navbar-form span {
-    color:#787878;
 }
 .fa span {
      font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
@@ -231,9 +229,8 @@ a.navbar-brand {
     top:-17px;
 }
 #search_box{
-   position:absolute;
-   right:0;
-   width:120px;
+
+   width:0;
 }
 #skPlayer {
     width: 360px;
@@ -291,6 +288,7 @@ a.navbar-brand {
     left:0;
     width:100%;
     height:450px;
+    display:none;
     background: url(/static/image/bg_sky.png) 0 top repeat-x;
     animation:bg-sky-scroll 50s linear infinite;
 }

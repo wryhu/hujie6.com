@@ -42,13 +42,21 @@
                     </div>
                     <div id="navbar-collapse" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a id="exchange" class="pad" style="cursor:pointer"><i class="fa fa-exchange"></i>&ensp;切换</a></li>
+                            <li><a id="exchange" class="pad"><i class="fa fa-exchange"></i>&ensp;切换</a></li>
                             <li><a class="pad" href="{% url 'home' %}"><i class="fa fa-home"></i> 首页</a></li>
                             <li><a class="pad" href="{% url 'ajax_blog_list' %}"><i class="fa fa-pencil"></i> 博客</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
+                            <li id="search-form">
+                                <a id="search-click" class="pad"><i class="fa fa-search"></i> 搜索</a>
+                                <form id="navbar-form" action="{% url 'search'%}" class="navbar-form navbar-right">
+                                    <div class="form-group">
+                                      <input id="search_box" name="wd" type="text" class="form-control" placeholder="输入后按回车">
+                                    </div>
+                                </form>
+                            </li>
                             <li>
-                                <a id="l_switch" class="pad" style="cursor:pointer"><i class="fa fa-lightbulb-o"></i> <span id="switchs"></span></a>
+                                <a id="l_switch" class="pad"><i class="fa fa-lightbulb-o"></i> <span id="switchs"></span></a>
                             </li>
                             <script type="text/javascript">
                                 var frame = $(parent.frames["hidden-player"].document)
@@ -94,12 +102,7 @@
                                 </li>
                             {% endif %}
                         </ul>
-                        <form id="navbar-form" action="{% url 'search'%}" class="navbar-form navbar-right">
-                            <div class="form-group">
-                              <input id="search_box" name="wd" type="text" class="form-control" placeholder="请输入关键字">
-                            </div>
-                            <button type="submit" class="btn btn-default"><span>搜索</span></button>
-                        </form>
+
                     </div>
                 </div>
             </div>
@@ -217,11 +220,17 @@
                 logo_change();
                 timer = setInterval(logo_change,5000);
             });
-            $("#search_box").focus(function(){
-                $(this).stop().animate({width:"200px"},1000);
-            });
-            $("#search_box").blur(function(){
-                $(this).stop().animate({width:"120px"},1000);
+            var searchNum = 0;
+            $("#search-click").click(function(){
+                if(searchNum%2==0){
+                    $("#navbar-form").fadeIn();
+                    $("#search_box").focus().stop().animate({width:"200px"},500);
+                }else{
+                    $("#search_box").stop().animate({width:"0"},500,function(){
+                        $("#navbar-form").fadeOut();
+                    });
+                }
+                searchNum++;
             });
 
             $("#l_switch").click(function(){
@@ -495,15 +504,24 @@
                     }
                 }
             };
-            //footer
+            //footer和云
             var footNum = 0;
+            var skyNum = 0;
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop() + $(window).height();
                 var rawTop = $(document).height();
+                var skyTop = $("#footer_fluid").offset().top;
+                if((nowTop>skyTop)&&(skyNum==0)){
+                    $("#footer_sky").show();
+                    skyNum=1;
+                }
+                if((nowTop<skyTop)&&(skyNum==1)){
+                    $("#footer_sky").hide();
+                    skyNum=0;
+                }
                 if(nowTop==rawTop){
                     $("footer").stop().animate({bottom:0},700);
                     footNum=1;
-                    return false;
                 }
                 if(nowTop<rawTop&&footNum==1){
                     $("footer").stop().animate({bottom:"-190px"},700);
@@ -515,6 +533,10 @@
                 $("#navbar-base").stop().animate({top:"-61px"},100,function(){
                     $('#navbar-base').removeClass("navbar-scroll");
                     $('#navbar-shou').hide();
+                    $("#search_box").stop().animate({width:"0"},500,function(){
+                        $("#navbar-form").fadeOut();
+                    });
+                    searchNum=0;
                 });
             });
         });
