@@ -18,16 +18,16 @@
         if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
             window.location.href = "/move";
         }
-
-            var loadTime1 = setTimeout(function(){
-                $(".line-progress").css({width:"13%"});
-            },500)
-            var loadTime2 = setTimeout(function(){
-                $(".line-progress").css({width:"44%"});
-            },1000)
-
+        var loadTime1 = setTimeout(function(){
+            $(".line-progress").css({width:"13%"});
+        },500)
+        var loadTime2 = setTimeout(function(){
+            $(".line-progress").css({width:"44%"});
+        },1000)
         document.onreadystatechange=function(){
             if(document.readyState=="interactive"){
+                clearInterval(loadTime1);
+                clearInterval(loadTime2);
                 $(".line-progress").css({width:"77%"});
             }
             if(document.readyState=="complete"){
