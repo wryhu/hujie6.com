@@ -18,14 +18,72 @@
         if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
             window.location.href = "/move";
         }
+
+            var loadTime1 = setTimeout(function(){
+                $(".line-progress").css({width:"13%"});
+            },500)
+            var loadTime2 = setTimeout(function(){
+                $(".line-progress").css({width:"44%"});
+            },1000)
+
+        document.onreadystatechange=function(){
+            if(document.readyState=="interactive"){
+                $(".line-progress").css({width:"77%"});
+            }
+            if(document.readyState=="complete"){
+                clearInterval(loadTime1);
+                clearInterval(loadTime2);
+                $(".line-progress").css({width:"100%"});
+                setTimeout(function(){
+                    $(".bg-progress").css({opacity:0})
+                },500)
+                setTimeout(function(){
+                    $(".bg-progress").hide();
+                },1500)
+            }
+        }
     </script>
 </head>
 <body id="t" class="offline" ondragstart="return false">
+    <div class="bg-progress">
+        <div class="line-progress"></div>
+    </div>
     <div id="entry">
         <div style="display:none;">
             <img src="/static/image/morning.jpg">
             <img src="/static/image/noon.jpeg">
             <img src="/static/image/night.jpg">
+            <img src="/static/image/geass11.png">
+            <img src="/static/image/geass12.png">
+            <img src="/static/image/geass21.png">
+            <img src="/static/image/geass22.png">
+            <img src="/static/image/geass31.png">
+            <img src="/static/image/geass32.png">
+            <img src="/static/image/bg_sky.png">
+            <img src="/static/image/celery.png">
+            <img src="/static/image/django.png">
+            <img src="/static/image/djangorestframework.png">
+            <img src="/static/image/fish.png">
+            <img src="/static/image/flask.png">
+            <img src="/static/image/body.png">
+            <img src="/static/image/hiuga.jpg">
+            <img src="/static/image/hyouka.png">
+            <img src="/static/image/hyouka1.jpg">
+            <img src="/static/image/hyouka2.jpg">
+            <img src="/static/image/hyouka3.jpg">
+            <img src="/static/image/hyouka4.jpg">
+            <img src="/static/image/hyouka5.jpg">
+            <img src="/static/image/hyouka6.jpg">
+            <img src="/static/image/hyouka7.jpg">
+            <img src="/static/image/hyoukatext.png">
+            <img src="/static/image/jet.png">
+            <img src="/static/image/jump.jpg">
+            <img src="/static/image/lineR.png">
+            <img src="/static/image/lovelive.png">
+            <img src="/static/image/map.png">
+            <img src="/static/image/pillow.png">
+            <img src="/static/image/sing.jpg">
+            <img src="/static/image/tobecontinued.png">
         </div>
         <div id="main-frame-error" class="interstitial-wrapper">
             <div id="main-content">
@@ -42,26 +100,6 @@
         </div>
         <div id="home_text">欢迎光临</div>
         <div class="enter"></div>
-        <script type="text/javascript">
-        // 背景图按时间变化
-        var today=new Date()
-        var h=today.getHours()
-        if(h>6&&h<10){
-            // 早上
-            $("body").css("background-image","url(/static/image/morning.jpg)");
-        }else if(h>=10&&h<15){
-            // 中午
-            $("body").css("background-image","url(/static/image/noon.jpeg)");
-        }else if(h>=15&&h<18){
-            // 黄昏
-            $("body").css("background-image","url(/static/image/morning.jpg)");
-        }else{
-            // 晚上
-            $("body").css("background-image","url(/static/image/night.jpg)");
-            $(".enter").addClass("animate1");
-            $("#home_text").addClass("animate2");
-        }
-        </script>
         <div class="btn-group btn-group-xs" role="group">
           <button id="switch1" type="button" class="btn btn-default">早上</button>
           <button id="switch2" type="button" class="btn btn-default">中午</button>
@@ -76,7 +114,29 @@
         padding:0;
         font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
         background: no-repeat center left fixed;
-
+    }
+    .bg-progress{
+        z-index: 10000;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        -webkit-transition: opacity,1s linear .1s;
+        -moz-transition: opacity,1s linear .1s;
+        transition: opacity,0.5s linear 0.1s;
+    }
+    .line-progress{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        height: 1px;
+        width: 0;
+        background-color: #3678cb;
+        -webkit-transition: width 0.5s;
+        -moz-transition: width 0.5s;
+        transition: width 0.5s;
     }
     #entry{
         position:fixed;
@@ -155,6 +215,24 @@
 </style>
 <script>
     $(function(){
+        // 背景图按时间变化
+        var today=new Date()
+        var h=today.getHours()
+        if(h>6&&h<10){
+            // 早上
+            $("body").css("background-image","url(/static/image/morning.jpg)");
+        }else if(h>=10&&h<15){
+            // 中午
+            $("body").css("background-image","url(/static/image/noon.jpeg)");
+        }else if(h>=15&&h<18){
+            // 黄昏
+            $("body").css("background-image","url(/static/image/morning.jpg)");
+        }else{
+            // 晚上
+            $("body").css("background-image","url(/static/image/night.jpg)");
+            $(".enter").addClass("animate1");
+            $("#home_text").addClass("animate2");
+        }
         // 以中心线为准布局
         function resize_entry(){
             var entry_height = $(window).height()/2 - 142
