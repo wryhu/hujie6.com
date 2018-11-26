@@ -19,6 +19,9 @@
 
 {% block script_extends %}
     <script type="text/javascript">
+        $("#navbar-base").remove();
+        $("#navbar-zhan").remove();
+        $("#footer_fluid").remove();
         {#页面调整控制#}
         {% if goto_page %}
             $(function(){

@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout, authenticate, login
 from django.conf import settings
 
-from oauth_client import OAuth_QQ, OAuth_GITHUB, OAuth_SINA, OAuth_BAIDU, OAuth_GOOGLE, OAuth_LINE, OAuth_FACEBOOK
+from oauth_client import OAuth_QQ, OAuth_GITHUB, OAuth_SINA, OAuth_BAIDU, OAuth_LINE, OAuth_FACEBOOK
 from oauth.models import OAuthEx
 
 import time
@@ -24,8 +24,6 @@ def identify_type(oauth_type):
         oauth_obj = OAuth_BAIDU(settings.BAIDU_APP_ID, settings.BAIDU_KEY, settings.BAIDU_RECALL_URL)
     if oauth_type == 'github':
         oauth_obj = OAuth_GITHUB(settings.GITHUB_APP_ID, settings.GITHUB_KEY, settings.GITHUB_RECALL_URL)
-    if oauth_type == 'google':
-        oauth_obj = OAuth_GOOGLE(settings.GOOGLE_APP_ID, settings.GOOGLE_KEY, settings.GOOGLE_RECALL_URL)
     if oauth_type == 'line':
         oauth_obj = OAuth_LINE(settings.LINE_APP_ID, settings.LINE_KEY, settings.LINE_RECALL_URL)
     if oauth_type == 'facebook':

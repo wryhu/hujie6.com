@@ -194,7 +194,7 @@ a.navbar-brand {
     height:40px;
     opacity:0;
 }
-.form-group{
+#navbar-form .form-group{
     position:relative;
     top:-17px;
 }

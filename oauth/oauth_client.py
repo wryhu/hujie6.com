@@ -188,56 +188,6 @@ class OAuth_BAIDU:
         return result['username']
 
 
-class OAuth_GOOGLE:
-    def __init__(self, client_id, client_key, redirect_uri):
-        self.client_id = client_id
-        self.client_key = client_key
-        self.redirect_uri = redirect_uri
-
-    def get_auth_url(self):
-        """获取授权页面的网址"""
-        params = {'client_id': self.client_id,
-                  'redirect_uri': self.redirect_uri,
-                  'scope': 'https://www.googleapis.com/auth/admin.directory.customer.readonly',
-                  'access_type': 'offline',
-                  'include_granted_scopes': 'true',
-                  'state': 'state_parameter_passthrough_value',
-                  'response_type': 'code'}
-        url = 'https://accounts.google.com/o/oauth2/v2/auth?%s' % urllib.urlencode(params)
-        return url
-
-    def get_access_token(self, code):
-        """根据code获取access_token"""
-        params = {'grant_type': 'authorization_code',
-                  'client_id': self.client_id,
-                  'client_secret': self.client_key,
-                  'code': code,
-                  'redirect_uri': self.redirect_uri}
-        url = 'https://www.googleapis.com/oauth2/v4/token'
-        data = urllib.urlencode(params)
-        # line要求POST获取access_token
-        request = urllib2.Request(url=url, data=data)
-        response = urllib2.urlopen(request).read()
-        # 响应数据转化成python类型
-        result = json.loads(response)
-        self.access_token = result['access_token']
-        return self.access_token
-
-    def get_open_id(self):
-        self.get_nickname()
-        return self.open_id
-
-    def get_nickname(self):
-        auth = "Bearer " + self.access_token
-        headers = {"Authorization": auth}
-        url = 'https://www.googleapis.com/oauth2/v2/userinfo'
-        request = urllib2.Request(url=url, headers=headers)
-        response = urllib2.urlopen(request).read()
-        result = json.loads(response)
-        self.open_id = result.get('id', '')
-        return result['name']
-
-
 class OAuth_LINE:
     def __init__(self, client_id, client_key, redirect_uri):
         self.client_id = client_id
