@@ -121,11 +121,11 @@
                         <h3>Contects</h3>
                         <a href="https://weibo.com/u/1973013037/" class="fa fa-weibo" title="我的微博"></a>
                         <a href="https://github.com/wryhu" target=_blank class="fa fa-github" title="我的github"></a>
-                        <div id="chrome_change"><div class="fa fa-chrome"></div></div>
+                        <div class="fa fa-chrome"></div>
                         <a href="https://www.instagram.com/jet1240/" class="fa fa-instagram" title="我的ins"></a>
                         <a href="https://twitter.com/jet42331460" class="fa fa-twitter" title="我的twitter"></a>
                     </div>
-                    <div class="col-sm-4">
+                    <div id="friend_link" class="col-sm-4">
                         <h3 style="margin-bottom:0;">友情链接</h3>
                         <br>
                         <a href="/jojo"><img src="/static/image/tobecontinued.png" style="width:200px; height:44px;" title="人类赞歌"></a>
@@ -391,12 +391,10 @@
                     frame.find(".skPlayer-right").click();
                     $(this).attr("class","skPlayer-play-btn");
                     $(".fa-chrome").attr("class","fa fa-chrome");
-                    $("#chrome_change").removeClass("chrome_change");
                 }else{
                     frame.find(".skPlayer-left").click();
                     $(this).attr("class","skPlayer-play-btn skPlayer-pause");
                     $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                    $("#chrome_change").addClass("chrome_change");
                 }
             });
             // 音量开关
@@ -420,7 +418,6 @@
                 $(this).attr("class","skPlayer-curMusic");
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                $("#chrome_change").addClass("chrome_change");
             });
             // 上一首,并且为播放状态
             $(document).on('click', ".fa-backward", function(){
@@ -431,7 +428,6 @@
                 $(text2).attr("class","skPlayer-curMusic");
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                $("#chrome_change").addClass("chrome_change");
             });
             // 下一首,并且为播放状态
             $(document).on('click', ".fa-forward", function(){
@@ -442,13 +438,11 @@
                 $(".skPlayer-list li").removeAttr("class");
                 $(text2).attr("class","skPlayer-curMusic");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                $("#chrome_change").addClass("chrome_change");
             });
             var frame_play_btn = frame.find(".skPlayer-play-btn")
             function chrome_spin(){
                 if(frame_play_btn.attr("class")=="skPlayer-play-btn skPlayer-pause"){
                     $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                    $("#chrome_change").addClass("chrome_change");
                 }else{
                     $(".fa-chrome").attr("class","fa fa-chrome");
                 }
@@ -466,7 +460,6 @@
             $(document).on('click', "#skPlayer-load", function(e){
                 $(".skPlayer-play-btn").attr("class","skPlayer-play-btn skPlayer-pause");
                 $(".fa-chrome").attr("class","fa fa-chrome fa-spin");
-                $("#chrome_change").addClass("chrome_change");
                 var lx = e.pageX;
                 var target2 = parent.window.frames["hidden-player"].document.getElementById('skPlayer-load');
                 var eventObj = document.createEvent('MouseEvents');
@@ -539,6 +532,10 @@
                     searchNum=0;
                 });
             });
+            if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+                $("#bg1").remove();
+                $("#friend_link").remove();
+            }
         });
     </script>
 </body>

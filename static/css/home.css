@@ -42,6 +42,7 @@ h1.same {
     background: url(/static/image/hiuga.jpg) no-repeat center center fixed;
     background-size: 100% auto;
     z-index:0;
+    -webkit-transform:translateZ(0);
 }
 .landing-text {
     position:relative;

@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="bg">
-        <div class="back"><a href="/home">返回首页</a> </div>
+        <div class="back"><a href="/home">返回主页</a> </div>
     </div>
     <style type="text/css">
         .bg {
@@ -40,13 +40,13 @@
     <script type="text/javascript">
         $(function(){
             $("#navbar-base").remove();
-            $("#navbar-base").remove();
+            $("#navbar-zhan").remove();
             function ll9 (){
                 $("#music-bar").attr('data-original-title','你瞅啥');
                 $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
                 $("#music-bar").tooltip('show');
             }
-            setTimeout(ll9,5000);
+            setTimeout(ll9,3000);
         });
     </script>
 {% endblock %}

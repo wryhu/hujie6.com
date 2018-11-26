@@ -24,15 +24,14 @@
         var loadTime2 = setTimeout(function(){
             $(".line-progress").css({width:"44%"});
         },1000)
+        var loadTime3 = setTimeout(function(){
+            $(".line-progress").css({width:"77%"});
+        },2000)
         document.onreadystatechange=function(){
-            if(document.readyState=="interactive"){
-                clearInterval(loadTime1);
-                clearInterval(loadTime2);
-                $(".line-progress").css({width:"77%"});
-            }
             if(document.readyState=="complete"){
                 clearInterval(loadTime1);
                 clearInterval(loadTime2);
+                clearInterval(loadTime3);
                 $(".line-progress").css({width:"100%"});
                 setTimeout(function(){
                     $(".bg-progress").css({opacity:0})
@@ -221,10 +220,10 @@
         if(h>6&&h<10){
             // 早上
             $("body").css("background-image","url(/static/image/morning.jpg)");
-        }else if(h>=10&&h<15){
+        }else if(h>=10&&h<16){
             // 中午
             $("body").css("background-image","url(/static/image/noon.jpeg)");
-        }else if(h>=15&&h<18){
+        }else if(h>=16&&h<18){
             // 黄昏
             $("body").css("background-image","url(/static/image/morning.jpg)");
         }else{

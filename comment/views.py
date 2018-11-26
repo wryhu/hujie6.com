@@ -5,7 +5,6 @@ from .forms import CommentForm
 from django.http import JsonResponse
 from django.contrib.contenttypes.models import ContentType
 from datetime import timedelta
-from django.urls import reverse
 
 
 # 提交评论用ajax异步处理

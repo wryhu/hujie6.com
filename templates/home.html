@@ -28,30 +28,22 @@
 
         <div class="item active">
           <img src="/static/boot.jpg">
-          <div class="carousel-caption">
-            <h1>Life</h1>
-          </div>
+
         </div>
 
         <div class="item">
           <img src="/static/code.jpg">
-          <div class="carousel-caption">
-            <h1>Sourse code</h1>
-          </div>
+
         </div>
 
         <div class="item">
           <img src="/static/michael.jpg">
-          <div class="carousel-caption">
-            <h1>King of pop</h1>
-          </div>
+
         </div>
 
         <div class="item">
           <img src="/static/anime.jpg">
-          <div class="carousel-caption">
-            <h1>カネキケン</h1>
-          </div>
+
         </div>
     </div>
       <!-- Controls -->
@@ -184,8 +176,8 @@
                     <h3>Enioy music</h3>
                     <p>&emsp;&emsp;从小就喜欢听歌，周杰伦，林俊杰，王力宏，真的人才辈出。
                         现在中文歌听的少了。所以转战国外，欧美的歌手像我霉，山东天后，
-                        水果姐，Sia，火星哥，抗韩英雄马老五，共和，梦龙，黄老板等都是人尽皆知的吧
-                        。日语歌听得不多，像中岛美嘉，德永英明等老牌歌手比较合
+                        水果姐，Sia，火星哥，抗韩英雄马老五，共和，梦龙，黄老板等都是我的菜
+                        。日语歌的话像中岛美嘉，德永英明等老牌歌手比较合
                         我胃口。对了，有兴趣的可以搜一下中岛美雪，她的歌你肯定听过。</p>
                     <p><a href="https://www.bilibili.com/video/av2855285" class="btn btn-info">了解</a>
                         <a href="https://www.bilibili.com/video/av16816912" class="btn btn-warning">推荐</a></p>
@@ -656,12 +648,6 @@
                 $("#tran_area").val("");
                 ajax_tran();
             });
-
-            // 轮播图间隔时间
-            $('.carousel').carousel({
-                pause:null,
-                interval:3000
-            })
             // 图表初始化函数
             var chart = Highcharts.chart('container', options);
             $("rect").attr("fill","rgba(255, 255, 255, 0)");

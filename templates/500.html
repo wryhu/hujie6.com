@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="bg">
-        <div class="back"><a href="/">500错误</a> </div>
+        <div class="back"><a href="/">返回主页</a> </div>
     </div>
     <style type="text/css">
         .bg {
@@ -40,12 +40,14 @@
     <script type="text/javascript">
         $(function(){
             $("#navbar-base").remove();
+            $("#navbar-zhan").remove();
+            $("#footer_fluid").remove();
             function ll8 (){
                 $("#music-bar").attr('data-original-title','残念，此页面疑似服务器太忙，返回首页再试试吧，我得快点通知主人');
                 $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
                 $("#music-bar").tooltip('show');
             }
-            setTimeout(ll8,5000);
+            setTimeout(ll8,3000);
         });
     </script>
 {% endblock %}

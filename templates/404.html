@@ -7,7 +7,7 @@
 
 {% block content %}
     <div class="bg">
-        <div class="back"><a href="/">返回首页</a> </div>
+        <div class="back"><a href="/">返回主页</a> </div>
     </div>
     <img class="error_404" src="/static/image/404.png">
     <style type="text/css">
@@ -49,12 +49,14 @@
     <script type="text/javascript">
         $(function(){
             $("#navbar-base").remove();
+            $("#navbar-zhan").remove();
+            $("#footer_fluid").remove();
             function ll8 (){
-                $("#music-bar").attr('data-original-title','残念，你访问了一个不存在的页面，快点返回首页，不然主人知道了又该骂我啦！');
+                $("#music-bar").attr('data-original-title','残念，你访问了一个不存在的页面，快点返回主页，不然主人知道了又该骂我啦！');
                 $("#music-bar").stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
                 $("#music-bar").tooltip('show');
             }
-            setTimeout(ll8,5000);
+            setTimeout(ll8,3000);
         });
     </script>
 {% endblock %}

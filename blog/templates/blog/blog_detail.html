@@ -51,7 +51,7 @@
                             木有了
                         {% endif %}
                     </p>
-                    <p id="logout">
+                    <p>
                         下一篇:
                         {% if next_blog %}
                             <a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a>
@@ -92,7 +92,7 @@
                                         <!--我的评论与众不同-->
                                         <img src="/static/image/user1.jpeg" class="my_avatar">
                                         <div>
-                                            <div class="me">{{ comment.user.first_name }} 站长</div>
+                                            <div class="me">站长</div>
                                             <div style="color:#00AAAA;">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
                                             <div id="comment-text" class="my_comment">{{ comment.text|safe }}</div>
                                     {% else %}
@@ -117,7 +117,7 @@
                                             <!--我的评论与众不同-->
                                             <img src="/static/image/user1.jpeg" class="my_avatar">
                                             <div>
-                                                <div class="me">{{ reply.user.first_name }} 站长</div>
+                                                <div class="me">站长</div>
                                                 <div style="color:#00AAAA;">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
                                                 <div id="comment-text" class="my_comment"><p>@{{ reply.reply_to_user.first_name }}:&ensp;{{ reply.text|safe }}</p></div>
                                         {% else %}
@@ -172,7 +172,7 @@
                             // 插入数据
                             $("#no-comment").remove()  // 可能存在暂无评论,添加新评论时先删除
                             if(data['username']=="jet"){
-                                var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">jet 站长</div><div style="color:#00AAAA;">'
+                                var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">站长</div><div style="color:#00AAAA;">'
                                 + data['comment_time']+'</div><div id="comment-text" class="my_comment">'+data['text']+'</div></div></div></div>';
                             }else{
                                 var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user'+data['user_pk']+'.jpeg" class="avatar"><div> <div class="other">'
@@ -197,7 +197,6 @@
             $(document).on('click', ".reply_btn", function(){
                 if($("#comment_sub").find('span').text()=='or'){
                     alert('您尚未登录,请登录后再回复')
-                    $('html, body').animate({scrollTop: $('#logout').offset().top}, 1000)
                     return false
                 };
                 $(".reply_form").remove()
@@ -236,7 +235,7 @@
                             // 插入数据
                             if(data['username']=="jet"){
                                 reply_html = '<br><br><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">'
-                                            +data['username']+' 站长</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text" class="my_comment"><p>@'
+                                            +'站长</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text" class="my_comment"><p>@'
                                             +data['reply_to_user']+':&ensp;'
                                             +data['text']+'</p></div><div style="text-align:right;"><a class="reply_btn" href="javascript:;">回复</a></div></div>'
                                             +'<input type="hidden" name="parent_reply_id" value="'+data['reply_pk']+'">'
