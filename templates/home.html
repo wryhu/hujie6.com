@@ -504,7 +504,7 @@
                     }
                 });
             }
-            // 开启下雪动画,修改作者插件功能：增加暂停与继续功能，增加多种图片下落功能。
+            // 下雪动画,修改作者插件功能：增加暂停与继续功能，增加多种图片下落功能。
             $('#bg1').snowfall('stop');
             var snow_num = 0;
             //点击按钮控制动画运行，并且第一次点击显示hkouka介绍text。
@@ -512,7 +512,7 @@
                 if(snow_num==0){
                     $('#bg1').snowfall({
                         flakeCount: 25,
-                        flakeIndex: -1,
+                        flakeIndex: 1,
                         maxSpeed: 6,
                         minSpeed: 2,
                         maxSize: 32,

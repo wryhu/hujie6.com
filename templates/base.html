@@ -14,6 +14,15 @@
     <meta name="description" content="一个编程菜鸟的个人博客网站，主要用来分享互联网资讯、教程、学习笔记、感悟以及记录博主的一些生活琐事等。">
     <script src="{% static 'jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?4c1f8e68be72fa6ae0e0bbbda1cb56b8";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
     {% block header_extends %}{% endblock %}
 </head>
 <body ondragstart="return false">
@@ -58,26 +67,7 @@
                             <li>
                                 <a id="l_switch" class="pad"><i class="fa fa-lightbulb-o"></i> <span id="switchs"></span></a>
                             </li>
-                            <script type="text/javascript">
-                                var frame = $(parent.frames["hidden-player"].document)
-                                // 开关灯
-                                var switch_str = frame.find(".next_music").text();
-                                // 关
-                                if(switch_str=="0"){
-                                    $("#body_switch").attr("class","body_night2");
-                                    $("#switchs").text(" 开灯");
-                                // 开
-                                }else{
-                                    $("#body_switch").attr("class","body_light2");
-                                    $("#switchs").text(" 关灯");
-                                }
-                                //logo切换
-                                var logo_num = frame.find(".logo_num").text();
-                                var logo_str1 = "/static/image/geass"+ logo_num +"1.png"
-                                var logo_str2 = "/static/image/geass"+ logo_num +"2.png"
-                                $("#site_logo1").attr("src",logo_str2);
-                                $("#site_logo2").attr("src",logo_str1);
-                            </script>
+
                             {% if not user.is_authenticated %}
                                 <li>
                                     <a class="pad" href="{% url 'login' %}?form={{ request.get_full_path }}"><i class="fa fa-sign-in"></i> 登录</a>
@@ -102,7 +92,26 @@
                                 </li>
                             {% endif %}
                         </ul>
-
+                        <script type="text/javascript">
+                            var frame = $(parent.frames["hidden-player"].document)
+                            // 开关灯
+                            var switch_str = frame.find(".next_music").text();
+                            // 关
+                            if(switch_str=="0"){
+                                $("#body_switch").attr("class","body_night2");
+                                $("#switchs").text(" 开灯");
+                            // 开
+                            }else{
+                                $("#body_switch").attr("class","body_light2");
+                                $("#switchs").text(" 关灯");
+                            }
+                            //logo切换
+                            var logo_num = frame.find(".logo_num").text();
+                            var logo_str1 = "/static/image/geass"+ logo_num +"1.png"
+                            var logo_str2 = "/static/image/geass"+ logo_num +"2.png"
+                            $("#site_logo1").attr("src",logo_str2);
+                            $("#site_logo2").attr("src",logo_str1);
+                        </script>
                     </div>
                 </div>
             </div>
@@ -173,31 +182,32 @@
                     }
                 },
             });
-            $(".pad").mouseover(function(){
-                $(this).children("i").animate({top:0},800,"easeOutBounce");
-            });
             var frame = $(parent.frames["hidden-player"].document)
             //logo切换
             var logo_num = frame.find(".logo_num").text();
+            $(".pad").hover(function(){
+                $(this).children("i").css("color",logo_num).animate({top:0},800,"easeOutBounce");
+            },function(){
+                $(this).children("i").css("color","#777");
+            });
             $("#exchange").click(function(){
-                if(logo_num==1){
-                    $("#site_logo1").attr("src","/static/image/geass22.png");
-                    $("#site_logo2").attr("src","/static/image/geass21.png");
-                    frame.find(".logo_num").text(2);
-                    logo_num++;
-                }else if(logo_num==2){
-                    $("#site_logo1").attr("src","/static/image/geass32.png");
-                    $("#site_logo2").attr("src","/static/image/geass31.png");
-                    frame.find(".logo_num").text(3);
-                    logo_num++;
-                }else if(logo_num==3){
-                    $("#site_logo1").attr("src","/static/image/geass12.png");
-                    $("#site_logo2").attr("src","/static/image/geass11.png");
-                    frame.find(".logo_num").text(1);
-                    logo_num=1;
+                if(logo_num=="red"){
+                    $("#site_logo1").attr("src","/static/image/geassblue2.png");
+                    $("#site_logo2").attr("src","/static/image/geassblue1.png");
+                    frame.find(".logo_num").text("blue");
+                    logo_num="blue";
+                }else if(logo_num=="blue"){
+                    $("#site_logo1").attr("src","/static/image/geassyellow2.png");
+                    $("#site_logo2").attr("src","/static/image/geassyellow1.png");
+                    frame.find(".logo_num").text("yellow");
+                    logo_num="yellow";
+                }else if(logo_num=="yellow"){
+                    $("#site_logo1").attr("src","/static/image/geassred2.png");
+                    $("#site_logo2").attr("src","/static/image/geassred1.png");
+                    frame.find(".logo_num").text("red");
+                    logo_num="red";
                 }
             });
-
             //网站logo变化
             function logo_change(){
                 $("#site_logo1").fadeIn(2000,function(){
