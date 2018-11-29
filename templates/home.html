@@ -21,6 +21,7 @@
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
         <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
       </ol>
 
       <!-- Wrapper for slides -->
@@ -43,6 +44,10 @@
 
         <div class="item">
           <img src="/static/anime.jpg">
+
+        </div>
+        <div class="item">
+          <img src="/static/image/yourname.jpg">
 
         </div>
     </div>
@@ -68,7 +73,11 @@
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-12">
-                <h1 class="same" style="text-shadow:2px 2px 33px blue;">网站相关数据统计</h1>
+                <h2 class="same">
+                    <span class="frame_bg">
+                        <span>网站相关数据统计</span>
+                    </span>
+                </h2>
             </div>
         </div>
         <div id="chart_set" class="row">
@@ -150,8 +159,12 @@
 
     <div class="container">
         <div class="row welcome text-centet">
-            <div class="col-md-12 col-xs-12">
-                <h1 class="same" style="text-shadow:2px 2px 33px red">profile</h1>
+            <div class="col-12">
+                <h2 class="same">
+                    <span class="frame_bg">
+                        <span>profile</span>
+                    </span>
+                </h2>
             </div>
         </div>
         <div class="row">
@@ -219,8 +232,12 @@
     <!--展示一下爬虫-->
     <div id="img_crwal" class="container">
         <div class="row welcome text-centet">
-            <div class="col-md-12 col-xs-12">
-                <h1 class="same" style="text-shadow:2px 2px 33px blue">随机抓取网络壁纸</h1>
+            <div class="col-12">
+                <h2 class="same">
+                    <span class="frame_bg">
+                        <span>随机抓取网络壁纸</span>
+                    </span>
+                </h2>
             </div>
         </div>
         <div class="row welcome text-centet">
@@ -243,10 +260,36 @@
             </div>
         </div>
     </div>
+    <!--封面展示-->
+    <div class="container-fluid">
+        <div class="row welcome text-centet">
+            <div class="col-12">
+                <h2 class="same">
+                    <span class="frame_bg">
+                        <span>封面原图展示</span>
+                    </span>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div id="main_bg1" class="col-md-12 col-xs-12 main_bg"></div>
+        </div>
+        <div class="row">
+            <div id="main_bg2" class="col-md-12 col-xs-12 main_bg"></div>
+        </div>
+        <div class="row">
+            <div id="main_bg3" class="col-md-12 col-xs-12 main_bg"></div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row welcome text-centet">
-            <div class="col-md-12 col-xs-12">
-                <h1 class="same"  style="text-shadow:2px 2px 33px green">翻译</h1>
+            <div class="col-12">
+                <h2 class="same">
+                    <span class="frame_bg">
+                        <span>翻译</span>
+                    </span>
+                </h2>
             </div>
         </div>
         <div class="row welcome text-centet">
@@ -294,10 +337,13 @@
     <div class="container">
         <div class="row welcome text-centet">
             <div class="col-12">
-                <h1 class="same"  style="text-shadow:2px 2px 33px blue">Learning</h1>
+                <h2 class="same">
+                    <span class="frame_bg">
+                        <span>Learning</span>
+                    </span>
+                </h2>
             </div>
         </div>
-
         <div class="row" style="margin-bottom:25px;">
           <div class="aitem col-md-4 clo-xs-12">
             <figure class="learn_hover">
@@ -450,9 +496,34 @@
             credits: { enabled: false },
         };
         $(function(){
+            // hyouka窗口大小等于浏览器大小，设计窗口移动固定的背景也慢慢移动(其中背景移动速度比窗口快)
+            var winTop = $(window).height();
+            var hkaHei = $(window).width()/0.85+winTop;//背景需滚动距离
+            var perCent = winTop*2/hkaHei
+            var bg1Top = $("#bg1").offset().top;
+            $("#bg1").height(winTop);
+            $("#bg1").css("backgroundPositionY",winTop);
+            var currentTop = bg1Top;
+            $(window).scroll(function(){
+                var howTop = $(document).scrollTop()+winTop;
+                if(howTop>=bg1Top&&howTop<=(bg1Top+winTop*2)){
+                    if(howTop>=currentTop){
+                        var onStr = (howTop - currentTop)/perCent
+                        $("#bg1").finish().animate({
+                            backgroundPositionY:'-='+onStr
+                        },666);
+                    }else{
+                        var underStr = (currentTop - howTop)/perCent
+                        $("#bg1").finish().animate({
+                            backgroundPositionY:'+='+underStr
+                        },666);
+                    }
+                    currentTop = $(document).scrollTop()+winTop;
+                }
+            });
+            // hyouka显示与隐藏
             var arrow_num = 0;
             arrow_one();
-            // hkouka显示与隐藏
             function arrow_one(){
                 $("#hyouka_arrow").one("click",function(){
                     if(arrow_num%2==0){
@@ -507,7 +578,7 @@
             // 下雪动画,修改作者插件功能：增加暂停与继续功能，增加多种图片下落功能。
             $('#bg1').snowfall('stop');
             var snow_num = 0;
-            //点击按钮控制动画运行，并且第一次点击显示hkouka介绍text。
+            //点击按钮控制动画运行，并且第一次点击显示hyouka介绍text。
             $("#snow_player").click(function(){
                 if(snow_num==0){
                     $('#bg1').snowfall({
@@ -648,9 +719,12 @@
                 $("#tran_area").val("");
                 ajax_tran();
             });
+            //展示封面图片
+            $(".main_bg").height(winTop/3);
             // 图表初始化函数
             var chart = Highcharts.chart('container', options);
             $("rect").attr("fill","rgba(255, 255, 255, 0)");
+            var sameHei = $(".same").height()*5;
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
                 if(nowTop<=600){
@@ -662,7 +736,19 @@
                 if(nowTop>1050){
                     $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
                 }
+
+
+
+                $(".same").each(function(){
+                   var same_show = $(this).offset().top+sameHei;
+                    if((nowTop+winTop)>same_show){
+                        $(this).addClass("active");
+
+                    }
+                });
             });
+
+
         });
     </script>
 {% endblock %}

@@ -17,8 +17,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="jumbotron" style="margin-top:20px;">
-                    <a href="" style="color:black"><h2 class="blog_title">{{ blog.title }}</h2></a>
+                <div class="jumbotron">
+                    <a href="" style="color:black;"><h2 class="blog_title">{{ blog.title }}</h2></a>
                     <div class="blog-info-desc">
                         <a href="#">
                             <button type="button" class="btn btn-default btn-xs">
@@ -93,13 +93,13 @@
                                         <img src="/static/image/user1.jpeg" class="my_avatar">
                                         <div>
                                             <div class="me">站长</div>
-                                            <div style="color:#00AAAA;">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                            <div>{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
                                             <div id="comment-text" class="my_comment">{{ comment.text|safe }}</div>
                                     {% else %}
                                         <img src="/static/image/user{{ comment.user.pk }}.jpeg" class="avatar">
                                         <div>
                                             <div class="other">{{ comment.user.first_name }}</div>
-                                            <div style="color:#00AAAA;">{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                            <div>{{ comment.comment_time|date:"Y-m-d H:i:s" }}</div>
                                             <div id="comment-text">{{ comment.text|safe }}</div>
                                     {% endif %}
                                             <div><a class="reply_btn" href="javascript:;">我也说一句</a></div>
@@ -118,13 +118,13 @@
                                             <img src="/static/image/user1.jpeg" class="my_avatar">
                                             <div>
                                                 <div class="me">站长</div>
-                                                <div style="color:#00AAAA;">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                                <div>{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
                                                 <div id="comment-text" class="my_comment"><p>@{{ reply.reply_to_user.first_name }}:&ensp;{{ reply.text|safe }}</p></div>
                                         {% else %}
                                             <img src="/static/image/user{{ reply.user.pk }}.jpeg" class="avatar">
                                             <div>
                                                 <div class="other">{{ reply.user.first_name }}</div>
-                                                <div style="color:#00AAAA;">{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
+                                                <div>{{ reply.comment_time|date:"Y-m-d H:i:s" }}</div>
                                                 <div id="comment-text"><p>@{{ reply.reply_to_user.first_name }}:&ensp;{{ reply.text|safe }}</p></div>
                                         {% endif %}
                                                 <div><a class="reply_btn" href="javascript:;">回复</a></div>
@@ -172,11 +172,11 @@
                             // 插入数据
                             $("#no-comment").remove()  // 可能存在暂无评论,添加新评论时先删除
                             if(data['username']=="jet"){
-                                var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">站长</div><div style="color:#00AAAA;">'
+                                var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">站长</div><div>'
                                 + data['comment_time']+'</div><div id="comment-text" class="my_comment">'+data['text']+'</div></div></div></div>';
                             }else{
                                 var comment_html = '<div class="jumbotron" ><div class="comment-root"><img src="/static/image/user'+data['user_pk']+'.jpeg" class="avatar"><div> <div class="other">'
-                                +data['username']+'</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text">'+data['text']+'</div></div></div></div>'
+                                +data['username']+'</div><div>'+data['comment_time']+'</div><div id="comment-text">'+data['text']+'</div></div></div></div>'
                             }
                             $("#comment-list").prepend(comment_html);
                             // 清空编辑框的内容
@@ -235,13 +235,13 @@
                             // 插入数据
                             if(data['username']=="jet"){
                                 reply_html = '<br><br><img src="/static/image/user1.jpeg" class="my_avatar"><div><div class="me">'
-                                            +'站长</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text" class="my_comment"><p>@'
+                                            +'站长</div><div>'+data['comment_time']+'</div><div id="comment-text" class="my_comment"><p>@'
                                             +data['reply_to_user']+':&ensp;'
                                             +data['text']+'</p></div><div style="text-align:right;"><a class="reply_btn" href="javascript:;">回复</a></div></div>'
                                             +'<input type="hidden" name="parent_reply_id" value="'+data['reply_pk']+'">'
                             }else{
                                 reply_html = '<br><br><img src="/static/image/user'+data['user_pk']+'.jpeg" class="avatar"><div><div class="other">'
-                                            +data['username']+'</div><div style="color:#00AAAA;">'+data['comment_time']+'</div><div id="comment-text"><p>@'
+                                            +data['username']+'</div><div>'+data['comment_time']+'</div><div id="comment-text"><p>@'
                                             +data['reply_to_user']+':&ensp;'
                                             +data['text']+'</p></div><div style="text-align:right;"><a class="reply_btn" href="javascript:;">回复</a></div></div><input type="hidden" name="parent_reply_id" value="'
                                             +data['reply_pk']+'">'

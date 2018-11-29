@@ -51,20 +51,19 @@
     </script>
 </head>
 <body id="t" class="offline" ondragstart="return false">
+    <div class="noon"></div>
+    <div class="morning"></div>
     <div class="bg-progress">
         <div class="line-progress"></div>
     </div>
     <div id="entry">
         <div style="display:none;">
-            <img src="/static/image/morning.jpg">
-            <img src="/static/image/noon.jpeg">
-            <img src="/static/image/night.jpg">
-            <img src="/static/image/geass11.png">
-            <img src="/static/image/geass12.png">
-            <img src="/static/image/geass21.png">
-            <img src="/static/image/geass22.png">
-            <img src="/static/image/geass31.png">
-            <img src="/static/image/geass32.png">
+            <img src="/static/image/geassred1.png">
+            <img src="/static/image/geassred2.png">
+            <img src="/static/image/geassblue1.png">
+            <img src="/static/image/geassblue2.png">
+            <img src="/static/image/geassyellow1.png">
+            <img src="/static/image/geassyellow2.png">
             <img src="/static/image/bg_sky.png">
             <img src="/static/image/celery.png">
             <img src="/static/image/django.png">
@@ -86,10 +85,13 @@
             <img src="/static/image/jump.jpg">
             <img src="/static/image/lineR.png">
             <img src="/static/image/lovelive.png">
-            <img src="/static/image/map.png">
+            <img src="/static/image/yournamebg.jpg">
+            <img src="/static/image/yourname.jpg">
             <img src="/static/image/pillow.png">
             <img src="/static/image/sing.jpg">
             <img src="/static/image/tobecontinued.png">
+            <img src="/static/image/register.jpg">
+            <img src="/static/image/login.jpg">
         </div>
         <div id="main-frame-error" class="interstitial-wrapper">
             <div id="main-content">
@@ -106,6 +108,7 @@
         </div>
         <div id="home_text">欢迎光临</div>
         <div class="enter"></div>
+        <div class="enter_copy"></div>
         <div class="btn-group btn-group-xs" role="group">
           <button id="switch1" type="button" class="btn btn-default">早上</button>
           <button id="switch2" type="button" class="btn btn-default">中午</button>
@@ -118,8 +121,20 @@
     body {
         margin:0;
         padding:0;
-        font-family:"MicroSoft YaHei",Helvetica,Arial,sans-serif;
-        background: no-repeat center left fixed;
+        background: url(/static/image/night.jpg) no-repeat center left fixed;
+    }
+    .noon{
+        width:100%;
+        height:100%;
+        background: url(/static/image/noon.jpeg) no-repeat center left fixed;
+    }
+    .morning{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background: url(/static/image/morning.jpg) no-repeat center left fixed;
     }
     .bg-progress{
         z-index: 10000;
@@ -161,6 +176,15 @@
         height: 85px;
         width: 212px;
         transform: skew(17deg) rotate(378deg);
+        animation:change1 10s linear 0s infinite;
+    }
+    .enter_copy {
+        position: absolute;
+        z-index:4;
+        top:0px;
+        height: 85px;
+        width: 212px;
+        transform: skew(17deg) rotate(378deg);
         cursor:pointer;
     }
     #home_text {
@@ -172,9 +196,6 @@
         transform: skew(27deg) rotate(28deg);
         color:red;
         cursor:pointer;
-    }
-    .animate1{
-        animation:change1 10s linear 0s infinite;
     }
     .animate2{
         animation:change2 10s linear 0s infinite;
@@ -201,22 +222,22 @@
         height:49px;
     }
     @keyframes change1 {
-        0%{box-shadow: 0 16px 14px rgb(30, 171, 218);}
-        13%{box-shadow: 0 16px 14px #254679;}
+        0%{box-shadow: 0 16px 14px #163665}
+        13%{box-shadow: 0 16px 14px rgb(30, 171, 218);}
         31%{box-shadow: 0 16px 14px  gold;}
         50%{box-shadow: 0 16px 14px  white;}
         68%{box-shadow: 0 16px 14px red;}
         87%{box-shadow: 0 16px 14px   yellow;}
-        100% {box-shadow: 0 16px 14px rgb(30, 171, 218);}
+        100% {box-shadow: 0 16px 14px #163665}
     }
     @keyframes change2 {
-        0%{color:rgb(30, 171, 218);}
-        13%{color:#254679;}
+        0%{color:#163665}
+        13%{color:rgb(30, 171, 218);}
         31%{color:gold; }
         50%{color:white; }
         68%{color:red; }
         87%{color:yellow;}
-        100% {color:rgb(30, 171, 218);}
+        100% {color:#163665}
     }
 </style>
 <script>
@@ -226,17 +247,18 @@
         var h=today.getHours()
         if(h>6&&h<10){
             // 早上
-            $("body").css("background-image","url(/static/image/morning.jpg)");
+            $(".enter").hide();
         }else if(h>=10&&h<16){
             // 中午
-            $("body").css("background-image","url(/static/image/noon.jpeg)");
+            $(".morning").hide();
+            $(".enter").hide();
         }else if(h>=16&&h<18){
             // 黄昏
-            $("body").css("background-image","url(/static/image/morning.jpg)");
+            $(".enter").hide();
         }else{
             // 晚上
-            $("body").css("background-image","url(/static/image/night.jpg)");
-            $(".enter").addClass("animate1");
+            $(".morning").hide();
+            $(".noon").hide();
             $("#home_text").addClass("animate2");
         }
         // 以中心线为准布局
@@ -252,20 +274,24 @@
 
         $("#switch1").click(function(){
             $(this).blur();
-            $("body").css("background-image","url(/static/image/morning.jpg)");
-            $(".enter").removeClass("animate1");
             $("#home_text").removeClass("animate2");
+            $(".morning").fadeIn(function(){
+                $(".noon").stop().show();
+            });
+            $(".enter").stop().fadeOut();
         });
          $("#switch2").click(function(){
             $(this).blur();
-            $("body").css("background-image","url(/static/image/noon.jpeg)");
-            $(".enter").removeClass("animate1");
             $("#home_text").removeClass("animate2");
+            $(".morning").stop().fadeOut();
+            $(".noon").stop().fadeIn();
+            $(".enter").stop().fadeOut();
         });
          $("#switch3").click(function(){
             $(this).blur();
-            $("body").css("background-image","url(/static/image/night.jpg)");
-            $(".enter").addClass("animate1");
+            $(".enter").stop().fadeIn();
+            $(".morning").stop().fadeOut();
+            $(".noon").stop().fadeOut();
             $("#home_text").addClass("animate2");
         });
         // 恐龙提示
@@ -286,7 +312,7 @@
         $("#home_text").click(function(){
             window.location = "/home"
         });
-        $(".enter").click(function(){
+        $(".enter_copy").click(function(){
             window.location = "/home"
         });
     });

@@ -1,126 +1,59 @@
-{% extends 'base.html' %}
-{% block title %}博客{% endblock %}
-{% block nav_blog_active %}active{% endblock %}
-
-{% load staticfiles %}
+{% extends 'blog/blog_base.html' %}
 {% load comment_tags %}
-
-{% block header_extends %}
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-{% endblock %}
-
-{% block content %}
-
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-8 col-md-8">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <ol class="breadcrumb" style="margin:0;">
-                          <li><a href="/home">首页</a></li>
-                          <li><a href="/blog/ajax_blog_list">博客</a></li>
-                          <li class="active">{% block blog_list_title %}全部{% endblock %}</li>
-                          <li style="float:right"><a href="/blog/">传统翻页模式</a></li>
-                        </ol>
+{% block blog_list %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <ol class="breadcrumb" style="margin:0;">
+              <li><a href="/home">首页</a></li>
+              <li><a href="/blog/ajax_blog_list">博客</a></li>
+              <li class="active">{% block blog_list_title %}全部{% endblock %}</li>
+              <li style="float:right"><a href="/blog/">传统翻页模式</a></li>
+            </ol>
+        </div>
+        <div id="ajax_blog" class="panel-body">
+            {% for blog in blogs %}
+                <div class="media">
+                  <div class="row">
+                    <div class="col-md-3 media_img">
+                  <div class="media-left media-middle">
+                    <a href="{% url 'blog_detail' blog.pk %}">
+                      <img src="/media/{{ blog.thumbnail }}" height="150" width="150">
+                      <figcaption></figcaption>
+                    </a>
+                  </div>
                     </div>
-                    <div id="ajax_blog" class="panel-body">
-                        {% for blog in blogs %}
-                            <div class="media">
-                              <div class="row">
-                                <div style="overflow:hidden" class="col-md-3">
-                              <div class="media-left media-middle">
-                                <a href="{% url 'blog_detail' blog.pk %}">
-                                  <img src="/media/{{ blog.thumbnail }}" height="150" width="150">
-                                  <figcaption></figcaption>
-                                </a>
-                              </div>
-                                </div>
-                                <div class="col-md-9">
-                              <div class="media-body">
-                                    <h3 class="media-heading"><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
-                                    <div id="content">{{ blog.content|truncatechars:100|safe }}</div>
-                                    <a id="tagset" href="#">
-                                    <button type="button" class="btn btn-default btn-xs">
-                                        <span class="glyphicon glyphicon-grain"></span> 作者: {{ blog.author }}
-                                    </button>
-                                    </a>
-                                    <a href="{% url 'blogs_by_type' blog.blog_type.pk %}">
-                                        <button type="button" class="btn btn-default btn-xs">
-                                            <span class="glyphicon glyphicon-star-empty"></span> {{ blog.blog_type }}
-                                        </button>
-                                    </a>
-                                    <button type="button" class="btn btn-default btn-xs">
-                                        <span class="glyphicon glyphicon-time"></span> {{ blog.created_time|date:"Y-m-d H:i:s" }}
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-xs">
-                                        <span class="glyphicon glyphicon-eye-open"></span> 阅读: {{ blog.get_read_num }}
-                                    </button>
-                                    <button type="button" class="btn btn-default btn-xs">
-                                        <span class="glyphicon glyphicon-comment"></span> 评论: {% comments_count blog %}
-                                    </button>
-                              </div>
-                                 </div>
-                              </div>
-                            </div>
-                        {% empty %}
-                            <div class="blog">
-                                <p>-- 未找到相关内容 --</p>
-                            </div>
-                        {% endfor %}
-                    </div>
+                    <div class="col-md-9">
+                  <div class="media-body">
+                        <h3 class="media-heading"><a href="{% url 'blog_detail' blog.pk %}">{{ blog.title }}</a></h3>
+                        <div id="content">{{ blog.content|truncatechars:100|safe }}</div>
+                        <a id="tagset" href="#">
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-grain"></span> 作者: {{ blog.author }}
+                        </button>
+                        </a>
+                        <a href="{% url 'blogs_by_type' blog.blog_type.pk %}">
+                            <button type="button" class="btn btn-default btn-xs">
+                                <span class="glyphicon glyphicon-star-empty"></span> {{ blog.blog_type }}
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-time"></span> {{ blog.created_time|date:"Y-m-d H:i:s" }}
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-eye-open"></span> 阅读: {{ blog.get_read_num }}
+                        </button>
+                        <button type="button" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-comment"></span> 评论: {% comments_count blog %}
+                        </button>
+                  </div>
+                     </div>
+                  </div>
                 </div>
-
-            </div>
-            <div id="music-parent" class="col-sm-4 col-md-3 col-md-offset-0">
-                <div class="panel panel-default">
-                    <div class="panel-heading"><span class="fa fa-object-ungroup"></span> &nbsp;博客分类</div>
-                    <div class="panel-body">
-                        <ul class="blog-types">
-                            {% for blog_type in blog_types %}
-                                <li>
-                                    <a href="{% url 'blogs_by_type' blog_type.pk %}">
-                                        {{ blog_type.type_name }} ({{ blog_type.blog_count }})
-                                    </a>
-                                </li>
-                            {% empty %}
-                                <li>暂无此分类</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+            {% empty %}
+                <div class="blog">
+                    <p>-- 未找到相关内容 --</p>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading"><span class="fa fa-calendar"></span> &nbsp;日期归档</div>
-                    <div class="panel-body">
-                        <ul class="blog-dates">
-                            {% for blog_date, blog_count in blog_dates.items %}
-                                <li>
-                                    <a href="{% url 'blogs_by_date' blog_date.year blog_date.month %}">
-                                        {{ blog_date|date:"Y年m月" }} ({{ blog_count }})
-                                    </a>
-                                </li>
-                            {% empty %}
-                                <li>暂无此分类</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading"><span class="fa fa-random"></span> &nbsp;随机推荐</div>
-                    <div class="panel-body">
-                        <ul class="blog-random">
-                            {% for blog in blogs_random %}
-                                <li>
-                                    <a href="{% url 'blog_detail' blog.pk %}">
-                                        {{ blog.title }}
-                                    </a>
-                                </li>
-                            {% empty %}
-                                <li>暂无此分类</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
@@ -161,7 +94,7 @@
                                 return false;
                             }else{
                                 var data = JSON.parse(data)
-                                var media_html = '<div class="media figcaption cp_'+current_page+'" style="display:none"><div class="row"><div style="overflow:hidden" class="col-md-3">\
+                                var media_html = '<div class="media figcaption cp_'+current_page+'" style="display:none"><div class="row"><div class="col-md-3 media_img">\
                                                 <div class="media-left media-middle"><a href="/blog/'+data['id']+'/">\
                                                 <img src="/media/'+data['thumbnail']+'" height="150" width="150">\
                                                 <figcaption></figcaption></a></div></div><div class="col-md-9"><div class="media-body">\

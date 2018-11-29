@@ -62,10 +62,20 @@ body a{
 #totop:hover{
     opacity:1!important;
 }
-.pad {
+.pad{
     padding: 20px!important;
+    color:rgba(0, 0, 0, 0.43)!important;
     font-size: 15px!important;
     cursor:pointer;
+    -webkit-transition: 0.5s ease;
+    -moz-transition: 0.5s ease;
+    transition: 0.5s ease;
+}
+.pad:hover{
+    text-shadow:0 0 15px #888888;
+}
+.pad i {
+    color:rgba(0, 0, 0, 0.43);
 }
 #search-form{
     position:relative;
@@ -241,11 +251,6 @@ a.navbar-brand {
     position:relative;
     top:-40px;
     left:0;
-}
-.pad{
-    -webkit-transition: 0.5s ease;
-    -moz-transition: 0.5s ease;
-    transition: 0.5s ease;
 }
 #footer_fluid{
     position:relative;

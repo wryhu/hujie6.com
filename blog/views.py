@@ -13,8 +13,7 @@ from read_count.models import ReadNum
 import re
 
 # 定义每一页显示的博客数量
-numbers_of_onepage = 5
-ajax_numbers_of_onepage = 2
+numbers_of_onepage = 6
 
 
 # 这是博客列表页,分类页,日期归档页的代码重用部分

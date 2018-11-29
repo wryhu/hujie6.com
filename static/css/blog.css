@@ -1,5 +1,6 @@
 body {
-    background: url(/static/image/map.png) repeat right top;
+    background: url(/static/image/yournamebg.jpg) repeat-y 0 0;
+    background-size:100%;
 }
 .panel {
     margin:10px;
@@ -21,6 +22,7 @@ div.paginator {
     text-align: center;
 }
 .pagination {
+    background-color: rgba(63,74,105,0.16);
     box-shadow:0px 0px 6px 6px rgba(63,74,105,0.16);
 }
 .pagination > .active > span {
@@ -74,6 +76,14 @@ div.comment {
     padding-right: 10px;
     text-align:center;
 }
+.media_img{
+    width:150px;
+    overflow:hidden;
+    padding:0;
+}
+.media-left{
+    padding:0;
+}
 .blog-types a{
     text-decoration:none;
 }
@@ -106,16 +116,16 @@ div.comment {
     text-decoration:none;
 }
 .btn-default {
+     border-color: rgb(204, 204, 204, 0.5);
     background-color: rgba(141, 143, 160, 0);
 }
 .jumbotron {
-    background-color: rgba(141, 143, 160, 0.19);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 .jumbotron:hover {
-    background-color: rgba(141, 143, 160, 0.3);
+    background-color: rgba(255, 255, 255, 0.4);
 }
 #comment-list .jumbotron {
-    background-color: rgba(141, 143, 160, 0.19);
     padding: 25px 25px 80px 25px;
     margin:30px 0px;
 }
@@ -203,10 +213,10 @@ marquee img {
     text-decoration: none;
 }
 .pagination > li > a:hover, .pagination > li > span:hover {
-    background-color: #e7dcd466;
+    background-color: rgba(255,255,255,0.7);
 }
 .pagination > li > a, .pagination > li > span {
-    background-color: #fff0;
+    background-color: rgba(255,255,255,0.3);
 }
 .media img {
      -webkit-transition:opacity 0.35s,-webkit-transform 0.35s;

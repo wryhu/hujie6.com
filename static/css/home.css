@@ -2,7 +2,7 @@ body {
     background: #F5F7FA repeat center top;
 }
 #body_bg{
-    background: url(/static/image/bgStripe.png) repeat;
+    background: url(/static/image/sao_bg.gif);
 }
 div.jumbotron {
     margin-bottom:0;
@@ -23,11 +23,71 @@ div#container {
     max-width: 50em;
     height: 25em;
 }
-h1.same {
+.active .frame_bg{
+    padding:0 50px;
+}
+.active .frame_bg span{
+    opacity:1;
+}
+.same {
+    display: table;
+    position: relative;
+    z-index: 1;
+    margin: 46px auto;
+    padding: 18.5px 0;
+    color: #003085;
+    font-weight: 400;
+    font-size: 30px;
+    letter-spacing: .2em;
+}
+.frame_bg {
+    position: relative;
+    padding: 0;
+    -webkit-transition: all .5s cubic-bezier(.86, 0, .07, 1);
+    transition: all .5s cubic-bezier(.86, 0, .07, 1);
+}
+.frame_bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    margin: auto;
+    background: url(/static/image/sao_repeat.gif) center center;
+    background-size: contain;
+}
+.same::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 19px;
+    height: 70px;
+    background: url(/static/image/sao_left.png) top left no-repeat;
+    background-size: contain;
+}
+.same::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    width: 19px;
+    height: 70px;
+    background: url(/static/image/sao_right.png) top left no-repeat;
+    background-size: contain;
+}
+.frame_bg span {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    opacity: 0;
+    position: relative;
+}
+h1.main_cover {
     text-align: center;
-    margin: 0px 0px 60px;
-    padding: 40px 0px;
-    border-bottom: 1px solid #ccc;
+    padding: 10px 0 40px;
     color: #fff;
 }
 #bkg {
@@ -36,10 +96,9 @@ h1.same {
 #bg1 {
     position: relative;
     display: table;
-    height: 50em;
     width: 100%;
     margin-top:40px;
-    background: url(/static/image/hiuga.jpg) no-repeat center center fixed;
+    background: url(/static/image/hiuga.jpg) no-repeat 0 0 fixed;
     background-size: 100% auto;
 }
 .landing-text {
@@ -266,6 +325,24 @@ div.tab-content li{
     -webkit-transform: scale(2);
     -moz-transform: scale(2);
     transform: scale(2);
+}
+.main_bg{
+    position: relative;
+    display: table;
+    width: 100%;
+
+}
+#main_bg1{
+    background: url(/static/image/morning.jpg) no-repeat center center fixed;
+    background-size: 100% auto;
+}
+#main_bg2{
+    background: url(/static/image/noon.jpeg) no-repeat center center fixed;
+    background-size: 100% auto;
+}
+#main_bg3{
+    background: url(/static/image/night.jpg) no-repeat center center fixed;
+    background-size: 100% auto;
 }
 .learn_hover img{
     -webkit-transition: 1s ease;
