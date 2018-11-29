@@ -1,4 +1,8 @@
 {% extends 'blog/blog_base.html' %}
+{% block header_extends %}
+    <link rel="stylesheet" href="/static/css/blog.css">
+    <script src="/static/js/blog_detail.js"></script>
+{% endblock %}
 {% load comment_tags %}
 {% block blog_list %}
     <div class="panel panel-default">

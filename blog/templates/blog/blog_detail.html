@@ -221,7 +221,6 @@
                 $.ajaxSetup({
                     data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
                 });
-
                 // 异步传输数据，由于我自己的评论和回复比较炫酷，所以还得分两种情况
                 $.ajax({
                     url: "{% url 'submit_reply' %}",
@@ -264,7 +263,6 @@
                 });
                 return false;
             });
-
             // 使用zoom.js插件，使得文章内图片按比例缩小
             $(".blog-content img").removeAttr("style");
             $(".blog-content img").attr("data-action", "zoom");

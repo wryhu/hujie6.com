@@ -7,14 +7,14 @@ body a{
     outline:none;
 }
 .body_night2 {
-    background-color:rgba(0, 0, 0, 0.24);
+    background-color:rgba(0, 0, 0, 0.5);
 }
 .body_light2 {
     background-color:rgba(0, 0, 0, 0);
 }
 .body_night {
     animation: change3 1s linear 0s 1;
-    background-color:rgba(0, 0, 0, 0.24);
+    background-color:rgba(0, 0, 0, 0.5);
 }
 .body_light {
     animation: change4 1s linear 0s 1;
@@ -22,10 +22,10 @@ body a{
 }
 @keyframes change3 {
     0%{background-color:rgba(0, 0, 0, 0);}
-    100% {background-color:rgba(0, 0, 0, 0.24);}
+    100% {background-color:rgba(0, 0, 0, 0.5);}
 }
 @keyframes change4 {
-    0%{background-color:rgba(0, 0, 0, 0.24);}
+    0%{background-color:rgba(0, 0, 0, 0.5);}
     100% {background-color:rgba(0, 0, 0, 0);}
 }
 #navbar-zhan{
