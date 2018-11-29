@@ -149,6 +149,34 @@
 {% block script_extends %}
     <script type="text/javascript">
         $(function(){
+            var html = '<li><a id="l_switch" class="pad"><i class="fa fa-lightbulb-o"></i> <span id="switchs"></span></a></li>'
+            $("#light_append").append(html);
+            var frame = $(parent.frames["hidden-player"].document)
+            // 开关灯
+            var switch_str = frame.find(".next_music").text();
+            // 关
+            if(switch_str=="0"){
+                $("#body_switch").attr("class","body_night2");
+                $("#switchs").text(" 开灯");
+            // 开
+            }else{
+                $("#body_switch").attr("class","body_light2");
+                $("#switchs").text(" 关灯");
+            }
+            $("#l_switch").click(function(){
+                var switch_str = frame.find(".next_music").text();
+                // 关
+                if(switch_str=="1"){
+                    $("#body_switch").attr("class","body_night");
+                    frame.find(".next_music").text('0');
+                    $("#switchs").text(" 开灯");
+                // 开
+                }else{
+                    $("#body_switch").attr("class","body_light");
+                    frame.find(".next_music").text('1');
+                    $("#switchs").text(" 关灯");
+                }
+            });
             // 提交评论
             $("#comment-form").submit(function(){
                 // 判断是否为空
