@@ -23,11 +23,34 @@ div#container {
     max-width: 50em;
     height: 25em;
 }
+#chart_set{
+    opacity:0;
+    -ms-transition:all 1s;
+    -webkit-transition:all 1s;
+    transition:all 1s;
+}
 .active .frame_bg{
     padding:0 50px;
 }
 .active .frame_bg span{
-    opacity:1;
+    -webkit-animation: hudFlash 0.1s cubic-bezier(.47, 0, .745, .715) forwards normal;
+    animation: hudFlash 0.1s cubic-bezier(.47, 0, .745, .715) forwards normal;
+    animation-iteration-count: 4;
+    -webkit-animation-iteration-count: 4;
+}
+@keyframes hudFlash{
+    0% {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        opacity: 1;
+    }
+    50% {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        opacity: 0;
+    }
+    to {
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        opacity: 1;
+    }
 }
 .same {
     display: table;

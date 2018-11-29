@@ -724,31 +724,17 @@
             // 图表初始化函数
             var chart = Highcharts.chart('container', options);
             $("rect").attr("fill","rgba(255, 255, 255, 0)");
-            var sameHei = $(".same").height()*5;
+            var sameHei = $(".same").height()*8;
             $(window).scroll(function(){
                 var nowTop = $(document).scrollTop();
-                if(nowTop<=600){
-                    $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
-                }
-                if(nowTop>600){
-                    $('#chart_set').css({opacity:"1",transition:"all 2000ms"});
-                }
-                if(nowTop>1050){
-                    $('#chart_set').css({opacity:"0",transition:"all 1000ms"});
-                }
-
-
-
                 $(".same").each(function(){
                    var same_show = $(this).offset().top+sameHei;
                     if((nowTop+winTop)>same_show){
                         $(this).addClass("active");
-
+                        $('#chart_set').css({opacity:"1"});
                     }
                 });
             });
-
-
         });
     </script>
 {% endblock %}
