@@ -41,7 +41,7 @@ urlpatterns = [
     url(r'^privacy_policy$', views.privacy_policy, name='privacy_policy'),
     url(r'^move$', views.move, name='move'),
     url(r'^translate', views.translate, name='translate'),
-
+    url(r'^mobile', views.mobile, name='mobile'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

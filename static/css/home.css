@@ -416,11 +416,9 @@ div.tab-content li{
     position: absolute;
     z-index: 2;
     display: flex;
-        justify-content: center;
-        align-items: center;
-
+    justify-content: center;
+    align-items: center;
 }
-
 #fate .cover {
     width: 100%;
     height: 100%;

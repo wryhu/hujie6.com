@@ -162,3 +162,7 @@ def privacy_policy(request):
 
 def move(request):
     return render(request, 'move.html')
+
+
+def mobile(request):
+    return render(request, 'mobile.html')
