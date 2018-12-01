@@ -54,6 +54,7 @@ body a{
     height: auto;
     right: -3px;
     bottom: 66px;
+    z-index:3;
     outline:none;
     display:none;
     opacity:0.5;
@@ -147,6 +148,7 @@ a.navbar-brand {
     display:block;
     outline:none;
     width:100px;
+    z-index:3;
     cursor:pointer;
 }
 #music-bar:hover {
