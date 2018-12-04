@@ -114,7 +114,7 @@ h1.main_cover {
     padding: 10px 0 40px;
     color: #fff;
 }
-#bkg {
+.bkg {
     padding:0;
 }
 #bg1 {
@@ -433,4 +433,28 @@ div.tab-content li{
     background-repeat: no-repeat;
     background-position: top center;
     background-image: url(/static/images/video.jpg);
+}
+.y-container{
+    position:relative;
+    overflow:hidden;
+}
+.y-container img{
+    width:100%;
+
+}
+.y1{
+    position:relative;
+    top:40px;
+    -webkit-transform: skewY(3deg);
+    transform: skewY(3deg);
+    z-index:2;
+}
+
+.y2{
+    position:relative;
+    top:-40px;
+    width:110%;
+    -webkit-transform: perspective(100px) rotateY(1deg);
+    transform: perspective(100px) rotateY(1deg);
+    z-index:3;
 }
