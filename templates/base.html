@@ -92,6 +92,7 @@
                             var frame = $(parent.frames["hidden-player"].document)
                             //logo切换
                             var logo_num = frame.find(".logo_num").text();
+                            if(logo_num==""){logo_num = "red"}
                             var logo_str1 = "/static/image/geass"+ logo_num +"1.png"
                             var logo_str2 = "/static/image/geass"+ logo_num +"2.png"
                             $("#site_logo1").attr("src",logo_str2);
