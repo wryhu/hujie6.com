@@ -1,4 +1,12 @@
 $(function(){
+    // 百度统计
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4c1f8e68be72fa6ae0e0bbbda1cb56b8";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
     // 导航栏图标特效，引用jquery.easing函数。
     jQuery.extend( jQuery.easing,
     {

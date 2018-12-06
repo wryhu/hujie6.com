@@ -140,10 +140,6 @@ def page_not_found(request):
     return render(request, '404.html', context)
 
 
-def frame(request):
-    return render(request, 'frame.html')
-
-
 def music(request):
     return render(request, 'music.html')
 
@@ -166,3 +162,17 @@ def move(request):
 
 def mobile(request):
     return render(request, 'mobile.html')
+
+
+def frame(request):
+    context = {}
+    context["url_path"] = "/main"
+    return render(request, 'frame.html', context)
+
+
+def frames(request):
+    url_path = request.path
+    context = {}
+    context["url_path"] = url_path.split("frames")[1]
+    return render(request, 'frame.html', context)
+

@@ -22,10 +22,9 @@ from django.conf import settings
 
 
 urlpatterns = [
-    # 网站主页
-    url(r'^main$', views.main, name='main'),
     url(r'^music$', views.music, name='music'),
     url(r'^$', views.frame, name='frame'),
+    url(r'^main$', views.main, name='main'),
     url(r'^home$', views.home, name='home'),
     # 管理员页
     url(r'^admin/', admin.site.urls),
@@ -42,6 +41,7 @@ urlpatterns = [
     url(r'^move$', views.move, name='move'),
     url(r'^translate', views.translate, name='translate'),
     url(r'^mobile', views.mobile, name='mobile'),
+    url(r'^frames', views.frames, name='frames'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
