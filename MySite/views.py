@@ -130,16 +130,6 @@ def logout(request):
     return redirect(request.GET.get('form', reverse('home')))
 
 
-def page_not_found(request):
-    context = {}
-    user_name = request.user.username
-    if user_name == '':
-        context['user_name'] = '亲爱的游客'
-    else:
-        context['user_name'] = request.user.username
-    return render(request, '404.html', context)
-
-
 def music(request):
     return render(request, 'music.html')
 

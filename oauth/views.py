@@ -59,8 +59,6 @@ def check(request, oauth_type):
         # authenticate方法得到的user对象和普通的user对象多了一个backend参数。手动设置一下这个参数，则可以顺利使用login方法登录该用户。
         setattr(user, 'backend', 'django.contrib.auth.backends.ModelBackend')
         login(request, user)
-        if oauth_type == 'github' or oauth_type == 'line' or oauth_type == 'facebook':
-            return HttpResponseRedirect('/')
         return HttpResponseRedirect('/home')
     else:
         # 不存在，则跳转到绑定邮箱页面
@@ -108,10 +106,7 @@ def bind_email(request):
             login(request, user)
         # 页面提示
         context['email'] = email
-        if oauth_type == 'github' or oauth_type == 'line' or oauth_type == 'facebook':
-            context['goto_url'] = '/'
-        else:
-            context['goto_url'] = '/home'
+        context['goto_url'] = '/home'
         context['goto_page'] = True
         return render(request, 'message.html', context)
     return render(request, 'bind_email.html', context)
