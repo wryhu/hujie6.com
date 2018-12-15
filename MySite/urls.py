@@ -19,7 +19,7 @@ from django.contrib import admin
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
-
+from django.views.defaults import permission_denied
 
 urlpatterns = [
     url(r'^music$', views.music, name='music'),

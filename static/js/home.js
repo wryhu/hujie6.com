@@ -159,48 +159,6 @@ $(function(){
         img_fun1(img_num);
         frame2.find("#img_urls").attr("title",img_num);
     });
-    //翻译
-    function ajax_tran(){
-        var text_num1 = $("#tran_area")[0].textLength / 35
-        var text_num2 = Math.floor(text_num1)
-        $(".tran").attr("rows",text_num2+10);
-        var input_text = $("#tran_area").val();
-        var lan1 = $("#dropdownMenu1").attr("data-lan1");
-        var lan2 = $("#dropdownMenu1").attr("data-lan2");
-        $.ajaxSetup({
-            data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
-        });
-        $.ajax({
-            url: "{% url 'translate' %}",
-            type: 'POST',
-            data: {"input_text":input_text, "lan1":lan1, "lan2":lan2},
-            dataType: 'text',
-            cache: false,
-            success: function(data){
-                var data = JSON.parse(data)['data']
-                $("#show_tran").text(data);
-            }
-        });
-    }
-    $(".lan").click(function(){
-        var lan_text = $(this).text();
-        var lan1 = $(this).attr("data-lan1");
-        var lan2= $(this).attr("data-lan2");
-        $("#tran_type_text").text(lan_text);
-        $("#dropdownMenu1").attr("data-lan1",lan1);
-        $("#dropdownMenu1").attr("data-lan2",lan2);
-        ajax_tran();
-    });
-    tran_time = setTimeout(function(){ return false;}, 0);
-    // 延时翻译：用户停止输入600毫秒后翻译
-    $("#tran_area").bind('input propertychange',function(){
-        clearTimeout(tran_time);
-        tran_time = setTimeout(function(){ ajax_tran();}, 600);
-    });
-    $("#clear_tran").click(function(){
-        $("#tran_area").val("");
-        ajax_tran();
-    });
     //展示封面图片
     $(".main_bg").height(winTop/3);
     // 图表初始化函数

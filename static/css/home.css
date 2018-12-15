@@ -109,11 +109,6 @@ div#container {
     opacity: 0;
     position: relative;
 }
-h1.main_cover {
-    text-align: center;
-    padding: 10px 0 40px;
-    color: #fff;
-}
 .bkg {
     padding:0;
 }
