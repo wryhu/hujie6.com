@@ -116,7 +116,11 @@ def home(request):
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
     context['get_yesterday_hot_data'] = get_yesterday_hot_data(blog_content_type)
     context['get_7_days_hot_blog'] = sevendays_cache
-    context['tianqi'] = tianqi_api(get_ip(request))
+    try:
+        tianqi = tianqi_api(get_ip(request))
+    except:
+        tianqi = "查询国内天气可以直接询问小新哦，他经常在线的嘿嘿"
+    context['tianqi'] = tianqi
     return render(request, 'home.html', context)
 
 

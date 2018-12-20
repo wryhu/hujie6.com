@@ -62,7 +62,7 @@
     position: fixed;
     bottom: 15px;
     right: 20px;
-    z-index:5;
+    z-index:100;
 }
 .chatBtn{
     width: 50px;
