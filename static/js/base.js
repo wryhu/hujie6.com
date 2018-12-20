@@ -114,10 +114,10 @@ $(function(){
     });
     // 鼠标绑定移入事件：循环上下
     function rock1(){
-        $('#totop').stop().animate({marginBottom:"0px"},300,rock2);
+        $('#totop').stop().animate({marginBottom:"0px"},800,rock2);
     }
     function rock2(){
-        $('#totop').stop().animate({marginBottom:"30px"},300,rock1);
+        $('#totop').stop().animate({marginBottom:"30px"},800,rock1);
     }
     $('#totop').mouseenter(function(){
         rock2();

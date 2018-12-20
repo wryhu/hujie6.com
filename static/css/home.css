@@ -425,9 +425,6 @@ div.tab-content li{
     width: 100%;
     height: auto;
     overflow: hidden;
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-image: url(/static/images/video.jpg);
 }
 .y-container{
     position:relative;

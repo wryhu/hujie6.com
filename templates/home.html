@@ -8,6 +8,8 @@
 
 {% block header_extends %}
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+    <link rel="stylesheet" href="{% static 'font_Icon/iconfont.css' %}">
     <script src="/static/js/home.js"></script>
     <script src="//cdn.hcharts.cn/highcharts/highcharts.js"></script>
     <script src="/static/js/snowfall.js"></script>
@@ -51,7 +53,7 @@
           <img src="/static/image/yourname.jpg">
 
         </div>
-    </div>
+      </div>
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
         <span id="haha" class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -518,7 +520,162 @@
         </div>
     </div>
 
-
+    <div class="chatContainer">
+        <div class="chatBtn">
+            <i class="iconfont icon-xiaoxi1"></i>
+        </div>
+        <div class="chat-message-num">13</div>
+        <div class="chatBox" ref="chatBox">
+            <div class="chatBox-head">
+                <div class="chatBox-head-one">
+                    &ensp;&ensp;&ensp;&ensp;&ensp;联系人
+                    <div class="chat-close" style="margin: 10px 10px 0 0;font-size: 14px">关闭</div>
+                </div>
+                <div class="chatBox-head-two">
+                    <div class="chat-return">返回</div>
+                    <div class="chat-people">
+                        <div class="ChatInfoHead">
+                            <img src="" alt="头像"/>
+                        </div>
+                        <div class="ChatInfoName"></div>
+                    </div>
+                    <div class="chat-close">关闭</div>
+                </div>
+            </div>
+            <div class="chatBox-info">
+                <div class="chatBox-list" ref="chatBoxlist">
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/xiaoxin.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>小新</p>
+                        </div>
+                        <div class="message-num">在线</div>
+                        <div class="chat_pic"><img src="/static/image/xiaoxin_pic.png" alt=""></div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/meiya.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>美冴</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                        <div class="chat_pic"><img src="/static/image/meiya_pic.png" alt=""></div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/guangzhi.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>广志</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                        <div class="chat_pic"><img src="/static/image/guangzhi_pic.png" alt=""></div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/xiaokui.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>小葵</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                        <div class="chat_pic"><img src="/static/image/xiaokui_pic.png" alt=""></div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/xiaobai.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>小白</p>
+                        </div>
+                        <div class="message-num">在线</div>
+                        <div class="chat_pic"><img src="/static/image/xiaobai_pic.png" alt=""></div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/fengjian.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>风间</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/nini.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>妮妮</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/zhengnan.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>正男</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/adai.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>阿呆</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/dongganchaoren.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>动感超人</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/piguxingren.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>屁股星人</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/biti.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>天气预报</p>
+                        </div>
+                        <div class="message-num">在线</div>
+                    </div>
+                    <div class="chat-list-people">
+                        <div><img src="/static/image/xingxing.png" alt="头像"/></div>
+                        <div class="chat-name">
+                            <p>站长</p>
+                        </div>
+                        <div class="message-num">离线</div>
+                    </div>
+                </div>
+                <div class="chatBox-kuang" ref="chatBoxkuang">
+                    <div class="chatBox-content">
+                        <!--小新-->
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <!--小白-->
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                        <div class="chatBox-content-demo"></div>
+                    </div>
+                    <div class="chatBox-send">
+                        <div class="div-textarea" type="text" onkeypress="return noNumbers(event)" contenteditable="true"></div>
+                        <div>
+                            <button id="chat-biaoqing" title="表情(暂不支持)" class="btn-default-styles">
+                                <i class="iconfont icon-biaoqing"></i>
+                            </button>
+                            <label id="chat-tuxiang" title="发送图片(暂不支持)" class="btn-default-styles">
+                                <i class="iconfont icon-tuxiang"></i>
+                            </label>
+                            <button id="chat-fasong" title="发送" class="btn-default-styles"><i class="iconfont icon-fasong"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 {% block script_extends %}
     <script type="text/javascript">
@@ -600,5 +757,201 @@
             $("#tran_area").val("");
             ajax_tran();
         });
+        screenFuc();
+        function screenFuc() {
+            var topHeight = $(".chatBox-head").innerHeight();//聊天头部高度
+            //屏幕小于768px时候,布局change
+            var winWidth = $(window).innerWidth();
+            if (winWidth <= 768) {
+                var totalHeight = $(window).height(); //页面整体高度
+                $(".chatBox-info").css("height", totalHeight - topHeight);
+                var infoHeight = $(".chatBox-info").innerHeight();//聊天头部以下高度
+                //中间内容高度
+                $(".chatBox-content").css("height", infoHeight - 46);
+                $(".chatBox-content-demo").css("height", infoHeight - 46);
+
+                $(".chatBox-list").css("height", totalHeight - topHeight);
+                $(".chatBox-kuang").css("height", totalHeight - topHeight);
+                $(".div-textarea").css("width", winWidth - 106);
+            } else {
+                $(".chatBox-info").css("height", 455);
+                $(".chatBox-content").css("height", 408);
+                $(".chatBox-content-demo").css("height", 408);
+                $(".chatBox-list").css("height", 455);
+                $(".chatBox-kuang").css("height", 455);
+                $(".div-textarea").css("width", 260);
+            }
+        }
+        (window.onresize = function () {
+            screenFuc();
+        })();
+        //未读信息数量为空时
+        var totalNum = $(".chat-message-num").html();
+        if (totalNum == "") {
+            $(".chat-message-num").css("padding", 0);
+        }
+        $(".message-num").each(function () {
+            var wdNum = $(this).html();
+            if (wdNum == "") {
+                $(this).css("padding", 0);
+            }
+        });
+
+
+        //打开/关闭聊天框
+        $(".chatBtn").click(function () {
+            $(".chatBox").slideToggle();
+        })
+        $(".chat-close").click(function () {
+            $(".chatBox").slideToggle();
+        })
+        // 实时时间函数
+        function getNowFormatDate() {
+            var date = new Date();
+            var seperator1 = "-";
+            var seperator2 = ":";
+            var month = date.getMonth() + 1;
+            var strDate = date.getDate();
+            var strSec = date.getSeconds();
+            if (month >= 1 && month <= 9) {
+                month = "0" + month;
+            }
+            if (strDate >= 0 && strDate <= 9) {
+                strDate = "0" + strDate;
+            }
+            if (strSec >= 0 && strSec <= 9) {
+                strSec = "0" + strSec;
+            }
+            var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + strSec;
+            return currentdate;
+        }
+        // 机器人回复函数
+        function myBot(chat_num,reply_message,reply_img){
+            $(".chatBox-content-demo").eq(chat_num).append("<div class=\"clearfloat\">" +
+                "<div class=\"author-name\"><small class=\"chat-date\">"+getNowFormatDate()+"</small> </div> " +
+                "<div class=\"left\"> <div class=\"chat-avatars\"><img src="+reply_img+" alt=\"头像\" /> </div> " +
+                "<div class=\"chat-message\">"+reply_message+"</div> </div> </div>");
+            $(document).ready(function () {
+                $(".chatBox-content-demo").eq(chat_num).scrollTop($(".chatBox-content-demo").eq(chat_num)[0].scrollHeight);
+            });
+        }
+        //进聊天页面
+        var chat_num = 100;
+        $(".chat-list-people").each(function () {
+            $(this).click(function () {
+                chat_num = $(this).index();
+                chat_str = ".chatBox-content-demo:eq("+chat_num+")"
+                $(".chatBox-head-one").toggle();
+                $(".chatBox-head-two").toggle();
+                $(".chatBox-list").fadeToggle();
+                $(".chatBox-kuang").fadeToggle();
+                $(chat_str).show();
+                $(chat_str).siblings().hide();
+                //传名字
+                var ChatInfoName = $(this).children(".chat-name").children("p").eq(0).html();
+                $(".ChatInfoName").text(ChatInfoName);
+                var reply_img = $(this).children().eq(0).children("img").attr("src")
+                //传头像
+                $(".ChatInfoHead>img").attr("src", reply_img);
+                var auto_mes = "你好，我是小新的同学"+ChatInfoName+"，目前不在线"
+                if($(".chatBox-content-demo").eq(chat_num).children('div').length==0){
+                    if(chat_num==0){
+                        setTimeout(function(){myBot(chat_num,"呦~，我叫野原新之助，今年五岁，在春日市的双叶幼稚园上小班，我最喜欢吃巧克力饼干，最讨厌吃青椒和胡萝卜，最喜欢看《动感超人》，请多多关照",reply_img)},1000);
+                    }
+                    if(chat_num==1){
+                        setTimeout(function(){myBot(chat_num,"你好，我是小新妈妈，因为每天要处理家务还要照顾小葵，当然还有调皮的小新，所以无法及时回复您非常抱歉，可以的话留言给我，我会尽快回复",reply_img)},1000);
+                    }
+                    if(chat_num==2){
+                        setTimeout(function(){myBot(chat_num,"你好，我是小新爸爸，因为要还32年的房贷，所以白天上班晚上还要陪客户吃饭，若没有及时回复您还请见谅",reply_img)},1000);
+                    }
+                    if(chat_num==4){
+                        setTimeout(function(){myBot(chat_num,"汪汪",reply_img)},1000);
+                    }
+                    if(chat_num>4&&chat_num<9){
+                        setTimeout(function(){myBot(chat_num,auto_mes,reply_img)},1000);
+                    }
+                    if(chat_num==11){
+
+                        setTimeout(function(){myBot(chat_num,"{{ tianqi | safe}}",reply_img)},1000);
+                    }
+                    if(chat_num==12){
+                        setTimeout(function(){myBot(chat_num,"你好，我是站长。<br/>QQ:736209298<br/>邮箱:736209298@qq.com<br/>微信:hujie770183<br/>Line ID:hujie6",reply_img)},1000);
+                    }
+                }
+            })
+        });
+        //返回列表
+        $(".chat-return").click(function () {
+            $(".chatBox-head-one").toggle(1);
+            $(".chatBox-head-two").toggle(1);
+            $(".chatBox-list").fadeToggle(1);
+            $(".chatBox-kuang").fadeToggle(1);
+        });
+
+        //      发送信息
+        $("#chat-fasong").click(function () {
+            var textContent = $(".div-textarea").html().replace(/[\n\r]/g, '<br>')
+            if (textContent != "") {
+                $(".chatBox-content-demo").eq(chat_num).append("<div class=\"clearfloat\">" +
+                    "<div class=\"author-name\"><small class=\"chat-date\">"+getNowFormatDate()+"</small> </div> " +
+                    "<div class=\"right\"> <div class=\"chat-message\"> " + textContent + " </div> " +
+                    "<div class=\"chat-avatars\"><img src=\"/static/image/bulibuli.png\" alt=\"头像\" /></div> </div> </div>");
+                //发送后清空输入框
+                $(".div-textarea").html("");
+                //聊天框默认最底部
+                $(document).ready(function () {
+                    $(".chatBox-content-demo").eq(chat_num).scrollTop($(".chatBox-content-demo").eq(chat_num)[0].scrollHeight);
+                });
+                if(chat_num==0){
+                    if(textContent.length>50){
+                        myBot(chat_num,"能说短一点吗，我才5岁，听不懂耶","/static/image/xiaoxin.png")
+                    }else{
+                        // 机器人接受消息并回复
+                        $.ajaxSetup({
+                            data:{csrfmiddlewaretoken:'{{ csrf_token }}'},
+                        });
+                        $.ajax({
+                            url: "{% url 'xiaoxin' %}",
+                            type: 'POST',
+                            data: {"xiao_text":textContent},
+                            dataType: 'text',
+                            cache: false,
+                            success: function(data){
+                                var data = JSON.parse(data)['data']
+                                if(data==""){
+                                    myBot(chat_num,"你说什么我听不懂","/static/image/xiaoxin.png")
+                                    return false;
+                                }
+                                myBot(chat_num,data,"/static/image/xiaoxin.png")
+                            }
+                        });
+                    }
+                }else if(chat_num==4){
+                    var wang_wang = "汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪汪"
+                    var wang_num = Math.floor(Math.random()*10) + 1;
+                    setTimeout(function(){
+                        myBot(chat_num,wang_wang.slice(0,wang_num),"/static/image/xiaobai.png")
+                    },1000);
+                }
+            }
+        });
+        // 回车发送
+        function noNumbers(e){
+            var keynum
+            if(window.event) // IE
+                {
+                keynum = e.keyCode
+                }
+            else if(e.which) // Netscape/Firefox/Opera
+                {
+                keynum = e.which
+                }
+            if(keynum==13){
+                $("#chat-fasong").click();
+                return false;
+            }
+        }
     </script>
 {% endblock %}

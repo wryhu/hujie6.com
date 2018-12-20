@@ -3,6 +3,7 @@ import datetime
 import random
 import re
 import requests
+import json
 from django.shortcuts import render, redirect
 from django.core.cache import cache
 from django.contrib.contenttypes.models import ContentType
@@ -16,6 +17,46 @@ from read_count.utils import get_seven_days_read_data, get_today_hot_data, get_y
 from blog.models import Blog
 from .forms import LoginForm, RegForm
 from .youdao import Translate
+from .tianqiapi import tianqi_api
+
+
+def get_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
+
+def tuling(ask_message):
+    url = 'http://openapi.tuling123.com/openapi/api/v2'
+    body = {
+        "reqType":0,
+        "perception": {
+            "inputText": {
+                "text": ask_message
+            }
+        },
+        "userInfo": {
+            "apiKey": "f05916358def466eab92e144251e6c7f",
+            "userId": "364250"
+        }
+    }
+    data = json.dumps(body)
+    response = requests.post(url, data=data)
+    retext = response.text
+    return json.loads(retext)['results'][0]['values']['text']
+
+
+def xiaoxin(request):
+    xiao_text = request.POST.get("xiao_text", "")
+    data = {}
+    try:
+        data['data'] = tuling(xiao_text)
+    except Exception:
+        data['data'] = ""
+    return JsonResponse(data)
 
 
 # 有道翻译
@@ -75,6 +116,7 @@ def home(request):
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
     context['get_yesterday_hot_data'] = get_yesterday_hot_data(blog_content_type)
     context['get_7_days_hot_blog'] = sevendays_cache
+    context['tianqi'] = tianqi_api(get_ip(request))
     return render(request, 'home.html', context)
 
 

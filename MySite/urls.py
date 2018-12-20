@@ -42,6 +42,7 @@ urlpatterns = [
     url(r'^translate', views.translate, name='translate'),
     url(r'^mobile', views.mobile, name='mobile'),
     url(r'^frames', views.frames, name='frames'),
+    url(r'^xiaoxin', views.xiaoxin, name='xiaoxin'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

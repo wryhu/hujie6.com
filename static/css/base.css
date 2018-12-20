@@ -50,10 +50,10 @@ body a{
 }
 #totop {
     position: fixed;
-    width: 7em;
+    width: 72px;
     height: auto;
-    right: -3px;
-    bottom: 66px;
+    right: 13px;
+    bottom: 100px;
     z-index:3;
     outline:none;
     display:none;
