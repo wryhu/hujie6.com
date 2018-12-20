@@ -118,7 +118,7 @@ def home(request):
     context['get_7_days_hot_blog'] = sevendays_cache
     try:
         tianqi = tianqi_api(get_ip(request))
-    except:
+    except Exception as e:
         tianqi = "查询国内天气可以直接询问小新哦，他经常在线的嘿嘿"
     context['tianqi'] = tianqi
     return render(request, 'home.html', context)
