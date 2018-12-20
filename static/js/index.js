@@ -73,14 +73,15 @@ function init() {
 	function getRandom(min, max) {
 		return min + Math.random() * (max - min);
 	}
-	setTimeout(function(){
+	$("#emitter").click(function(){
 	    $("#logo").fadeIn(2000);
 	    $("body").addClass("body-change")
 		explode(emitter);
 		$(emitter).hide();
 		$('.-shadow').hide();
 		$('.js-box-wrap').hide();
-	},5000);
+	});
+
 }
 
 function logoReveal() {

@@ -163,7 +163,6 @@ main .-content.-index > div {
   left: 50%;
   -webkit-transform: translateX(-50%) translateY(-12px);
           transform: translateX(-50%) translateY(-12px);
-  cursor: pointer;
 }
 
 .emitter-dot {
