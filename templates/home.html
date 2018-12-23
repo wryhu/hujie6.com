@@ -68,7 +68,7 @@
     <div class="jumbotron">
         <div class="container">
             <h1>Hello, world!</h1>
-            <p>&ensp;欢迎访问我的网站</p>
+            <p>&ensp;欢迎访问我的网站，当前在线人数: {{ online }}</p>
 
         </div>
     </div>
@@ -542,7 +542,7 @@
                     <div class="chat-close">关闭</div>
                 </div>
             </div>
-            <div class="chatBox-info">
+            <div id="chatBox-info" class="chatBox-info">
                 <div class="chatBox-list" ref="chatBoxlist">
                     <div class="chat-list-people">
                         <div><img src="/static/image/xiaoxin.png" alt="头像"/></div>
@@ -858,7 +858,7 @@
                 var auto_mes = "你好，我是小新的同学"+ChatInfoName+"，目前不在线"
                 if($(".chatBox-content-demo").eq(chat_num).children('div').length==0){
                     if(chat_num==0){
-                        setTimeout(function(){myBot(chat_num,"呦~，我叫野原新之助，今年五岁，在春日市的双叶幼稚园上小班，我最喜欢吃巧克力饼干，最讨厌吃青椒和胡萝卜，最喜欢看《动感超人》，请多多关照",reply_img)},1000);
+                        setTimeout(function(){myBot(chat_num,"呦~，我叫野原新之助，今年五岁，在春日市的双叶幼稚园上小班，我最喜欢吃巧克力饼干，最讨厌吃青椒和胡萝卜，最喜欢看《动感超人》，请多多指教。",reply_img)},1000);
                     }
                     if(chat_num==1){
                         setTimeout(function(){myBot(chat_num,"你好，我是小新妈妈，因为每天要处理家务还要照顾小葵，当然还有调皮的小新，所以无法及时回复您非常抱歉，可以的话留言给我，我会尽快回复",reply_img)},1000);

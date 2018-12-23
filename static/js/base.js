@@ -161,23 +161,10 @@ $(function(){
         $(".skPlayer-play-btn").css({outline:"none"});
     }
     real_time_music2();
-    // 禁止播放器列表滚动冒泡,第一种方法，也是最简单的
-    $('.skPlayer-list').mouseover(function(){
-        $(this).css('overscroll-behavior','contain');
-    });
-    // 第二种方法
-    function scrollFunc(e){
-        var X = $('#music-bar').position().top;
-        var mX = e.clientX
-        var mY = e.clientY
-        if((mX<100 && mY>X)){
-            e.preventDefault();
-        }
-    }
-    if(document.addEventListener){
-        document.addEventListener('DOMMouseScroll',scrollFunc,false);
-    }//火狐
-    window.onmousewheel=document.onmousewheel=scrollFunc;//IE/Opera/Chrome
+    // 禁止播放器列表滚动冒泡,用的jquery-scrollLock插件。
+    $('.skPlayer-list').scrollLock();
+    $('.chatBox-list').scrollLock();
+    //播放器
     $("#music-bar").mouseover(function(){
         $(this).stop().animate({marginLeft:"14px",marginBottom:"14px"},300);
         // 第一次打开时的提示
@@ -372,4 +359,15 @@ $(function(){
         $("#bg1").remove();
         $("#friend_link").remove();
     }
+    // 在线人数
+    $.ajax({
+        url: "/online",
+        type: 'get',
+        dataType: 'text',
+        cache: false,
+        success: function(data){
+            return;
+        }
+    });
+
 });
