@@ -175,4 +175,16 @@ $(function(){
             }
         });
     });
+    // 在线人数记录
+    setTimeout(function(){
+        $.ajax({
+            url: "/show_online",
+            type: 'get',
+            dataType: 'text',
+            cache: false,
+            success: function(data){
+                $("#online").html(JSON.parse(data)['online']).fadeIn();
+            }
+        });
+    },1000);
 });

@@ -33,6 +33,10 @@ def get_ip(request):
 def online(request):
     ip = get_ip(request)
     request.session[ip] = "online_ip"
+    return JsonResponse({"0": 0})
+
+
+def show_online(request):
     online_sessions = Session.objects.filter(expire_date__gte=datetime.datetime.now())  # 获取未过期的sessions
     onlines = [os for os in online_sessions if "online_ip" in os.get_decoded().values()]
     return JsonResponse({"online": len(onlines)})
