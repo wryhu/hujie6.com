@@ -349,6 +349,16 @@
         $(".enter_copy").click(function(){
             window.location = "/home"
         });
+        // 在线人数记录
+        $.ajax({
+            url: "/online",
+            type: 'get',
+            dataType: 'text',
+            cache: false,
+            success: function(data){
+                return;
+            }
+        });
     });
 </script>
 </html>

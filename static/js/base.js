@@ -366,7 +366,7 @@ $(function(){
         dataType: 'text',
         cache: false,
         success: function(data){
-            return;z
+            $("#online").html(JSON.parse(data)['online']).fadeIn();
         }
     });
 });
