@@ -121,7 +121,9 @@ def home(request):
     online_sessions = Session.objects.filter(expire_date__gte=datetime.datetime.now()) # 获取未过期的sessions
     onlines = [os for os in online_sessions if "online_ip" in os.get_decoded().values()]
     context = {}
-    context['online'] = len(onlines)+1
+    if len(onlines) == 0:
+        context['online'] = 1
+    context['online'] = len(onlines)
     context['dates'] = dates
     context['read_nums'] = read_nums
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)

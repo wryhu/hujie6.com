@@ -359,7 +359,7 @@ $(function(){
         $("#bg1").remove();
         $("#friend_link").remove();
     }
-    // 在线人数
+    // 在线人数记录
     $.ajax({
         url: "/online",
         type: 'get',
@@ -369,5 +369,4 @@ $(function(){
             return;
         }
     });
-
 });
