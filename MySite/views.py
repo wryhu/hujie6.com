@@ -33,7 +33,9 @@ def get_ip(request):
 def online(request):
     ip = get_ip(request)
     request.session[ip] = "online_ip"
-    return JsonResponse({"0": 0})
+    online_sessions = Session.objects.filter(expire_date__gte=datetime.datetime.now())  # 获取未过期的sessions
+    onlines = [os for os in online_sessions if "online_ip" in os.get_decoded().values()]
+    return JsonResponse({"online": len(onlines)})
 
 
 def tuling(ask_message):
@@ -117,14 +119,7 @@ def home(request):
     if sevendays_cache is None:
         sevendays_cache = get_7_days_hot_blog()
         cache.set('seven_cache', sevendays_cache, 43200)
-    # 在线人数
-    online_sessions = Session.objects.filter(expire_date__gte=datetime.datetime.now()) # 获取未过期的sessions
-    onlines = [os for os in online_sessions if "online_ip" in os.get_decoded().values()]
     context = {}
-    if len(onlines) == 0:
-        context['online'] = 1
-    else:
-        context['online'] = len(onlines)
     context['dates'] = dates
     context['read_nums'] = read_nums
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
