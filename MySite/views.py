@@ -123,7 +123,8 @@ def home(request):
     context = {}
     if len(onlines) == 0:
         context['online'] = 1
-    context['online'] = len(onlines)
+    else:
+        context['online'] = len(onlines)
     context['dates'] = dates
     context['read_nums'] = read_nums
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
