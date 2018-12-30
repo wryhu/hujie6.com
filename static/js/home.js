@@ -161,10 +161,9 @@ $(function(){
     });
     //展示封面图片
     $(".main_bg").height(winTop/3);
-    // 图表初始化函数
-    var chart = Highcharts.chart('container', options);
-    $("rect").attr("fill","rgba(255, 255, 255, 0)");
-    var sameHei = $(".same").height()*8;
+
+//    $("rect").attr("fill","rgba(255, 255, 255, 0)");
+    var sameHei = $(".same").height()*7;
     $(window).scroll(function(){
         var nowTop = $(document).scrollTop();
         $(".same").each(function(){
