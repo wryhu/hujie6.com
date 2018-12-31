@@ -450,3 +450,6 @@ div.tab-content li{
     transform: perspective(100px) rotateY(1deg);
     z-index:3;
 }
+.tong{
+    display:none;
+}

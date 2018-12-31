@@ -133,7 +133,7 @@
                 <div id="uv_map" style="width:100%;height:400px"></div>
             </div>
         </div>
-        <div class="row">
+        <div class="row tong">
           <div class="col-md-10 col-md-offset-1">
             <table class="table">
               <caption>今日访客</caption>
@@ -884,6 +884,7 @@
                 //初始化echarts实例
                 var myChart = echarts.init(document.getElementById('uv_map'));
                 myChart.setOption(optionMap);
+                $(".tong").slideDown("slow");
             }
         });
         //翻译
