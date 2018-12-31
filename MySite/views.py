@@ -20,15 +20,16 @@ from .youdao import Translate
 from .tianqiapi import tianqi_api
 from .baidutongji import BaiduTongJi
 from django.contrib.sessions.models import Session
+from django.conf import settings
 
 
 def tongJi(request):
     context = {}
-    bd = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 1)
+    bd = BaiduTongJi(TONGJI_ID, TONGJI_NAME, TONGJI_PS, TONGJI_TOKEN, 1)
     context['dr'], context['pv'], context['uv'], context['ipc'] = bd.getPvUvAvgTime()
-    bd3 = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 3)
+    bd3 = BaiduTongJi(TONGJI_ID, TONGJI_NAME, TONGJI_PS, TONGJI_TOKEN, 3)
     context['latest'] = bd3.getLatest()
-    bd2 = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 2)
+    bd2 = BaiduTongJi(TONGJI_ID, TONGJI_NAME, TONGJI_PS, TONGJI_TOKEN, 2)
     context['diyu'], context['diyu_high'] = bd2.getDiYu()
     return JsonResponse(context)
 
