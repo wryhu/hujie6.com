@@ -22,6 +22,17 @@ from .baidutongji import BaiduTongJi
 from django.contrib.sessions.models import Session
 
 
+def tongJi(request):
+    context = {}
+    bd = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 1)
+    context['dr'], context['pv'], context['uv'], context['ipc'] = bd.getPvUvAvgTime()
+    bd3 = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 3)
+    context['latest'] = bd3.getLatest()
+    bd2 = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 2)
+    context['diyu'], context['diyu_high'] = bd2.getDiYu()
+    return JsonResponse(context)
+
+
 def get_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -126,12 +137,6 @@ def home(request):
     context['get_today_hot_data'] = get_today_hot_data(blog_content_type)
     context['get_yesterday_hot_data'] = get_yesterday_hot_data(blog_content_type)
     context['get_7_days_hot_blog'] = sevendays_cache
-    bd = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 1)
-    context['dr'], context['pv'], context['uv'], context['ipc'] = bd.getPvUvAvgTime()
-    bd2 = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 2)
-    context['diyu'], context['diyu_high']= bd2.getDiYu()
-    bd3 = BaiduTongJi("12842993", "乔瑟夫乔斯达", "Hujie6", "f7afd8de8c8a37985831ec1fbbf276df", 3)
-    context['latest'] = bd3.getLatest()
     try:
         tianqi = tianqi_api(get_ip(request))
     except Exception as e:
