@@ -5,34 +5,27 @@ import requests
 
 
 class BaiduTongJi(object):
-    def __init__(self, siteId, username, password, token, num):
+    def __init__(self, siteId, username, password, token):
         self.siteId = siteId
         self.username = username
         self.password = password
         self.token = token
         self.today = datetime.date.today()
-        if num == 1:
-            self.start_date = str(self.today - datetime.timedelta(days=7)).replace("-", "")
-            self.end_date = str(self.today).replace("-", "")
-        elif num == 2:
-            self.start_date = "20181101"
-            self.end_date = str(self.today).replace("-", "")
-        else:
-            self.start_date = str(self.today).replace("-", "")
-            self.end_date = str(self.today + datetime.timedelta(days=1)).replace("-", "")
 
-    def getresult(self, method, metrics):
+    def getresult(self, method, start_date, end_date, metrics):
         base_url = "https://api.baidu.com/json/tongji/v1/ReportService/getData"
         body = {"header": {"account_type": 1, "password": self.password, "token": self.token,
                            "username": self.username},
-                "body": {"siteId": self.siteId, "method": method, "start_date": self.start_date,
-                         "end_date": self.end_date, "metrics": metrics}}
+                "body": {"siteId": self.siteId, "method": method, "start_date": start_date,
+                         "end_date": end_date, "metrics": metrics}}
         response = requests.post(base_url, json.dumps(body))
         the_page = response.text
         return the_page
 
     def getPvUvAvgTime(self):  # 获取PV、UV、AvgTime
-        result = self.getresult("overview/getTimeTrendRpt",
+        start_date = str(self.today - datetime.timedelta(days=7)).replace("-", "")
+        end_date = str(self.today).replace("-", "")
+        result = self.getresult("overview/getTimeTrendRpt", start_date, end_date,
                                 "pv_count,visitor_count,ip_count,bounce_ratio,avg_visit_time")
         result = json.loads(result)["body"]["data"][0]["result"]["items"]
         data = result[0]
@@ -43,7 +36,9 @@ class BaiduTongJi(object):
         return daterange, pv_count, visitor_count, ip_count
 
     def getDiYu(self):
-        result = self.getresult("visit/district/a",
+        start_date = "20181101"
+        end_date = str(self.today).replace("-", "")
+        result = self.getresult("visit/district/a",  start_date, end_date,
                                 "visitor_count")
         base = json.loads(result)["body"]["data"][0]["result"]["items"]
         source = [item[0] for item in base[0]]
@@ -54,7 +49,10 @@ class BaiduTongJi(object):
         return source, base[1][0][0]
 
     def getLatest(self):
-        result = self.getresult("trend/latest/a", "start_time,area,access_page,ip,visit_time,visit_pages")
+        start_date = str(self.today).replace("-", "")
+        end_date = str(self.today + datetime.timedelta(days=1)).replace("-", "")
+        result = self.getresult("trend/latest/a",  start_date, end_date,
+                                "start_time,area,access_page,ip,visit_time,visit_pages")
         base = json.loads(result)["body"]["data"][0]["result"]["items"][1]
         a = [i for i in base if i[1] != '鹤壁']
         for i in a:

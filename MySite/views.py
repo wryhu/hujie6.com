@@ -25,12 +25,10 @@ from django.conf import settings
 
 def tongJi(request):
     context = {}
-    bd = BaiduTongJi(TONGJI_ID, TONGJI_NAME, TONGJI_PS, TONGJI_TOKEN, 1)
+    bd = BaiduTongJi(settings.TONGJI_ID, settings.TONGJI_NAME, settings.TONGJI_PS, settings.TONGJI_TOKEN)
     context['dr'], context['pv'], context['uv'], context['ipc'] = bd.getPvUvAvgTime()
-    bd3 = BaiduTongJi(TONGJI_ID, TONGJI_NAME, TONGJI_PS, TONGJI_TOKEN, 3)
-    context['latest'] = bd3.getLatest()
-    bd2 = BaiduTongJi(TONGJI_ID, TONGJI_NAME, TONGJI_PS, TONGJI_TOKEN, 2)
-    context['diyu'], context['diyu_high'] = bd2.getDiYu()
+    context['latest'] = bd.getLatest()
+    context['diyu'], context['diyu_high'] = bd.getDiYu()
     return JsonResponse(context)
 
 

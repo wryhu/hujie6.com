@@ -101,6 +101,7 @@ def ajax_blog(request):
         return JsonResponse(data)
     return JsonResponse(data)
 
+
 # 全部博客
 def blog_list(request):
     # 获取博客集合

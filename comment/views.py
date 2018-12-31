@@ -63,7 +63,7 @@ def submit_reply(request):
             data['username'] = comment.user.first_name
 
         data['comment_time'] = (comment.comment_time + timedelta(hours=8)).strftime('%Y-%m-%d %H:%M:%S')
-        data['reply_to_user'] = comment.reply_to_user.username
+        data['reply_to_user'] = comment.reply_to_user.first_name
         data['text'] = comment.text
         data['reply_pk'] = comment.pk
         data['user_pk'] = comment.user.pk
