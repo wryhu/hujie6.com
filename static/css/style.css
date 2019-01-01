@@ -318,7 +318,6 @@ main .-content.-index > div {
      width:100px;
      height:55px;
      display:none;
-     cursor:pointer;
      animation: logo-change 10s linear 0s infinite;
 }
 @keyframes logo-change {
