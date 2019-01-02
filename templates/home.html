@@ -128,9 +128,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div style="text-align:center">
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" onclick="tong_ajax()">
+                    <a data-toggle="modal" data-target="#myModal" style="cursor:pointer">
                       更多
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -170,7 +170,7 @@
                         </div>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" onclick="tong_ajax()">刷新</button>
+                        <button id="tong_update" type="button" class="btn btn-primary" onclick="tong_ajax()">刷新</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                       </div>
                     </div>
@@ -770,7 +770,6 @@
             credits: { enabled: false },
         });
         function tong_ajax(){
-            var $btn = $(this).button('loading')
             // 请求统计数据
             $.ajax({
                 url: "/tongJi",
@@ -916,8 +915,8 @@
                     $(".tong").slideDown("slow");
                 }
             });
-            $btn.button('reset')
         };
+        tong_ajax();
         //翻译
         function ajax_tran(){
             var text_num1 = $("#tran_area")[0].textLength / 35
