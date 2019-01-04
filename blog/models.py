@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
+from django.urls import reverse
 from ckeditor.fields import RichTextField
 from read_count.models import Present_read_num, ReadDetail
 
@@ -27,6 +28,12 @@ class Blog(models.Model, Present_read_num):
     read_details = GenericRelation(ReadDetail)
     created_time = models.DateTimeField(auto_now_add=True)
     last_updated_time = models.DateTimeField(auto_now=True)
+
+    def get_url(self):
+        return reverse('blog_detail', args=[self.pk])
+
+    def get_email(self):
+        return self.author.email
 
     def __unicode__(self):
         return "<blogtitle: %s>" % self.title

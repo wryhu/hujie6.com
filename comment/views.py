@@ -21,7 +21,8 @@ def submit_comment(request):
         comment.text = comment_form.cleaned_data['text']
         comment.content_object = comment_form.cleaned_data['content_object']
         comment.save()
-
+        # 发送给我邮件通知一下
+        comment.send_mail(1)
         # 返回给ajax数据
         data['status'] = 'SUCCESS'
         data['user_pk'] = comment.user.pk
@@ -54,7 +55,8 @@ def submit_reply(request):
         comment.parent = Comment.objects.get(id=parent_reply_id)
         comment.reply_to_user = comment.parent.user
         comment.save()
-
+        # 发送给我邮件通知一下
+        comment.send_mail(2)
         # 返回给ajax数据
         data['status'] = 'SUCCESS'
         if str(comment.user.pk) == "1":
@@ -68,6 +70,7 @@ def submit_reply(request):
         data['reply_pk'] = comment.pk
         data['user_pk'] = comment.user.pk
     except Exception as e:
+        print(e)
         data['status'] = 'ERROR'
         data['message'] = '回复失败'
     return JsonResponse(data)

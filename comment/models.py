@@ -1,9 +1,32 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import threading
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from django.db import models
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import render
+
+
+class SendMail(threading.Thread):
+    def __init__(self, text, fail_silently=False):
+        self.subject = '你的网站有人评论'
+        self.text = text
+        self.email = '736209298@qq.com'
+        self.fail_silently = fail_silently
+        threading.Thread.__init__(self)
+
+    def run(self):
+        send_mail(
+            self.subject,
+            '',
+            settings.EMAIL_HOST_USER,
+            [self.email],
+            fail_silently=self.fail_silently,
+            html_message=self.text
+)
 
 
 # 建立评论模型
@@ -30,6 +53,21 @@ class Comment(models.Model):
     reply_to_user = models.ForeignKey(User, related_name="child_replies_for_user", null=True)
     # 创建顶级评论字段,方便查询当前顶级评论下的所有回复
     root = models.ForeignKey('self', related_name="child_replies_for_root", null=True)
+
+    def send_mail(self, num):
+        context = {}
+        context['comment_text'] = self.text
+        context['url'] = self.content_object.get_url()
+        context['title'] = self.content_object.title
+        # 回复
+        if num == 2:
+            context['name'] = '%s 回复给 @%s' % (self.user.first_name, self.reply_to_user.first_name)
+        # 评论
+        else:
+            context['name'] = self.user.first_name
+        text = render(None, 'comment/send_mail.html', context).content.decode('utf-8')
+        send_mail = SendMail(text)
+        send_mail.start()
 
     def __unicode__(self):
         return self.text
