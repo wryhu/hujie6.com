@@ -113,6 +113,7 @@ class OAuth_SINA:
                   'response_type': 'code',
                   'redirect_uri': self.redirect_uri}
         url = 'https://api.weibo.com/oauth2/authorize?%s' % urllib.urlencode(params)
+        print(url)
         return url
 
     def get_access_token(self, code):
@@ -131,6 +132,7 @@ class OAuth_SINA:
         result = json.loads(response)
         self.open_id = result['uid']
         self.access_token = result['access_token']
+        print(self.access_token)
         return self.access_token
 
     def get_open_id(self):

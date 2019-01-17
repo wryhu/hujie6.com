@@ -44,6 +44,7 @@ def oauth_login(request):
 def check(request, oauth_type):
     """登录之后，会跳转到这里。需要判断code和state"""
     request_code = request.GET.get('code')
+    print(request_code)
     oauth_obj = identify_type(oauth_type)
     # 获取access_token
     oauth_obj.get_access_token(request_code)  # OAuth类内部会在这一步添加access_token属性值
