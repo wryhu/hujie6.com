@@ -26,7 +26,7 @@ class SendMail(threading.Thread):
             [self.email],
             fail_silently=self.fail_silently,
             html_message=self.text
-)
+        )
 
 
 # 建立评论模型

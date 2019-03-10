@@ -366,7 +366,11 @@ $(function(){
         dataType: 'text',
         cache: false,
         success: function(data){
-            $("#online").html(JSON.parse(data)['online']).fadeIn();
+            var online_num = JSON.parse(data)['online']
+            if(online_num==0){
+                online_num = 1;
+            }
+            $("#online").html(online_num).fadeIn();
         }
     });
 });

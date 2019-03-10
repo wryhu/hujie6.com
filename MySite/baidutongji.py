@@ -58,6 +58,7 @@ class BaiduTongJi(object):
         for i in a:
             try:
                 i[4] = str(int(i[4]) // 60) + "分" + str(int(i[4]) % 60) + "秒"
+                i[2] = "/".join(i[2].split("/")[:4])
             except:
                 pass
         return a

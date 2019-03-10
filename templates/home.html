@@ -735,7 +735,7 @@
         // 图表配置
         $("#container").highcharts({
             chart: { type: 'line' },
-            title: { text: '<strong>前七天博客阅读数据</strong>', useHTML:true },
+            title: { text: '前七天博客阅读数据' },
             xAxis: {
                 categories: {{ dates|safe }},   // x 轴分类
                 tickmarkPlacement: 'on',
@@ -867,6 +867,8 @@
             var seperator2 = ":";
             var month = date.getMonth() + 1;
             var strDate = date.getDate();
+            var strHours = date.getHours();
+            var strMinutes = date.getMinutes();
             var strSec = date.getSeconds();
             if (month >= 1 && month <= 9) {
                 month = "0" + month;
@@ -877,8 +879,14 @@
             if (strSec >= 0 && strSec <= 9) {
                 strSec = "0" + strSec;
             }
+            if (strHours >= 0 && strHours <= 9) {
+                strHours = "0" + strHours;
+            }
+            if (strMinutes >= 0 && strMinutes <= 9) {
+                strMinutes = "0" + strMinutes;
+            }
             var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + " " + strHours + seperator2 + strMinutes
                     + seperator2 + strSec;
             return currentdate;
         }

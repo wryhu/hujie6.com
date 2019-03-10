@@ -148,7 +148,10 @@ $(function(){
     // hyouka窗口大小等于浏览器大小
     var winTop = $(window).height();
     $("#bg1").height(winTop);
-
+    (window.onresize = function () {
+        var winTop = $(window).height();
+        $("#bg1").height(winTop);
+    })();
     // hyouka显示与隐藏
     var arrow_num = 0;
     arrow_one();
@@ -309,7 +312,7 @@ $(function(){
     $(".main_bg").height(winTop/3);
 
 //    $("rect").attr("fill","rgba(255, 255, 255, 0)");
-    var sameHei = $(".same").height()*7;
+    var sameHei = $(".same").height()*4;
     $(window).scroll(function(){
         var nowTop = $(document).scrollTop();
         $(".same").each(function(){
