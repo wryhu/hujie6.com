@@ -19,7 +19,7 @@
     <script>
         var frameSet = $(parent.frames["hidden-player"])
         if(frameSet.length==0){
-            window.location = '/frames'+window.location.pathname;
+            window.location = '/frames'+window.location.pathname+window.location.search;
         }
     </script>
     {% block header_extends %}{% endblock %}

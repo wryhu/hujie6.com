@@ -29,11 +29,10 @@ def blog_common_data(request, blogs):
         page_of_blogs = paginator.page(1)
     except EmptyPage:
         # 如果page不在范围内（例如，9999），则展示结果的最后一页。
-        page_of_blogs = paginator.page(1)
+        page_of_blogs = paginator.page(paginator.num_pages)
     # 优化分页显示
     current_page = page_of_blogs.number
-    page_range = range(max(current_page - 2, 1), current_page) + \
-                 range(current_page, min(current_page + 2, paginator.num_pages) + 1)
+    page_range = [x for x in range(current_page-2, current_page+3) if 0 < x <= paginator.num_pages]
     # 添加省略号
     if page_range[0] - 1 >= 2:
         page_range.insert(0, '...')

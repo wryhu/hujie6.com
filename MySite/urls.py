@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^xiaoxin', views.xiaoxin, name='xiaoxin'),
     url(r'^online$', views.online, name='online'),
     url(r'^tongJi$', views.tongJi, name='tongJi'),
+    url(r'^wx$', views.wx, name='wx'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

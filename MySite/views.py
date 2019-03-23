@@ -21,6 +21,7 @@ from .tianqiapi import tianqi_api
 from .baidutongji import BaiduTongJi
 from django.contrib.sessions.models import Session
 from django.conf import settings
+from hashlib import sha1
 
 
 def tongJi(request):
@@ -227,8 +228,20 @@ def frame(request):
 
 
 def frames(request):
-    url_path = request.path
+    url_path = request.get_full_path()
     context = {}
     context["url_path"] = url_path.split("frames")[1]
     return render(request, 'frame.html', context)
 
+
+def wx(request):
+    signature = request.GET.get("signature")
+    timestamp = request.GET.get("timestamp")
+    nonce = request.GET.get("nonce")
+    echostr = request.GET.get("echostr")
+    if all([signature, timestamp, nonce, echostr]):
+        li = "".join(sorted([signature, timestamp, nonce]))
+        sign = sha1(li).hexdigest()
+        if sign == signature:
+            return HttpResponse(echostr)
+    return HttpResponse(status=404)
