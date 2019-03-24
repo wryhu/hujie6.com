@@ -248,9 +248,12 @@ def wx(request):
     sign = sha1(l).hexdigest()
     print(sign)
     print(echostr)
-    if sign == signature:
-        print("real")
-        return HttpResponse(echostr)
-    else:
-        print("f")
-        return HttpResponse(echostr)
+    try:
+        if sign == signature:
+            print("real")
+            return HttpResponse(echostr)
+        else:
+            print("f")
+            return HttpResponse(echostr)
+    except Exception as e:
+        print(e)
