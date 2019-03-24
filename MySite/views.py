@@ -241,7 +241,7 @@ def wx(request):
         signature = request.GET.get("signature")
         timestamp = request.GET.get("timestamp")
         nonce = request.GET.get("nonce")
-        echostr = request.GET.get("echostr")
+        print(signature,timestamp,nonce)
         msg_signature = request.GET.get("msg_signature")
         li = ["hujie", timestamp, nonce]
         li.sort()
@@ -249,9 +249,7 @@ def wx(request):
         sign = sha1(l).hexdigest()
         if sign == signature:
             print("111111111")
-            if request.method == "GET":
-                return HttpResponse(echostr)
-            elif request.method == "POST":
+            if request.method == "POST":
                 print("2222222222")
                 xml_str = request.body
                 decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
