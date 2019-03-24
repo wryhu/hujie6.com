@@ -237,36 +237,39 @@ def frames(request):
 
 
 def wx(request):
-    signature = request.GET.get("signature")
-    timestamp = request.GET.get("timestamp")
-    nonce = request.GET.get("nonce")
-    echostr = request.GET.get("echostr")
-    li = ["hujie", timestamp, nonce]
-    li.sort()
-    l = "".join(li)
-    sign = sha1(l).hexdigest()
-    if sign == signature:
-        if request.method == "GET":
-            return HttpResponse(echostr)
-        elif request.method == "POST":
-            xml_str = request.body
-            xml_dict = xmltodict.parse(xml_str)
-            if xml_dict:
-                xml_dict = xml_dict.get("xml")
-                msg_type = xml_dict.get("MsgType")
-                if msg_type == "text":
-                    msg_reply = tuling(xml_dict.get("Content"))
-                    resp_dict = {
-                        "xml": {
-                            "ToUserName": xml_dict.get("FromUserName"),
-                            "FromUserName": xml_dict.get("ToUserName"),
-                            "CreateTime": int(time.time()),
-                            "MsgType": "text",
-                            "Content": msg_reply,
+    try:
+        signature = request.GET.get("signature")
+        timestamp = request.GET.get("timestamp")
+        nonce = request.GET.get("nonce")
+        echostr = request.GET.get("echostr")
+        li = ["hujie", timestamp, nonce]
+        li.sort()
+        l = "".join(li)
+        sign = sha1(l).hexdigest()
+        if sign == signature:
+            if request.method == "GET":
+                return HttpResponse(echostr)
+            elif request.method == "POST":
+                xml_str = request.body
+                xml_dict = xmltodict.parse(xml_str)
+                if xml_dict:
+                    xml_dict = xml_dict.get("xml")
+                    msg_type = xml_dict.get("MsgType")
+                    if msg_type == "text":
+                        msg_reply = tuling(xml_dict.get("Content"))
+                        resp_dict = {
+                            "xml": {
+                                "ToUserName": xml_dict.get("FromUserName"),
+                                "FromUserName": xml_dict.get("ToUserName"),
+                                "CreateTime": int(time.time()),
+                                "MsgType": "text",
+                                "Content": msg_reply,
+                            }
                         }
-                    }
-                    return xmltodict.unparse(resp_dict)
+                        return xmltodict.unparse(resp_dict)
 
-    else:
-        return HttpResponse(echostr)
+        else:
+            return HttpResponse("")
+    except Exception as e:
+        print(e)
 
