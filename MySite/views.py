@@ -249,11 +249,9 @@ def wx(request):
     l = "".join(li)
     sign = sha1(l).hexdigest()
     if sign == signature:
-        print("111111111")
         if request.method == "POST":
-            print("2222222222")
             xml_str = request.body
-            decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
+            decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
             ret, decryp_xml = decrypt_test.DecryptMsg(xml_str, msg_signature, timestamp, nonce)
             xml_dict = xmltodict.parse(decryp_xml)
             if xml_dict:
@@ -275,7 +273,7 @@ def wx(request):
                     }
                     result = xmltodict.unparse(resp_dict)
                     print(result)
-                    encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
+                    encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
                     ret, encrypt_xml = encryp_test.EncryptMsg(result, nonce)
 
                     return HttpResponse(encrypt_xml)
