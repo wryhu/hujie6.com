@@ -259,14 +259,14 @@ def wx(request):
                 xml_dict = xml_dict.get("xml")
                 msg_type = xml_dict.get("MsgType")
                 if msg_type == "text":
-                    msg_reply = tuling(xml_dict.get("Content")).decode("utf8")
+                    msg_reply = tuling(xml_dict.get("Content"))
                     resp_dict = {
                         "xml": {
                             "ToUserName": xml_dict.get("FromUserName"),
                             "FromUserName": xml_dict.get("ToUserName"),
                             "CreateTime": int(time.time()),
-                            "MsgType": "text",
-                            "Content": "hello",
+                            "MsgType": u"text",
+                            "Content": u"hello",
                         }
                     }
                     result = xmltodict.unparse(resp_dict)
