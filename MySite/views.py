@@ -253,41 +253,49 @@ def wx(request):
             decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
             ret, decryp_xml = decrypt_test.DecryptMsg(xml_str, msg_signature, timestamp, nonce)
             xml_dict = xmltodict.parse(decryp_xml)
-            print(xml_dict)
-            if xml_dict:
-                xml_dict = xml_dict.get("xml")
-                msg_type = xml_dict.get("MsgType")
-                if msg_type == "Event":
-                    event = xml_dict.get("Event")
-                    if event == "subscribe":
-                        resp_dict = {
-                            "xml": {
-                                "ToUserName": xml_dict.get("FromUserName"),
-                                "FromUserName": xml_dict.get("ToUserName"),
-                                "CreateTime": int(time.time()),
-                                "MsgType": "text",
-                                "Content": "感谢您的关注，敬请期待!",
-                            }
-                        }
-                        result = xmltodict.unparse(resp_dict)
-                        encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
-                        ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
-                elif msg_type == "text":
-                    msg_reply = tuling(xml_dict.get("Content"))
+            xml_dict = xml_dict.get("xml")
+            msg_type = xml_dict.get("MsgType")
+            if msg_type == "Event":
+                event = xml_dict.get("Event")
+                if event == "subscribe":
                     resp_dict = {
                         "xml": {
                             "ToUserName": xml_dict.get("FromUserName"),
                             "FromUserName": xml_dict.get("ToUserName"),
                             "CreateTime": int(time.time()),
                             "MsgType": "text",
-                            "Content": msg_reply,
+                            "Content": "感谢您的关注，敬请期待!",
                         }
                     }
-                result = xmltodict.unparse(resp_dict)
-                encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
-                ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
+                    print(resp_dict)
+                elif event == "unsubscribe":
+                    resp_dict = {
+                        "xml": {
+                            "ToUserName": xml_dict.get("FromUserName"),
+                            "FromUserName": xml_dict.get("ToUserName"),
+                            "CreateTime": int(time.time()),
+                            "MsgType": "text",
+                            "Content": "一直以来感谢您的关注",
+                        }
+                    }
+                    print(resp_dict)
+            elif msg_type == "text":
+                msg_reply = tuling(xml_dict.get("Content"))
+                resp_dict = {
+                    "xml": {
+                        "ToUserName": xml_dict.get("FromUserName"),
+                        "FromUserName": xml_dict.get("ToUserName"),
+                        "CreateTime": int(time.time()),
+                        "MsgType": "text",
+                        "Content": msg_reply,
+                    }
+                }
+                print(resp_dict)
+            result = xmltodict.unparse(resp_dict)
+            encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
+            ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
 
-                return HttpResponse(encrypt_xml)
+            return HttpResponse(encrypt_xml)
 
 
 
