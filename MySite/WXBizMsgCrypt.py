@@ -144,8 +144,10 @@ class Prpcrypt(object):
         """
         # 16位随机字符串添加到明文开头
         text1 = self.get_random_str() + struct.pack("I",socket.htonl(len(text)))
-        text2 = text1 + text
-        text = text2 + appid
+        print(text1)
+        text2 = text1 + appid
+        print(text2)
+        text = text2 + text
         # 使用自定义的填充方式对明文进行补位填充
         pkcs7 = PKCS7Encoder()
         text = pkcs7.encode(text)
