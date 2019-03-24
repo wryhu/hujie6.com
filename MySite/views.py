@@ -257,7 +257,7 @@ def wx(request):
             msg_type = xml_dict.get("MsgType")
             print(msg_type)
             if msg_type == "Event":
-                event = xml_dict.get("Event")
+                event = xml_dict.get("event")
                 print(event)
                 if event == "subscribe":
                     resp_dict = {
