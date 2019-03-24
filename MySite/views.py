@@ -258,7 +258,7 @@ def wx(request):
                 msg_type = xml_dict.get("MsgType")
                 if msg_type == "Event":
                     event = xml_dict.get("Event")
-                    if event == "subcribe":
+                    if event == "subscribe":
                         resp_dict = {
                             "xml": {
                                 "ToUserName": xml_dict.get("FromUserName"),
@@ -268,11 +268,6 @@ def wx(request):
                                 "Content": "感谢您的关注，敬请期待!",
                             }
                         }
-                        result = xmltodict.unparse(resp_dict)
-                        encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
-                        ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
-
-                        return HttpResponse(encrypt_xml)
                 elif msg_type == "text":
                     msg_reply = tuling(xml_dict.get("Content"))
                     resp_dict = {
@@ -284,11 +279,11 @@ def wx(request):
                             "Content": msg_reply,
                         }
                     }
-                    result = xmltodict.unparse(resp_dict)
-                    encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
-                    ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
+                result = xmltodict.unparse(resp_dict)
+                encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
+                ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
 
-                    return HttpResponse(encrypt_xml)
+                return HttpResponse(encrypt_xml)
 
 
 
