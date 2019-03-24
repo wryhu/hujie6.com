@@ -25,6 +25,8 @@ from hashlib import sha1
 import requests
 import xmltodict
 from WXBizMsgCrypt import WXBizMsgCrypt
+from django.views.decorators.csrf import csrf_exempt
+
 
 def tongJi(request):
     context = {}
@@ -235,7 +237,7 @@ def frames(request):
     context["url_path"] = url_path.split("frames")[1]
     return render(request, 'frame.html', context)
 
-
+@csrf_exempt
 def wx(request):
     print(request.body)
     # signature = request.GET.get("signature")
