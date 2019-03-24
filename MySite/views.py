@@ -242,7 +242,6 @@ def wx(request):
     signature = request.GET.get("signature")
     timestamp = request.GET.get("timestamp")
     nonce = request.GET.get("nonce")
-    print(signature,timestamp,nonce)
     msg_signature = request.GET.get("msg_signature")
     li = ["hujie", timestamp, nonce]
     li.sort()
@@ -269,17 +268,17 @@ def wx(request):
                                 "Content": "感谢您的关注，敬请期待!",
                             }
                         }
-                elif msg_type == "text":
-                    msg_reply = tuling(xml_dict.get("Content"))
-                    resp_dict = {
-                        "xml": {
-                            "ToUserName": xml_dict.get("FromUserName"),
-                            "FromUserName": xml_dict.get("ToUserName"),
-                            "CreateTime": int(time.time()),
-                            "MsgType": "text",
-                            "Content": msg_reply,
-                        }
-                    }
+                # elif msg_type == "text":
+                #     msg_reply = tuling(xml_dict.get("Content"))
+                #     resp_dict = {
+                #         "xml": {
+                #             "ToUserName": xml_dict.get("FromUserName"),
+                #             "FromUserName": xml_dict.get("ToUserName"),
+                #             "CreateTime": int(time.time()),
+                #             "MsgType": "text",
+                #             "Content": msg_reply,
+                #         }
+                #     }
                 result = xmltodict.unparse(resp_dict)
                 encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
                 ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
