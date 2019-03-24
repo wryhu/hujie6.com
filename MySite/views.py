@@ -26,9 +26,6 @@ import requests
 import xmltodict
 from WXBizMsgCrypt import WXBizMsgCrypt
 from django.views.decorators.csrf import csrf_exempt
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 
 def tongJi(request):
@@ -262,7 +259,7 @@ def wx(request):
                 xml_dict = xml_dict.get("xml")
                 msg_type = xml_dict.get("MsgType")
                 if msg_type == "text":
-                    msg_reply = tuling(xml_dict.get("Content"))
+                    msg_reply = tuling(xml_dict.get("Content")).decode("utf8")
                     resp_dict = {
                         "xml": {
                             "ToUserName": xml_dict.get("FromUserName"),
