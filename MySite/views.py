@@ -239,47 +239,46 @@ def frames(request):
 
 @csrf_exempt
 def wx(request):
-    print(request.body)
-    # signature = request.GET.get("signature")
-    # timestamp = request.GET.get("timestamp")
-    # nonce = request.GET.get("nonce")
-    # print(signature,timestamp,nonce)
-    # msg_signature = request.GET.get("msg_signature")
-    # li = ["hujie", timestamp, nonce]
-    # li.sort()
-    # l = "".join(li)
-    # sign = sha1(l).hexdigest()
-    # if sign == signature:
-    #     print("111111111")
-    #     if request.method == "POST":
-    #         print("2222222222")
-    #         xml_str = request.body
-    #         decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
-    #         ret, decryp_xml = decrypt_test.DecryptMsg(xml_str, msg_signature, timestamp, nonce)
-    #         xml_dict = xmltodict.parse(decryp_xml)
-    #         if xml_dict:
-    #             print("xml_dict")
-    #             xml_dict = xml_dict.get("xml")
-    #             msg_type = xml_dict.get("MsgType")
-    #             if msg_type == "text":
-    #                 print("33333333333")
-    #                 msg_reply = tuling(xml_dict.get("Content"))
-    #                 print(msg_reply)
-    #                 resp_dict = {
-    #                     "xml": {
-    #                         "ToUserName": xml_dict.get("FromUserName"),
-    #                         "FromUserName": xml_dict.get("ToUserName"),
-    #                         "CreateTime": int(time.time()),
-    #                         "MsgType": "text",
-    #                         "Content": msg_reply,
-    #                     }
-    #                 }
-    #                 result = xmltodict.unparse(resp_dict)
-    #                 print(result)
-    #                 encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
-    #                 ret, encrypt_xml = encryp_test.EncryptMsg(result, nonce)
-    #
-    #                 return HttpResponse(encrypt_xml)
+    signature = request.GET.get("signature")
+    timestamp = request.GET.get("timestamp")
+    nonce = request.GET.get("nonce")
+    print(signature,timestamp,nonce)
+    msg_signature = request.GET.get("msg_signature")
+    li = ["hujie", timestamp, nonce]
+    li.sort()
+    l = "".join(li)
+    sign = sha1(l).hexdigest()
+    if sign == signature:
+        print("111111111")
+        if request.method == "POST":
+            print("2222222222")
+            xml_str = request.body
+            decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
+            ret, decryp_xml = decrypt_test.DecryptMsg(xml_str, msg_signature, timestamp, nonce)
+            xml_dict = xmltodict.parse(decryp_xml)
+            if xml_dict:
+                print("xml_dict")
+                xml_dict = xml_dict.get("xml")
+                msg_type = xml_dict.get("MsgType")
+                if msg_type == "text":
+                    print("33333333333")
+                    msg_reply = tuling(xml_dict.get("Content"))
+                    print(msg_reply)
+                    resp_dict = {
+                        "xml": {
+                            "ToUserName": xml_dict.get("FromUserName"),
+                            "FromUserName": xml_dict.get("ToUserName"),
+                            "CreateTime": int(time.time()),
+                            "MsgType": "text",
+                            "Content": msg_reply,
+                        }
+                    }
+                    result = xmltodict.unparse(resp_dict)
+                    print(result)
+                    encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
+                    ret, encrypt_xml = encryp_test.EncryptMsg(result, nonce)
 
-    # else:
-    return HttpResponse("")
+                    return HttpResponse(encrypt_xml)
+
+    else:
+        return HttpResponse("")
