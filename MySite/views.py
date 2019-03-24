@@ -253,6 +253,7 @@ def wx(request):
             decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
             ret, decryp_xml = decrypt_test.DecryptMsg(xml_str, msg_signature, timestamp, nonce)
             xml_dict = xmltodict.parse(decryp_xml)
+            print(xml_dict)
             if xml_dict:
                 xml_dict = xml_dict.get("xml")
                 msg_type = xml_dict.get("MsgType")
@@ -271,9 +272,7 @@ def wx(request):
                         result = xmltodict.unparse(resp_dict)
                         encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
                         ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
-
-                        return HttpResponse(encrypt_xml)
-                else:
+                elif msg_type == "text":
                     msg_reply = tuling(xml_dict.get("Content"))
                     resp_dict = {
                         "xml": {
@@ -284,11 +283,11 @@ def wx(request):
                             "Content": msg_reply,
                         }
                     }
-                    result = xmltodict.unparse(resp_dict)
-                    encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
-                    ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
+                result = xmltodict.unparse(resp_dict)
+                encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
+                ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
 
-                    return HttpResponse(encrypt_xml)
+                return HttpResponse(encrypt_xml)
 
 
 
