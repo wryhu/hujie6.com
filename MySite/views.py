@@ -240,9 +240,14 @@ def wx(request):
     nonce = request.GET.get("nonce")
     echostr = request.GET.get("echostr")
     li = ["hujie", timestamp, nonce]
+    print(li)
     li.sort()
+    print(li)
     l = "".join(li)
+    print(l)
     sign = sha1(l).hexdigest()
+    print(sign)
+    print(echostr)
     if sign == signature:
         return HttpResponse(echostr)
     return HttpResponse(echostr)
