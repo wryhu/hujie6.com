@@ -255,8 +255,10 @@ def wx(request):
             xml_dict = xmltodict.parse(decryp_xml)
             xml_dict = xml_dict.get("xml")
             msg_type = xml_dict.get("MsgType")
+            print(msg_type)
             if msg_type == "Event":
                 event = xml_dict.get("Event")
+                print(event)
                 if event == "subscribe":
                     resp_dict = {
                         "xml": {
