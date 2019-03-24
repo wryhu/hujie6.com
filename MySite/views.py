@@ -269,10 +269,9 @@ def wx(request):
                             "Content": u"hello",
                         }
                     }
-                    result = xmltodict.unparse(resp_dict.encode("utf8"))
-                    print(result)
+                    result = xmltodict.unparse(resp_dict)
                     encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_AESK, settings.WX_APPID)
-                    ret, encrypt_xml = encryp_test.EncryptMsg(result, nonce)
+                    ret, encrypt_xml = encryp_test.EncryptMsg(result.encode("utf8"), nonce)
 
                     return HttpResponse(encrypt_xml)
 
