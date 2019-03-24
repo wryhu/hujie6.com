@@ -24,7 +24,7 @@ from django.conf import settings
 from hashlib import sha1
 import requests
 import xmltodict
-
+from WXBizMsgCrypt import WXBizMsgCrypt
 
 def tongJi(request):
     context = {}
@@ -242,6 +242,7 @@ def wx(request):
         timestamp = request.GET.get("timestamp")
         nonce = request.GET.get("nonce")
         echostr = request.GET.get("echostr")
+        msg_signature = request.GET.get("msg_signature")
         li = ["hujie", timestamp, nonce]
         li.sort()
         l = "".join(li)
@@ -253,7 +254,9 @@ def wx(request):
             elif request.method == "POST":
                 print("2222222222")
                 xml_str = request.body
-                xml_dict = xmltodict.parse(xml_str)
+                decrypt_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
+                ret, decryp_xml = decrypt_test.DecryptMsg(xml_str, msg_signature, timestamp, nonce)
+                xml_dict = xmltodict.parse(decryp_xml)
                 if xml_dict:
                     print("xml_dict")
                     xml_dict = xml_dict.get("xml")
@@ -271,11 +274,14 @@ def wx(request):
                                 "Content": msg_reply,
                             }
                         }
-                        print(xmltodict.unparse(resp_dict))
-                        return xmltodict.unparse(resp_dict)
+                        result = xmltodict.unparse(resp_dict)
+                        print(result)
+                        encryp_test = WXBizMsgCrypt(settings.WX_TOKEN, settings.WX_EncodingAESKey, settings.WX_APPID)
+                        ret, encrypt_xml = encryp_test.EncryptMsg(result, nonce)
+
+                        return HttpResponse(encrypt_xml)
 
         else:
             return HttpResponse("")
     except Exception as e:
         print(e)
-
