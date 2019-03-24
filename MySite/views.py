@@ -2,8 +2,8 @@
 import datetime
 import random
 import re
-import requests
 import json
+import time
 from django.shortcuts import render, redirect
 from django.core.cache import cache
 from django.contrib.contenttypes.models import ContentType
@@ -22,6 +22,8 @@ from .baidutongji import BaiduTongJi
 from django.contrib.sessions.models import Session
 from django.conf import settings
 from hashlib import sha1
+import requests
+import xmltodict
 
 
 def tongJi(request):
@@ -244,6 +246,27 @@ def wx(request):
     l = "".join(li)
     sign = sha1(l).hexdigest()
     if sign == signature:
-        return HttpResponse(echostr)
+        if request.method == "GET":
+            return HttpResponse(echostr)
+        elif request.method == "POST":
+            xml_str = request.body
+            xml_dict = xmltodict.parse(xml_str)
+            if xml_dict:
+                xml_dict = xml_dict.get("xml")
+                msg_type = xml_dict.get("MsgType")
+                if msg_type == "text":
+                    msg_reply = tuling(xml_dict.get("Content"))
+                    resp_dict = {
+                        "xml": {
+                            "ToUserName": xml_dict.get("FromUserName"),
+                            "FromUserName": xml_dict.get("ToUserName"),
+                            "CreateTime": int(time.time()),
+                            "MsgType": "text",
+                            "Content": msg_reply,
+                        }
+                    }
+                    return xmltodict.unparse(resp_dict)
+
     else:
         return HttpResponse(echostr)
+
