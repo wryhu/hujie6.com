@@ -257,9 +257,9 @@ def wx(request):
             if xml_dict:
                 xml_dict = xml_dict.get("xml")
                 msg_type = xml_dict.get("MsgType")
-                event = xml_dict.get("Event")
-                if event:
-                    if event == "subscribe":
+                if msg_type == "Event":
+                    event = xml_dict.get("Event")
+                    if event == "subcribe":
                         resp_dict = {
                             "xml": {
                                 "ToUserName": xml_dict.get("FromUserName"),
