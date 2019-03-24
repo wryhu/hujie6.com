@@ -265,8 +265,8 @@ def wx(request):
                             "ToUserName": xml_dict.get("FromUserName"),
                             "FromUserName": xml_dict.get("ToUserName"),
                             "CreateTime": int(time.time()),
-                            "MsgType": u"text",
-                            "Content": u"hello",
+                            "MsgType": "text",
+                            "Content": msg_reply,
                         }
                     }
                     result = xmltodict.unparse(resp_dict)
