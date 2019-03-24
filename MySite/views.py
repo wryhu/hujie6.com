@@ -237,6 +237,7 @@ def frames(request):
 
 
 def wx(request):
+    print("***************")
     signature = request.GET.get("signature")
     timestamp = request.GET.get("timestamp")
     nonce = request.GET.get("nonce")
