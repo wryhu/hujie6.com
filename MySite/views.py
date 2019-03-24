@@ -247,16 +247,21 @@ def wx(request):
         l = "".join(li)
         sign = sha1(l).hexdigest()
         if sign == signature:
+            print("111111111")
             if request.method == "GET":
                 return HttpResponse(echostr)
             elif request.method == "POST":
+                print("2222222222")
                 xml_str = request.body
                 xml_dict = xmltodict.parse(xml_str)
                 if xml_dict:
+                    print("xml_dict")
                     xml_dict = xml_dict.get("xml")
                     msg_type = xml_dict.get("MsgType")
                     if msg_type == "text":
+                        print("33333333333")
                         msg_reply = tuling(xml_dict.get("Content"))
+                        print(msg_reply)
                         resp_dict = {
                             "xml": {
                                 "ToUserName": xml_dict.get("FromUserName"),
@@ -266,6 +271,7 @@ def wx(request):
                                 "Content": msg_reply,
                             }
                         }
+                        print(xmltodict.unparse(resp_dict))
                         return xmltodict.unparse(resp_dict)
 
         else:
