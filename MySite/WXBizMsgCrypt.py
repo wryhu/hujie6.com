@@ -143,10 +143,8 @@ class Prpcrypt(object):
         @return: 加密得到的字符串
         """
         # 16位随机字符串添加到明文开头
-        print(self.get_random_str())
-        print(struct.pack("I",socket.htonl(len(text))))
-        print(text)
-        print(appid)
+        print(type(socket.htonl(len(text))))
+        print(type(struct.pack("I", socket.htonl(len(text)))))
         text = self.get_random_str() + struct.pack("I",socket.htonl(len(text))) + text + appid
         # 使用自定义的填充方式对明文进行补位填充
         pkcs7 = PKCS7Encoder()
