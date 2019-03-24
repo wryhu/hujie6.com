@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.db.models import Sum
 from django.urls import reverse
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from read_count.utils import get_seven_days_read_data, get_today_hot_data, get_yesterday_hot_data
 from blog.models import Blog
 from .forms import LoginForm, RegForm
@@ -240,20 +240,10 @@ def wx(request):
     nonce = request.GET.get("nonce")
     echostr = request.GET.get("echostr")
     li = ["hujie", timestamp, nonce]
-    print(li)
     li.sort()
-    print(li)
     l = "".join(li)
-    print(l)
     sign = sha1(l).hexdigest()
-    print(sign)
-    print(echostr)
-    try:
-        if sign == signature:
-            print("real")
-            return HttpResponse(echostr)
-        else:
-            print("f")
-            return HttpResponse(echostr)
-    except Exception as e:
-        print(e)
+    if sign == signature:
+        return HttpResponse(echostr)
+    else:
+        return HttpResponse(echostr)
