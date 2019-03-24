@@ -279,5 +279,5 @@ def wx(request):
     #
     #                 return HttpResponse(encrypt_xml)
 
-    else:
-        return HttpResponse("")
+    # else:
+    return HttpResponse("")
