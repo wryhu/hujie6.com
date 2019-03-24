@@ -249,5 +249,8 @@ def wx(request):
     print(sign)
     print(echostr)
     if sign == signature:
+        print("real")
         return HttpResponse(echostr)
-    return HttpResponse(echostr)
+    else:
+        print("f")
+        return HttpResponse(echostr)
