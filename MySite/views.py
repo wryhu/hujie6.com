@@ -92,7 +92,8 @@ def translate(request):
     ip = get_ip(request)
     if not request.session.get(ip, ""):
         limit_num = int(cache.get(ip, "0"))
-        if limit_num > 10:
+        # 通过ip限制访问次数20次， 10分钟后才可继续访问
+        if limit_num > 20:
             return JsonResponse({"error_num": 403, "error_msg": "超出访问频率，请稍后再试"})
         cache.set(ip, limit_num+1, 600)
     input_text = request.POST.get("input_text", "")
