@@ -85,7 +85,16 @@ def xiaoxin(request):
 
 
 # 有道翻译
+@csrf_exempt
 def translate(request):
+    if request.method == "GET":
+        return HttpResponse(status=403)
+    ip = get_ip(request)
+    if not request.session.get(ip, ""):
+        limit_num = int(cache.get(ip, "0"))
+        if limit_num > 10:
+            return JsonResponse({"error_num": 403, "error_msg": "超出访问频率，请稍后再试"})
+        cache.set(ip, limit_num+1, 600)
     input_text = request.POST.get("input_text", "")
     lan1 = request.POST.get("lan1", "AUTO")
     lan2 = request.POST.get("lan2", "AUTO")
